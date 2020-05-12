@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "opentelemetry-interceptor": {
+      "projectType": "library",
+      "root": "projects/opentelemetry-interceptor",
+      "sourceRoot": "projects/opentelemetry-interceptor/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/opentelemetry-interceptor/tsconfig.lib.json",
+            "project": "projects/opentelemetry-interceptor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/opentelemetry-interceptor/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/opentelemetry-interceptor/src/test.ts",
+            "tsConfig": "projects/opentelemetry-interceptor/tsconfig.spec.json",
+            "karmaConfig": "projects/opentelemetry-interceptor/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/opentelemetry-interceptor/tsconfig.lib.json",
+              "projects/opentelemetry-interceptor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "opentelemetry-interceptor"
 }

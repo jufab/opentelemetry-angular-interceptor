@@ -14,10 +14,16 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "opentelemetry-interceptor": [
+        "dist/opentelemetry-interceptor/opentelemetry-interceptor",
+        "dist/opentelemetry-interceptor"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
   }
 }
