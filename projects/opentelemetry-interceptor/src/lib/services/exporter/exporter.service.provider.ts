@@ -10,41 +10,6 @@ import { ZipkinExporterService } from './zipkin-exporter.service';
 import { IExporter } from './exporter.interface';
 import { SpanExporterService } from './span-exporter.service';
 
-/* let exporterFactory = (
-  config: OpentelemetryConfig,
-  jaegerExporterService: JaegerExporterService,
-  otelcolExporterService: OtelcolExporterService,
-  zipkinExporterService: ZipkinExporterService
-) => {
-  let exporter: IExporter = null;
-  switch (config.commonConfig.collector) {
-    case Collector.jaeger:
-      exporter = jaegerExporterService;
-      break;
-    case Collector.otelcol:
-      exporter = otelcolExporterService;
-      break;
-    case Collector.zipkin:
-      exporter = zipkinExporterService;
-      break;
-    default:
-      break;
-  }
-  return new SpanExporterService(exporter?.getExporter());
-}; */
-/*
-export let ExporterServiceProvider: FactoryProvider = {
-  multi:false,
-  provide: SpanExporterService,
-  useFactory: exporterFactory,
-  deps: [
-    OpentelemetryInjectConfig,
-    JaegerExporterService,
-    OtelcolExporterService,
-    ZipkinExporterService,
-  ],
-}; */
-
 export class ExporterServiceProvider implements FactoryProvider {
   provide: SpanExporterService;
   multi?: boolean = false;
@@ -70,10 +35,10 @@ export class ExporterServiceProvider implements FactoryProvider {
     }
     return new SpanExporterService(exporter?.getExporter());
   };
-  deps?: [
-    OpentelemetryConfig,
+  deps = [
+    OpentelemetryInjectConfig,
     JaegerExporterService,
     OtelcolExporterService,
-    ZipkinExporterService
+    ZipkinExporterService,
   ];
 }

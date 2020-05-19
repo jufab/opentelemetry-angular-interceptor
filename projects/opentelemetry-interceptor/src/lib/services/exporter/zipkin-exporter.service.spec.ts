@@ -2,22 +2,29 @@ import { TestBed } from '@angular/core/testing';
 
 import { ZipkinExporterService } from './zipkin-exporter.service';
 import { OpentelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { zipkinExporterConfig } from '../../../../__tests__/data/config.mock';
+import { zipkinExporterConfig } from '../../../../__mocks__/data/config.mock';
+import { ConsoleSpanExporter } from '@opentelemetry/tracing';
 
 describe('ZipkinExporterService', () => {
-  let service: ZipkinExporterService;
+  let zipkinExporterService: ZipkinExporterService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        {provide:OpentelemetryInjectConfig, useValue:zipkinExporterConfig}
-      ]
-    }).compileComponents();
-    service = TestBed.get(ZipkinExporterService);
+        { provide: OpentelemetryInjectConfig, useValue: zipkinExporterConfig },
+      ],
+    });
+    zipkinExporterService = TestBed.inject(ZipkinExporterService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(zipkinExporterService).toBeTruthy();
+  });
+
+  it('should generate a ConsoleSpanExporter', () => {
+    const exporter = zipkinExporterService.getExporter();
+    expect(exporter).not.toBeNull();
+    expect(exporter).toBeInstanceOf(ConsoleSpanExporter);
   });
 });

@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { SpanExporter } from '@opentelemetry/tracing';
 import { IExporter } from './exporter.interface';
 

@@ -6,11 +6,35 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build opentelemetry-interceptor --prod",
-    "test": "ng test",
+    "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/projects/opentelemetry-interceptor/setupJest.ts"
+    ],
+    "transform": {
+      "^.+\\.(ts|js|html)$": "ts-jest"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/",
+      "<rootDir>/projects/opentelemetry-interceptor/src/test.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$",
+        "astTransformers": [
+          "jest-preset-angular/build/InlineFilesTransformer",
+          "jest-preset-angular/build/StripStylesTransformer"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "@angular/animations": "^9.1.7",
     "@angular/common": "^9.1.7",
@@ -32,19 +56,12 @@
     "@angular/cli": "^9.1.6",
     "@angular/compiler-cli": "^9.1.7",
     "@angular/language-service": "^9.1.7",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "^25.2.3",
     "@types/node": "^12.12.39",
     "codelyzer": "^5.1.2",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^5.0.7",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~3.0.1",
-    "karma-jasmine-html-reporter": "^1.5.4",
+    "jest": "^26.0.1",
+    "jest-preset-angular": "^8.2.0",
     "ng-packagr": "^9.0.0",
-    "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
