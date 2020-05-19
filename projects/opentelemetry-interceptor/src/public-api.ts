@@ -2,6 +2,5 @@
  * Public API Surface of opentelemetry-interceptor
  */
 
-export * from './lib/opentelemetry-interceptor.module';
-export * from './lib/opentelemetry-config';
-export * from './lib/opentelemetry.interceptor';
+export { OpentelemetryInterceptorModule } from './lib/opentelemetry-interceptor.module';
+export * from './lib/configuration/opentelemetry-config';

@@ -8,6 +8,7 @@
       "@opentelemetry/web": "@opentelemetry/web",
       "@opentelemetry/tracing": "@opentelemetry/tracing",
       "@opentelemetry/exporter-collector": "@opentelemetry/exporter-collector",
+      "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core"
     }
   }
