@@ -10,7 +10,9 @@ import {
   CollectorExporter,
 } from '@opentelemetry/exporter-collector';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class OtelcolExporterService implements IExporter {
   private otelcolConfig: CollectorExporterConfig;
   constructor(@Inject(OpentelemetryInjectConfig) config: OpentelemetryConfig) {

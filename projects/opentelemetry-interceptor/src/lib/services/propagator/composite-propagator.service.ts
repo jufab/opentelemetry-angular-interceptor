@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { IPropagator } from './propagator.interface';
+import { HttpTextPropagator } from '@opentelemetry/api';
+import { CompositePropagator } from '@opentelemetry/core';
 
-@Injectable()
+
+//TODO: A Revoir car pas de config
+@Injectable({
+  providedIn: "root"
+})
 export class CompositePropagatorService implements IPropagator {
-
-  constructor() { }
-  getPropagator(): import("@opentelemetry/api").HttpTextPropagator {
-    throw new Error("Method not implemented.");
+  getPropagator(): HttpTextPropagator {
+    return new CompositePropagator();
   }
 }

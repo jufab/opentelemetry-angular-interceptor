@@ -6,7 +6,9 @@ import {
 import { IExporter } from './exporter.interface';
 import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class JaegerExporterService implements IExporter {
   //private configJaeger: ExporterConfig;
 

@@ -15,6 +15,7 @@ export enum Propagator {
 export interface CommonCollectorConfig {
   serviceName: string;
   console?:boolean;
+  production?:boolean;
   collector: Collector;
   propagator: Propagator;
 }

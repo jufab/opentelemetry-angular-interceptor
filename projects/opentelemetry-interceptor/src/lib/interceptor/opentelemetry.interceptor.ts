@@ -7,13 +7,15 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, config } from 'rxjs';
 import * as api from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
+  SpanExporter,
+  SpanProcessor,
 } from '@opentelemetry/tracing';
 import { CollectorExporter } from '@opentelemetry/exporter-collector';
 import {
@@ -22,39 +24,48 @@ import {
   setActiveSpan,
 } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
+import {
+  OpentelemetryInjectConfig,
+  OpentelemetryConfig,
+} from '../../public-api';
+import { SpanExporterService } from '../services/exporter/span-exporter.service';
+import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class OpentelemetryInterceptor implements HttpInterceptor {
   tracer: WebTracerProvider;
   contextManager = new StackContextManager();
-  //config: OpentelemetryConfig;
 
-  constructor() {
-    this.initTracer();
-  }
-
-  /**
-   * Initialisation du tracer
-   */
-  initTracer() {
+  constructor(
+    @Inject(OpentelemetryInjectConfig) private config: OpentelemetryConfig,
+    @Inject(SpanExporterService)
+    private spanExporterService: SpanExporterService,
+    @Inject(HttpTextPropagatorService)
+    private httpTextPropagatorService: HttpTextPropagatorService
+  ) {
+    //TODO : Add sampler in configuration
     this.tracer = new WebTracerProvider({
       sampler: ALWAYS_SAMPLER,
     });
-    const collectorOptions = {
-      serviceName: 'angular',
-      //url: this.config && this.config.endpoint ? this.config.endpoint : '',
-    };
-    const exporter = new CollectorExporter(collectorOptions);
-    this.tracer.addSpanProcessor(new BatchSpanProcessor(exporter));
-    this.tracer.addSpanProcessor(
-      new SimpleSpanProcessor(new ConsoleSpanExporter())
+    this.insertSpanProcessorProductionMode(
+      this.config.commonConfig.production,
+      this.spanExporterService.getExporter()
     );
+    this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
-      propagator: new B3Propagator(),
+      propagator: this.httpTextPropagatorService.getPropagator(),
       contextManager: this.contextManager,
     });
   }
 
+  /**
+   * Overide method
+   * Interceptor from HttpInterceptor Angular
+   * @param request
+   * @param next
+   */
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -82,25 +93,10 @@ export class OpentelemetryInterceptor implements HttpInterceptor {
     );
   }
 
-  private injectContextAndHeader(
-    span: api.Span,
-    request: HttpRequest<unknown>
-  ) {
-    const carrier = {};
-    api.propagation.inject(
-      carrier,
-      api.defaultSetter,
-      this.contextManager.active()
-    );
-    for (let key in request.headers.keys) {
-      carrier[key] = request.headers.get(key);
-    }
-    const clone = request.clone({
-      setHeaders: carrier,
-    });
-    return clone;
-  }
-
+  /**
+   * Initialise a span for a request intercepted
+   * @param request
+   */
   private initSpan(request: HttpRequest<unknown>): api.Span {
     const span = this.tracer
       .getTracer('angular-interceptor', '0.0.1')
@@ -119,5 +115,59 @@ export class OpentelemetryInterceptor implements HttpInterceptor {
       span
     );
     return span;
+  }
+
+  /**
+   * Add header propagator in request and conserve original header
+   * @param span
+   * @param request
+   */
+  private injectContextAndHeader(
+    span: api.Span,
+    request: HttpRequest<unknown>
+  ) {
+    const carrier = {};
+    api.propagation.inject(
+      carrier,
+      api.defaultSetter,
+      this.contextManager.active()
+    );
+    for (let key in request.headers.keys) {
+      carrier[key] = request.headers.get(key);
+    }
+    return request.clone({
+      setHeaders: carrier,
+    });
+  }
+
+  /**
+   * Insert in tracer the console span if config is true
+   * @param console config to insert console span
+   */
+  private insertConsoleSpanExporter(console: boolean) {
+    if (console) {
+      this.tracer.addSpanProcessor(
+        new SimpleSpanProcessor(new ConsoleSpanExporter())
+      );
+    }
+  }
+
+  /**
+   * Insert BatchSpanProcessor in production mode
+   * SimpelSpanProcessor otherwise
+   * @param production mode
+   * @param spanExporter
+   */
+  private insertSpanProcessorProductionMode(
+    production: boolean,
+    spanExporter: SpanExporter
+  ) {
+    let spanProcessor: SpanProcessor = null;
+    if (production) {
+      spanProcessor = new BatchSpanProcessor(spanExporter);
+    } else {
+      spanProcessor = new SimpleSpanProcessor(spanExporter);
+    }
+    this.tracer.addSpanProcessor(spanProcessor);
   }
 }

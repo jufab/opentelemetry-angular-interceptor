@@ -6,7 +6,11 @@ describe('CompositePropagatorService', () => {
   let service: CompositePropagatorService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        CompositePropagatorService
+      ]
+    });
     service = TestBed.inject(CompositePropagatorService);
   });
 
