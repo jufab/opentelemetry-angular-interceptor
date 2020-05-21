@@ -2,9 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { JaegerExporterService } from './jaeger-exporter.service';
 import { OpentelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { zipkinExporterConfig } from '../../../../__mocks__/data/config.mock';
+import { jaegerExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { ConsoleSpanExporter } from '@opentelemetry/tracing';
-
 
 describe('JaegerExporterService', () => {
   let jaegerExporterService: JaegerExporterService;
@@ -13,7 +12,7 @@ describe('JaegerExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         JaegerExporterService,
-        { provide: OpentelemetryInjectConfig, useValue: zipkinExporterConfig },
+        { provide: OpentelemetryInjectConfig, useValue: jaegerExporterConfig },
       ],
     });
     jaegerExporterService = TestBed.inject(JaegerExporterService);
@@ -29,4 +28,3 @@ describe('JaegerExporterService', () => {
     expect(exporter).toBeInstanceOf(ConsoleSpanExporter);
   });
 });
-

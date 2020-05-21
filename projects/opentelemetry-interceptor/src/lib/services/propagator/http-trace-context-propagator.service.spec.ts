@@ -7,9 +7,7 @@ describe('HttpTraceContextPropagatorService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        HttpTraceContextPropagatorService
-      ]
+      providers: [HttpTraceContextPropagatorService],
     });
     service = TestBed.inject(HttpTraceContextPropagatorService);
   });

@@ -27,5 +27,4 @@ describe('OtelcolExporterService', () => {
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(CollectorExporter);
   });
-
 });

@@ -1,4 +1,4 @@
-import { Injectable, Optional, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -7,7 +7,7 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, config } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
@@ -17,17 +17,12 @@ import {
   SpanExporter,
   SpanProcessor,
 } from '@opentelemetry/tracing';
-import { CollectorExporter } from '@opentelemetry/exporter-collector';
-import {
-  B3Propagator,
-  ALWAYS_SAMPLER,
-  setActiveSpan,
-} from '@opentelemetry/core';
+import { ALWAYS_SAMPLER, setActiveSpan } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpentelemetryInjectConfig,
   OpentelemetryConfig,
-} from '../../public-api';
+} from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
 

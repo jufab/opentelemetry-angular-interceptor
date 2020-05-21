@@ -6,7 +6,7 @@ import { CompositePropagator } from '@opentelemetry/core';
 
 //TODO: A Revoir car pas de config
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class CompositePropagatorService implements IPropagator {
   getPropagator(): HttpTextPropagator {

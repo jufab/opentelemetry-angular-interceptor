@@ -7,7 +7,7 @@ import {
 import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ZipkinExporterService implements IExporter {
   //private zipkinConfig: ExporterConfig;

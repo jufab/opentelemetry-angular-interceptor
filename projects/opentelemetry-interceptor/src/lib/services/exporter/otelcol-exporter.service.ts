@@ -11,14 +11,14 @@ import {
 } from '@opentelemetry/exporter-collector';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class OtelcolExporterService implements IExporter {
   private otelcolConfig: CollectorExporterConfig;
   constructor(@Inject(OpentelemetryInjectConfig) config: OpentelemetryConfig) {
     this.otelcolConfig = {
       serviceName: config.commonConfig.serviceName,
-      url: config.otelcolConfig.url,
+      url: config.otelcolConfig?.url,
     };
   }
 

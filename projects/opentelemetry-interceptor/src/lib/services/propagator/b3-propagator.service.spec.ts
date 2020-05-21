@@ -7,9 +7,7 @@ describe('B3PropagatorService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        B3PropagatorService,
-      ]
+      providers: [B3PropagatorService],
     });
     b3PropagatorService = TestBed.inject(B3PropagatorService);
   });
