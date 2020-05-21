@@ -1,11 +1,11 @@
 {
   "name": "@opentelemetry/angular-interceptor",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "peerDependencies": {
-    "@angular/common": "^9.1.6",
-    "@angular/core": "^9.1.6",
-    "tslib": "^1.10.0",
-    "@opentelemetry/exporter-collector": "^0.8.1",
-    "@opentelemetry/web": "^0.8.1"
+    "@angular/common": "^9.1.9",
+    "@angular/core": "^9.1.9",
+    "tslib": "^1.13.0",
+    "@opentelemetry/exporter-collector": "^0.8.2",
+    "@opentelemetry/web": "^0.8.2"
   }
 }
