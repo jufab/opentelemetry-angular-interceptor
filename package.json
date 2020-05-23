@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "start:backend-example": "node ./projects/example-app/src/backend-api.js",
     "start:complete-example-app": "concurrently -k -p \"[{name}]\" -n \"backend,example-app\" -c \"green.bold,cyan.bold\" \"npm run start:backend-example\" \"npm start\"",
-    "compodoc": "npx compodoc -p projects/opentelemetry-interceptor/tsconfig.lib.json"
+    "compodoc": "npx compodoc -t -p projects/opentelemetry-interceptor/tsconfig.lib.json --theme material"
   },
   "private": true,
   "jest": {

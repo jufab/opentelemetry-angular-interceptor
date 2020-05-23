@@ -11,35 +11,65 @@ export enum Propagator {
   httpTrace = 'HttpTraceContext',
 }
 
+/**
+ * Common configuration
+ */
 export interface CommonCollectorConfig {
+  /** serviceName : Name of service in trace */
   serviceName: string;
+  /** console : boolean to trace in console */
   console?:boolean;
+  /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
   production?:boolean;
+  /** collector */
   collector: Collector;
+  /** propagator */
   propagator: Propagator;
 }
 
+
+/**
+ * OpenTelemetry Collector configuration
+ */
 export interface OtelCollectorConfig {
+  /**
+   * An url (Default value: http://localhost:9090/v1/trace)
+   */
   url?: string;
-  //see here https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/CollectorExporter.ts
 }
 
+/**
+ * Jaeger Collector configuration
+ */
 export interface JaegerCollectorConfig {
+  /** host */
   host?: string;
+  /** port */
   port?: number;
-  //see here : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-jaeger/src/types.ts
 }
 
+/**
+ * Configuration for Zipkin
+ */
 export interface ZipkinCollectorConfig {
+  /**
+   * An url (Default value: http://localhost:9411/api/v2/spans)
+   */
   url?: string;
-  // see here : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-zipkin/src/types.ts
 }
-
-export interface OpentelemetryConfig {
+/**
+ * OpenTelemetryConfig
+ */
+export interface OpenTelemetryConfig {
+  /** commonConfig */
   commonConfig: CommonCollectorConfig;
+  /** jaegerConfig */
   jaegerConfig?: JaegerCollectorConfig;
+  /** zipkinConfig */
   zipkinConfig?: ZipkinCollectorConfig;
+  /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
 }
 
-export const OpentelemetryInjectConfig = new InjectionToken<OpentelemetryConfig>('opentelemetry.config');
+/** OpenTelemetryInjectConfig : Config injection */
+export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');

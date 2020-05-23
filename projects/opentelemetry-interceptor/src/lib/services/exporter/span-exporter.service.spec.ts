@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SpanExporterService } from './span-exporter.service';
-import { OpentelemetryInjectConfig } from '../../configuration/opentelemetry-config';
+import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
 import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { CollectorExporter } from '@opentelemetry/exporter-collector';
 import { JaegerExporterService } from './jaeger-exporter.service';
@@ -14,7 +14,7 @@ describe('SpanExporterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: OpentelemetryInjectConfig, useValue: otelcolExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
         JaegerExporterService,
         ZipkinExporterService,
         OtelcolExporterService,

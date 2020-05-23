@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OtelcolExporterService } from './otelcol-exporter.service';
-import { OpentelemetryInjectConfig } from '../../configuration/opentelemetry-config';
+import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
 import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { CollectorExporter } from '@opentelemetry/exporter-collector';
 
@@ -12,7 +12,7 @@ describe('OtelcolExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         OtelcolExporterService,
-        { provide: OpentelemetryInjectConfig, useValue: otelcolExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
       ],
     });
     otelcolExporterService = TestBed.inject(OtelcolExporterService);

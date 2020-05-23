@@ -1,6 +1,9 @@
-import { OpentelemetryConfig, Collector, Propagator } from '../../src/lib/configuration/opentelemetry-config';
+import { OpenTelemetryConfig, Collector, Propagator } from '../../src/lib/configuration/opentelemetry-config';
 
-export const zipkinExporterConfig: OpentelemetryConfig = {
+/**
+ * @ignore
+ */
+export const zipkinExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: "test",
     collector: Collector.zipkin,
@@ -11,7 +14,11 @@ export const zipkinExporterConfig: OpentelemetryConfig = {
   }
 };
 
-export const otelcolExporterConfig: OpentelemetryConfig = {
+
+/**
+ * @ignore
+ */
+export const otelcolExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: "test",
     collector: Collector.otelcol,
@@ -22,11 +29,15 @@ export const otelcolExporterConfig: OpentelemetryConfig = {
   }
 };
 
-export const jaegerExporterConfig: OpentelemetryConfig = {
+
+/**
+ * @ignore
+ */
+export const jaegerExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: "test",
     collector: Collector.jaeger,
-    propagator: Propagator.composite,
+    propagator: Propagator.b3,
   },
   jaegerConfig: {
     host: "localhost",

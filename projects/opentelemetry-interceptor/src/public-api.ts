@@ -2,7 +2,7 @@
  * Public API Surface of opentelemetry-interceptor
  */
 
-export { OpentelemetryInterceptorModule } from './lib/opentelemetry-interceptor.module';
+export { OpenTelemetryInterceptorModule } from './lib/opentelemetry-interceptor.module';
 export {
   Collector,
   Propagator,
@@ -10,5 +10,5 @@ export {
   JaegerCollectorConfig,
   ZipkinCollectorConfig,
   OtelCollectorConfig,
-  OpentelemetryConfig,
+  OpenTelemetryConfig,
 } from './lib/configuration/opentelemetry-config';

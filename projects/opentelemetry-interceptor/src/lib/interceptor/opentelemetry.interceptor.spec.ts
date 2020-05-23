@@ -4,8 +4,8 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { OpentelemetryInterceptor } from './opentelemetry.interceptor';
-import { OpentelemetryInjectConfig } from '../../public-api';
+import { OpenTelemetryInterceptor } from './opentelemetry.interceptor';
+import { OpenTelemetryInjectConfig } from '../../lib/configuration/opentelemetry-config';
 import { otelcolExporterConfig } from '../../../__mocks__/data/config.mock';
 import { JaegerExporterService } from '../services/exporter/jaeger-exporter.service';
 import { OtelcolExporterService } from '../services/exporter/otelcol-exporter.service';
@@ -13,14 +13,14 @@ import { ZipkinExporterService } from '../services/exporter/zipkin-exporter.serv
 import { HttpTraceContextPropagatorService } from '../services/propagator/http-trace-context-propagator.service';
 import { B3PropagatorService } from '../services/propagator/b3-propagator.service';
 
-describe('OpentelemetryInterceptor', () => {
+describe('OpenTelemetryInterceptor', () => {
   let httpClient;
   let httpControllerMock;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        { provide: OpentelemetryInjectConfig, useValue: otelcolExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
         JaegerExporterService,
         OtelcolExporterService,
         ZipkinExporterService,
@@ -28,7 +28,7 @@ describe('OpentelemetryInterceptor', () => {
         B3PropagatorService,
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: OpentelemetryInterceptor,
+          useClass: OpenTelemetryInterceptor,
           multi: true,
         },
       ],
@@ -37,7 +37,7 @@ describe('OpentelemetryInterceptor', () => {
     httpControllerMock = TestBed.inject(HttpTestingController);
   });
   it('should be created', () => {
-    const interceptor = TestBed.inject(OpentelemetryInterceptor);
+    const interceptor = TestBed.inject(OpenTelemetryInterceptor);
     expect(interceptor).toBeTruthy();
   });
 

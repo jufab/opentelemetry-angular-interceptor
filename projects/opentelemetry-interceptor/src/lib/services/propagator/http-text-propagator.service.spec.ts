@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { HttpTextPropagatorService } from './http-text-propagator.service';
-import { OpentelemetryInjectConfig } from '../../../public-api';
+import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
 import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { HttpTraceContext } from '@opentelemetry/core';
 import { B3PropagatorService } from './b3-propagator.service';
@@ -15,7 +15,7 @@ describe('HttpTextPropagatorService', () => {
       providers: [
         B3PropagatorService,
         HttpTraceContextPropagatorService,
-        { provide: OpentelemetryInjectConfig, useValue: otelcolExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
       ],
     });
     service = TestBed.inject(HttpTextPropagatorService);

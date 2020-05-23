@@ -20,27 +20,41 @@ import {
 import { ALWAYS_SAMPLER, setActiveSpan } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
 import {
-  OpentelemetryInjectConfig,
-  OpentelemetryConfig,
+  OpenTelemetryConfig,
+  OpenTelemetryInjectConfig,
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
 
+/**
+ * OpenTelemetryInterceptor class
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class OpentelemetryInterceptor implements HttpInterceptor {
+export class OpenTelemetryInterceptor implements HttpInterceptor {
+  /**
+   * tracer
+   */
   tracer: WebTracerProvider;
+  /**
+   * context manager
+   */
   contextManager = new StackContextManager();
 
+  /**
+   * constructor
+   * @param config
+   * @param spanExporterService
+   * @param httpTextPropagatorService
+   */
   constructor(
-    @Inject(OpentelemetryInjectConfig) private config: OpentelemetryConfig,
+    @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
     @Inject(SpanExporterService)
     private spanExporterService: SpanExporterService,
     @Inject(HttpTextPropagatorService)
     private httpTextPropagatorService: HttpTextPropagatorService
   ) {
-    //TODO : Add sampler in configuration
     this.tracer = new WebTracerProvider({
       sampler: ALWAYS_SAMPLER,
     });
@@ -149,7 +163,7 @@ export class OpentelemetryInterceptor implements HttpInterceptor {
 
   /**
    * Insert BatchSpanProcessor in production mode
-   * SimpelSpanProcessor otherwise
+   * SimpleSpanProcessor otherwise
    * @param production mode
    * @param spanExporter
    */

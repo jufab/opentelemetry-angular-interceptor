@@ -2,23 +2,31 @@ import { IPropagator } from './propagator.interface';
 import { HttpTextPropagator } from '@opentelemetry/api';
 import { Injectable } from '@angular/core';
 import {
-  OpentelemetryConfig,
+  OpenTelemetryConfig,
   Propagator,
-  OpentelemetryInjectConfig,
+  OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { B3PropagatorService } from './b3-propagator.service';
 
+
+/**
+ * HttpTextPropagatorService
+ * Injected service with factory to get a propagator by configuration
+ */
 @Injectable({
   providedIn: 'root',
   useFactory: httpTextPropagatorServiceFactory,
   deps: [
-    OpentelemetryInjectConfig,
+    OpenTelemetryInjectConfig,
     HttpTraceContextPropagatorService,
     B3PropagatorService,
   ],
 })
 export class HttpTextPropagatorService implements IPropagator {
+  /**
+   * Not used in a factory, just a definition
+   */
   getPropagator(): HttpTextPropagator {
     //factory
     console.error('error');
@@ -26,8 +34,15 @@ export class HttpTextPropagatorService implements IPropagator {
   }
 }
 
+/**
+ * httpTextPropagatorServiceFactory
+ * Provide a factory to have a propagator service
+ * @param config
+ * @param httpTraceContextPropagatorService
+ * @param b3PropagatorService
+ */
 export function httpTextPropagatorServiceFactory(
-  config: OpentelemetryConfig,
+  config: OpenTelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
   b3PropagatorService: B3PropagatorService
 ) {

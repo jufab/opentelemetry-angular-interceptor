@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ZipkinExporterService } from './zipkin-exporter.service';
-import { OpentelemetryInjectConfig } from '../../configuration/opentelemetry-config';
+import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
 import { zipkinExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { ConsoleSpanExporter } from '@opentelemetry/tracing';
 
@@ -12,7 +12,7 @@ describe('ZipkinExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        { provide: OpentelemetryInjectConfig, useValue: zipkinExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: zipkinExporterConfig },
       ],
     });
     zipkinExporterService = TestBed.inject(ZipkinExporterService);

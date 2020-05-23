@@ -1,27 +1,33 @@
 import { SpanExporter } from '@opentelemetry/tracing';
 import { IExporter } from './exporter.interface';
 import { Injectable } from '@angular/core';
-import { OpentelemetryInterceptorModule } from '../../opentelemetry-interceptor.module';
 import { JaegerExporterService } from './jaeger-exporter.service';
 import { OtelcolExporterService } from './otelcol-exporter.service';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 import {
-  OpentelemetryConfig,
+  OpenTelemetryConfig,
   Collector,
-  OpentelemetryInjectConfig,
+  OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
 
+
+/**
+ * An Angular Factory to have the configured collector
+ */
 @Injectable({
   providedIn: "root",
   useFactory: spanExporterServiceFactory,
   deps: [
-    OpentelemetryInjectConfig,
+    OpenTelemetryInjectConfig,
     JaegerExporterService,
     OtelcolExporterService,
     ZipkinExporterService,
   ],
 })
 export class SpanExporterService implements IExporter {
+  /**
+   * Not used in a factory, just a definition
+   */
   getExporter(): SpanExporter {
     //factory
     console.error("error");
@@ -29,8 +35,15 @@ export class SpanExporterService implements IExporter {
   }
 }
 
+/**
+ * Factory to return Service configured
+ * @param config
+ * @param jaegerExporterService
+ * @param otelcolExporterService
+ * @param zipkinExporterService
+ */
 export function spanExporterServiceFactory(
-  config: OpentelemetryConfig,
+  config: OpenTelemetryConfig,
   jaegerExporterService: JaegerExporterService,
   otelcolExporterService: OtelcolExporterService,
   zipkinExporterService: ZipkinExporterService

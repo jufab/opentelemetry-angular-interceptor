@@ -5,20 +5,20 @@ import {
   SkipSelf,
 } from '@angular/core';
 import {
-  OpentelemetryConfig,
-  OpentelemetryInjectConfig,
+  OpenTelemetryConfig,
+  OpenTelemetryInjectConfig,
 } from './configuration/opentelemetry-config';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { OpentelemetryInterceptor } from './interceptor/opentelemetry.interceptor';
+import { OpenTelemetryInterceptor } from './interceptor/opentelemetry.interceptor';
 
 @NgModule({
   declarations: [],
   imports: [HttpClientModule],
   exports: [],
 })
-export class OpentelemetryInterceptorModule {
+export class OpenTelemetryInterceptorModule {
   constructor(
-    @Optional() @SkipSelf() parentModule?: OpentelemetryInterceptorModule
+    @Optional() @SkipSelf() parentModule?: OpenTelemetryInterceptorModule
   ) {
     if (parentModule) {
       throw new Error(
@@ -27,14 +27,14 @@ export class OpentelemetryInterceptorModule {
     }
   }
 
-  public static forRoot(config: OpentelemetryConfig): ModuleWithProviders {
+  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders {
     return {
-      ngModule: OpentelemetryInterceptorModule,
+      ngModule: OpenTelemetryInterceptorModule,
       providers: [
-        { provide: OpentelemetryInjectConfig, useValue: config },
+        { provide: OpenTelemetryInjectConfig, useValue: config },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: OpentelemetryInterceptor,
+          useClass: OpenTelemetryInterceptor,
           multi: true,
         },
       ],
