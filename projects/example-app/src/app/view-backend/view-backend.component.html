@@ -1,0 +1,40 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>OpenTelemetry Tracing</mat-card-title>
+      <mat-card-subtitle>Example about this interceptor</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="opentelemery-config">
+      <p>This is a call to the backend api <a href="http://localhost:3000/api"
+          target="_blank">http://localhost:3000/api</a> (via proxy conf)</p>
+      <p>You can see a trace in navigator console (and collector if you configure one)</p>
+      <p>with the environment configuration</p>
+      <textarea highlight-js [lang]="'json'">
+        {
+          opentelemetryConfig: {
+            commonConfig: {
+              console: true,
+              production: false,
+              serviceName: 'example-app',
+              collector: Collector.otelcol,
+              propagator: Propagator.b3,
+            },
+            otelcolConfig: {
+              url: 'http://localhost:9090', //URL of opentelemetry collector
+            }
+          },
+        }
+      </textarea>
+      <p>You can see the B3 headers added</p>
+      <textarea textarea highlight-js [lang]="'curl'">
+        GET /api/ HTTP/1.1
+Host: localhost:4200
+x-b3-spanid: c2e1714d010e61e2
+x-b3-sampled: 1
+x-b3-traceid: cf2fd6513efe374bac44ed78fc0f7c40
+        ...
+      </textarea>
+      <p><i>result call : {{result?.result}}</i></p>
+    </mat-card-content>
+  </mat-card>
+</div>
