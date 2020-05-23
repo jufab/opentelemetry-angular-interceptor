@@ -5,7 +5,6 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,7 +26,6 @@ import { PostBackendComponent } from './post-backend/post-backend.component';
     HttpClientModule,
     FormsModule,
     MatToolbarModule,
-    MatGridListModule,
     MatCardModule,
     MatFormFieldModule,
     MatMenuModule,
