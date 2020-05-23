@@ -23,7 +23,7 @@ export const environment: IEnvironment = {
       propagator: Propagator.b3, //Enum to propagator : B3 (b3), HttpTraceContext (httpTrace)
     },
     otelcolConfig: {
-      url: 'http://localhost:9090', //URL of opentelemetry collector
+      url: 'http://localhost:9090/v1/trace', //URL of opentelemetry collector
     },
     zipkinConfig: {
       url: 'http://localhost:9411/api/v2/spans',

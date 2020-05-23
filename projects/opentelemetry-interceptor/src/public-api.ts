@@ -3,4 +3,12 @@
  */
 
 export { OpentelemetryInterceptorModule } from './lib/opentelemetry-interceptor.module';
-export * from './lib/configuration/opentelemetry-config';
+export {
+  Collector,
+  Propagator,
+  CommonCollectorConfig,
+  JaegerCollectorConfig,
+  ZipkinCollectorConfig,
+  OtelCollectorConfig,
+  OpentelemetryConfig,
+} from './lib/configuration/opentelemetry-config';

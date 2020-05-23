@@ -5,7 +5,6 @@ import { OpentelemetryInjectConfig } from '../../../public-api';
 import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { HttpTraceContext } from '@opentelemetry/core';
 import { B3PropagatorService } from './b3-propagator.service';
-import { CompositePropagatorService } from './composite-propagator.service';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 
 describe('HttpTextPropagatorService', () => {
@@ -15,7 +14,6 @@ describe('HttpTextPropagatorService', () => {
     TestBed.configureTestingModule({
       providers: [
         B3PropagatorService,
-        CompositePropagatorService,
         HttpTraceContextPropagatorService,
         { provide: OpentelemetryInjectConfig, useValue: otelcolExporterConfig },
       ],

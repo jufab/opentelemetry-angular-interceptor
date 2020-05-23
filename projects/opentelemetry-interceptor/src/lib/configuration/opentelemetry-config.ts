@@ -9,7 +9,6 @@ export enum Collector {
 export enum Propagator {
   b3 = 'B3Propagator',
   httpTrace = 'HttpTraceContext',
-  composite = 'composite',
 }
 
 export interface CommonCollectorConfig {
@@ -22,18 +21,18 @@ export interface CommonCollectorConfig {
 
 export interface OtelCollectorConfig {
   url?: string;
-  //voir ici https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/CollectorExporter.ts
+  //see here https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/CollectorExporter.ts
 }
 
 export interface JaegerCollectorConfig {
   host?: string;
   port?: number;
-  //voir pour rajouter le reste : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-jaeger/src/types.ts
+  //see here : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-jaeger/src/types.ts
 }
 
 export interface ZipkinCollectorConfig {
   url?: string;
-  // voir ici pour rajouter : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-zipkin/src/types.ts
+  // see here : https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-zipkin/src/types.ts
 }
 
 export interface OpentelemetryConfig {

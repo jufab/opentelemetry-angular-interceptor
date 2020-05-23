@@ -1,27 +1,79 @@
-# OpentelemetryAngularInterceptor
+# OpenTelemetry Angular Interceptor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+## About
 
-## Development server
+@jufab/opentelemetry-angular-interceptor library is a Library as an Angular Module to integrate [OpenTelemetry](https://opentelemetry.io/) in your angular application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
 
-## Code scaffolding
+### Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+With npm :
 
-## Build
+```console
+npm i -P @jufab/opentelemetry-angular-interceptor
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+With angular-cli :
 
-## Running unit tests
+```console
+ng add @jufab/opentelemetry-angular-interceptor
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Configuration
 
-## Running end-to-end tests
+Use the "OpentelemetryConfig" interface to configure the Tracer
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```typescript
+export interface OpentelemetryConfig {
+  commonConfig: CommonCollectorConfig;
+  jaegerConfig?: JaegerCollectorConfig;
+  zipkinConfig?: ZipkinCollectorConfig;
+  otelcolConfig?: OtelCollectorConfig;
+}
+```
 
-## Further help
+#### Example global Configuration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+#### Common Configuration
+
+
+
+
+#### OpenTelemetry-collector Configuration
+
+
+#### Zipkin Collector Configuration
+
+
+#### Jaeger Collector Configuration
+
+## Example
+
+"example-app" is an Angular application .....
+
+### Run
+
+
+To start this Example application, run command :
+
+```console
+npm run start:complete-example-app
+```
+
+### [Optional] Result in OpenTelemtery-collector
+
+If you want to see the result in a collector*, there's a docker-compose in this project.
+
+you can start it with this command :
+
+```console
+docker-compose -f projects/example-app/collector/docker-compose.yaml up -d
+```
+
+And you can see the result of your generate trace in Jaeger (http://localhost:16686)
+
+More info about the collector here : https://github.com/open-telemetry/opentelemetry-collector
+
+\* _Note : without an Agent or a Collector you can see an error in your browser about send a "trace"._

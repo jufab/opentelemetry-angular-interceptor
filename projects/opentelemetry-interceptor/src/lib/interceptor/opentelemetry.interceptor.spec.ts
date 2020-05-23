@@ -7,14 +7,11 @@ import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { OpentelemetryInterceptor } from './opentelemetry.interceptor';
 import { OpentelemetryInjectConfig } from '../../public-api';
 import { otelcolExporterConfig } from '../../../__mocks__/data/config.mock';
-import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { JaegerExporterService } from '../services/exporter/jaeger-exporter.service';
 import { OtelcolExporterService } from '../services/exporter/otelcol-exporter.service';
 import { ZipkinExporterService } from '../services/exporter/zipkin-exporter.service';
 import { HttpTraceContextPropagatorService } from '../services/propagator/http-trace-context-propagator.service';
-import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
 import { B3PropagatorService } from '../services/propagator/b3-propagator.service';
-import { CompositePropagatorService } from '../services/propagator/composite-propagator.service';
 
 describe('OpentelemetryInterceptor', () => {
   let httpClient;
@@ -29,7 +26,6 @@ describe('OpentelemetryInterceptor', () => {
         ZipkinExporterService,
         HttpTraceContextPropagatorService,
         B3PropagatorService,
-        CompositePropagatorService,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: OpentelemetryInterceptor,

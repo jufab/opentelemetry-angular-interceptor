@@ -6,6 +6,12 @@ import {
 } from '../../configuration/opentelemetry-config';
 import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 
+
+/**
+ * ZipkinExporter isn't operationnal for the moment in web application.
+ * it's present if one day..
+ */
+
 @Injectable({
   providedIn: "root",
 })

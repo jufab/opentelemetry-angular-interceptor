@@ -1,0 +1,15 @@
+receivers:
+  otlp:
+    endpoint: 0.0.0.0:9090
+exporters:
+  jaeger_grpc:
+    endpoint: jaeger:14250
+processors:
+  batch:
+    send_batch_size: 1
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [jaeger_grpc]

@@ -1,5 +1,5 @@
 {
-  "name": "@opentelemetry/angular-interceptor",
+  "name": "@jufab/opentelemetry-angular-interceptor",
   "version": "0.8.2",
   "peerDependencies": {
     "@angular/common": "^9.1.9",

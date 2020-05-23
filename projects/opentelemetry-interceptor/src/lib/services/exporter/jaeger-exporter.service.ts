@@ -6,6 +6,12 @@ import {
 import { IExporter } from './exporter.interface';
 import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 
+/**
+ * JaegerExporter isn't operationnal for the moment in web application.
+ * it's present if one day..
+ * For the moment return a ConsoleSpanExporter
+ */
+
 @Injectable({
   providedIn: 'root',
 })

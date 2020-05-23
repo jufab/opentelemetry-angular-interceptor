@@ -8,22 +8,20 @@ import {
 } from '../../configuration/opentelemetry-config';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { B3PropagatorService } from './b3-propagator.service';
-import { CompositePropagatorService } from './composite-propagator.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
   useFactory: httpTextPropagatorServiceFactory,
   deps: [
     OpentelemetryInjectConfig,
     HttpTraceContextPropagatorService,
     B3PropagatorService,
-    CompositePropagatorService,
-  ]
+  ],
 })
 export class HttpTextPropagatorService implements IPropagator {
   getPropagator(): HttpTextPropagator {
     //factory
-    console.error("error");
+    console.error('error');
     return undefined;
   }
 }
@@ -31,8 +29,7 @@ export class HttpTextPropagatorService implements IPropagator {
 export function httpTextPropagatorServiceFactory(
   config: OpentelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
-  b3PropagatorService: B3PropagatorService,
-  compositePropagatorService: CompositePropagatorService
+  b3PropagatorService: B3PropagatorService
 ) {
   let propagator: IPropagator = null;
   switch (config.commonConfig.propagator) {
@@ -41,9 +38,6 @@ export function httpTextPropagatorServiceFactory(
       break;
     case Propagator.httpTrace:
       propagator = httpTraceContextPropagatorService;
-      break;
-    case Propagator.composite:
-      propagator = compositePropagatorService;
       break;
     default:
       break;
