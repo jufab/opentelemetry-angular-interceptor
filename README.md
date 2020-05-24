@@ -2,7 +2,7 @@
 
 ## About
 
-@jufab/opentelemetry-angular-interceptor is a Library as an Angular Module to integrate [OpenTelemetry](https://opentelemetry.io/) in your Angular application
+@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy [OpenTelemetry](https://opentelemetry.io/) in your Angular application
 
 ## Getting started
 
@@ -37,7 +37,7 @@ export interface OpentelemetryConfig {
 
 _From the example-app_
 
-```json
+```typescript
 opentelemetryConfig: {
     commonConfig: {
       console: true, //(boolean) Display trace on console

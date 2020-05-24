@@ -33,7 +33,7 @@
 
 <h1 id="opentelemetry-angular-interceptor">OpenTelemetry Angular Interceptor</h1>
 <h2 id="about">About</h2>
-<p>@jufab/opentelemetry-angular-interceptor is a Library as an Angular Module to integrate <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
+<p>@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
@@ -47,7 +47,7 @@
   otelcolConfig?: OtelCollectorConfig;
 }</code></pre></div><h4 id="example-global-configuration">Example global Configuration</h4>
 <p><em>From the example-app</em></p>
-<div><pre class="line-numbers"><code class="language-json">opentelemetryConfig: {
+<div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
     commonConfig: {
       console: true, //(boolean) Display trace on console
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
