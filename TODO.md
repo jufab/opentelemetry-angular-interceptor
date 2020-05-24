@@ -4,8 +4,8 @@ Todo in project...
 
 ### Todo
 
-- [ ] Downgrade Angular for compatibility  
 - [ ] Add in issue Github this todo list  
+- [ ] Add test around HttpClientJsonpModule and HttpClientXsrfModule  
 - [ ] Add composite propagator  
 - [ ] Add sampler in configuration => [here](https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core#probability-sampler)  
 - [ ] Add more configuration for OpenTelemetry-collector : See [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/CollectorExporter.ts)  
@@ -19,6 +19,7 @@ Todo in project...
 
 ### In Progress
 
+- [ ] Downgrade Angular for compatibility  
 
 ### Done ✓
 

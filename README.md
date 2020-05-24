@@ -139,6 +139,8 @@ This implementation initialise a [WebTracerProvider](https://github.com/open-tel
 
 This project have an "example-app" as Angular application example.
 
+"projects/example-app"
+
 You can see how configure and insert this module.
 
 You can althought test __opentelemetry-angular-interceptor__ with this application.
