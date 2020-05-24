@@ -11,7 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { OpentelemetryInterceptorModule } from 'projects/opentelemetry-interceptor/src/public-api';
+import { OpenTelemetryInterceptorModule } from 'projects/opentelemetry-interceptor/src/public-api';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewBackendComponent } from './view-backend/view-backend.component';
@@ -32,8 +32,8 @@ import { PostBackendComponent } from './post-backend/post-backend.component';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    //Insert module OpentelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
-    OpentelemetryInterceptorModule.forRoot(environment.opentelemetryConfig),
+    //Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
+    OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     BrowserAnimationsModule,
     HighlightJsModule,
     AppRoutingModule,

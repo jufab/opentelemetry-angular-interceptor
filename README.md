@@ -4,6 +4,21 @@
 
 @jufab/opentelemetry-angular-interceptor is an Angular Library to deploy [OpenTelemetry](https://opentelemetry.io/) in your Angular application
 
+## Table of contents
+
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+    - [Example global Configuration](#example-global-configuration)
+    - [Common Configuration](#common-configuration)
+    - [OpenTelemetry-collector Configuration](#opentelemetry-collector-configuration)
+    - [Zipkin Collector Configuration](#zipkin-collector-configuration)
+    - [Jaeger Collector Configuration](#jaeger-collector-configuration)
+  - [Angular Module](#angular-module)
+- [Example](#example)
+  - [Run](#run)
+  - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
+
 ## Getting started
 
 ### Installation
@@ -81,9 +96,41 @@ opentelemetryConfig: {
 * host: (string) host jaeger agent
 * port: (string) port jaeger agent
 
+### Angular Module
+
+To insert OpenTelemetryInterceptorModule, you can add in your application module (generally app.module.ts)
+
+```typescript
+import { NgModule } from '@angular/core';
+...
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OpenTelemetryInterceptorModule } from '@jufab/opentelemetry-angular-interceptor';
+import { environment } from '../environments/environment';
+...
+
+@NgModule({
+  declarations: [AppComponent, ...],
+  imports: [
+    ...
+    HttpClientModule,
+    //Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
+    OpenTelemetryInterceptorModule.forRoot(environment.opentelemetryConfig),
+    ...
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
 ## Example
 
-"example-app" is an Angular application .....
+This project have an "example-app" as Angular application example.
+
+You can see how configure and insert this module.
+
+You can althought test __opentelemetry-angular-interceptor__ with this application.
 
 ### Run
 
@@ -94,18 +141,20 @@ To start this Example application, run command :
 npm run start:complete-example-app
 ```
 
+and open the application at http://localhost:4200
+
 ### [Optional] Result in OpenTelemtery-collector
 
-If you want to see the result in a collector*, there's a docker-compose in this project.
+If you want to see the result in a collector *, there's a docker-compose available in this project.
 
-you can start it with this command :
+You can start it with this command :
 
 ```console
 docker-compose -f projects/example-app/collector/docker-compose.yaml up -d
 ```
 
-And you can see the result of your generate trace in Jaeger (http://localhost:16686)
+Go to the jaeger application (http://localhost:16686) to see result.
 
 More info about the collector here : https://github.com/open-telemetry/opentelemetry-collector
 
-\* _Note : without an Agent or a Collector you can see an error in your browser about send a "trace"._
+> _* without an Agent or a Collector you can see an error in your browser about to send a "trace"._

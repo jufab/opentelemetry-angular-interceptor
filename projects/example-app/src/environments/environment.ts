@@ -1,5 +1,5 @@
 import {
-  OpentelemetryConfig,
+  OpenTelemetryConfig,
   Collector,
   Propagator,
 } from '../../../opentelemetry-interceptor/src/public-api';
@@ -7,14 +7,14 @@ import {
 interface IEnvironment {
   production: boolean;
   urlTest: string;
-  opentelemetryConfig: OpentelemetryConfig;
+  openTelemetryConfig: OpenTelemetryConfig;
 }
 
 //Example to configure the angular-interceptor library
 export const environment: IEnvironment = {
   production: false,
   urlTest: 'http://localhost:4200/api',
-  opentelemetryConfig: {
+  openTelemetryConfig: {
     commonConfig: {
       console: true, //Display trace on console
       production: false, //Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
