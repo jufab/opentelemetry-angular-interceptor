@@ -2,8 +2,8 @@
   "name": "@jufab/opentelemetry-angular-interceptor",
   "version": "0.8.2",
   "peerDependencies": {
-    "@angular/common": ">=4.3.0 <10.0.0",
-    "@angular/core": ">=4.3.0 <10.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
     "@opentelemetry/exporter-collector": "^0.8.2",
     "@opentelemetry/web": "^0.8.2"
   }

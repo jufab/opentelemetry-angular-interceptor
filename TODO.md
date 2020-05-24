@@ -19,8 +19,8 @@ Todo in project...
 
 ### In Progress
 
-- [ ] Downgrade Angular for compatibility  
 
 ### Done ✓
 
+- [x] Downgrade Angular for compatibility  => Impossible due to version typescript need 3.6.0 minimum 
 

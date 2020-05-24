@@ -4,6 +4,8 @@
 
 @jufab/opentelemetry-angular-interceptor is an Angular Library to deploy [OpenTelemetry](https://opentelemetry.io/) in your Angular application
 
+**Only works for Angular >= 9.0.0**
+
 ## Table of contents
 
 - [Getting started](#getting-started)
@@ -27,13 +29,7 @@
 With npm :
 
 ```
-npm install @jufab/opentelemetry-angular-interceptor
-```
-
-With angular-cli :
-
-```
-ng add @jufab/opentelemetry-angular-interceptor
+npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/web @opentelemetry/exporter-collector
 ```
 
 ### Configuration
@@ -171,3 +167,11 @@ Go to the jaeger application (http://localhost:16686) to see result.
 More info about the collector here : https://github.com/open-telemetry/opentelemetry-collector
 
 > _* without an Agent or a Collector you can see an error in your browser about to send a "trace"._
+
+
+## Troubleshoot
+
+|Error|Fix|
+|-----|---|
+|error TS2694: Namespace 'NodeJS' has no exported member 'Timeout'.|Need dependence @type/node >= 12.0.2|
+|error TS1086: An accessor cannot be declared in an ambient context.|Need dependence typescript >= 3.6.0|
