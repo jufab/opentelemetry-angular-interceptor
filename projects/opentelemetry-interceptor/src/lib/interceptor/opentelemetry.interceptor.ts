@@ -15,7 +15,6 @@ import {
   ConsoleSpanExporter,
   BatchSpanProcessor,
   SpanExporter,
-  SpanProcessor,
 } from '@opentelemetry/tracing';
 import { ALWAYS_SAMPLER, setActiveSpan } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
@@ -171,12 +170,10 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
     production: boolean,
     spanExporter: SpanExporter
   ) {
-    let spanProcessor: SpanProcessor = null;
-    if (production) {
-      spanProcessor = new BatchSpanProcessor(spanExporter);
-    } else {
-      spanProcessor = new SimpleSpanProcessor(spanExporter);
-    }
-    this.tracer.addSpanProcessor(spanProcessor);
+    this.tracer.addSpanProcessor(
+      production
+        ? new BatchSpanProcessor(spanExporter)
+        : new SimpleSpanProcessor(spanExporter)
+    );
   }
 }

@@ -15,6 +15,7 @@
     - [Zipkin Collector Configuration](#zipkin-collector-configuration)
     - [Jaeger Collector Configuration](#jaeger-collector-configuration)
   - [Angular Module](#angular-module)
+- [How it works](#how-it-works)
 - [Example](#example)
   - [Run](#run)
   - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
@@ -26,7 +27,7 @@
 With npm :
 
 ```
-npm i -P @jufab/opentelemetry-angular-interceptor
+npm install @jufab/opentelemetry-angular-interceptor
 ```
 
 With angular-cli :
@@ -123,6 +124,16 @@ import { environment } from '../environments/environment';
 })
 export class AppModule {}
 ```
+
+## How it works
+
+This library is based on [HttpClientModule](https://angular.io/api/common/http/HttpClientModule) and the [HTTP_INTERCEPTORS](https://angular.io/api/common/http/HTTP_INTERCEPTORS)
+
+OpenTelemetryInterceptor implement an [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor) and the intercept method.
+
+This implementation initialise a [WebTracerProvider](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-web/src/WebTracerProvider.ts), create a [Span](https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html) and add [header propagation](https://open-telemetry.github.io/opentelemetry-js/interfaces/httptextpropagator.html) in the current call.
+
+> The response body is adding by an event in span.
 
 ## Example
 
