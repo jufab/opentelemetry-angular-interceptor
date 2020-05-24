@@ -25,13 +25,13 @@
 
 With npm :
 
-```console
+```
 npm i -P @jufab/opentelemetry-angular-interceptor
 ```
 
 With angular-cli :
 
-```console
+```
 ng add @jufab/opentelemetry-angular-interceptor
 ```
 
@@ -137,7 +137,7 @@ You can althought test __opentelemetry-angular-interceptor__ with this applicati
 
 To start this Example application, run command :
 
-```console
+```
 npm run start:complete-example-app
 ```
 
@@ -149,7 +149,7 @@ If you want to see the result in a collector *, there's a docker-compose availab
 
 You can start it with this command :
 
-```console
+```
 docker-compose -f projects/example-app/collector/docker-compose.yaml up -d
 ```
 
