@@ -6,15 +6,7 @@
     </mat-card-header>
     <mat-card-content class="opentelemery-config">
       <p>This is a call to the JsonP api</p>
-      <p>You can see the B3 headers added</p>
-      <textarea textarea highlight-js [lang]="'curl'">
-        GET /api/ HTTP/1.1
-Host: localhost:4200
-x-b3-spanid: c2e1714d010e61e2
-x-b3-sampled: 1
-x-b3-traceid: cf2fd6513efe374bac44ed78fc0f7c40
-        ...
-      </textarea>
+      <p>There's no Header because JSONP don't use...</p>
       <p><i>result call : {{result?.result}}</i></p>
     </mat-card-content>
   </mat-card>
