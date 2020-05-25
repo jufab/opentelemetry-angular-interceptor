@@ -56,7 +56,7 @@ opentelemetryConfig: {
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
       serviceName: 'example-app', //Service name send in trace
       collector: Collector.otelcol, //Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
-      propagator: Propagator.b3, //Enum to propagator : B3 (b3), HttpTraceContext (httpTrace)
+      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite include b3 and httpTrace (composite)
     },
     otelcolConfig: {
       url: 'http://localhost:9090/v1/trace', //URL of opentelemetry collector
@@ -78,7 +78,7 @@ opentelemetryConfig: {
  * production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It's recommend to use BatchSpanProcessor on Production.
  * serviceName: (string) Service name in your trace
  * collector: (Enum) use Enum Collector (otelcol,zipkin,jaeger)
- * propagator: (Enum) use Propagator Enum (b3,httpTrace)
+ * propagator: (Enum) use Propagator Enum (b3,httpTrace,composite)
 
 #### OpenTelemetry-collector Configuration
 

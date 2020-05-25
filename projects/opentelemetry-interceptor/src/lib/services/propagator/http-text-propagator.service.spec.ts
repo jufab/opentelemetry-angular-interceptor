@@ -6,6 +6,7 @@ import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
 import { HttpTraceContext } from '@opentelemetry/core';
 import { B3PropagatorService } from './b3-propagator.service';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
+import { CompositePropagatorService } from './composite-propagator.service';
 
 describe('HttpTextPropagatorService', () => {
   let service: HttpTextPropagatorService;
@@ -15,6 +16,7 @@ describe('HttpTextPropagatorService', () => {
       providers: [
         B3PropagatorService,
         HttpTraceContextPropagatorService,
+        CompositePropagatorService,
         { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
       ],
     });

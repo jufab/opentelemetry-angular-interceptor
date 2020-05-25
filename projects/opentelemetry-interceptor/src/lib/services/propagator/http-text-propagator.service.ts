@@ -8,7 +8,7 @@ import {
 } from '../../configuration/opentelemetry-config';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { B3PropagatorService } from './b3-propagator.service';
-
+import { CompositePropagatorService } from './composite-propagator.service';
 
 /**
  * HttpTextPropagatorService
@@ -21,6 +21,7 @@ import { B3PropagatorService } from './b3-propagator.service';
     OpenTelemetryInjectConfig,
     HttpTraceContextPropagatorService,
     B3PropagatorService,
+    CompositePropagatorService,
   ],
 })
 export class HttpTextPropagatorService implements IPropagator {
@@ -44,7 +45,8 @@ export class HttpTextPropagatorService implements IPropagator {
 export function httpTextPropagatorServiceFactory(
   config: OpenTelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
-  b3PropagatorService: B3PropagatorService
+  b3PropagatorService: B3PropagatorService,
+  compositePropagatorService: CompositePropagatorService
 ) {
   let propagator: IPropagator = null;
   switch (config.commonConfig.propagator) {
@@ -53,6 +55,9 @@ export function httpTextPropagatorServiceFactory(
       break;
     case Propagator.httpTrace:
       propagator = httpTraceContextPropagatorService;
+      break;
+    case Propagator.composite:
+      propagator = compositePropagatorService;
       break;
     default:
       break;

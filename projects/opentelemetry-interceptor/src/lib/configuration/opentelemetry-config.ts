@@ -9,6 +9,7 @@ export enum Collector {
 export enum Propagator {
   b3 = 'B3Propagator',
   httpTrace = 'HttpTraceContext',
+  composite = 'CompositePropagator',
 }
 
 /**
