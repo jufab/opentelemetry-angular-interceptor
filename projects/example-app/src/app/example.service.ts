@@ -22,6 +22,10 @@ export class ExampleService {
   postApiBackend(result: Result) {
     return this.http
       .post(`${this.urlTestBackend}/`, result)
-      .pipe(map((result: Result) => result));
+      .pipe(map((oneResult: Result) => oneResult));
+  }
+
+  jsonpApiExample(): Observable<any> {
+    return this.http.jsonp(`${this.urlTestBackend}/jsonp/`, 'callback');
   }
 }

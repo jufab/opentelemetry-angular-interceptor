@@ -15,7 +15,7 @@ export class PostBackendComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(resultForm): void {
-    let oneResult: Result = new Result(resultForm.avalue);
+    const oneResult: Result = new Result(resultForm.avalue);
     this.exampleService
       .postApiBackend(oneResult)
       .subscribe((result) => (this.result = result));

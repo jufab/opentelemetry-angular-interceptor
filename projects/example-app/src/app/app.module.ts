@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,12 +18,16 @@ import { ViewBackendComponent } from './view-backend/view-backend.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
+import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
 
 @NgModule({
-  declarations: [AppComponent, ViewBackendComponent, PostBackendComponent],
+  declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
   imports: [
     BrowserModule,
+    // Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
+    OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     HttpClientModule,
+    HttpClientJsonpModule,
     FormsModule,
     MatToolbarModule,
     MatCardModule,
@@ -32,8 +36,6 @@ import { PostBackendComponent } from './post-backend/post-backend.component';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    //Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
-    OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     BrowserAnimationsModule,
     HighlightJsModule,
     AppRoutingModule,

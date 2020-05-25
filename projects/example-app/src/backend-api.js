@@ -18,13 +18,18 @@ class Result {
 
 //
 backendApp.get('/api',(req, res) => {
-  let result = new Result("ok");
+  const result = new Result("ok");
   return res.status(200).send(result);
 })
 
 backendApp.post('/api',(req, res) => {
-  let result = new Result(req.body.result);
+  const result = new Result(req.body.result);
   return res.status(201).send(result);
+})
+
+backendApp.get('/api/jsonp',(req, res) => {
+  const result = new Result("ok");
+  return res.jsonp(result);
 })
 
 backendApp.listen(PORT, () =>

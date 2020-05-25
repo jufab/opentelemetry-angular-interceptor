@@ -28,7 +28,7 @@ export class HttpTextPropagatorService implements IPropagator {
    * Not used in a factory, just a definition
    */
   getPropagator(): HttpTextPropagator {
-    //factory
+    // factory
     console.error('error');
     return undefined;
   }
@@ -37,9 +37,9 @@ export class HttpTextPropagatorService implements IPropagator {
 /**
  * httpTextPropagatorServiceFactory
  * Provide a factory to have a propagator service
- * @param config
- * @param httpTraceContextPropagatorService
- * @param b3PropagatorService
+ * @param config config
+ * @param httpTraceContextPropagatorService httpTraceContext
+ * @param b3PropagatorService propagator
  */
 export function httpTextPropagatorServiceFactory(
   config: OpenTelemetryConfig,

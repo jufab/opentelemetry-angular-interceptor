@@ -14,7 +14,7 @@ import {
  * OtelcolExporterService class
  */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class OtelcolExporterService implements IExporter {
   /**

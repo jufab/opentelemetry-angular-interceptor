@@ -18,15 +18,14 @@ export interface CommonCollectorConfig {
   /** serviceName : Name of service in trace */
   serviceName: string;
   /** console : boolean to trace in console */
-  console?:boolean;
+  console?: boolean;
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
-  production?:boolean;
+  production?: boolean;
   /** collector */
   collector: Collector;
   /** propagator */
   propagator: Propagator;
 }
-
 
 /**
  * OpenTelemetry Collector configuration
@@ -72,4 +71,6 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
+export const OpenTelemetryInjectConfig = new InjectionToken<
+  OpenTelemetryConfig
+>('opentelemetry.config');

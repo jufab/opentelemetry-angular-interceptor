@@ -10,20 +10,20 @@ interface IEnvironment {
   openTelemetryConfig: OpenTelemetryConfig;
 }
 
-//Example to configure the angular-interceptor library
+// Example to configure the angular-interceptor library
 export const environment: IEnvironment = {
   production: false,
   urlTest: 'http://localhost:4200/api',
   openTelemetryConfig: {
     commonConfig: {
-      console: true, //Display trace on console
-      production: false, //Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
-      serviceName: 'example-app', //Service name send in trace
-      collector: Collector.otelcol, //Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
-      propagator: Propagator.b3, //Enum to propagator : B3 (b3), HttpTraceContext (httpTrace)
+      console: true, // Display trace on console
+      production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
+      serviceName: 'example-app', // Service name send in trace
+      collector: Collector.otelcol, // Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
+      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace)
     },
     otelcolConfig: {
-      url: 'http://localhost:9090/v1/trace', //URL of opentelemetry collector
+      url: 'http://localhost:9090/v1/trace', // URL of opentelemetry collector
     },
     zipkinConfig: {
       url: 'http://localhost:9411/api/v2/spans',

@@ -16,7 +16,7 @@ import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
   providedIn: 'root',
 })
 export class JaegerExporterService implements IExporter {
-  //private configJaeger: ExporterConfig;
+  // private configJaeger: ExporterConfig;
 
   /**
    * constructor

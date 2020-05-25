@@ -1,3 +1,3 @@
 export class Result {
-  constructor(public result:string) {}
+  constructor(public result: string) {}
 }

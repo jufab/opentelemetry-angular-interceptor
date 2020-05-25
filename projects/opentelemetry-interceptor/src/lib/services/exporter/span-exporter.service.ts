@@ -10,12 +10,11 @@ import {
   OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
 
-
 /**
  * An Angular Factory to have the configured collector
  */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
   useFactory: spanExporterServiceFactory,
   deps: [
     OpenTelemetryInjectConfig,
@@ -29,18 +28,18 @@ export class SpanExporterService implements IExporter {
    * Not used in a factory, just a definition
    */
   getExporter(): SpanExporter {
-    //factory
-    console.error("error");
+    // factory
+    console.error('error');
     return undefined;
   }
 }
 
 /**
  * Factory to return Service configured
- * @param config
- * @param jaegerExporterService
- * @param otelcolExporterService
- * @param zipkinExporterService
+ * @param config config
+ * @param jaegerExporterService jaeger
+ * @param otelcolExporterService otelcol
+ * @param zipkinExporterService zipkin
  */
 export function spanExporterServiceFactory(
   config: OpenTelemetryConfig,

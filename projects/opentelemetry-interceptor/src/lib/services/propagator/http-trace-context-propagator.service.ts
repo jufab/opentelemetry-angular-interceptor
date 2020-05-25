@@ -3,12 +3,11 @@ import { IPropagator } from './propagator.interface';
 import { HttpTextPropagator } from '@opentelemetry/api';
 import { HttpTraceContext } from '@opentelemetry/core';
 
-
 /**
  * HttpTraceContextPropagatorService
  */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpTraceContextPropagatorService implements IPropagator {
   /**

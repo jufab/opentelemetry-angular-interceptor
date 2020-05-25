@@ -7,7 +7,7 @@ import { B3Propagator } from '@opentelemetry/core';
  * B3PropagatorService
  */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class B3PropagatorService implements IPropagator {
   /**

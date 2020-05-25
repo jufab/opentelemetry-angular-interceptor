@@ -9,7 +9,7 @@ import {
   OpenTelemetryInjectConfig,
 } from './configuration/opentelemetry-config';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { OpenTelemetryInterceptor } from './interceptor/opentelemetry.interceptor';
+import { OpenTelemetryHttpInterceptor } from './interceptor/opentelemetry-http.interceptor';
 
 @NgModule({
   declarations: [],
@@ -34,7 +34,7 @@ export class OpenTelemetryInterceptorModule {
         { provide: OpenTelemetryInjectConfig, useValue: config },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryInterceptor,
+          useClass: OpenTelemetryHttpInterceptor,
           multi: true,
         },
       ],

@@ -31,7 +31,7 @@ import { HttpTextPropagatorService } from '../services/propagator/http-text-prop
 @Injectable({
   providedIn: 'root',
 })
-export class OpenTelemetryInterceptor implements HttpInterceptor {
+export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * tracer
    */
@@ -43,9 +43,9 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
 
   /**
    * constructor
-   * @param config
-   * @param spanExporterService
-   * @param httpTextPropagatorService
+   * @param config configuration
+   * @param spanExporterService service exporter injected
+   * @param httpTextPropagatorService propagator
    */
   constructor(
     @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
@@ -71,8 +71,8 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
   /**
    * Overide method
    * Interceptor from HttpInterceptor Angular
-   * @param request
-   * @param next
+   * @param request the current request
+   * @param next next
    */
   intercept(
     request: HttpRequest<unknown>,
@@ -103,7 +103,7 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
 
   /**
    * Initialise a span for a request intercepted
-   * @param request
+   * @param request request
    */
   private initSpan(request: HttpRequest<unknown>): api.Span {
     const span = this.tracer
@@ -127,8 +127,8 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
 
   /**
    * Add header propagator in request and conserve original header
-   * @param span
-   * @param request
+   * @param span span
+   * @param request request
    */
   private injectContextAndHeader(
     span: api.Span,
@@ -140,7 +140,7 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
       api.defaultSetter,
       this.contextManager.active()
     );
-    for (let key in request.headers.keys) {
+    for (const key in request.headers.keys) {
       carrier[key] = request.headers.get(key);
     }
     return request.clone({
@@ -164,7 +164,7 @@ export class OpenTelemetryInterceptor implements HttpInterceptor {
    * Insert BatchSpanProcessor in production mode
    * SimpleSpanProcessor otherwise
    * @param production mode
-   * @param spanExporter
+   * @param spanExporter Exporter
    */
   private insertSpanProcessorProductionMode(
     production: boolean,
