@@ -21,6 +21,7 @@ export const environment: IEnvironment = {
       serviceName: 'example-app', // Service name send in trace
       collector: Collector.otelcol, // Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
       propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite that include b3 and httpTrace (composite)
+      probabilitySampler: 0.75 //75% sampling
     },
     otelcolConfig: {
       url: 'http://localhost:9090/v1/trace', // URL of opentelemetry collector

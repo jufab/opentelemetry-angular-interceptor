@@ -1,6 +1,9 @@
 {
   "name": "@jufab/opentelemetry-angular-interceptor",
   "version": "0.8.2",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",

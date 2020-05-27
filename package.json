@@ -14,6 +14,9 @@
     "compodoc": "npx compodoc -t -p projects/opentelemetry-interceptor/tsconfig.lib.json --theme material"
   },
   "private": true,
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
@@ -24,7 +27,7 @@
     },
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
-      "<rootDir>/dist/",
+      "<rootDir>/dist/opentelemetry-interceptor/",
       "<rootDir>/projects/opentelemetry-interceptor/src/test.ts",
       "<rootDir>/projects/example-app/"
     ],
@@ -76,7 +79,7 @@
     "express": "^4.17.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
-    "jest": "^26.0.1",
+    "jest": "^25.5.1",
     "jest-preset-angular": "^8.2.0",
     "karma": "^5.0.9",
     "karma-chrome-launcher": "~3.1.0",

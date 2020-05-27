@@ -26,6 +26,8 @@ export interface CommonCollectorConfig {
   collector: Collector;
   /** propagator */
   propagator: Propagator;
+  /** probabilitySampler */
+  probabilitySampler?: number;
 }
 
 /**

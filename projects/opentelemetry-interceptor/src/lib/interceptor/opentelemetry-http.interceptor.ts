@@ -16,7 +16,11 @@ import {
   BatchSpanProcessor,
   SpanExporter,
 } from '@opentelemetry/tracing';
-import { ALWAYS_SAMPLER, setActiveSpan } from '@opentelemetry/core';
+import {
+  ALWAYS_SAMPLER,
+  setActiveSpan,
+  ProbabilitySampler,
+} from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpenTelemetryConfig,
@@ -55,7 +59,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     private httpTextPropagatorService: HttpTextPropagatorService
   ) {
     this.tracer = new WebTracerProvider({
-      sampler: ALWAYS_SAMPLER,
+      sampler: this.defineProbabilitySampler(config.commonConfig.probabilitySampler),
     });
     this.insertSpanProcessorProductionMode(
       this.config.commonConfig.production,
@@ -175,5 +179,13 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         ? new BatchSpanProcessor(spanExporter)
         : new SimpleSpanProcessor(spanExporter)
     );
+  }
+
+  private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
+    if(sampleConfig===undefined || sampleConfig > 1) {
+      return ALWAYS_SAMPLER;
+    } else {
+      return new ProbabilitySampler(sampleConfig);
+    }
   }
 }

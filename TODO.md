@@ -5,7 +5,6 @@ Todo in project...
 ### Todo
 
 - [ ] Add in issue Github this todo list  
-- [ ] Add sampler in configuration => [here](https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core#probability-sampler)  
 - [ ] Add more configuration for OpenTelemetry-collector : See [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/CollectorExporter.ts)  
 - [ ] Zipkin  
   - [ ] Add Zipkin exporter (when it's available)  
@@ -20,5 +19,5 @@ Todo in project...
 
 ### Done ✓
 
-- [x] Add composite propagator configurable  
+- [x] Add sampler in configuration => [here](https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core#probability-sampler)  
 
