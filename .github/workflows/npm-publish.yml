@@ -29,7 +29,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build:prod
-      - run: cd dist/opentelemetry-interceptor
-      - run: npm publish
+      - run: cd dist/opentelemetry-interceptor && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
