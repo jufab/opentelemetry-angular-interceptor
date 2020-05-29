@@ -2,33 +2,69 @@ import { TestBed } from '@angular/core/testing';
 
 import { SpanExporterService } from './span-exporter.service';
 import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { otelcolExporterConfig } from '../../../../__mocks__/data/config.mock';
+import {
+  otelcolExporterConfig,
+  jaegerExporterConfig,
+  zipkinExporterConfig,
+} from '../../../../__mocks__/data/config.mock';
 import { CollectorExporter } from '@opentelemetry/exporter-collector';
+import { ConsoleSpanExporter } from '@opentelemetry/tracing';
 import { JaegerExporterService } from './jaeger-exporter.service';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 import { OtelcolExporterService } from './otelcol-exporter.service';
+import { ConsoleSpanExporterService } from './console-span-exporter.service';
 
 describe('SpanExporterService', () => {
   let spanExporterService: SpanExporterService;
 
-  beforeEach(() => {
+  it('should have a CollectorExporter created', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
-        JaegerExporterService,
-        ZipkinExporterService,
         OtelcolExporterService,
       ],
     });
     spanExporterService = TestBed.inject(SpanExporterService);
-  });
-
-  it('should be created', () => {
-    expect(spanExporterService).toBeTruthy();
-  });
-
-  it('should have a CollectorExporter created', () => {
     const spanEx = spanExporterService.getExporter();
     expect(spanEx).toBeInstanceOf(CollectorExporter);
+  });
+
+  it('should have a ConsoleSpanExporter created with a JaegerExporterService', () => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: jaegerExporterConfig },
+        JaegerExporterService,
+      ],
+    });
+    spanExporterService = TestBed.inject(SpanExporterService);
+    const spanEx = spanExporterService.getExporter();
+    expect(spanEx).toBeInstanceOf(ConsoleSpanExporter);
+  });
+
+  it('should have a ConsoleSpanExporter created with a ZipkinExporterService', () => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: zipkinExporterConfig },
+        ZipkinExporterService,
+      ],
+    });
+    spanExporterService = TestBed.inject(SpanExporterService);
+    const spanEx = spanExporterService.getExporter();
+    expect(spanEx).toBeInstanceOf(ConsoleSpanExporter);
+  });
+
+  it('should have a ConsoleSpanExporter with no exporterConfigured', () => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: OpenTelemetryInjectConfig,
+          useValue: { commonConfig: { serviceName: 'test' } },
+        },
+        ConsoleSpanExporterService,
+      ],
+    });
+    spanExporterService = TestBed.inject(SpanExporterService);
+    const spanEx = spanExporterService.getExporter();
+    expect(spanEx).toBeInstanceOf(ConsoleSpanExporter);
   });
 });

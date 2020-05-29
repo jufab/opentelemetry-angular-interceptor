@@ -9,6 +9,7 @@ import {
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { B3PropagatorService } from './b3-propagator.service';
 import { CompositePropagatorService } from './composite-propagator.service';
+import { NoopHttpTextPropagatorService } from './noop-http-text-propagator.service';
 
 /**
  * HttpTextPropagatorService
@@ -22,6 +23,7 @@ import { CompositePropagatorService } from './composite-propagator.service';
     HttpTraceContextPropagatorService,
     B3PropagatorService,
     CompositePropagatorService,
+    NoopHttpTextPropagatorService,
   ],
 })
 export class HttpTextPropagatorService implements IPropagator {
@@ -41,12 +43,15 @@ export class HttpTextPropagatorService implements IPropagator {
  * @param config config
  * @param httpTraceContextPropagatorService httpTraceContext
  * @param b3PropagatorService propagator
+ * @param compositePropagatorService  composite
+ * @param noopHttpTextPropagatorService noop
  */
 export function httpTextPropagatorServiceFactory(
   config: OpenTelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
   b3PropagatorService: B3PropagatorService,
-  compositePropagatorService: CompositePropagatorService
+  compositePropagatorService: CompositePropagatorService,
+  noopHttpTextPropagatorService: NoopHttpTextPropagatorService
 ) {
   let propagator: IPropagator = null;
   switch (config.commonConfig.propagator) {
@@ -60,6 +65,7 @@ export function httpTextPropagatorServiceFactory(
       propagator = compositePropagatorService;
       break;
     default:
+      propagator = noopHttpTextPropagatorService;
       break;
   }
   return propagator;

@@ -9,6 +9,7 @@ import {
   Collector,
   OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
+import { ConsoleSpanExporterService } from './console-span-exporter.service';
 
 /**
  * An Angular Factory to have the configured collector
@@ -21,6 +22,7 @@ import {
     JaegerExporterService,
     OtelcolExporterService,
     ZipkinExporterService,
+    ConsoleSpanExporterService,
   ],
 })
 export class SpanExporterService implements IExporter {
@@ -40,12 +42,14 @@ export class SpanExporterService implements IExporter {
  * @param jaegerExporterService jaeger
  * @param otelcolExporterService otelcol
  * @param zipkinExporterService zipkin
+ * @param consoleSpanExporter console
  */
 export function spanExporterServiceFactory(
   config: OpenTelemetryConfig,
   jaegerExporterService: JaegerExporterService,
   otelcolExporterService: OtelcolExporterService,
-  zipkinExporterService: ZipkinExporterService
+  zipkinExporterService: ZipkinExporterService,
+  consoleSpanExporter: ConsoleSpanExporterService
 ) {
   let exporter: IExporter = null;
   switch (config.commonConfig.collector) {
@@ -59,6 +63,7 @@ export function spanExporterServiceFactory(
       exporter = zipkinExporterService;
       break;
     default:
+      exporter = consoleSpanExporter;
       break;
   }
   return exporter;

@@ -35,6 +35,33 @@ export const otelcolExporterConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
+export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    collector: Collector.otelcol,
+    propagator: Propagator.b3,
+  },
+};
+
+/**
+ * @ignore
+ */
+export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    collector: Collector.otelcol,
+    propagator: Propagator.composite,
+    probabilitySampler: 0.7,
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+};
+
+/**
+ * @ignore
+ */
 export const jaegerExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
