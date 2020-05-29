@@ -169,7 +169,7 @@ Go to the jaeger application (http://localhost:16686) to see result.
 
 More info about the collector here : https://github.com/open-telemetry/opentelemetry-collector
 
-> _* without an Agent or a Collector you can see an error in your browser about to send a "trace"._
+> _* without an Agent or a Collector you can see an error in your browser about sending a "trace"._
 
 
 ## Troubleshoot
