@@ -3,7 +3,7 @@
   "version": "0.8.2",
   "homepage": "https://github.com/jufab/opentelemetry-angular-interceptor",
   "author": {
-    "name" : "Julien Fabre"
+    "name": "Julien Fabre"
   },
   "engines": {
     "node": ">=12.0.0"
