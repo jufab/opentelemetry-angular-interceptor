@@ -1,0 +1,1090 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OpenTelemetry Angular Interceptor</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interceptor">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interceptors</li>
+  <li>OpenTelemetryHttpInterceptor</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>OpenTelemetryInterceptor class</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contextManager">contextManager</a>
+                            </li>
+                            <li>
+                                <a href="#tracer">tracer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defineProbabilitySampler">defineProbabilitySampler</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initSpan">initSpan</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#injectContextAndHeader">injectContextAndHeader</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#insertConsoleSpanExporter">insertConsoleSpanExporter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#insertSpanProcessorProductionMode">insertSpanProcessorProductionMode</a>
+                            </li>
+                            <li>
+                                <a href="#intercept">intercept</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>, spanExporterService: <a href="../injectables/SpanExporterService.html">SpanExporterService</a>, httpTextPropagatorService: <a href="../injectables/HttpTextPropagatorService.html">HttpTextPropagatorService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:46</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>config</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>configuration</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>spanExporterService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SpanExporterService.html" target="_self" >SpanExporterService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>service exporter injected</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>httpTextPropagatorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HttpTextPropagatorService.html" target="_self" >HttpTextPropagatorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>propagator</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="defineProbabilitySampler"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            defineProbabilitySampler
+                        </b>
+                        <a href="#defineProbabilitySampler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>defineProbabilitySampler(sampleConfig: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:189</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>define the Probability Sampler
+By Default, it&#39;s always (or 1)</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sampleConfig</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the sample configuration</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ProbabilitySampler</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initSpan"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            initSpan
+                        </b>
+                        <a href="#initSpan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initSpan(request: HttpRequest<unknown>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initialise a span for a request intercepted</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                            <code>HttpRequest&lt;unknown&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>request</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>api.Span</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectContextAndHeader"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            injectContextAndHeader
+                        </b>
+                        <a href="#injectContextAndHeader"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>injectContextAndHeader(span: api.Span, request: HttpRequest<unknown>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add header propagator in request and conserve original header</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>span</td>
+                                    <td>
+                                            <code>api.Span</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>span</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                            <code>HttpRequest&lt;unknown&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>request</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insertConsoleSpanExporter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            insertConsoleSpanExporter
+                        </b>
+                        <a href="#insertConsoleSpanExporter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>insertConsoleSpanExporter(console: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Insert in tracer the console span if config is true</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>console</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>config to insert console span</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insertSpanProcessorProductionMode"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            insertSpanProcessorProductionMode
+                        </b>
+                        <a href="#insertSpanProcessorProductionMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>insertSpanProcessorProductionMode(production: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, spanExporter: SpanExporter)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:173</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Insert BatchSpanProcessor in production mode
+SimpleSpanProcessor otherwise</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>production</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>mode</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>spanExporter</td>
+                                    <td>
+                                            <code>SpanExporter</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Exporter</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="intercept"></a>
+                    <span class="name">
+                        <b>
+                            intercept
+                        </b>
+                        <a href="#intercept"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>intercept(request: HttpRequest<unknown>, next: <a href="https://angular.io/api/common/http/HttpHandler" target="_blank">HttpHandler</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Overide method
+Interceptor from HttpInterceptor Angular</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                            <code>HttpRequest&lt;unknown&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the current request</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpHandler" target="_blank" >HttpHandler</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>next</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;unknown&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contextManager"></a>
+                        <span class="name">
+                            <b>
+                            contextManager</b>
+                            <a href="#contextManager"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new StackContextManager()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:46</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>context manager</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tracer"></a>
+                        <span class="name">
+                            <b>
+                            tracer</b>
+                            <a href="#tracer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>WebTracerProvider</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:42</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>tracer</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpResponse,
+  HttpErrorResponse,
+} from &#x27;@angular/common/http&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import * as api from &#x27;@opentelemetry/api&#x27;;
+import { WebTracerProvider, StackContextManager } from &#x27;@opentelemetry/web&#x27;;
+import {
+  SimpleSpanProcessor,
+  ConsoleSpanExporter,
+  BatchSpanProcessor,
+  SpanExporter,
+} from &#x27;@opentelemetry/tracing&#x27;;
+import {
+  ALWAYS_SAMPLER,
+  setActiveSpan,
+  ProbabilitySampler,
+} from &#x27;@opentelemetry/core&#x27;;
+import { tap, finalize } from &#x27;rxjs/operators&#x27;;
+import {
+  OpenTelemetryConfig,
+  OpenTelemetryInjectConfig,
+} from &#x27;../configuration/opentelemetry-config&#x27;;
+import { SpanExporterService } from &#x27;../services/exporter/span-exporter.service&#x27;;
+import { HttpTextPropagatorService } from &#x27;../services/propagator/http-text-propagator.service&#x27;;
+
+/**
+ * OpenTelemetryInterceptor class
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
+  /**
+   * tracer
+   */
+  tracer: WebTracerProvider;
+  /**
+   * context manager
+   */
+  contextManager &#x3D; new StackContextManager();
+
+  /**
+   * constructor
+   * @param config configuration
+   * @param spanExporterService service exporter injected
+   * @param httpTextPropagatorService propagator
+   */
+  constructor(
+    @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
+    @Inject(SpanExporterService)
+    private spanExporterService: SpanExporterService,
+    @Inject(HttpTextPropagatorService)
+    private httpTextPropagatorService: HttpTextPropagatorService
+  ) {
+    this.tracer &#x3D; new WebTracerProvider({
+      sampler: this.defineProbabilitySampler(config.commonConfig.probabilitySampler),
+    });
+    this.insertSpanProcessorProductionMode(
+      this.config.commonConfig.production,
+      this.spanExporterService.getExporter()
+    );
+    this.insertConsoleSpanExporter(this.config.commonConfig.console);
+    this.tracer.register({
+      propagator: this.httpTextPropagatorService.getPropagator(),
+      contextManager: this.contextManager,
+    });
+  }
+
+  /**
+   * Overide method
+   * Interceptor from HttpInterceptor Angular
+   * @param request the current request
+   * @param next next
+   */
+  intercept(
+    request: HttpRequest&lt;unknown&gt;,
+    next: HttpHandler
+  ): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
+    const span: api.Span &#x3D; this.initSpan(request);
+    const tracedReq &#x3D; this.injectContextAndHeader(span, request);
+    return next.handle(tracedReq).pipe(
+      tap(
+        (event: HttpEvent&lt;any&gt;) &#x3D;&gt; {
+          if (event instanceof HttpResponse) {
+            span.setAttribute(&#x27;http.status_code&#x27;, event.status);
+            span.addEvent(&#x27;response&#x27;, { body: JSON.stringify(event.body) });
+          }
+        },
+        (event: HttpErrorResponse) &#x3D;&gt; {
+          if (event instanceof HttpErrorResponse) {
+            span.setAttribute(&#x27;http.status_code&#x27;, event.status);
+            span.addEvent(&#x27;error&#x27;, { body: JSON.stringify(event.error) });
+          }
+        }
+      ),
+      finalize(() &#x3D;&gt; {
+        span.end();
+      })
+    );
+  }
+
+  /**
+   * Initialise a span for a request intercepted
+   * @param request request
+   */
+  private initSpan(request: HttpRequest&lt;unknown&gt;): api.Span {
+    const span &#x3D; this.tracer
+      .getTracer(&#x27;angular-interceptor&#x27;, &#x27;0.0.1&#x27;)
+      .startSpan(
+        request.url,
+        {
+          attributes: {
+            [&#x27;http.method&#x27;]: request.method,
+            [&#x27;http.url&#x27;]: request.urlWithParams,
+          },
+        },
+        this.contextManager.active()
+      );
+    this.contextManager._currentContext &#x3D; setActiveSpan(
+      this.contextManager.active(),
+      span
+    );
+    return span;
+  }
+
+  /**
+   * Add header propagator in request and conserve original header
+   * @param span span
+   * @param request request
+   */
+  private injectContextAndHeader(
+    span: api.Span,
+    request: HttpRequest&lt;unknown&gt;
+  ) {
+    const carrier &#x3D; {};
+    api.propagation.inject(
+      carrier,
+      api.defaultSetter,
+      this.contextManager.active()
+    );
+    for (const key in request.headers.keys) {
+      carrier[key] &#x3D; request.headers.get(key);
+    }
+    return request.clone({
+      setHeaders: carrier,
+    });
+  }
+
+  /**
+   * Insert in tracer the console span if config is true
+   * @param console config to insert console span
+   */
+  private insertConsoleSpanExporter(console: boolean) {
+    if (console) {
+      this.tracer.addSpanProcessor(
+        new SimpleSpanProcessor(new ConsoleSpanExporter())
+      );
+    }
+  }
+
+  /**
+   * Insert BatchSpanProcessor in production mode
+   * SimpleSpanProcessor otherwise
+   * @param production mode
+   * @param spanExporter Exporter
+   */
+  private insertSpanProcessorProductionMode(
+    production: boolean,
+    spanExporter: SpanExporter
+  ) {
+    this.tracer.addSpanProcessor(
+      production
+        ? new BatchSpanProcessor(spanExporter)
+        : new SimpleSpanProcessor(spanExporter)
+    );
+  }
+
+  /**
+   * define the Probability Sampler
+   * By Default, it&#x27;s always (or 1)
+   * @param sampleConfig the sample configuration
+   */
+  private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
+    if(sampleConfig&#x3D;&#x3D;&#x3D;undefined || sampleConfig &gt; 1) {
+      return ALWAYS_SAMPLER;
+    } else {
+      return new ProbabilitySampler(sampleConfig);
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interceptor';
+            var COMPODOC_CURRENT_PAGE_URL = 'OpenTelemetryHttpInterceptor.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

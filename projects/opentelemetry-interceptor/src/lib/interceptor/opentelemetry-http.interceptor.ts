@@ -181,6 +181,11 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     );
   }
 
+  /**
+   * define the Probability Sampler
+   * By Default, it's always (or 1)
+   * @param sampleConfig the sample configuration
+   */
   private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
     if(sampleConfig===undefined || sampleConfig > 1) {
       return ALWAYS_SAMPLER;

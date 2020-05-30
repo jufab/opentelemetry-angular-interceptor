@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OpenTelemetry Angular Interceptor</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="opentelemetry-angular-interceptor">OpenTelemetry Angular Interceptor</h1>
+<p><a href="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor"><img src="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a></p>
+<h2 id="about">About</h2>
+<p>@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
+<p>This library use <a href="https://github.com/open-telemetry/opentelemetry-js">opentelemetry-js package</a></p>
+<p><strong>Only works for Angular &gt;= 9.0.0</strong></p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#getting-started">Getting started</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#example-global-configuration">Example global Configuration</a></li>
+<li><a href="#common-configuration">Common Configuration</a></li>
+<li><a href="#opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</a></li>
+<li><a href="#zipkin-collector-configuration">Zipkin Collector Configuration</a></li>
+<li><a href="#jaeger-collector-configuration">Jaeger Collector Configuration</a></li>
+</ul>
+</li>
+<li><a href="#angular-module">Angular Module</a></li>
+</ul>
+</li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#example">Example</a><ul>
+<li><a href="#run">Run</a></li>
+<li><a href="#optional-result-in-opentelemtery-collector">[Optional] Result in OpenTelemtery-collector</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="installation">Installation</h3>
+<p>With npm :</p>
+<div><pre class="line-numbers"><code class="language-none">npm install &#64;jufab/opentelemetry-angular-interceptor &#64;opentelemetry/web &#64;opentelemetry/exporter-collector</code></pre></div><h3 id="configuration">Configuration</h3>
+<p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
+<div><pre class="line-numbers"><code class="language-typescript">export interface OpentelemetryConfig {
+  commonConfig: CommonCollectorConfig;
+  jaegerConfig?: JaegerCollectorConfig;
+  zipkinConfig?: ZipkinCollectorConfig;
+  otelcolConfig?: OtelCollectorConfig;
+}</code></pre></div><h4 id="example-global-configuration">Example global Configuration</h4>
+<p><em>From the example-app</em></p>
+<div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
+    commonConfig: {
+      console: true, //(boolean) Display trace on console
+      production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
+      serviceName: &#39;example-app&#39;, //Service name send in trace
+      collector: Collector.otelcol, //Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
+      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite include b3 and httpTrace (composite)
+      probabilitySampler: 0.7, //Samples a configurable percentage of traces, value between 0 to 1
+    },
+    otelcolConfig: {
+      url: &#39;http://localhost:9090/v1/trace&#39;, //URL of opentelemetry collector
+    },
+    zipkinConfig: {
+      url: &#39;http://localhost:9411/api/v2/spans&#39;, //url of zipkin collector
+    },
+    jaegerConfig: {
+      host: &#39;localhost&#39;, //Host and port of jaeger&#39;s agent.
+      port: 6832,
+    }
+  }
+</code></pre></div><h4 id="common-configuration">Common Configuration</h4>
+<ul>
+<li>console: (boolean) Display trace on console if true</li>
+<li>production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It&#39;s recommend to use BatchSpanProcessor on Production.</li>
+<li>serviceName: (string) Service name in your trace</li>
+<li>collector: (Enum) use Enum Collector (otelcol,zipkin,jaeger)</li>
+<li>propagator: (Enum) use Propagator Enum (b3,httpTrace,composite)</li>
+</ul>
+<h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
+<ul>
+<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:9090/v1/trace">http://localhost:9090/v1/trace</a>)</li>
+</ul>
+<h4 id="zipkin-collector-configuration">Zipkin Collector Configuration</h4>
+<ul>
+<li>url: (string) url of zipkin collector (default : <a href="http://localhost:9411/api/v2/spans">http://localhost:9411/api/v2/spans</a>)</li>
+</ul>
+<h4 id="jaeger-collector-configuration">Jaeger Collector Configuration</h4>
+<ul>
+<li>host: (string) host jaeger agent</li>
+<li>port: (string) port jaeger agent</li>
+</ul>
+<h3 id="angular-module">Angular Module</h3>
+<p>To insert OpenTelemetryInterceptorModule, you can add in your application module (generally app.module.ts)</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
+...
+import { AppComponent } from &#39;./app.component&#39;;
+import { HttpClientModule } from &#39;&#64;angular/common/http&#39;;
+import { OpenTelemetryInterceptorModule } from &#39;&#64;jufab/opentelemetry-angular-interceptor&#39;;
+import { environment } from &#39;../environments/environment&#39;;
+...
+
+&#64;NgModule({
+  declarations: [AppComponent, ...],
+  imports: [
+    ...
+    HttpClientModule,
+    //Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
+    OpenTelemetryInterceptorModule.forRoot(environment.opentelemetryConfig),
+    ...
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}</code></pre></div><h2 id="how-it-works">How it works</h2>
+<p>This library is based on <a href="https://angular.io/api/common/http/HttpClientModule">HttpClientModule</a> and the <a href="https://angular.io/api/common/http/HTTP_INTERCEPTORS">HTTP_INTERCEPTORS</a></p>
+<p>OpenTelemetryInterceptor implement an <a href="https://angular.io/api/common/http/HttpInterceptor">HttpInterceptor</a> and the intercept method.</p>
+<p>This implementation initialise a <a href="https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-web/src/WebTracerProvider.ts">WebTracerProvider</a>, create a <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html">Span</a> and add <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/httptextpropagator.html">header propagation</a> in the current call.</p>
+<blockquote>
+<p>The response body is adding by an event in span.</p>
+</blockquote>
+<h2 id="example">Example</h2>
+<p>This project have an &quot;example-app&quot; as Angular application example.</p>
+<p><a href="https://github.com/jufab/opentelemetry-angular-interceptor/tree/master/projects/example-app">projects/example-app</a></p>
+<p>You can see how configure and insert this module.</p>
+<p>You can althought test <strong>opentelemetry-angular-interceptor</strong> with this application.</p>
+<h3 id="run">Run</h3>
+<p>To start this Example application, run command :</p>
+<div><pre class="line-numbers"><code class="language-none">npm run start:complete-example-app</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
+<h3 id="optional-result-in-opentelemtery-collector">[Optional] Result in OpenTelemtery-collector</h3>
+<p>If you want to see the result in a collector *, there&#39;s a docker-compose available in this project.</p>
+<p>You can start it with this command :</p>
+<div><pre class="line-numbers"><code class="language-none">docker-compose -f projects/example-app/collector/docker-compose.yaml up -d</code></pre></div><p>Go to the jaeger application (<a href="http://localhost:16686">http://localhost:16686</a>) to see result.</p>
+<p>More info about the collector here : <a href="https://github.com/open-telemetry/opentelemetry-collector">https://github.com/open-telemetry/opentelemetry-collector</a></p>
+<blockquote>
+<p><em>* without an Agent or a Collector you can see an error in your browser about sending a &quot;trace&quot;.</em></p>
+</blockquote>
+<h2 id="troubleshoot">Troubleshoot</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Error</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>error TS2694: Namespace &#39;NodeJS&#39; has no exported member &#39;Timeout&#39;.</td>
+<td>Need dependence @type/node &gt;= 12.0.2</td>
+</tr>
+<tr>
+<td>error TS1086: An accessor cannot be declared in an ambient context.</td>
+<td>Need dependence typescript &gt;= 3.6.0</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
