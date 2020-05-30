@@ -37,7 +37,3 @@ All notable changes to this project will be documented in this file. See [standa
 * publish and readme ([412d2fd](https://github.com/jufab/opentelemetry-angular-interceptor/commit/412d2fd1bad612ee538d5356e7049dbc5470425c))
 * some typo ([80f7bf8](https://github.com/jufab/opentelemetry-angular-interceptor/commit/80f7bf81b4b21b4c13ff148d0a6865e2193f30a7))
 * some typo ([735b05d](https://github.com/jufab/opentelemetry-angular-interceptor/commit/735b05da65236bd54991cf5176cda37bf91fa734))
-
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
