@@ -66,10 +66,32 @@ export const jaegerExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     collector: Collector.jaeger,
-    propagator: Propagator.b3,
   },
   jaegerConfig: {
     host: 'localhost',
     port: 6399,
+  },
+};
+
+/**
+ * @ignore
+ */
+export const jaegerPropagatorConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    propagator: Propagator.jaeger,
+  },
+  jaegerPropagatorConfig: {
+    customHeader: 'custom-header-trace',
+  },
+};
+
+/**
+ * @ignore
+ */
+export const jaegerPropagatorWithoutCustomHeaderConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    propagator: Propagator.jaeger,
   },
 };

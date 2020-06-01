@@ -65,6 +65,7 @@
     "@angular/platform-browser-dynamic": "^9.1.9",
     "@angular/router": "^9.1.9",
     "@opentelemetry/exporter-collector": "^0.8.3",
+    "@opentelemetry/propagator-jaeger": "^0.8.0",
     "@opentelemetry/web": "^0.8.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",

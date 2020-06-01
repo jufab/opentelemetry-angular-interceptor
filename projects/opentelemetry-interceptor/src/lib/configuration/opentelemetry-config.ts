@@ -10,6 +10,7 @@ export enum Propagator {
   b3 = 'B3Propagator',
   httpTrace = 'HttpTraceContext',
   composite = 'CompositePropagator',
+  jaeger = 'JaegerPropagator',
 }
 
 /**
@@ -23,9 +24,9 @@ export interface CommonCollectorConfig {
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
   production?: boolean;
   /** collector */
-  collector: Collector;
+  collector?: Collector;
   /** propagator */
-  propagator: Propagator;
+  propagator?: Propagator;
   /** probabilitySampler */
   probabilitySampler?: number;
 }
@@ -59,6 +60,16 @@ export interface ZipkinCollectorConfig {
    */
   url?: string;
 }
+
+/**
+ * Configuration for JaegerPropagatorConfig
+ */
+export interface JaegerPropagatorConfig {
+  /**
+   * A custom Header for the propagator
+   */
+  customHeader?: string;
+}
 /**
  * OpenTelemetryConfig
  */
@@ -71,6 +82,8 @@ export interface OpenTelemetryConfig {
   zipkinConfig?: ZipkinCollectorConfig;
   /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
+  /** jaegerPropagatorConfig */
+  jaegerPropagatorConfig?: JaegerPropagatorConfig;
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
