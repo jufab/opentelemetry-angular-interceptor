@@ -1,10 +1,5 @@
 # OpenTelemetry Angular Interceptor
 
-[![npm version](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg)](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor)
-[![codecov](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg)](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor)
-
-## About
-
 @jufab/opentelemetry-angular-interceptor is an Angular Library to deploy [OpenTelemetry](https://opentelemetry.io/) in your Angular application
 
 This library use [opentelemetry-js package](https://github.com/open-telemetry/opentelemetry-js)
@@ -12,6 +7,9 @@ This library use [opentelemetry-js package](https://github.com/open-telemetry/op
 **Only works for Angular >= 9.0.0**
 
 More info : https://jufab.github.io/opentelemetry-angular-interceptor/
+
+[![npm version](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg)](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor)
+[![codecov](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg)](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor)
 
 ## Table of contents
 
