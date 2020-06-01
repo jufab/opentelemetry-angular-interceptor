@@ -17,7 +17,7 @@
               production: false,
               serviceName: 'example-app',
               collector: Collector.otelcol,
-              propagator: Propagator.b3,
+              propagator: Propagator.composite,
             },
             otelcolConfig: {
               url: 'http://localhost:9090', //URL of opentelemetry collector
@@ -25,14 +25,21 @@
           },
         }
       </textarea>
-      <p>You can see the B3 headers added</p>
+      <p>You can see the B3 headers, HttpTraceContext header and Jaeger Propagator header added</p>
       <textarea textarea highlight-js [lang]="'curl'">
         GET /api/ HTTP/1.1
 Host: localhost:4200
-x-b3-spanid: c2e1714d010e61e2
+Connection: keep-alive
+Accept: application/json, text/plain, */*
+//B3Propagator
+x-b3-spanid: f357aee9e0840e7a
 x-b3-sampled: 1
-x-b3-traceid: cf2fd6513efe374bac44ed78fc0f7c40
-        ...
+x-b3-traceid: 0a21853ab699e83ba1f9bcd39215d667
+//HttpTraceContext
+traceparent: 00-0a21853ab699e83ba1f9bcd39215d667-f357aee9e0840e7a-01
+//JaegerPropagator
+uber-trace-id: 0a21853ab699e83ba1f9bcd39215d667:f357aee9e0840e7a:0:01
+...
       </textarea>
       <p><i>result call : {{result?.result}}</i></p>
     </mat-card-content>
