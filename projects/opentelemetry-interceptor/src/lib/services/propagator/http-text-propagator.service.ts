@@ -10,6 +10,7 @@ import { HttpTraceContextPropagatorService } from './http-trace-context-propagat
 import { B3PropagatorService } from './b3-propagator.service';
 import { CompositePropagatorService } from './composite-propagator.service';
 import { NoopHttpTextPropagatorService } from './noop-http-text-propagator.service';
+import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
 
 /**
  * HttpTextPropagatorService
@@ -24,6 +25,7 @@ import { NoopHttpTextPropagatorService } from './noop-http-text-propagator.servi
     B3PropagatorService,
     CompositePropagatorService,
     NoopHttpTextPropagatorService,
+    JaegerHttpTracePropagatorService,
   ],
 })
 export class HttpTextPropagatorService implements IPropagator {
@@ -45,13 +47,15 @@ export class HttpTextPropagatorService implements IPropagator {
  * @param b3PropagatorService propagator
  * @param compositePropagatorService  composite
  * @param noopHttpTextPropagatorService noop
+ *
  */
 export function httpTextPropagatorServiceFactory(
   config: OpenTelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
   b3PropagatorService: B3PropagatorService,
   compositePropagatorService: CompositePropagatorService,
-  noopHttpTextPropagatorService: NoopHttpTextPropagatorService
+  noopHttpTextPropagatorService: NoopHttpTextPropagatorService,
+  jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService
 ) {
   let propagator: IPropagator = null;
   switch (config.commonConfig.propagator) {
@@ -63,6 +67,9 @@ export function httpTextPropagatorServiceFactory(
       break;
     case Propagator.composite:
       propagator = compositePropagatorService;
+      break;
+    case Propagator.jaeger:
+      propagator = jaegerHttpTracePropagatorService;
       break;
     default:
       propagator = noopHttpTextPropagatorService;

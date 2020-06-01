@@ -61,7 +61,7 @@ opentelemetryConfig: {
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
       serviceName: 'example-app', //Service name send in trace
       collector: Collector.otelcol, //Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
-      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite include b3 and httpTrace (composite)
+      propagator: Propagator.composite, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Jaeger Propagator (jaeger) and Composite that include b3, httpTrace and Jaeger (composite)
       probabilitySampler: 0.7, //Samples a configurable percentage of traces, value between 0 to 1
     },
     otelcolConfig: {
@@ -73,6 +73,9 @@ opentelemetryConfig: {
     jaegerConfig: {
       host: 'localhost', //Host and port of jaeger's agent.
       port: 6832,
+    },
+    jaegerPropagatorConfig: {
+      customHeader: 'custom-header',
     }
   }
 
@@ -84,7 +87,7 @@ opentelemetryConfig: {
  * production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It's recommend to use BatchSpanProcessor on Production.
  * serviceName: (string) Service name in your trace
  * collector: (Enum) use Enum Collector (otelcol,zipkin,jaeger)
- * propagator: (Enum) use Propagator Enum (b3,httpTrace,composite)
+ * propagator: (Enum) use Propagator Enum (b3,httpTrace,composite,jaeger)
 
 #### OpenTelemetry-collector Configuration
 
@@ -98,6 +101,10 @@ opentelemetryConfig: {
 
 * host: (string) host jaeger agent
 * port: (string) port jaeger agent
+
+#### Jaeger Propagator Configuration
+
+* customHeader: (string) custom header
 
 ### Angular Module
 

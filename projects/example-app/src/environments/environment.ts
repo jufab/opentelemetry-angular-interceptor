@@ -20,7 +20,7 @@ export const environment: IEnvironment = {
       production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'example-app', // Service name send in trace
       collector: Collector.otelcol, // Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
-      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite that include b3 and httpTrace (composite)
+      propagator: Propagator.composite, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Jaeger Propagator (jaeger) and Composite that include b3, httpTrace and Jaeger (composite)
       probabilitySampler: 0.75 //75% sampling
     },
     otelcolConfig: {
