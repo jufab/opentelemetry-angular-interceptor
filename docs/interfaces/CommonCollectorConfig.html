@@ -87,6 +87,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#collector">collector</a>
                                 </li>
                                 <li>
@@ -102,6 +103,7 @@
                                         <a href="#production">production</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#propagator">propagator</a>
                                 </li>
                                 <li>
@@ -141,6 +143,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -296,6 +303,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -360,6 +372,7 @@ export enum Propagator {
   b3 &#x3D; &#x27;B3Propagator&#x27;,
   httpTrace &#x3D; &#x27;HttpTraceContext&#x27;,
   composite &#x3D; &#x27;CompositePropagator&#x27;,
+  jaeger &#x3D; &#x27;JaegerPropagator&#x27;,
 }
 
 /**
@@ -373,9 +386,9 @@ export interface CommonCollectorConfig {
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
   production?: boolean;
   /** collector */
-  collector: Collector;
+  collector?: Collector;
   /** propagator */
-  propagator: Propagator;
+  propagator?: Propagator;
   /** probabilitySampler */
   probabilitySampler?: number;
 }
@@ -409,6 +422,16 @@ export interface ZipkinCollectorConfig {
    */
   url?: string;
 }
+
+/**
+ * Configuration for JaegerPropagatorConfig
+ */
+export interface JaegerPropagatorConfig {
+  /**
+   * A custom Header for the propagator
+   */
+  customHeader?: string;
+}
 /**
  * OpenTelemetryConfig
  */
@@ -421,6 +444,8 @@ export interface OpenTelemetryConfig {
   zipkinConfig?: ZipkinCollectorConfig;
   /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
+  /** jaegerPropagatorConfig */
+  jaegerPropagatorConfig?: JaegerPropagatorConfig;
 }
 
 /** OpenTelemetryInjectConfig : Config injection */

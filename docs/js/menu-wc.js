@@ -98,6 +98,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/JaegerExporterService.html" data-type="entity-link">JaegerExporterService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link">JaegerHttpTracePropagatorService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/NoopHttpTextPropagatorService.html" data-type="entity-link">NoopHttpTextPropagatorService</a>
                                 </li>
                                 <li class="link">
@@ -143,6 +146,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/JaegerCollectorConfig.html" data-type="entity-link">JaegerCollectorConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/JaegerPropagatorConfig.html" data-type="entity-link">JaegerPropagatorConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/OpenTelemetryConfig.html" data-type="entity-link">OpenTelemetryConfig</a>

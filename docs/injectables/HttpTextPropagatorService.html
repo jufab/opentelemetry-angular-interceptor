@@ -127,8 +127,8 @@ Injected service with factory to get a propagator by configuration</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/http-text-propagator.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/http-text-propagator.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -164,6 +164,7 @@ import { HttpTraceContextPropagatorService } from &#x27;./http-trace-context-pro
 import { B3PropagatorService } from &#x27;./b3-propagator.service&#x27;;
 import { CompositePropagatorService } from &#x27;./composite-propagator.service&#x27;;
 import { NoopHttpTextPropagatorService } from &#x27;./noop-http-text-propagator.service&#x27;;
+import { JaegerHttpTracePropagatorService } from &#x27;./jaeger-http-trace-propagator.service&#x27;;
 
 /**
  * HttpTextPropagatorService
@@ -178,6 +179,7 @@ import { NoopHttpTextPropagatorService } from &#x27;./noop-http-text-propagator.
     B3PropagatorService,
     CompositePropagatorService,
     NoopHttpTextPropagatorService,
+    JaegerHttpTracePropagatorService,
   ],
 })
 export class HttpTextPropagatorService implements IPropagator {
@@ -199,13 +201,15 @@ export class HttpTextPropagatorService implements IPropagator {
  * @param b3PropagatorService propagator
  * @param compositePropagatorService  composite
  * @param noopHttpTextPropagatorService noop
+ *
  */
 export function httpTextPropagatorServiceFactory(
   config: OpenTelemetryConfig,
   httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
   b3PropagatorService: B3PropagatorService,
   compositePropagatorService: CompositePropagatorService,
-  noopHttpTextPropagatorService: NoopHttpTextPropagatorService
+  noopHttpTextPropagatorService: NoopHttpTextPropagatorService,
+  jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService
 ) {
   let propagator: IPropagator &#x3D; null;
   switch (config.commonConfig.propagator) {
@@ -217,6 +221,9 @@ export function httpTextPropagatorServiceFactory(
       break;
     case Propagator.composite:
       propagator &#x3D; compositePropagatorService;
+      break;
+    case Propagator.jaeger:
+      propagator &#x3D; jaegerHttpTracePropagatorService;
       break;
     default:
       propagator &#x3D; noopHttpTextPropagatorService;

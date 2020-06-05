@@ -32,13 +32,12 @@
                    <div class="content-data">
 
 <h1 id="opentelemetry-angular-interceptor">OpenTelemetry Angular Interceptor</h1>
-<p><a href="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor"><img src="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg" alt="npm version" class="img-responsive"></a>
-<a href="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor"><img src="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a></p>
-<h2 id="about">About</h2>
 <p>@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
 <p>This library use <a href="https://github.com/open-telemetry/opentelemetry-js">opentelemetry-js package</a></p>
 <p><strong>Only works for Angular &gt;= 9.0.0</strong></p>
 <p>More info : <a href="https://jufab.github.io/opentelemetry-angular-interceptor/">https://jufab.github.io/opentelemetry-angular-interceptor/</a></p>
+<p><a href="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor"><img src="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg" alt="npm version" class="img-responsive"></a>
+<a href="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor"><img src="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a></p>
 <h2 id="table-of-contents">Table of contents</h2>
 <ul>
 <li><a href="#getting-started">Getting started</a><ul>
@@ -79,7 +78,7 @@
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
       serviceName: &#39;example-app&#39;, //Service name send in trace
       collector: Collector.otelcol, //Enum to specified the collector : OpenTelemetry Collector(otelcol), Zipkin (zipkin), Jaeger (jaeger)
-      propagator: Propagator.b3, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Composite include b3 and httpTrace (composite)
+      propagator: Propagator.composite, // Enum to propagator : B3 (b3), HttpTraceContext (httpTrace), Jaeger Propagator (jaeger) and Composite that include b3, httpTrace and Jaeger (composite)
       probabilitySampler: 0.7, //Samples a configurable percentage of traces, value between 0 to 1
     },
     otelcolConfig: {
@@ -91,6 +90,9 @@
     jaegerConfig: {
       host: &#39;localhost&#39;, //Host and port of jaeger&#39;s agent.
       port: 6832,
+    },
+    jaegerPropagatorConfig: {
+      customHeader: &#39;custom-header&#39;,
     }
   }
 </code></pre></div><h4 id="common-configuration">Common Configuration</h4>
@@ -99,7 +101,7 @@
 <li>production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It&#39;s recommend to use BatchSpanProcessor on Production.</li>
 <li>serviceName: (string) Service name in your trace</li>
 <li>collector: (Enum) use Enum Collector (otelcol,zipkin,jaeger)</li>
-<li>propagator: (Enum) use Propagator Enum (b3,httpTrace,composite)</li>
+<li>propagator: (Enum) use Propagator Enum (b3,httpTrace,composite,jaeger)</li>
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
@@ -113,6 +115,10 @@
 <ul>
 <li>host: (string) host jaeger agent</li>
 <li>port: (string) port jaeger agent</li>
+</ul>
+<h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
+<ul>
+<li>customHeader: (string) custom header</li>
 </ul>
 <h3 id="angular-module">Angular Module</h3>
 <p>To insert OpenTelemetryInterceptorModule, you can add in your application module (generally app.module.ts)</p>

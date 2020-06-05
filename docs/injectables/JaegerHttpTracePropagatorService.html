@@ -39,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>CompositePropagatorService</li>
+  <li>JaegerHttpTracePropagatorService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,14 +57,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator.service.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>CompositePropagatorService</p>
+                <p>JaegerHttpTracePropagatorService</p>
 
             </p>
 
@@ -74,6 +74,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#customHeader">customHeader</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -104,12 +119,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(b3PropagatorService: <a href="../injectables/B3PropagatorService.html">B3PropagatorService</a>, httpTraceContextPropagatorService: <a href="../injectables/HttpTraceContextPropagatorService.html">HttpTraceContextPropagatorService</a>, jaegerHttpTracePropagatorService: <a href="../injectables/JaegerHttpTracePropagatorService.html">JaegerHttpTracePropagatorService</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -125,44 +140,25 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>b3PropagatorService</td>
+                                                        <td>config</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/B3PropagatorService.html" target="_self" >B3PropagatorService</a></code>
+                                                                        <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
                                                   
                                                     <td>
                                                             No
                                                     </td>
                                                     
-                                                </tr>
-                                                <tr>
-                                                        <td>httpTraceContextPropagatorService</td>
-                                                  
                                                         <td>
-                                                                        <code><a href="../injectables/HttpTraceContextPropagatorService.html" target="_self" >HttpTraceContextPropagatorService</a></code>
+                                                                <code><p>OpenTelemetryConfig</p>
+</code>
                                                         </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>jaegerHttpTracePropagatorService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/JaegerHttpTracePropagatorService.html" target="_self" >JaegerHttpTracePropagatorService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -200,15 +196,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:28</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return an CompositePropagator</p>
+                    <div class="io-description"><p>Return an HttpTraceContext</p>
 </div>
 
                     <div>
@@ -218,13 +214,47 @@
 
                     </div>
                     <div class="io-description">
-                        <p>HttpTextPropagator as CompositePropagator</p>
+                        <p>HttpTextPropagator as HttpTraceContext</p>
 
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="customHeader"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            customHeader</b>
+                            <a href="#customHeader"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -234,47 +264,32 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;./propagator.interface&#x27;;
 import { HttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
-import {
-  CompositePropagator,
-  B3Propagator,
-  HttpTraceContext,
-} from &#x27;@opentelemetry/core&#x27;;
 import { JaegerHttpTracePropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
-import { B3PropagatorService } from &#x27;./b3-propagator.service&#x27;;
-import { HttpTraceContextPropagatorService } from &#x27;./http-trace-context-propagator.service&#x27;;
-import { JaegerHttpTracePropagatorService } from &#x27;./jaeger-http-trace-propagator.service&#x27;;
+import { OpenTelemetryInjectConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
+import { OpenTelemetryConfig } from &#x27;../../../public-api&#x27;;
+
 /**
- * CompositePropagatorService
+ * JaegerHttpTracePropagatorService
  */
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class CompositePropagatorService implements IPropagator {
+export class JaegerHttpTracePropagatorService implements IPropagator {
+  private customHeader: string;
   /**
    * Constructor
    * @param config OpenTelemetryConfig
    */
-  constructor(
-    @Inject(B3PropagatorService)
-    private b3PropagatorService: B3PropagatorService,
-    @Inject(HttpTraceContextPropagatorService)
-    private httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
-    @Inject(JaegerHttpTracePropagatorService)
-    private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService
-  ) {}
+  constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
+    this.customHeader &#x3D; config.jaegerPropagatorConfig?.customHeader;
+  }
 
   /**
-   * Return an CompositePropagator
-   * @return HttpTextPropagator as CompositePropagator
+   * Return an HttpTraceContext
+   * @return HttpTextPropagator as HttpTraceContext
    */
   getPropagator(): HttpTextPropagator {
-    return new CompositePropagator({
-      propagators: [
-        this.b3PropagatorService.getPropagator(),
-        this.httpTraceContextPropagatorService.getPropagator(),
-        this.jaegerHttpTracePropagatorService.getPropagator(),
-      ],
-    });
+    return new JaegerHttpTracePropagator(this.customHeader);
   }
 }
 </code></pre>
@@ -310,7 +325,7 @@ export class CompositePropagatorService implements IPropagator {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CompositePropagatorService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'JaegerHttpTracePropagatorService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
