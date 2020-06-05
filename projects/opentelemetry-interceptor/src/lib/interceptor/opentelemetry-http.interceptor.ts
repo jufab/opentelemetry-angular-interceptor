@@ -40,10 +40,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * tracer
    */
   tracer: WebTracerProvider;
-  /**
-   * context manager
-   */
-  contextManager = new StackContextManager();
 
   /**
    * constructor
@@ -68,7 +64,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
       propagator: this.httpTextPropagatorService.getPropagator(),
-      contextManager: this.contextManager,
+      contextManager: new StackContextManager(),
     });
   }
 
@@ -119,13 +115,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.method']: request.method,
             ['http.url']: request.urlWithParams,
           },
-        },
-        this.contextManager.active()
+        }
       );
-    this.contextManager._currentContext = setActiveSpan(
-      this.contextManager.active(),
-      span
-    );
     return span;
   }
 
@@ -141,9 +132,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const carrier = {};
     api.propagation.inject(
       carrier,
-      api.defaultSetter,
-      this.contextManager.active()
+      api.defaultSetter
     );
+    // tslint:disable-next-line: forin
     for (const key in request.headers.keys) {
       carrier[key] = request.headers.get(key);
     }
@@ -187,7 +178,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
-    if(sampleConfig===undefined || sampleConfig > 1) {
+    if (sampleConfig === undefined || sampleConfig > 1) {
       return ALWAYS_SAMPLER;
     } else {
       return new ProbabilitySampler(sampleConfig);
