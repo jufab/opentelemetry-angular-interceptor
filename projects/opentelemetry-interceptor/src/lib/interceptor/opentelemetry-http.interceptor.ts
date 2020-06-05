@@ -28,6 +28,7 @@ import {
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
+import { randomTraceId } from '@opentelemetry/core';
 
 /**
  * OpenTelemetryInterceptor class
@@ -40,6 +41,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * tracer
    */
   tracer: WebTracerProvider;
+  /**
+   * context manager
+   */
+  contextManager = new StackContextManager();
 
   /**
    * constructor
@@ -64,7 +69,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
       propagator: this.httpTextPropagatorService.getPropagator(),
-      contextManager: new StackContextManager(),
+      contextManager: this.contextManager,
     });
   }
 
@@ -115,8 +120,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.method']: request.method,
             ['http.url']: request.urlWithParams,
           },
-        }
+        },
+        this.contextManager.active()
       );
+    span.context().traceId = randomTraceId();
+    this.contextManager._currentContext = setActiveSpan(
+      this.contextManager.active(),
+      span
+    );
     return span;
   }
 
@@ -132,9 +143,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const carrier = {};
     api.propagation.inject(
       carrier,
-      api.defaultSetter
+      api.defaultSetter,
+      this.contextManager.active()
     );
-    // tslint:disable-next-line: forin
     for (const key in request.headers.keys) {
       carrier[key] = request.headers.get(key);
     }

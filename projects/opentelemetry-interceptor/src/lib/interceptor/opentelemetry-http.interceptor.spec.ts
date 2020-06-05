@@ -43,6 +43,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
     const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
     expect(req.request.headers.get('traceparent')).not.toBeNull();
     req.flush({});
     httpControllerMock.verify();
