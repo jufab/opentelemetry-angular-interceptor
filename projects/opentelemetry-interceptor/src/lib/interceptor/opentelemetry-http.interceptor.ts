@@ -28,6 +28,7 @@ import {
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
+import { randomTraceId } from '@opentelemetry/core';
 
 /**
  * OpenTelemetryInterceptor class
@@ -122,6 +123,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         },
         this.contextManager.active()
       );
+    span.context().traceId = randomTraceId();
     this.contextManager._currentContext = setActiveSpan(
       this.contextManager.active(),
       span
@@ -187,7 +189,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
-    if(sampleConfig===undefined || sampleConfig > 1) {
+    if (sampleConfig === undefined || sampleConfig > 1) {
       return ALWAYS_SAMPLER;
     } else {
       return new ProbabilitySampler(sampleConfig);
