@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.8.3...v0.8.3-1) (2020-06-05)
+
+
+### Features
+
+* add jaeger propagator ([fad044a](https://github.com/jufab/opentelemetry-angular-interceptor/commit/fad044a6c67cdb3046420565887e4ecbb3584a70))
+* add JaegerPropagator to composite ([8e268a9](https://github.com/jufab/opentelemetry-angular-interceptor/commit/8e268a91d87d8cebd397ff6a0f553e59665445b3))
+
+
+### Bug Fixes
+
+* context traceId problem ([#3](https://github.com/jufab/opentelemetry-angular-interceptor/issues/3)) ([c6368c9](https://github.com/jufab/opentelemetry-angular-interceptor/commit/c6368c9a5083c1f6c3a7dc95c99782b82a2761c3))
+
 ### [0.8.3](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.8.2...v0.8.3) (2020-05-30)
 
 
