@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3-2](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.8.3-1...v0.8.3-2) (2020-06-08)
+
+
+### Bug Fixes
+
+* changelog ([8d45a2c](https://github.com/jufab/opentelemetry-angular-interceptor/commit/8d45a2cffd80721c977683df5b9b4d8bffa8b43f))
+* problem with context and trace parent id ([#4](https://github.com/jufab/opentelemetry-angular-interceptor/issues/4)) ([f195a50](https://github.com/jufab/opentelemetry-angular-interceptor/commit/f195a5063a205f75a58e8be098cd6eb13fceb5f8))
+
 ### [0.8.3-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.8.3...v0.8.3-1) (2020-06-05)
 
 
