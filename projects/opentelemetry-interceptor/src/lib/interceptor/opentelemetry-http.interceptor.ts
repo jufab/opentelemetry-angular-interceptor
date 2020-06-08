@@ -44,7 +44,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * context manager
    */
-  contextManager = new StackContextManager();
+  contextManager: StackContextManager;
 
   /**
    * constructor
@@ -69,7 +69,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
       propagator: this.httpTextPropagatorService.getPropagator(),
-      contextManager: this.contextManager,
     });
   }
 
@@ -83,6 +82,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    this.contextManager = new StackContextManager();
     const span: api.Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(span, request);
     return next.handle(tracedReq).pipe(
