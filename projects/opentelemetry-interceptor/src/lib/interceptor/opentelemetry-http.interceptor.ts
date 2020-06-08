@@ -123,7 +123,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         },
         this.contextManager.active()
       );
-    span.context().traceId = randomTraceId();
     this.contextManager._currentContext = setActiveSpan(
       this.contextManager.active(),
       span

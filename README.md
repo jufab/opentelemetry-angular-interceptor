@@ -13,19 +13,23 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
 ## Table of contents
 
-- [Getting started](#getting-started)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-    - [Example global Configuration](#example-global-configuration)
-    - [Common Configuration](#common-configuration)
-    - [OpenTelemetry-collector Configuration](#opentelemetry-collector-configuration)
-    - [Zipkin Collector Configuration](#zipkin-collector-configuration)
-    - [Jaeger Collector Configuration](#jaeger-collector-configuration)
-  - [Angular Module](#angular-module)
-- [How it works](#how-it-works)
-- [Example](#example)
-  - [Run](#run)
-  - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
+- [OpenTelemetry Angular Interceptor](#opentelemetry-angular-interceptor)
+  - [Table of contents](#table-of-contents)
+  - [Getting started](#getting-started)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+      - [Example global Configuration](#example-global-configuration)
+      - [Common Configuration](#common-configuration)
+      - [OpenTelemetry-collector Configuration](#opentelemetry-collector-configuration)
+      - [Zipkin Collector Configuration](#zipkin-collector-configuration)
+      - [Jaeger Collector Configuration](#jaeger-collector-configuration)
+      - [Jaeger Propagator Configuration](#jaeger-propagator-configuration)
+    - [Angular Module](#angular-module)
+  - [How it works](#how-it-works)
+  - [Example](#example)
+    - [Run](#run)
+    - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
+  - [Troubleshoot](#troubleshoot)
 
 ## Getting started
 
@@ -34,7 +38,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 With npm :
 
 ```
-npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/web @opentelemetry/exporter-collector
+npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/propagator-jaeger
 ```
 
 ### Configuration
