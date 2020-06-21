@@ -2,7 +2,7 @@
 
 @jufab/opentelemetry-angular-interceptor is an Angular Library to deploy [OpenTelemetry](https://opentelemetry.io/) in your Angular application
 
-This library use [opentelemetry-js package](https://github.com/open-telemetry/opentelemetry-js)
+This library uses [opentelemetry-js package](https://github.com/open-telemetry/opentelemetry-js)
 
 **Only works for Angular >= 9.0.0**
 
