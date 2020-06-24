@@ -27,4 +27,5 @@ jobs:
         with:
           start: npm run start:complete-example-app
           wait-on: 'http://localhost:4200'
+          wait-on-timeout: 120
 
