@@ -42,7 +42,8 @@
       "<rootDir>/node_modules/",
       "<rootDir>/dist/opentelemetry-interceptor/",
       "<rootDir>/projects/opentelemetry-interceptor/src/test.ts",
-      "<rootDir>/projects/example-app/"
+      "<rootDir>/projects/example-app/",
+      "<rootDir>/cypress/"
     ],
     "globals": {
       "ts-jest": {
