@@ -8,6 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "ng serve --prod",
     "build": "ng build",
     "build:prod": "ng build opentelemetry-interceptor --prod && cp README.md dist/opentelemetry-interceptor/README.md",
     "test": "jest --coverage",
@@ -18,7 +19,7 @@
     "cypress:run": "concurrently -k -s first -p \"[{name}]\" -n \"backend,example-app,cypress\" -c \"green.bold,cyan.bold,yellow.bold\" \"npm run start:backend-example\" \"npm start\" \"cypress run\"",
     "start:backend-example": "node ./projects/example-app/src/backend-api.js",
     "start:complete-example-app": "concurrently -k -p \"[{name}]\" -n \"backend,example-app\" -c \"green.bold,cyan.bold\" \"npm run start:backend-example\" \"npm start\"",
-    "start:complete-example-app-prod": "concurrently -k -p \"[{name}]\" -n \"backend,example-app\" -c \"green.bold,cyan.bold\" \"npm run start:backend-example\" \"npm start --prod\"",
+    "start:complete-example-app-prod": "concurrently -k -p \"[{name}]\" -n \"backend,example-app\" -c \"green.bold,cyan.bold\" \"npm run start:backend-example\" \"npm run start:prod\"",
     "compodoc": "npx compodoc -t -p projects/opentelemetry-interceptor/tsconfig.lib.json --theme material -d ./docs -n \"OpenTelemetry Angular Interceptor\""
   },
   "private": true,
