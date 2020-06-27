@@ -184,15 +184,15 @@ For the moment return a ConsoleSpanExporter</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/jaeger-exporter.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/jaeger-exporter.service.ts:36</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return for the moment a ConsoleSpanExporter</p>
+                    <div class="io-description"><p>Return a JaegerExporter</p>
 </div>
 
                     <div>
@@ -233,7 +233,7 @@ import { SpanExporter, ConsoleSpanExporter } from &#x27;@opentelemetry/tracing&#
   providedIn: &#x27;root&#x27;,
 })
 export class JaegerExporterService implements IExporter {
-  // private configJaeger: ExporterConfig;
+  //private configJaeger: ExporterConfig;
 
   /**
    * constructor
@@ -242,16 +242,16 @@ export class JaegerExporterService implements IExporter {
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
     /*this.configJaeger &#x3D; {
       serviceName: config.commonConfig.serviceName,
-      host: config.jaegerConfig.host,
-      port: config.jaegerConfig.port,
+      endpoint: config.jaegerConfig?.endpoint,
     };*/
   }
 
   /**
-   * Return for the moment a ConsoleSpanExporter
+   * Return a JaegerExporter
    * @return SpanExporter
    */
   getExporter(): SpanExporter {
+    //return new JaegerExporter(this.configJaeger);
     return new ConsoleSpanExporter();
   }
 }
