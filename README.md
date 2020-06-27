@@ -75,8 +75,7 @@ opentelemetryConfig: {
       url: 'http://localhost:9411/api/v2/spans', //url of zipkin collector
     },
     jaegerConfig: {
-      host: 'localhost', //Host and port of jaeger's agent.
-      port: 6832,
+      endpoint: 'http://localhost:14268/api/traces', // Url of Jaeger collector via HTTPSender
     },
     jaegerPropagatorConfig: {
       customHeader: 'custom-header',
@@ -95,7 +94,7 @@ opentelemetryConfig: {
 
 #### OpenTelemetry-collector Configuration
 
-* url: (string) url of opentelemetry collector (default : http://localhost:9090/v1/trace)
+* url: (string) url of opentelemetry collector (default : http://localhost:55678/v1/trace)
 
 #### Zipkin Collector Configuration
 
@@ -103,8 +102,7 @@ opentelemetryConfig: {
 
 #### Jaeger Collector Configuration
 
-* host: (string) host jaeger agent
-* port: (string) port jaeger agent
+* endpoint: (string) url of jaeger collector (example : http://localhost:14268/api/traces)
 
 #### Jaeger Propagator Configuration
 

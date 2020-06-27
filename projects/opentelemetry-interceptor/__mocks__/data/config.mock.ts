@@ -68,8 +68,7 @@ export const jaegerExporterConfig: OpenTelemetryConfig = {
     collector: Collector.jaeger,
   },
   jaegerConfig: {
-    host: 'localhost',
-    port: 6399,
+    endpoint: 'http://localhost',
   },
 };
 

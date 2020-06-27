@@ -2,8 +2,9 @@ receivers:
   otlp:
     endpoint: 0.0.0.0:9090
 exporters:
-  jaeger_grpc:
+  jaeger:
     endpoint: jaeger:14250
+    insecure: true
 processors:
   batch:
     send_batch_size: 1
@@ -12,4 +13,4 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [jaeger_grpc]
+      exporters: [jaeger]
