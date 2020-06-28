@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -196,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -248,7 +248,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol-exporter.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -275,9 +275,11 @@ import {
   OpenTelemetryInjectConfig,
 } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import {
-  CollectorExporterConfig,
   CollectorExporter,
 } from &#x27;@opentelemetry/exporter-collector&#x27;;
+import {
+  CollectorExporterConfig,
+} from &#x27;@opentelemetry/exporter-collector/build/src/platform/browser&#x27;;
 
 /**
  * OtelcolExporterService class
@@ -299,6 +301,7 @@ export class OtelcolExporterService implements IExporter {
     this.otelcolConfig &#x3D; {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
+      headers: config.otelcolConfig?.headers,
     };
   }
 

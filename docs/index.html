@@ -33,7 +33,7 @@
 
 <h1 id="opentelemetry-angular-interceptor">OpenTelemetry Angular Interceptor</h1>
 <p>@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
-<p>This library use <a href="https://github.com/open-telemetry/opentelemetry-js">opentelemetry-js package</a></p>
+<p>This library uses <a href="https://github.com/open-telemetry/opentelemetry-js">opentelemetry-js package</a></p>
 <p><strong>Only works for Angular &gt;= 9.0.0</strong></p>
 <p>More info : <a href="https://jufab.github.io/opentelemetry-angular-interceptor/">https://jufab.github.io/opentelemetry-angular-interceptor/</a></p>
 <p><a href="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor"><img src="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg" alt="npm version" class="img-responsive"></a>
@@ -94,8 +94,7 @@
       url: &#39;http://localhost:9411/api/v2/spans&#39;, //url of zipkin collector
     },
     jaegerConfig: {
-      host: &#39;localhost&#39;, //Host and port of jaeger&#39;s agent.
-      port: 6832,
+      endpoint: &#39;http://localhost:14268/api/traces&#39;, // Url of Jaeger collector via HTTPSender
     },
     jaegerPropagatorConfig: {
       customHeader: &#39;custom-header&#39;,
@@ -111,7 +110,7 @@
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
-<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:9090/v1/trace">http://localhost:9090/v1/trace</a>)</li>
+<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:55678/v1/trace">http://localhost:55678/v1/trace</a>)</li>
 </ul>
 <h4 id="zipkin-collector-configuration">Zipkin Collector Configuration</h4>
 <ul>
@@ -119,8 +118,7 @@
 </ul>
 <h4 id="jaeger-collector-configuration">Jaeger Collector Configuration</h4>
 <ul>
-<li>host: (string) host jaeger agent</li>
-<li>port: (string) port jaeger agent</li>
+<li>endpoint: (string) url of jaeger collector (example : <a href="http://localhost:14268/api/traces">http://localhost:14268/api/traces</a>)</li>
 </ul>
 <h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
 <ul>

@@ -16,7 +16,7 @@ import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
   providedIn: 'root',
 })
 export class JaegerExporterService implements IExporter {
-  // private configJaeger: ExporterConfig;
+  //private configJaeger: ExporterConfig;
 
   /**
    * constructor
@@ -25,16 +25,16 @@ export class JaegerExporterService implements IExporter {
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
     /*this.configJaeger = {
       serviceName: config.commonConfig.serviceName,
-      host: config.jaegerConfig.host,
-      port: config.jaegerConfig.port,
+      endpoint: config.jaegerConfig?.endpoint,
     };*/
   }
 
   /**
-   * Return for the moment a ConsoleSpanExporter
+   * Return a JaegerExporter
    * @return SpanExporter
    */
   getExporter(): SpanExporter {
+    //return new JaegerExporter(this.configJaeger);
     return new ConsoleSpanExporter();
   }
 }

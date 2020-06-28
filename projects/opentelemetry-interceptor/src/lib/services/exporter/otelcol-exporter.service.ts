@@ -6,9 +6,11 @@ import {
   OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
 import {
-  CollectorExporterConfig,
   CollectorExporter,
 } from '@opentelemetry/exporter-collector';
+import {
+  CollectorExporterConfig,
+} from '@opentelemetry/exporter-collector/build/src/platform/browser';
 
 /**
  * OtelcolExporterService class
@@ -30,6 +32,7 @@ export class OtelcolExporterService implements IExporter {
     this.otelcolConfig = {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
+      headers: config.otelcolConfig?.headers,
     };
   }
 
