@@ -69,7 +69,7 @@ opentelemetryConfig: {
       probabilitySampler: 0.7, //Samples a configurable percentage of traces, value between 0 to 1
     },
     otelcolConfig: {
-      url: 'http://localhost:9090/v1/trace', //URL of opentelemetry collector
+      url: 'http://localhost:55680/v1/trace', //URL of opentelemetry collector
     },
     zipkinConfig: {
       url: 'http://localhost:9411/api/v2/spans', //url of zipkin collector
@@ -94,7 +94,7 @@ opentelemetryConfig: {
 
 #### OpenTelemetry-collector Configuration
 
-* url: (string) url of opentelemetry collector (default : http://localhost:55678/v1/trace)
+* url: (string) url of opentelemetry collector (default : http://localhost:55680/v1/trace)
 * headers: list of custom header
 
 #### Zipkin Collector Configuration

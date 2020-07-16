@@ -3,10 +3,7 @@ import { IPropagator } from './propagator.interface';
 import { HttpTextPropagator } from '@opentelemetry/api';
 import {
   CompositePropagator,
-  B3Propagator,
-  HttpTraceContext,
 } from '@opentelemetry/core';
-import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 import { B3PropagatorService } from './b3-propagator.service';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
