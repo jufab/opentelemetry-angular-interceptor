@@ -13,6 +13,8 @@ Todo in project...
   - [ ] Add Jaeger exporter (when it's available)  
   - [ ] Add more configuration for Jaeger : [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-jaeger/src/types.ts)  
 - [ ] Prepare correlation-context [here](https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core/src/correlation-context)  
+- [ ] jaeger-propagator doesn't work with version 0.9.0  
+- [ ] Add new version collector in example after this fix (https://github.com/open-telemetry/opentelemetry-collector/issues/1385)  
 
 ### In Progress
 
