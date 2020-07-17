@@ -1,11 +1,6 @@
 receivers:
   otlp:
-    protocols:
-      http:
-        endpoint: "0.0.0.0:55680"
-        cors_allowed_origins:
-        - http://*
-        - https://*
+    endpoint: 0.0.0.0:55680
 exporters:
   jaeger:
     endpoint: jaeger:14250

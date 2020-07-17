@@ -8,7 +8,7 @@ services:
       - "16686:16686"
       - "14250"
   otel-collector:
-    image: otel/opentelemetry-collector:0.6.0
+    image: otel/opentelemetry-collector:0.4.0
     networks:
       - otelcol
     command: ["--log-level=DEBUG","--config=/etc/otel-collector-config.yaml"]
