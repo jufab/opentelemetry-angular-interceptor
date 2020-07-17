@@ -14,13 +14,12 @@ import {
   B3Propagator,
 } from '@opentelemetry/core';
 import { NoopHttpTextPropagator } from '@opentelemetry/api';
-NoopHttpTextPropagator;
 import { B3PropagatorService } from './b3-propagator.service';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 import { CompositePropagatorService } from './composite-propagator.service';
 import { NoopHttpTextPropagatorService } from './noop-http-text-propagator.service';
 import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
-import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
+//import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 
 describe('HttpTextPropagatorService', () => {
   let service: HttpTextPropagatorService;
@@ -82,7 +81,7 @@ describe('HttpTextPropagatorService', () => {
     expect(service.getPropagator()).toBeInstanceOf(NoopHttpTextPropagator);
   });
 
-  it('should return an JaegerHttpTracePropagator', () => {
+  it('should return an JaegerHttpTracePropagator (NoopHttpTextPropagator)', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       providers: [
@@ -94,6 +93,6 @@ describe('HttpTextPropagatorService', () => {
       ],
     });
     service = TestBed.inject(HttpTextPropagatorService);
-    expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
+    expect(service.getPropagator()).toBeInstanceOf(NoopHttpTextPropagator);
   });
 });

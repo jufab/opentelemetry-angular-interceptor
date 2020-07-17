@@ -28,7 +28,6 @@ import {
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
-import { randomTraceId } from '@opentelemetry/core';
 
 /**
  * OpenTelemetryInterceptor class

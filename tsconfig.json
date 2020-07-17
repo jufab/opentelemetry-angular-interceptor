@@ -17,7 +17,6 @@
       "es2018",
       "dom"
     ],
-    "types": ["cypress"],
     "paths": {
       "opentelemetry-interceptor": [
         "dist/opentelemetry-interceptor/opentelemetry-interceptor",
