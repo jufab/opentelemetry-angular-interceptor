@@ -8,10 +8,10 @@ services:
       - "16686:16686"
       - "14250"
   otel-collector:
-    image: otel/opentelemetry-collector:0.4.0
+    image: otel/opentelemetry-collector:0.6.0
     networks:
       - otelcol
-    command: ["--config=/etc/otel-collector-config.yaml"]
+    command: ["--log-level=DEBUG","--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
