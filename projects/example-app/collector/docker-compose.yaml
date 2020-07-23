@@ -7,6 +7,12 @@ services:
     ports:
       - "16686:16686"
       - "14250"
+  zipkin:
+    image: openzipkin/zipkin:latest
+    networks:
+      - otelcol
+    ports:
+      - "9411:9411"
   otel-collector:
     image: otel/opentelemetry-collector:0.4.0
     networks:

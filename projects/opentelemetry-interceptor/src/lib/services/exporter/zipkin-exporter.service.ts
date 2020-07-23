@@ -4,27 +4,28 @@ import {
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
-import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
+import { SpanExporter } from '@opentelemetry/tracing';
+import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
+import { ExporterConfig } from '@opentelemetry/exporter-zipkin/build/src/types';
 
 /**
- * ZipkinExporter isn't operationnal for the moment in web application.
- * it's present if one day..
+ * ZipkinExporter with webpack...
  */
 @Injectable({
   providedIn: 'root',
 })
 export class ZipkinExporterService implements IExporter {
-  // private zipkinConfig: ExporterConfig;
+   private zipkinConfig: ExporterConfig;
 
   /**
    * constructor
    * @param config OpenTelemetryConfig
    */
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
-    /*this.zipkinConfig = {
+    this.zipkinConfig = {
       serviceName: config.commonConfig.serviceName,
-      url: config.zipkinConfig.url,
-    };*/
+      url: config.zipkinConfig?.url,
+    };
   }
 
   /**
@@ -32,6 +33,6 @@ export class ZipkinExporterService implements IExporter {
    * @return SpanExporter
    */
   getExporter(): SpanExporter {
-    return new ConsoleSpanExporter();
+    return new ZipkinExporter(this.zipkinConfig);
   }
 }

@@ -9,6 +9,7 @@ import {
 } from '../../../../__mocks__/data/config.mock';
 import { CollectorExporter } from '@opentelemetry/exporter-collector';
 import { ConsoleSpanExporter } from '@opentelemetry/tracing';
+import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { JaegerExporterService } from './jaeger-exporter.service';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 import { OtelcolExporterService } from './otelcol-exporter.service';
@@ -50,7 +51,7 @@ describe('SpanExporterService', () => {
     });
     spanExporterService = TestBed.inject(SpanExporterService);
     const spanEx = spanExporterService.getExporter();
-    expect(spanEx).toBeInstanceOf(ConsoleSpanExporter);
+    expect(spanEx).toBeInstanceOf(ZipkinExporter);
   });
 
   it('should have a ConsoleSpanExporter with no exporterConfigured', () => {
