@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
+import { Sampler, Span } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -17,9 +18,11 @@ import {
   SpanExporter,
 } from '@opentelemetry/tracing';
 import {
-  ALWAYS_SAMPLER,
+  AlwaysOnSampler,
+  AlwaysOffSampler,
   setActiveSpan,
   ProbabilitySampler,
+  ParentOrElseSampler,
 } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
 import {
@@ -82,7 +85,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this.contextManager = new StackContextManager();
-    const span: api.Span = this.initSpan(request);
+    const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(span, request);
     return next.handle(tracedReq).pipe(
       tap(
@@ -109,7 +112,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * Initialise a span for a request intercepted
    * @param request request
    */
-  private initSpan(request: HttpRequest<unknown>): api.Span {
+  private initSpan(request: HttpRequest<unknown>): Span {
     const span = this.tracer
       .getTracer('angular-interceptor', '0.0.1')
       .startSpan(
@@ -135,7 +138,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param request request
    */
   private injectContextAndHeader(
-    span: api.Span,
+    span: Span,
     request: HttpRequest<unknown>
   ) {
     const carrier = {};
@@ -186,11 +189,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * By Default, it's always (or 1)
    * @param sampleConfig the sample configuration
    */
-  private defineProbabilitySampler(sampleConfig: number): ProbabilitySampler {
+  private defineProbabilitySampler(sampleConfig: number): Sampler {
     if (sampleConfig === undefined || sampleConfig > 1) {
-      return ALWAYS_SAMPLER;
+      return new ParentOrElseSampler(new AlwaysOnSampler());
+    }
+    else if (sampleConfig <= 0) {
+      return new ParentOrElseSampler(new AlwaysOffSampler());
     } else {
-      return new ProbabilitySampler(sampleConfig);
+      return new ParentOrElseSampler(new ProbabilitySampler(sampleConfig));
     }
   }
 }

@@ -7,7 +7,9 @@ import {
   jaegerExporterConfig,
   zipkinExporterConfig,
 } from '../../../../__mocks__/data/config.mock';
-import { CollectorExporter } from '@opentelemetry/exporter-collector';
+import {
+  CollectorTraceExporter
+} from '@opentelemetry/exporter-collector/build/src/platform/browser';
 import { ConsoleSpanExporter } from '@opentelemetry/tracing';
 import { JaegerExporterService } from './jaeger-exporter.service';
 import { ZipkinExporterService } from './zipkin-exporter.service';
@@ -26,7 +28,7 @@ describe('SpanExporterService', () => {
     });
     spanExporterService = TestBed.inject(SpanExporterService);
     const spanEx = spanExporterService.getExporter();
-    expect(spanEx).toBeInstanceOf(CollectorExporter);
+    expect(spanEx).toBeInstanceOf(CollectorTraceExporter);
   });
 
   it('should have a ConsoleSpanExporter created with a JaegerExporterService', () => {

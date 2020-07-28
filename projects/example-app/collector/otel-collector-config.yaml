@@ -1,10 +1,17 @@
 receivers:
   otlp:
-    endpoint: 0.0.0.0:55680
+    protocols:
+      http:
+        endpoint: "0.0.0.0:55681"
+        cors_allowed_origins:
+        - http://*
+        - https://*
 exporters:
   jaeger:
     endpoint: jaeger:14250
     insecure: true
+  zipkin:
+    endpoint: "http://zipkin:9411/api/v2/spans"
 processors:
   batch:
     send_batch_size: 1
@@ -17,4 +24,4 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [jaeger]
+      exporters: [jaeger,zipkin]

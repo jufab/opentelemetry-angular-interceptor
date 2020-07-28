@@ -19,7 +19,7 @@ import { HttpTraceContextPropagatorService } from './http-trace-context-propagat
 import { CompositePropagatorService } from './composite-propagator.service';
 import { NoopHttpTextPropagatorService } from './noop-http-text-propagator.service';
 import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
-//import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
+// import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 
 describe('HttpTextPropagatorService', () => {
   let service: HttpTextPropagatorService;

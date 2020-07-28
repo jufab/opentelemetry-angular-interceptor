@@ -58,6 +58,7 @@
             "main": "projects/example-app/src/main.ts",
             "polyfills": "projects/example-app/src/polyfills.ts",
             "tsConfig": "projects/example-app/tsconfig.app.json",
+            "allowedCommonJsDependencies": ["@opentelemetry/api","@opentelemetry/exporter-collector","@opentelemetry/tracing","@opentelemetry/web","@opentelemetry/core","@opentelemetry/context-base"],
             "aot": true,
             "assets": [
               "projects/example-app/src/favicon.ico",

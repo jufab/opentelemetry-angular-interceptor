@@ -36,7 +36,7 @@ export interface CommonCollectorConfig {
  */
 export interface OtelCollectorConfig {
   /**
-   * An url (Default value: http://localhost:55678/v1/trace)
+   * An url (Default value: http://localhost:55681/v1/trace)
    */
   url?: string;
   /**
