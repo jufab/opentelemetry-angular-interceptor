@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.9.0...v0.10.1) (2020-07-28)
+
+
+### Features
+
+* update angular ([bfc26ae](https://github.com/jufab/opentelemetry-angular-interceptor/commit/bfc26ae445a59faa1eed776aa0fb965d7a693ba9))
+* update opentelemtry 0.10.1 ([94e0b44](https://github.com/jufab/opentelemetry-angular-interceptor/commit/94e0b44fd87fb998fb98d8b7cf49e0a84689d712))
+
+
+### Bug Fixes
+
+* otlp collector version 0.4.0 ([#9](https://github.com/jufab/opentelemetry-angular-interceptor/issues/9)) ([80d2ada](https://github.com/jufab/opentelemetry-angular-interceptor/commit/80d2ada3629a6b7989f8c684757a2fa25b42f35a))
+* release ([d2ecbb8](https://github.com/jufab/opentelemetry-angular-interceptor/commit/d2ecbb802b97e297041e31ac37f286a6a62e6652))
+
 ## [0.9.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.8.3-2...v0.9.0) (2020-06-28)
 
 
