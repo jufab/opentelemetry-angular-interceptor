@@ -133,7 +133,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/core/ModuleWithProviders" target="_blank" >ModuleWithProviders</a></code>
+                        <b>Returns : </b>    <code>ModuleWithProviders&lt;OpenTelemetryInterceptorModule&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -177,7 +177,7 @@ export class OpenTelemetryInterceptorModule {
     }
   }
 
-  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders {
+  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders&lt;OpenTelemetryInterceptorModule&gt; {
     return {
       ngModule: OpenTelemetryInterceptorModule,
       providers: [

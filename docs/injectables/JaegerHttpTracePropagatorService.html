@@ -64,7 +64,8 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>JaegerHttpTracePropagatorService</p>
+                <p>JaegerHttpTracePropagatorService
+TODO : wait the next version (incompatible 0.8.0)</p>
 
             </p>
 
@@ -124,7 +125,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -196,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -248,7 +249,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -264,12 +265,14 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;./propagator.interface&#x27;;
 import { HttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
-import { JaegerHttpTracePropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
+//import { JaegerHttpTracePropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
+import { NoopHttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { OpenTelemetryInjectConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import { OpenTelemetryConfig } from &#x27;../../../public-api&#x27;;
 
 /**
  * JaegerHttpTracePropagatorService
+ * TODO : wait the next version (incompatible 0.8.0)
  */
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -289,7 +292,8 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
    * @return HttpTextPropagator as HttpTraceContext
    */
   getPropagator(): HttpTextPropagator {
-    return new JaegerHttpTracePropagator(this.customHeader);
+    return new NoopHttpTextPropagator();
+    // return new JaegerHttpTracePropagator(this.customHeader);
   }
 }
 </code></pre>
