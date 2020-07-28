@@ -94,7 +94,7 @@ opentelemetryConfig: {
 
 #### OpenTelemetry-collector Configuration
 
-* url: (string) url of opentelemetry collector (default : http://localhost:55680/v1/trace)
+* url: (string) url of opentelemetry collector (default : http://localhost:55681/v1/trace)
 * headers: list of custom header
 
 #### Zipkin Collector Configuration

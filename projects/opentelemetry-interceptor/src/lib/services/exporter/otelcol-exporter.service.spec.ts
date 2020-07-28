@@ -6,7 +6,9 @@ import {
   otelcolExporterConfig,
   otelcolExporterWithoutUrlAndB3Config,
 } from '../../../../__mocks__/data/config.mock';
-import { CollectorExporter } from '@opentelemetry/exporter-collector';
+import {
+  CollectorTraceExporter
+} from '@opentelemetry/exporter-collector/build/src/platform/browser';
 
 describe('OtelcolExporterService', () => {
   let otelcolExporterService: OtelcolExporterService;
@@ -25,15 +27,15 @@ describe('OtelcolExporterService', () => {
     expect(otelcolExporterService).toBeTruthy();
   });
 
-  it('should generate a CollectorExporter', () => {
+  it('should generate a CollectorTraceExporter', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
-    expect(exporter).toBeInstanceOf(CollectorExporter);
-    expect((exporter as CollectorExporter).serviceName).toEqual('test');
-    expect((exporter as CollectorExporter).url).toEqual('http://localhost');
+    expect(exporter).toBeInstanceOf(CollectorTraceExporter);
+    expect((exporter as CollectorTraceExporter).serviceName).toEqual('test');
+    expect((exporter as CollectorTraceExporter).url).toEqual('http://localhost');
   });
 
-  it('should generate a CollectorExporter with no url in configuration and have url default endpoint', () => {
+  it('should generate a CollectorTraceExporter with no url in configuration and have url default endpoint', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       providers: [
@@ -47,8 +49,8 @@ describe('OtelcolExporterService', () => {
     otelcolExporterService = TestBed.inject(OtelcolExporterService);
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
-    expect(exporter).toBeInstanceOf(CollectorExporter);
-    expect((exporter as CollectorExporter).serviceName).toEqual('test');
-    expect((exporter as CollectorExporter).url).toEqual('localhost:55678');
+    expect(exporter).toBeInstanceOf(CollectorTraceExporter);
+    expect((exporter as CollectorTraceExporter).serviceName).toEqual('test');
+    expect((exporter as CollectorTraceExporter).url).toEqual('http://localhost:55681/v1/trace');
   });
 });

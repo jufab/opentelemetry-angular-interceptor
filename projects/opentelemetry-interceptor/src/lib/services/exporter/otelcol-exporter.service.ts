@@ -6,11 +6,11 @@ import {
   OpenTelemetryInjectConfig,
 } from '../../configuration/opentelemetry-config';
 import {
-  CollectorExporter,
-} from '@opentelemetry/exporter-collector';
-import {
-  CollectorExporterConfig,
+  CollectorTraceExporter
 } from '@opentelemetry/exporter-collector/build/src/platform/browser';
+import {
+  CollectorExporterConfigBrowser,
+} from '@opentelemetry/exporter-collector/build/src/platform/browser/types';
 
 /**
  * OtelcolExporterService class
@@ -22,7 +22,7 @@ export class OtelcolExporterService implements IExporter {
   /**
    * CollectorExporterConfig
    */
-  private otelcolConfig: CollectorExporterConfig;
+  private otelcolConfig: CollectorExporterConfigBrowser;
 
   /**
    * constructor
@@ -41,6 +41,6 @@ export class OtelcolExporterService implements IExporter {
    * @return a CollectorExporter
    */
   getExporter(): SpanExporter {
-    return new CollectorExporter(this.otelcolConfig);
+    return new CollectorTraceExporter(this.otelcolConfig);
   }
 }
