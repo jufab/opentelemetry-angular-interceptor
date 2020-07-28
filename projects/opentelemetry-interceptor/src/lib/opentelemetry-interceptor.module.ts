@@ -27,7 +27,7 @@ export class OpenTelemetryInterceptorModule {
     }
   }
 
-  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders {
+  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders<OpenTelemetryInterceptorModule> {
     return {
       ngModule: OpenTelemetryInterceptorModule,
       providers: [
