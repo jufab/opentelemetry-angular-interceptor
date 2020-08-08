@@ -30,6 +30,8 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
     - [Run](#run)
     - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
   - [Troubleshoot](#troubleshoot)
+    - [Angular 10 Warning](#angular-10-warning)
+    - [Other](#other)
 
 ## Getting started
 
@@ -186,6 +188,41 @@ More info about the collector here : https://github.com/open-telemetry/opentelem
 
 
 ## Troubleshoot
+
+### Angular 10 Warning
+
+```shell
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on '@opentelemetry/web'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on '@opentelemetry/core'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on '@opentelemetry/tracing'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on '@opentelemetry/api'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on '@opentelemetry/exporter-collector/build/src/platform/browser'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+```
+
+Add to your angular.json
+
+```json
+"options": {
+  "allowedCommonJsDependencies": [
+    "@opentelemetry/web",
+    "@opentelemetry/core",
+    "@opentelemetry/tracing",
+    "@opentelemetry/api",
+    "@opentelemetry/exporter-collector",
+    "@opentelemetry/context-base"
+  ],
+```
+
+### Other
 
 |Error|Fix|
 |-----|---|

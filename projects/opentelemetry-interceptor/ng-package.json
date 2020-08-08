@@ -1,13 +1,16 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/opentelemetry-interceptor",
+  "assets": [
+    "ngcc.config.js"
+  ],
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "@opentelemetry/api": "@opentelemetry/api",
       "@opentelemetry/web": "@opentelemetry/web",
       "@opentelemetry/tracing": "@opentelemetry/tracing",
-      "@opentelemetry/exporter-collector": "@opentelemetry/exporter-collector",
+      "@opentelemetry/exporter-collector/build/src/platform/browser": "browser",
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core"
     }
