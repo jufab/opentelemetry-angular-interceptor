@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm build
       - run: npm test
       - run:  ./node_modules/.bin/codecov --token="${{secrets.codecov_token}}"
       - name: Cypress run
@@ -27,5 +28,5 @@ jobs:
         with:
           start: npm run start:complete-example-app
           wait-on: 'http://localhost:4200'
-          wait-on-timeout: 120
+          wait-on-timeout: 180
 
