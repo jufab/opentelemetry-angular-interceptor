@@ -62,7 +62,11 @@
 <li><a href="#optional-result-in-opentelemtery-collector">[Optional] Result in OpenTelemtery-collector</a></li>
 </ul>
 </li>
-<li><a href="#troubleshoot">Troubleshoot</a></li>
+<li><a href="#troubleshoot">Troubleshoot</a><ul>
+<li><a href="#angular-10-warning">Angular 10 Warning</a></li>
+<li><a href="#other">Other</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -171,6 +175,30 @@ export class AppModule {}</code></pre></div><h2 id="how-it-works">How it works</
 <p><em>* without an Agent or a Collector you can see an error in your browser about sending a &quot;trace&quot;.</em></p>
 </blockquote>
 <h2 id="troubleshoot">Troubleshoot</h2>
+<h3 id="angular-10-warning">Angular 10 Warning</h3>
+<div><pre class="line-numbers"><code class="language-shell">WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/web&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/core&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/tracing&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/api&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/exporter-collector/build/src/platform/browser&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies</code></pre></div><p>Add to your angular.json</p>
+<div><pre class="line-numbers"><code class="language-json">&quot;options&quot;: {
+  &quot;allowedCommonJsDependencies&quot;: [
+    &quot;&#64;opentelemetry/web&quot;,
+    &quot;&#64;opentelemetry/core&quot;,
+    &quot;&#64;opentelemetry/tracing&quot;,
+    &quot;&#64;opentelemetry/api&quot;,
+    &quot;&#64;opentelemetry/exporter-collector&quot;,
+    &quot;&#64;opentelemetry/context-base&quot;
+  ],</code></pre></div><h3 id="other">Other</h3>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
