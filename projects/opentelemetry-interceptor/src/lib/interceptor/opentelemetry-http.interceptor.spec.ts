@@ -15,13 +15,15 @@ import {
   otelcolExporterWithProbabilitySamplerAndCompositeConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
+import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
+import { HttpTraceContextPropagatorModule } from '../services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
 
 describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
   let httpControllerMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
         {
@@ -55,7 +57,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
       oneHead: 'oneValue',
       twoHead: 'twoValue',
     });
-    httpClient.get(url, { headers: headers }).subscribe();
+    httpClient.get(url, { headers }).subscribe();
     const req = httpControllerMock.expectOne(url);
     expect(req.request.headers.get('traceparent')).not.toBeNull();
     expect(req.request.headers.get('oneHead')).toEqual('oneValue');
@@ -98,7 +100,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
   it('verify probability sampler to be add', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
       providers: [
         {
           provide: OpenTelemetryInjectConfig,

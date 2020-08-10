@@ -1,10 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
-import { IPropagator } from './propagator.interface';
+import { IPropagator } from '../propagator.interface';
 import { HttpTextPropagator } from '@opentelemetry/api';
 //import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 import { NoopHttpTextPropagator } from '@opentelemetry/api';
-import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { OpenTelemetryConfig } from '../../../public-api';
+import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
+import { OpenTelemetryConfig } from '../../../../public-api';
 
 /**
  * JaegerHttpTracePropagatorService

@@ -1,7 +1,5 @@
 import {
   OpenTelemetryConfig,
-  Collector,
-  Propagator,
 } from '../../src/lib/configuration/opentelemetry-config';
 
 /**
@@ -10,8 +8,6 @@ import {
 export const zipkinExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    collector: Collector.zipkin,
-    propagator: Propagator.b3,
   },
   zipkinConfig: {
     url: 'http://localhost',
@@ -24,8 +20,6 @@ export const zipkinExporterConfig: OpenTelemetryConfig = {
 export const otelcolExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    collector: Collector.otelcol,
-    propagator: Propagator.httpTrace,
   },
   otelcolConfig: {
     url: 'http://localhost',
@@ -38,8 +32,6 @@ export const otelcolExporterConfig: OpenTelemetryConfig = {
 export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    collector: Collector.otelcol,
-    propagator: Propagator.b3,
   },
 };
 
@@ -50,8 +42,6 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
   commonConfig: {
     serviceName: 'test',
     console: true,
-    collector: Collector.otelcol,
-    propagator: Propagator.composite,
     probabilitySampler: 0.7,
   },
   otelcolConfig: {
@@ -65,7 +55,6 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
 export const jaegerExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    collector: Collector.jaeger,
   },
   jaegerConfig: {
     endpoint: 'http://localhost',
@@ -78,7 +67,6 @@ export const jaegerExporterConfig: OpenTelemetryConfig = {
 export const jaegerPropagatorConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    propagator: Propagator.jaeger,
   },
   jaegerPropagatorConfig: {
     customHeader: 'custom-header-trace',
@@ -91,6 +79,5 @@ export const jaegerPropagatorConfig: OpenTelemetryConfig = {
 export const jaegerPropagatorWithoutCustomHeaderConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    propagator: Propagator.jaeger,
   },
 };

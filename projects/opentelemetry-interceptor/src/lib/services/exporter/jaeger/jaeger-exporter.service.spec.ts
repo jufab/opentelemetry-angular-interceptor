@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { JaegerExporterService } from './jaeger-exporter.service';
-import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { jaegerExporterConfig } from '../../../../__mocks__/data/config.mock';
+import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
+import { jaegerExporterConfig } from '../../../../../__mocks__/data/config.mock';
 import { ConsoleSpanExporter } from '@opentelemetry/tracing';
 
 describe('JaegerExporterService', () => {

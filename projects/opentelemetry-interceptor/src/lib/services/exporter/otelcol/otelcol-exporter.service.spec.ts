@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OtelcolExporterService } from './otelcol-exporter.service';
-import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
+import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
   otelcolExporterWithoutUrlAndB3Config,
-} from '../../../../__mocks__/data/config.mock';
+} from '../../../../../__mocks__/data/config.mock';
 import {
   CollectorTraceExporter
 } from '@opentelemetry/exporter-collector/build/src/platform/browser';

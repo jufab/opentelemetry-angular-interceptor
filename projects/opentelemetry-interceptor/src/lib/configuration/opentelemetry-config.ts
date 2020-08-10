@@ -1,18 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export enum Collector {
-  jaeger = 'jaeger',
-  zipkin = 'zipkin',
-  otelcol = 'otelcol',
-}
-
-export enum Propagator {
-  b3 = 'B3Propagator',
-  httpTrace = 'HttpTraceContext',
-  composite = 'CompositePropagator',
-  jaeger = 'JaegerPropagator',
-}
-
 /**
  * Common configuration
  */
@@ -23,10 +10,6 @@ export interface CommonCollectorConfig {
   console?: boolean;
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
   production?: boolean;
-  /** collector */
-  collector?: Collector;
-  /** propagator */
-  propagator?: Propagator;
   /** probabilitySampler */
   probabilitySampler?: number;
 }

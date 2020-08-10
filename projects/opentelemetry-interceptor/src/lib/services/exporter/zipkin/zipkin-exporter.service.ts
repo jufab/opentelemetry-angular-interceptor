@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { IExporter } from './exporter.interface';
+import { IExporter } from '../exporter.interface';
 import {
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
-} from '../../configuration/opentelemetry-config';
+} from '../../../configuration/opentelemetry-config';
 import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 
 /**
