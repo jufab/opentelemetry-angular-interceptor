@@ -7,14 +7,14 @@ import {
   B3Propagator,
 } from '@opentelemetry/core';
 import { NoopHttpTextPropagator } from '@opentelemetry/api';
-// import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
+import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 import { HttpTraceContextPropagatorModule } from './http-trace-context-propagator/http-trace-context-propagator.module';
 import { B3PropagatorModule } from './b3-propagator/b3-propagator.module';
 import { CompositePropagatorModule } from './composite-propagator/composite-propagator.module';
 import { NoopHttpTextPropagatorModule } from './noop-http-text-propagator/noop-http-text-propagator.module';
 import { JaegerHttpTracePropagatorModule } from './jaeger-http-trace-propagator/jaeger-http-trace-propagator.module';
 import { OpenTelemetryInjectConfig } from '../../configuration/opentelemetry-config';
-import { otelcolExporterWithoutUrlAndB3Config, otelcolExporterWithProbabilitySamplerAndCompositeConfig, jaegerPropagatorConfig } from '../../../../__mocks__/data/config.mock';
+import { otelcolExporterWithProbabilitySamplerAndCompositeConfig, jaegerPropagatorConfig } from '../../../../__mocks__/data/config.mock';
 
 describe('HttpTextPropagatorService', () => {
   let service: HttpTextPropagatorService;
@@ -75,6 +75,6 @@ describe('HttpTextPropagatorService', () => {
       ]
     });
     service = TestBed.inject(HttpTextPropagatorService);
-    expect(service.getPropagator()).toBeInstanceOf(NoopHttpTextPropagator);
+    expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
   });
 });

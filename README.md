@@ -218,7 +218,8 @@ Add to your angular.json
     "@opentelemetry/tracing",
     "@opentelemetry/api",
     "@opentelemetry/exporter-collector",
-    "@opentelemetry/context-base"
+    "@opentelemetry/context-base",
+    "@opentelemetry/propagator-jaeger"
   ],
 ```
 

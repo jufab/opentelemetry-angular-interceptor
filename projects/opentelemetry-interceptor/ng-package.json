@@ -10,9 +10,10 @@
       "@opentelemetry/api": "@opentelemetry/api",
       "@opentelemetry/web": "@opentelemetry/web",
       "@opentelemetry/tracing": "@opentelemetry/tracing",
-      "@opentelemetry/exporter-collector/build/src/platform/browser": "browser",
+      "@opentelemetry/exporter-collector/build/src/platform/browser": "@opentelemetry/exporter-collector-browser",
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
-      "@opentelemetry/core": "@opentelemetry/core"
+      "@opentelemetry/core": "@opentelemetry/core",
+      "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger"
     }
   }
 }

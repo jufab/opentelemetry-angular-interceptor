@@ -22,13 +22,13 @@
         "dist/opentelemetry-interceptor/opentelemetry-interceptor",
         "dist/opentelemetry-interceptor"
       ],
-      "@exporter" : [
+      "@exporter": [
         "projects/opentelemetry-interceptor/src/lib/services/exporter"
-      ],
+      ]
     }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
+    "strictInjectionParameters": true
   }
 }

@@ -18,6 +18,6 @@
     },
     {
       "path": "./projects/example-app/tsconfig.spec.json"
-    }
+    },
   ]
 }
