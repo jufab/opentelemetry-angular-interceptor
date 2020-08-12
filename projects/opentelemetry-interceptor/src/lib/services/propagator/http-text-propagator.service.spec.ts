@@ -19,6 +19,18 @@ import { otelcolExporterWithProbabilitySamplerAndCompositeConfig, jaegerPropagat
 describe('HttpTextPropagatorService', () => {
   let service: HttpTextPropagatorService;
 
+  it('exporter should be undefined', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        HttpTextPropagatorService,
+      ],
+    });
+    service = TestBed.inject(HttpTextPropagatorService);
+    const exporter = service.getPropagator();
+    expect(exporter).toBeUndefined();
+  });
+
   it('should return an HttpTraceContext', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({

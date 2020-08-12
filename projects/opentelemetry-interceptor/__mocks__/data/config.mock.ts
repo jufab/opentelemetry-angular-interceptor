@@ -2,17 +2,6 @@ import {
   OpenTelemetryConfig,
 } from '../../src/lib/configuration/opentelemetry-config';
 
-/**
- * @ignore
- */
-export const zipkinExporterConfig: OpenTelemetryConfig = {
-  commonConfig: {
-    serviceName: 'test',
-  },
-  zipkinConfig: {
-    url: 'http://localhost',
-  },
-};
 
 /**
  * @ignore
@@ -49,17 +38,6 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
   },
 };
 
-/**
- * @ignore
- */
-export const jaegerExporterConfig: OpenTelemetryConfig = {
-  commonConfig: {
-    serviceName: 'test',
-  },
-  jaegerConfig: {
-    endpoint: 'http://localhost',
-  },
-};
 
 /**
  * @ignore
