@@ -21,13 +21,7 @@ export const environment: IEnvironment = {
     },
     otelcolConfig: {
       url: 'http://localhost:55681/v1/trace', // URL of opentelemetry collector
-    },
-    zipkinConfig: {
-      url: 'http://localhost:9411/api/v2/spans',
-    },
-    jaegerConfig: {
-      endpoint: 'http://localhost:14268/api/traces',
-    },
+    }
   },
 };
 

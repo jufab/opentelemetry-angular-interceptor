@@ -8,7 +8,6 @@ import { OpenTelemetryConfig } from '../../../../public-api';
 
 /**
  * JaegerHttpTracePropagatorService
- * TODO : wait the next version (incompatible 0.8.0)
  */
 @Injectable({
   providedIn: 'root',
@@ -28,7 +27,6 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
    * @return HttpTextPropagator as HttpTraceContext
    */
   getPropagator(): HttpTextPropagator {
-    //return new NoopHttpTextPropagator();
     return new JaegerHttpTracePropagator(this.customHeader);
   }
 }

@@ -1,3 +1,4 @@
+import { SpanExporterService } from './lib/services/exporter/span-exporter.service';
 /*
  * Public API Surface of opentelemetry-interceptor
  */
@@ -14,6 +15,7 @@ export { HttpTraceContextPropagatorModule } from './lib/services/propagator/http
 export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.module';
 export { NoopHttpTextPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-http-text-propagator.module';
 // Configuration
+export { SpanExporterService } from './lib/services/exporter/span-exporter.service';
 export {
   CommonCollectorConfig,
   OtelCollectorConfig,

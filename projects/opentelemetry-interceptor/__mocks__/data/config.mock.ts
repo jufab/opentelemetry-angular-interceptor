@@ -38,6 +38,20 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
   },
 };
 
+/**
+ * @ignore
+ */
+export const otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    probabilitySampler: 0,
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+};
+
 
 /**
  * @ignore

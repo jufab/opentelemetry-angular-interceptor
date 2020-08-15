@@ -13,6 +13,7 @@ import { OpenTelemetryInjectConfig } from '../configuration/opentelemetry-config
 import {
   otelcolExporterConfig,
   otelcolExporterWithProbabilitySamplerAndCompositeConfig,
+  otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
@@ -105,6 +106,33 @@ describe('OpenTelemetryHttpInterceptor', () => {
         {
           provide: OpenTelemetryInjectConfig,
           useValue: otelcolExporterWithProbabilitySamplerAndCompositeConfig,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: OpenTelemetryHttpInterceptor,
+          multi: true,
+        },
+      ],
+    });
+    httpClient = TestBed.inject(HttpClient);
+    httpControllerMock = TestBed.inject(HttpTestingController);
+
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('verify probability sampler to be add at zero', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
+      providers: [
+        {
+          provide: OpenTelemetryInjectConfig,
+          useValue: otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
         },
         {
           provide: HTTP_INTERCEPTORS,

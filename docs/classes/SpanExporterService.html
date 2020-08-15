@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interface">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -41,10 +41,9 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>IPropagator</li>
+  <li>Classes</li>
+  <li>SpanExporterService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,39 +61,48 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/exporter/span-exporter.service.ts</code>
         </p>
 
+
+
             <p class="comment">
-                <h3>Description</h3>
+                <h3>Implements</h3>
             </p>
             <p class="comment">
-                <p>Interface to define propagator</p>
-
+                            <code><a href="../interfaces/IExporter.html" target="_self" >IExporter</a></code>
             </p>
 
 
-        <section>
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Methods</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#getPropagator">getPropagator</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getExporter">getExporter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
 
             <section>
     
@@ -105,43 +113,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getPropagator"></a>
+                    <a name="getExporter"></a>
                     <span class="name">
                         <b>
-                            getPropagator
+                            getExporter
                         </b>
-                        <a href="#getPropagator"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getExporter"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getPropagator()</code>
+<code>getExporter()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/span-exporter.service.ts:8</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>give an implementation of a propagator</p>
+                    <div class="io-description"><p>Not used, just a definition for injection</p>
 </div>
 
-                    <div>
-                    </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>HttpTextPropagator</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>HttpTextPropagator</p>
+                        <b>Returns : </b>    <code>SpanExporter</code>
 
                     </div>
                 </td>
@@ -150,26 +152,29 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
+import { IExporter } from &#x27;./exporter.interface&#x27;;
 
-/**
- * Interface to define propagator
- */
-export interface IPropagator {
+export class SpanExporterService implements IExporter {
   /**
-   * give an implementation of a propagator
-   * @return HttpTextPropagator
+   * Not used, just a definition for injection
    */
-  getPropagator(): HttpTextPropagator;
+  getExporter(): SpanExporter {
+    return undefined;
+  }
 }
-
 </code></pre>
     </div>
 </div>
+
 
 
                    
@@ -193,8 +198,8 @@ export interface IPropagator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IPropagator.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SpanExporterService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
