@@ -28,148 +28,78 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interface">
+               <div class="content module">
                    <div class="content-data">
 
 
 
-
-
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>IPropagator</li>
+    <li>Modules</li>
+    <li>HttpTraceContextPropagatorModule</li>
 </ol>
 
+
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
+
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/http-trace-context-propagator/http-trace-context-propagator.module.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Interface to define propagator</p>
-
-            </p>
 
 
-        <section>
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Methods</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#getPropagator">getPropagator</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getPropagator"></a>
-                    <span class="name">
-                        <b>
-                            getPropagator
-                        </b>
-                        <a href="#getPropagator"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getPropagator()</code>
-                </td>
-            </tr>
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:11</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>give an implementation of a propagator</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>HttpTextPropagator</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>HttpTextPropagator</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { HttpTextPropagatorService } from &#x27;../http-text-propagator.service&#x27;;
+import { HttpTraceContextPropagatorService } from &#x27;./http-trace-context-propagator.service&#x27;;
 
-/**
- * Interface to define propagator
- */
-export interface IPropagator {
-  /**
-   * give an implementation of a propagator
-   * @return HttpTextPropagator
-   */
-  getPropagator(): HttpTextPropagator;
+
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+  ],
+  providers: [
+    { provide: HttpTextPropagatorService, useClass: HttpTraceContextPropagatorService }
+  ]
+})
+export class  HttpTraceContextPropagatorModule {
 }
-
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 
                    
@@ -193,8 +123,8 @@ export interface IPropagator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IPropagator.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'HttpTraceContextPropagatorModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

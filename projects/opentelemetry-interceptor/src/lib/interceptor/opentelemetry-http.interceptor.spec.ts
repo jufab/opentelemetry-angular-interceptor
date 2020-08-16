@@ -13,15 +13,18 @@ import { OpenTelemetryInjectConfig } from '../configuration/opentelemetry-config
 import {
   otelcolExporterConfig,
   otelcolExporterWithProbabilitySamplerAndCompositeConfig,
+  otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
+import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
+import { HttpTraceContextPropagatorModule } from '../services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
 
 describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
   let httpControllerMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
         {
@@ -55,7 +58,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
       oneHead: 'oneValue',
       twoHead: 'twoValue',
     });
-    httpClient.get(url, { headers: headers }).subscribe();
+    httpClient.get(url, { headers }).subscribe();
     const req = httpControllerMock.expectOne(url);
     expect(req.request.headers.get('traceparent')).not.toBeNull();
     expect(req.request.headers.get('oneHead')).toEqual('oneValue');
@@ -98,11 +101,38 @@ describe('OpenTelemetryHttpInterceptor', () => {
   it('verify probability sampler to be add', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
       providers: [
         {
           provide: OpenTelemetryInjectConfig,
           useValue: otelcolExporterWithProbabilitySamplerAndCompositeConfig,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: OpenTelemetryHttpInterceptor,
+          multi: true,
+        },
+      ],
+    });
+    httpClient = TestBed.inject(HttpClient);
+    httpControllerMock = TestBed.inject(HttpTestingController);
+
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('verify probability sampler to be add at zero', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
+      providers: [
+        {
+          provide: OpenTelemetryInjectConfig,
+          useValue: otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
         },
         {
           provide: HTTP_INTERCEPTORS,

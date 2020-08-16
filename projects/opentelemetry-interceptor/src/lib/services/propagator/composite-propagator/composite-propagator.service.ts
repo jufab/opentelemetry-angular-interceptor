@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { IPropagator } from './propagator.interface';
+import { IPropagator } from '../propagator.interface';
 import { HttpTextPropagator } from '@opentelemetry/api';
 import {
   CompositePropagator,
 } from '@opentelemetry/core';
-import { B3PropagatorService } from './b3-propagator.service';
-import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
-import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
+import { B3PropagatorService } from '../b3-propagator/b3-propagator.service';
+import { HttpTraceContextPropagatorService } from '../http-trace-context-propagator/http-trace-context-propagator.service';
+import { JaegerHttpTracePropagatorService } from '../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service';
 /**
  * CompositePropagatorService
  */
@@ -16,7 +16,6 @@ import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator
 export class CompositePropagatorService implements IPropagator {
   /**
    * Constructor
-   * @param config OpenTelemetryConfig
    */
   constructor(
     @Inject(B3PropagatorService)

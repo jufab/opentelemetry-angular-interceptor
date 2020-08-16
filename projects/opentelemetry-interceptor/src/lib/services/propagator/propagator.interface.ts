@@ -10,3 +10,4 @@ export interface IPropagator {
    */
   getPropagator(): HttpTextPropagator;
 }
+

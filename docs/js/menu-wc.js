@@ -67,10 +67,47 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
+                                <a href="modules/B3PropagatorModule.html" data-type="entity-link">B3PropagatorModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/CompositePropagatorModule.html" data-type="entity-link">CompositePropagatorModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/ConsoleSpanExporterModule.html" data-type="entity-link">ConsoleSpanExporterModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/HttpTraceContextPropagatorModule.html" data-type="entity-link">HttpTraceContextPropagatorModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link">JaegerHttpTracePropagatorModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/NoopHttpTextPropagatorModule.html" data-type="entity-link">NoopHttpTextPropagatorModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/OpenTelemetryInterceptorModule.html" data-type="entity-link">OpenTelemetryInterceptorModule</a>
+                            </li>
+                            <li class="link">
+                                <a href="modules/OtelColExporterModule.html" data-type="entity-link">OtelColExporterModule</a>
                             </li>
                 </ul>
                 </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
+                            'data-target="#xs-classes-links"' }>
+                            <span class="icon ion-ios-paper"></span>
+                            <span>Classes</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/HttpTextPropagatorService.html" data-type="entity-link">HttpTextPropagatorService</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SpanExporterService.html" data-type="entity-link">SpanExporterService</a>
+                            </li>
+                        </ul>
+                    </li>
                         <li class="chapter">
                             <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#injectables-links"' :
                                 'data-target="#xs-injectables-links"' }>
@@ -89,13 +126,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ConsoleSpanExporterService.html" data-type="entity-link">ConsoleSpanExporterService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/HttpTextPropagatorService.html" data-type="entity-link">HttpTextPropagatorService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/HttpTraceContextPropagatorService.html" data-type="entity-link">HttpTraceContextPropagatorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/JaegerExporterService.html" data-type="entity-link">JaegerExporterService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link">JaegerHttpTracePropagatorService</a>
@@ -105,12 +136,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/OtelcolExporterService.html" data-type="entity-link">OtelcolExporterService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/SpanExporterService.html" data-type="entity-link">SpanExporterService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ZipkinExporterService.html" data-type="entity-link">ZipkinExporterService</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,9 +170,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IPropagator.html" data-type="entity-link">IPropagator</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/JaegerCollectorConfig.html" data-type="entity-link">JaegerCollectorConfig</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/JaegerPropagatorConfig.html" data-type="entity-link">JaegerPropagatorConfig</a>
                             </li>
                             <li class="link">
@@ -155,9 +177,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/OtelCollectorConfig.html" data-type="entity-link">OtelCollectorConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ZipkinCollectorConfig.html" data-type="entity-link">ZipkinCollectorConfig</a>
                             </li>
                         </ul>
                     </li>
@@ -169,12 +188,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
-                            <li class="link">
-                                <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
-                            </li>
-                            <li class="link">
-                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
-                            </li>
                             <li class="link">
                                 <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IPropagator } from './propagator.interface';
+import { IPropagator } from '../propagator.interface';
 import { HttpTextPropagator, NoopHttpTextPropagator } from '@opentelemetry/api';
 
 /**
