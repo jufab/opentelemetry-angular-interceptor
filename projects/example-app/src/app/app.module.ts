@@ -20,9 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
 import { OtelColExporterModule } from '../../../opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module';
-// import { ConsoleSpanExporterModule } from '../../../opentelemetry-interceptor/src/lib/services/exporter/console/console-span-exporter.module';
 import { CompositePropagatorModule } from '../../../opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.module';
-// import { HttpTraceContextPropagatorModule } from '../../../opentelemetry-interceptor/src/lib/services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
 
 @NgModule({
   declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
@@ -31,9 +29,7 @@ import { CompositePropagatorModule } from '../../../opentelemetry-interceptor/sr
     // Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
     OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     OtelColExporterModule,
-    //ConsoleSpanExporterModule,
     CompositePropagatorModule,
-    //HttpTraceContextPropagatorModule,
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,

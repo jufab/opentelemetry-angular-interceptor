@@ -24,6 +24,15 @@
           },
         }
       </textarea>
+      <p>with all the module in app.module.ts</p>
+      <textarea highlight-js [lang]="'typescript'">
+// Insert module OpenTelemetryInterceptorModule with configuration, HttpClientModule is used for interceptor
+OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
+// Collector
+OtelColExporterModule,
+//Propagator
+CompositePropagatorModule,
+      </textarea>
       <p>You can see the B3 headers, HttpTraceContext header and Jaeger Propagator header added</p>
       <textarea textarea highlight-js [lang]="'curl'">
         GET /api/ HTTP/1.1

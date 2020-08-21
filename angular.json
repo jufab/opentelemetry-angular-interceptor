@@ -21,14 +21,6 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/opentelemetry-interceptor/src/test.ts",
-            "tsConfig": "projects/opentelemetry-interceptor/tsconfig.spec.json",
-            "karmaConfig": "projects/opentelemetry-interceptor/karma.conf.js"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -117,24 +109,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "example-app:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/example-app/src/test.ts",
-            "polyfills": "projects/example-app/src/polyfills.ts",
-            "tsConfig": "projects/example-app/tsconfig.spec.json",
-            "karmaConfig": "projects/example-app/karma.conf.js",
-            "assets": [
-              "projects/example-app/src/favicon.ico",
-              "projects/example-app/src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "projects/example-app/src/styles.css"
-            ],
-            "scripts": []
           }
         },
         "lint": {
