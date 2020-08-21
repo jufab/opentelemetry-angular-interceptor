@@ -62,7 +62,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     private httpTextPropagatorService: HttpTextPropagatorService
   ) {
     this.tracer = new WebTracerProvider({
-      sampler: this.defineProbabilitySampler(config.commonConfig.probabilitySampler),
+      sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
     });
     this.insertSpanProcessorProductionMode(
       this.config.commonConfig.production,

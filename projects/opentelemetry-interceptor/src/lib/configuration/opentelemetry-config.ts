@@ -11,7 +11,7 @@ export interface CommonCollectorConfig {
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
   production?: boolean;
   /** probabilitySampler */
-  probabilitySampler?: number;
+  probabilitySampler?: string;
 }
 
 /**
