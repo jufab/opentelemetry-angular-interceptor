@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Sampler, Span } from '@opentelemetry/api';
+import { Sampler, Span, CanonicalCode } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -91,14 +91,33 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            span.setAttribute('http.status_code', event.status);
+            span.setAttributes(
+              {
+                'http.status_code': event.status,
+                'http.status_text': event.statusText,
+              }
+            );
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
         },
         (event: HttpErrorResponse) => {
           if (event instanceof HttpErrorResponse) {
-            span.setAttribute('http.status_code', event.status);
-            span.addEvent('error', { body: JSON.stringify(event.error) });
+            span.setAttributes(
+              {
+                'http.status_text': event.statusText,
+                'http.status_code': event.status
+              }
+            );
+            span.addEvent('exception',
+            {
+              'exception.type': event.name,
+              'exception.message': event.message,
+              'exception.stacktrace': event.error
+            });
+            span.setStatus({
+              code: CanonicalCode.UNKNOWN,
+              message: event.message
+            });
           }
         }
       ),
@@ -113,6 +132,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param request request
    */
   private initSpan(request: HttpRequest<unknown>): Span {
+    const urlRequest = new URL(request.urlWithParams);
     const span = this.tracer
       .getTracer('angular-interceptor', '0.0.1')
       .startSpan(
@@ -121,6 +141,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           attributes: {
             ['http.method']: request.method,
             ['http.url']: request.urlWithParams,
+            ['http.host']: urlRequest.host,
+            ['http.scheme']: urlRequest.protocol.replace(':', ''),
+            ['http.target']: urlRequest.pathname + urlRequest.search
           },
         },
         this.contextManager.active()
