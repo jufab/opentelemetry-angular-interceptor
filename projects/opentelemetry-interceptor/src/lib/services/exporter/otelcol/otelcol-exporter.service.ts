@@ -9,8 +9,8 @@ import {
   CollectorTraceExporter
 } from '@opentelemetry/exporter-collector/build/src/platform/browser';
 import {
-  CollectorExporterConfigBrowser,
-} from '@opentelemetry/exporter-collector/build/src/platform/browser/types';
+  CollectorExporterConfigBase,
+} from '@opentelemetry/exporter-collector/build/src/types';
 
 /**
  * OtelcolExporterService class
@@ -20,9 +20,9 @@ import {
 })
 export class OtelcolExporterService implements IExporter {
   /**
-   * CollectorExporterConfig
+   * CollectorExporterConfigBase
    */
-  private otelcolConfig: CollectorExporterConfigBrowser;
+  private otelcolConfig: CollectorExporterConfigBase;
 
   /**
    * constructor

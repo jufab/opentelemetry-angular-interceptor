@@ -30,7 +30,7 @@ import {
   OpenTelemetryInjectConfig,
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
-import { HttpTextPropagatorService } from '../services/propagator/http-text-propagator.service';
+import { TextMapPropagatorService } from '../services/propagator/text-map-propagator.service';
 
 /**
  * OpenTelemetryInterceptor class
@@ -52,14 +52,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * constructor
    * @param config configuration
    * @param spanExporterService service exporter injected
-   * @param httpTextPropagatorService propagator
+   * @param textMapPropagatorService propagator
    */
   constructor(
     @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
     @Inject(SpanExporterService)
     private spanExporterService: SpanExporterService,
-    @Inject(HttpTextPropagatorService)
-    private httpTextPropagatorService: HttpTextPropagatorService
+    @Inject(TextMapPropagatorService)
+    private textMapPropagatorService: TextMapPropagatorService
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
@@ -70,7 +70,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     );
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
-      propagator: this.httpTextPropagatorService.getPropagator(),
+      propagator: this.textMapPropagatorService.getPropagator(),
     });
   }
 
@@ -108,15 +108,13 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
                 'http.status_code': event.status
               }
             );
-            span.addEvent('exception',
-            {
-              'exception.type': event.name,
-              'exception.message': event.message,
-              'exception.stacktrace': event.error
+            span.recordException({
+              name: event.name,
+              message: event.message,
+              stack: event.error
             });
-            span.setStatus({
-              code: CanonicalCode.UNKNOWN,
-              message: event.message
+            span.setStatus( {
+              code: CanonicalCode.INTERNAL
             });
           }
         }
