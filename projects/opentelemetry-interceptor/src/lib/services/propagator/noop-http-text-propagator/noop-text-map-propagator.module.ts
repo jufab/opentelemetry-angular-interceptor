@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextMapPropagatorService } from '../text-map-propagator.service';
-import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
+import { NoopTextMapPropagatorService } from './noop-text-map-propagator.service';
 
 
 
@@ -11,8 +11,8 @@ import { HttpTraceContextPropagatorService } from './http-trace-context-propagat
     CommonModule,
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: HttpTraceContextPropagatorService }
+    { provide: TextMapPropagatorService, useClass: NoopTextMapPropagatorService }
   ]
 })
-export class  HttpTraceContextPropagatorModule {
+export class NoopTextMapPropagatorModule {
 }

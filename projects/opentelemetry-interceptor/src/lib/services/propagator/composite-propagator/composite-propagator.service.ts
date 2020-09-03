@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
-import { HttpTextPropagator } from '@opentelemetry/api';
+import { TextMapPropagator } from '@opentelemetry/api';
 import {
   CompositePropagator,
 } from '@opentelemetry/core';
@@ -28,9 +28,9 @@ export class CompositePropagatorService implements IPropagator {
 
   /**
    * Return an CompositePropagator
-   * @return HttpTextPropagator as CompositePropagator
+   * @return TextMapPropagator as CompositePropagator
    */
-  getPropagator(): HttpTextPropagator {
+  getPropagator(): TextMapPropagator {
     return new CompositePropagator({
       propagators: [
         this.b3PropagatorService.getPropagator(),
