@@ -7,7 +7,7 @@ import {
   B3Propagator,
 } from '@opentelemetry/core';
 import { NoopTextMapPropagator } from '@opentelemetry/api';
-//import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
+import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
 import { HttpTraceContextPropagatorModule } from './http-trace-context-propagator/http-trace-context-propagator.module';
 import { B3PropagatorModule } from './b3-propagator/b3-propagator.module';
 import { CompositePropagatorModule } from './composite-propagator/composite-propagator.module';
@@ -75,7 +75,7 @@ describe('TextMapPropagatorService', () => {
     expect(service.getPropagator()).toBeInstanceOf(NoopTextMapPropagator);
   });
 
-  it('should return an JaegerHttpTracePropagator (NoopTextMapPropagator)', () => {
+  it('should return an JaegerHttpTracePropagator', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       imports: [JaegerHttpTracePropagatorModule],
@@ -87,6 +87,6 @@ describe('TextMapPropagatorService', () => {
       ]
     });
     service = TestBed.inject(TextMapPropagatorService);
-    expect(service.getPropagator()).toBeInstanceOf(NoopTextMapPropagator);
+    expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
   });
 });
