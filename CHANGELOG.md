@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.10.2-3...v0.11.0) (2020-09-11)
+
+
+### Features
+
+* update propagator-jaeger version to 0.10.0 ([1a1299b](https://github.com/jufab/opentelemetry-angular-interceptor/commit/1a1299b5aa8ceaf44941d4c72499ca6ad3223784))
+* upgrate to 0.11.0 otelcol ([09dd1bb](https://github.com/jufab/opentelemetry-angular-interceptor/commit/09dd1bbc9bd436be98427475d4d84bcec2cd0cb9))
+
+
+### Bug Fixes
+
+* ts-jest configuration ([4d9a061](https://github.com/jufab/opentelemetry-angular-interceptor/commit/4d9a061a44ff437522531aa33b443dd782054850))
+
 ### [0.10.2-3](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.10.2-2...v0.10.2-3) (2020-09-02)
 
 
