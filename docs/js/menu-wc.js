@@ -82,7 +82,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link">JaegerHttpTracePropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/NoopHttpTextPropagatorModule.html" data-type="entity-link">NoopHttpTextPropagatorModule</a>
+                                <a href="modules/NoopTextMapPropagatorModule.html" data-type="entity-link">NoopTextMapPropagatorModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/OpenTelemetryInterceptorModule.html" data-type="entity-link">OpenTelemetryInterceptorModule</a>
@@ -101,10 +101,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/HttpTextPropagatorService.html" data-type="entity-link">HttpTextPropagatorService</a>
+                                <a href="classes/SpanExporterService.html" data-type="entity-link">SpanExporterService</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SpanExporterService.html" data-type="entity-link">SpanExporterService</a>
+                                <a href="classes/TextMapPropagatorService.html" data-type="entity-link">TextMapPropagatorService</a>
                             </li>
                         </ul>
                     </li>
@@ -132,7 +132,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link">JaegerHttpTracePropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/NoopHttpTextPropagatorService.html" data-type="entity-link">NoopHttpTextPropagatorService</a>
+                                    <a href="injectables/NoopTextMapPropagatorService.html" data-type="entity-link">NoopTextMapPropagatorService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/OtelcolExporterService.html" data-type="entity-link">OtelcolExporterService</a>

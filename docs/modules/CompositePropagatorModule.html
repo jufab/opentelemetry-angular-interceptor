@@ -73,11 +73,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { HttpTextPropagatorService } from &#x27;../http-text-propagator.service&#x27;;
+import { TextMapPropagatorService } from &#x27;../text-map-propagator.service&#x27;;
 import { CompositePropagatorService } from &#x27;./composite-propagator.service&#x27;;
-import { B3PropagatorModule } from &#x27;../b3-propagator/b3-propagator.module&#x27;;
-import { HttpTraceContextPropagatorModule } from &#x27;../http-trace-context-propagator/http-trace-context-propagator.module&#x27;;
-import { JaegerHttpTracePropagatorModule } from &#x27;../jaeger-http-trace-propagator/jaeger-http-trace-propagator.module&#x27;;
 
 
 
@@ -87,7 +84,7 @@ import { JaegerHttpTracePropagatorModule } from &#x27;../jaeger-http-trace-propa
     CommonModule,
   ],
   providers: [
-    { provide: HttpTextPropagatorService, useClass: CompositePropagatorService }
+    { provide: TextMapPropagatorService, useClass: CompositePropagatorService }
   ]
 })
 export class CompositePropagatorModule {

@@ -140,11 +140,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>HttpTextPropagator</code>
+                        <b>Returns : </b>    <code>TextMapPropagator</code>
 
                     </div>
                     <div class="io-description">
-                        <p>HttpTextPropagator as B3Propagator</p>
+                        <p>TextMapPropagator as B3Propagator</p>
 
                     </div>
                 </td>
@@ -159,7 +159,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
-import { HttpTextPropagator } from &#x27;@opentelemetry/api&#x27;;
+import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { B3Propagator } from &#x27;@opentelemetry/core&#x27;;
 
 /**
@@ -171,9 +171,9 @@ import { B3Propagator } from &#x27;@opentelemetry/core&#x27;;
 export class B3PropagatorService implements IPropagator {
   /**
    * Return an B3Propagator
-   * @return HttpTextPropagator as B3Propagator
+   * @return TextMapPropagator as B3Propagator
    */
-  getPropagator(): HttpTextPropagator {
+  getPropagator(): TextMapPropagator {
     return new B3Propagator();
   }
 }

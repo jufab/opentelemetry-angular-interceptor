@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interface">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -41,10 +41,9 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>IPropagator</li>
+  <li>Classes</li>
+  <li>TextMapPropagatorService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,39 +61,55 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/text-map-propagator.service.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Interface to define propagator</p>
+                <p>TextMapPropagatorService</p>
 
             </p>
 
 
-        <section>
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Methods</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#getPropagator">getPropagator</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/IPropagator.html" target="_self" >IPropagator</a></code>
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getPropagator">getPropagator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
 
             <section>
     
@@ -124,24 +139,18 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:11</a></div>
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/text-map-propagator.service.ts:11</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>give an implementation of a propagator</p>
+                    <div class="io-description"><p>Not used, just a definition for injection</p>
 </div>
 
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>TextMapPropagator</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>HttpTextPropagator</p>
 
                     </div>
                 </td>
@@ -150,26 +159,32 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+import { IPropagator } from &#x27;./propagator.interface&#x27;;
 
 /**
- * Interface to define propagator
+ * TextMapPropagatorService
  */
-export interface IPropagator {
+export class TextMapPropagatorService implements IPropagator {
   /**
-   * give an implementation of a propagator
-   * @return HttpTextPropagator
+   * Not used, just a definition for injection
    */
-  getPropagator(): TextMapPropagator;
+  getPropagator(): TextMapPropagator {
+    return undefined;
+  }
 }
-
 </code></pre>
     </div>
 </div>
+
 
 
                    
@@ -193,8 +208,8 @@ export interface IPropagator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IPropagator.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'TextMapPropagatorService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

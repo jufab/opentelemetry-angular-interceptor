@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interface">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -37,14 +37,9 @@
 
 
 
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Interfaces</li>
-  <li>IPropagator</li>
+  <li>Injectables</li>
+  <li>NoopTextMapPropagatorService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,39 +57,47 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.service.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Interface to define propagator</p>
+                <p>NoopHttpTextPropagatorService</p>
 
             </p>
 
 
-        <section>
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Methods</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#getPropagator">getPropagator</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getPropagator">getPropagator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
 
             <section>
     
@@ -123,15 +126,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.service.ts:16</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>give an implementation of a propagator</p>
+                    <div class="io-description"><p>Return an NoopTextMapPropagator</p>
 </div>
 
                     <div>
@@ -141,7 +144,7 @@
 
                     </div>
                     <div class="io-description">
-                        <p>HttpTextPropagator</p>
+                        <p>TextMapPropagator as NoopTextMapPropagator</p>
 
                     </div>
                 </td>
@@ -154,22 +157,34 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { IPropagator } from &#x27;../propagator.interface&#x27;;
+import { NoopTextMapPropagator, TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 
 /**
- * Interface to define propagator
+ * NoopHttpTextPropagatorService
  */
-export interface IPropagator {
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class NoopTextMapPropagatorService implements IPropagator {
   /**
-   * give an implementation of a propagator
-   * @return HttpTextPropagator
+   * Return an NoopTextMapPropagator
+   * @return TextMapPropagator as NoopTextMapPropagator
    */
-  getPropagator(): TextMapPropagator;
+  getPropagator(): TextMapPropagator {
+    return new NoopTextMapPropagator();
+  }
 }
-
 </code></pre>
     </div>
+
 </div>
+
+
+
+
+
 
 
                    
@@ -193,8 +208,8 @@ export interface IPropagator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IPropagator.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'NoopTextMapPropagatorService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

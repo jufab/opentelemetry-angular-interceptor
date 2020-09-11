@@ -74,7 +74,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { B3PropagatorService } from &#x27;./b3-propagator.service&#x27;;
-import { HttpTextPropagatorService } from &#x27;../http-text-propagator.service&#x27;;
+import { TextMapPropagatorService } from &#x27;../text-map-propagator.service&#x27;;
 
 
 
@@ -84,7 +84,7 @@ import { HttpTextPropagatorService } from &#x27;../http-text-propagator.service&
     CommonModule
   ],
   providers: [
-    { provide: HttpTextPropagatorService, useClass: B3PropagatorService }
+    { provide: TextMapPropagatorService, useClass: B3PropagatorService }
   ]
 })
 export class B3PropagatorModule {
