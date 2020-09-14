@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.11.0...v0.11.0-1) (2020-09-14)
+
+
+### Features
+
+* add user-agent to otelcol ([06cb6de](https://github.com/jufab/opentelemetry-angular-interceptor/commit/06cb6de89b98c6d8461042d648a01ee800aaa51f))
+
+
+### Bug Fixes
+
+* review code ([8b1b7b5](https://github.com/jufab/opentelemetry-angular-interceptor/commit/8b1b7b5e3c04e696916813dd4323e7c26223a247))
+* review code again ([7bab017](https://github.com/jufab/opentelemetry-angular-interceptor/commit/7bab01706904f2a85f8f7f2400ac251dc1537ab8))
+* use partial and record ([4bddf3a](https://github.com/jufab/opentelemetry-angular-interceptor/commit/4bddf3ab4791f8a1786a0228605be83e87ac66c4))
+
 ## [0.11.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.10.2-3...v0.11.0) (2020-09-11)
 
 
