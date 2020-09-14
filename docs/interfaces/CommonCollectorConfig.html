@@ -299,9 +299,7 @@ export interface OtelCollectorConfig {
   /**
    * custom headers
    */
-  headers?: {
-    [key: string]: string;
-  };
+  headers?: Partial&lt;Record&lt;string, unknown&gt;&gt;;
 }
 
 /**

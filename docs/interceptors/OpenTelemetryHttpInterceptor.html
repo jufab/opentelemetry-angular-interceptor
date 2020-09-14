@@ -146,7 +146,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -252,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="213"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:213</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:214</a></div>
                 </td>
             </tr>
 
@@ -411,8 +411,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="161"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:161</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:162</a></div>
                 </td>
             </tr>
 
@@ -506,8 +506,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:184</a></div>
                 </td>
             </tr>
 
@@ -585,8 +585,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="197"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:197</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:198</a></div>
                 </td>
             </tr>
 
@@ -679,8 +679,8 @@ SimpleSpanProcessor otherwise</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:84</a></div>
                 </td>
             </tr>
 
@@ -777,7 +777,7 @@ Interceptor from HttpInterceptor Angular</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -810,7 +810,7 @@ Interceptor from HttpInterceptor Angular</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -836,7 +836,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpResponse,
-  HttpErrorResponse,
+  HttpErrorResponse
 } from &#x27;@angular/common/http&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import * as api from &#x27;@opentelemetry/api&#x27;;
@@ -862,6 +862,7 @@ import {
 } from &#x27;../configuration/opentelemetry-config&#x27;;
 import { SpanExporterService } from &#x27;../services/exporter/span-exporter.service&#x27;;
 import { TextMapPropagatorService } from &#x27;../services/propagator/text-map-propagator.service&#x27;;
+import { version, name } from &#x27;../../../package.json&#x27;;
 
 /**
  * OpenTelemetryInterceptor class
@@ -920,34 +921,33 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const tracedReq &#x3D; this.injectContextAndHeader(span, request);
     return next.handle(tracedReq).pipe(
       tap(
-        (event: HttpEvent&lt;any&gt;) &#x3D;&gt; {
-          if (event instanceof HttpResponse) {
-            span.setAttributes(
-              {
-                &#x27;http.status_code&#x27;: event.status,
-                &#x27;http.status_text&#x27;: event.statusText,
-              }
-            );
+        (event: HttpResponse&lt;any&gt;) &#x3D;&gt; {
+          span.setAttributes(
+            {
+              &#x27;http.status_code&#x27;: event.status,
+              &#x27;http.status_text&#x27;: event.statusText,
+            }
+          );
+          if (event.body !&#x3D; null) {
             span.addEvent(&#x27;response&#x27;, { body: JSON.stringify(event.body) });
           }
         },
         (event: HttpErrorResponse) &#x3D;&gt; {
-          if (event instanceof HttpErrorResponse) {
-            span.setAttributes(
-              {
-                &#x27;http.status_text&#x27;: event.statusText,
-                &#x27;http.status_code&#x27;: event.status
-              }
-            );
-            span.recordException({
-              name: event.name,
-              message: event.message,
-              stack: event.error
-            });
-            span.setStatus( {
-              code: CanonicalCode.INTERNAL
-            });
-          }
+          span.setAttributes(
+            {
+              &#x27;http.status_text&#x27;: event.statusText,
+              &#x27;http.status_code&#x27;: event.status,
+            }
+          );
+          span.recordException({
+            name: event.name,
+            message: event.message,
+            stack: event.error
+          });
+          // TODO : To change after new spec...
+          span.setStatus({
+            code: CanonicalCode.INTERNAL
+          });
         }
       ),
       finalize(() &#x3D;&gt; {
@@ -963,7 +963,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private initSpan(request: HttpRequest&lt;unknown&gt;): Span {
     const urlRequest &#x3D; new URL(request.urlWithParams);
     const span &#x3D; this.tracer
-      .getTracer(&#x27;angular-interceptor&#x27;, &#x27;0.0.1&#x27;)
+      .getTracer(name, version)
       .startSpan(
         request.url,
         {
@@ -972,7 +972,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             [&#x27;http.url&#x27;]: request.urlWithParams,
             [&#x27;http.host&#x27;]: urlRequest.host,
             [&#x27;http.scheme&#x27;]: urlRequest.protocol.replace(&#x27;:&#x27;, &#x27;&#x27;),
-            [&#x27;http.target&#x27;]: urlRequest.pathname + urlRequest.search
+            [&#x27;http.target&#x27;]: urlRequest.pathname + urlRequest.search,
+            [&#x27;http.user_agent&#x27;]: window.navigator.userAgent
           },
         },
         this.contextManager.active()
@@ -999,9 +1000,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       api.defaultSetter,
       this.contextManager.active()
     );
-    for (const key in request.headers.keys) {
+    request.headers.keys().map(key &#x3D;&gt; {
       carrier[key] &#x3D; request.headers.get(key);
-    }
+    });
     return request.clone({
       setHeaders: carrier,
     });
@@ -1042,7 +1043,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
-    if (sampleConfig &#x3D;&#x3D;&#x3D; undefined || sampleConfig &gt; 1) {
+    if (sampleConfig &gt; 1) {
       return new ParentOrElseSampler(new AlwaysOnSampler());
     }
     else if (sampleConfig &lt;&#x3D; 0) {
