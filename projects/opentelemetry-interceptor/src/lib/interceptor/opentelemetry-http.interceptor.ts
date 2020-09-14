@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpResponse,
-  HttpErrorResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
@@ -90,14 +90,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const tracedReq = this.injectContextAndHeader(span, request);
     return next.handle(tracedReq).pipe(
       tap(
-        (event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-            span.setAttributes(
-              {
-                'http.status_code': event.status,
-                'http.status_text': event.statusText,
-              }
-            );
+        (event: HttpResponse<any>) => {
+          span.setAttributes(
+            {
+              'http.status_code': event.status,
+              'http.status_text': event.statusText,
+            }
+          );
+          if (event.body != null) {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
         },
