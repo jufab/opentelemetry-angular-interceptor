@@ -9,12 +9,13 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
-import { OpenTelemetryInjectConfig } from '../configuration/opentelemetry-config';
+import { OpenTelemetryConfig, OpenTelemetryInjectConfig } from '../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
   otelcolExporterWithProbabilitySamplerAndCompositeConfig,
   otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
-  otelcolExporterWithProbabilitySamplerAtTwoConfig
+  otelcolExporterWithProbabilitySamplerAtTwoConfig,
+  otelcolExporterProductionConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
@@ -24,19 +25,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
   let httpControllerMock: HttpTestingController;
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
-      providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
-      ],
-    });
-    httpClient = TestBed.inject(HttpClient);
-    httpControllerMock = TestBed.inject(HttpTestingController);
+    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterConfig));
   });
   it('should be created', () => {
     const interceptor = TestBed.inject(OpenTelemetryHttpInterceptor);
@@ -44,6 +33,18 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('Add traceparent header on a given request', () => {
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('verify with production mode', () => {
+    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterProductionConfig));
+
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
     const req = httpControllerMock.expectOne(url);
@@ -100,23 +101,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('verify probability sampler to be add', () => {
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
-      providers: [
-        {
-          provide: OpenTelemetryInjectConfig,
-          useValue: otelcolExporterWithProbabilitySamplerAndCompositeConfig,
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
-      ],
-    });
-    httpClient = TestBed.inject(HttpClient);
-    httpControllerMock = TestBed.inject(HttpTestingController);
+    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAndCompositeConfig));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -127,23 +112,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('verify probability sampler to be add at zero', () => {
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
-      providers: [
-        {
-          provide: OpenTelemetryInjectConfig,
-          useValue: otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
-      ],
-    });
-    httpClient = TestBed.inject(HttpClient);
-    httpControllerMock = TestBed.inject(HttpTestingController);
+    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -153,23 +122,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
     httpControllerMock.verify();
   });
   it('verify probability sampler to be add at one', () => {
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
-      providers: [
-        {
-          provide: OpenTelemetryInjectConfig,
-          useValue: otelcolExporterWithProbabilitySamplerAtTwoConfig,
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
-      ],
-    });
-    httpClient = TestBed.inject(HttpClient);
-    httpControllerMock = TestBed.inject(HttpTestingController);
+    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAtTwoConfig));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -179,3 +132,26 @@ describe('OpenTelemetryHttpInterceptor', () => {
     httpControllerMock.verify();
   });
 });
+
+
+function defineModuleTest(httpClient: HttpClient, httpControllerMock: HttpTestingController, otelcolConfig: OpenTelemetryConfig) {
+  TestBed.resetTestingModule();
+  TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
+    providers: [
+      {
+        provide: OpenTelemetryInjectConfig,
+        useValue: otelcolConfig,
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: OpenTelemetryHttpInterceptor,
+        multi: true,
+      },
+    ],
+  });
+  httpClient = TestBed.inject(HttpClient);
+  httpControllerMock = TestBed.inject(HttpTestingController);
+  return { httpClient, httpControllerMock };
+}
+
