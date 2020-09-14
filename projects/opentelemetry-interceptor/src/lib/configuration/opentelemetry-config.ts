@@ -25,9 +25,7 @@ export interface OtelCollectorConfig {
   /**
    * custom headers
    */
-  headers?: {
-    [key: string]: string;
-  };
+  headers?: Partial<Record<string, unknown>>;
 }
 
 /**
