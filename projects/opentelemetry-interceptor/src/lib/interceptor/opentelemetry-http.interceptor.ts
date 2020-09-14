@@ -31,6 +31,7 @@ import {
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { TextMapPropagatorService } from '../services/propagator/text-map-propagator.service';
+import { version, name } from '../../../package.json';
 
 /**
  * OpenTelemetryInterceptor class
@@ -105,7 +106,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             span.setAttributes(
               {
                 'http.status_text': event.statusText,
-                'http.status_code': event.status
+                'http.status_code': event.status,
               }
             );
             span.recordException({
@@ -113,7 +114,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
               message: event.message,
               stack: event.error
             });
-            span.setStatus( {
+            span.setStatus({
               code: CanonicalCode.INTERNAL
             });
           }
@@ -132,7 +133,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private initSpan(request: HttpRequest<unknown>): Span {
     const urlRequest = new URL(request.urlWithParams);
     const span = this.tracer
-      .getTracer('angular-interceptor', '0.0.1')
+      .getTracer(name, version)
       .startSpan(
         request.url,
         {
@@ -141,7 +142,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.url']: request.urlWithParams,
             ['http.host']: urlRequest.host,
             ['http.scheme']: urlRequest.protocol.replace(':', ''),
-            ['http.target']: urlRequest.pathname + urlRequest.search
+            ['http.target']: urlRequest.pathname + urlRequest.search,
+            ['http.user_agent']: window.navigator.userAgent
           },
         },
         this.contextManager.active()
@@ -168,9 +170,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       api.defaultSetter,
       this.contextManager.active()
     );
-    for (const key in request.headers.keys) {
+    request.headers.keys().map(key => {
       carrier[key] = request.headers.get(key);
-    }
+    });
     return request.clone({
       setHeaders: carrier,
     });
@@ -211,7 +213,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
-    if (sampleConfig === undefined || sampleConfig > 1) {
+    if (sampleConfig > 1) {
       return new ParentOrElseSampler(new AlwaysOnSampler());
     }
     else if (sampleConfig <= 0) {
