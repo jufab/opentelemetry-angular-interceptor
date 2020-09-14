@@ -52,6 +52,20 @@ export const otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig: Open
   },
 };
 
+/**
+ * @ignore
+ */
+export const otelcolExporterWithProbabilitySamplerAtTwoConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+};
+
 
 /**
  * @ignore
