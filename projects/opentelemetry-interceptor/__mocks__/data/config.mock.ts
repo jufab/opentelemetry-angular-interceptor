@@ -18,6 +18,19 @@ export const otelcolExporterConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
+export const otelcolExporterProductionConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    production : true,
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+};
+
+/**
+ * @ignore
+ */
 export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',

@@ -102,22 +102,21 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           }
         },
         (event: HttpErrorResponse) => {
-          if (event instanceof HttpErrorResponse) {
-            span.setAttributes(
-              {
-                'http.status_text': event.statusText,
-                'http.status_code': event.status,
-              }
-            );
-            span.recordException({
-              name: event.name,
-              message: event.message,
-              stack: event.error
-            });
-            span.setStatus({
-              code: CanonicalCode.INTERNAL
-            });
-          }
+          span.setAttributes(
+            {
+              'http.status_text': event.statusText,
+              'http.status_code': event.status,
+            }
+          );
+          span.recordException({
+            name: event.name,
+            message: event.message,
+            stack: event.error
+          });
+          // TODO : To change after new spec...
+          span.setStatus({
+            code: CanonicalCode.INTERNAL
+          });
         }
       ),
       finalize(() => {
