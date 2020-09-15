@@ -15,8 +15,8 @@ Todo in project...
 
 ### In Progress
 
-- [ ] Add more configuration for OpenTelemetry-collector : See [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/types.ts)  
 
 ### Done ✓
 
+- [x] Add more configuration for OpenTelemetry-collector : See [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-collector/src/types.ts)  
 
