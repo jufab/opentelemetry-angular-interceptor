@@ -33,6 +33,8 @@ export class OtelcolExporterService implements IExporter {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
+      attributes: config.otelcolConfig?.attributes,
+      logger: config.otelcolConfig?.logger
     };
   }
 
