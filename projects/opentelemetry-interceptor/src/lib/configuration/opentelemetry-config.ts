@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Logger } from '@opentelemetry/api';
 
 /**
  * Common configuration
@@ -26,6 +27,10 @@ export interface OtelCollectorConfig {
    * custom headers
    */
   headers?: Partial<Record<string, unknown>>;
+  /**
+   * attributes : define some custom attributes
+   */
+  attributes?: Partial<Record<string, unknown>>;
 }
 
 /**
@@ -50,6 +55,7 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OpenTelemetryInjectConfig = new InjectionToken<
-  OpenTelemetryConfig
->('opentelemetry.config');
+export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
+
+/** Logger : injection for a logger compatible */
+export const OTELCOL_LOGGER = new InjectionToken<Logger>('otelcol.logger');

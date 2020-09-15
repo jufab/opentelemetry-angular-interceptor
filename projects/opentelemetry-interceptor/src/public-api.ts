@@ -1,4 +1,3 @@
-import { SpanExporterService } from './lib/services/exporter/span-exporter.service';
 /*
  * Public API Surface of opentelemetry-interceptor
  */
@@ -20,5 +19,6 @@ export {
   CommonCollectorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig
+  OpenTelemetryInjectConfig,
+  OTELCOL_LOGGER
 } from './lib/configuration/opentelemetry-config';

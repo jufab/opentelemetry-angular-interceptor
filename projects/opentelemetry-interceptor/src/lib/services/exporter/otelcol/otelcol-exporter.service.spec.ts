@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OtelcolExporterService } from './otelcol-exporter.service';
-import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
+import { OpenTelemetryInjectConfig, OTELCOL_LOGGER } from '../../../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
   otelcolExporterWithoutUrlAndB3Config,
@@ -17,7 +17,7 @@ describe('OtelcolExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         OtelcolExporterService,
-        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig },
+        { provide: OpenTelemetryInjectConfig, useValue: otelcolExporterConfig }
       ],
     });
     otelcolExporterService = TestBed.inject(OtelcolExporterService);
@@ -43,7 +43,7 @@ describe('OtelcolExporterService', () => {
         {
           provide: OpenTelemetryInjectConfig,
           useValue: otelcolExporterWithoutUrlAndB3Config,
-        },
+        }
       ],
     });
     otelcolExporterService = TestBed.inject(OtelcolExporterService);

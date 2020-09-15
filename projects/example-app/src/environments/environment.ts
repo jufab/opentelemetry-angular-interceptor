@@ -1,3 +1,4 @@
+import { LoggerConfig, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import {
   OpenTelemetryConfig
 } from '../../../opentelemetry-interceptor/src/public-api';
@@ -6,6 +7,7 @@ interface IEnvironment {
   production: boolean;
   urlTest: string;
   openTelemetryConfig: OpenTelemetryConfig;
+  loggerConfig: LoggerConfig;
 }
 
 // Example to configure the angular-interceptor library
@@ -23,6 +25,10 @@ export const environment: IEnvironment = {
       url: 'http://localhost:55681/v1/trace', // URL of opentelemetry collector
     }
   },
+  loggerConfig: {
+    level: NgxLoggerLevel.DEBUG,
+    disableConsoleLogging: false,
+  }
 };
 
 /*
