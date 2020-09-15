@@ -31,10 +31,6 @@ export interface OtelCollectorConfig {
    * attributes : define some custom attributes
    */
   attributes?: Partial<Record<string, unknown>>;
-  /**
-   * Logger : use an implementation of @opentelemetry/api Logger
-   */
-  logger?: Logger;
 }
 
 /**
@@ -59,6 +55,7 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OpenTelemetryInjectConfig = new InjectionToken<
-  OpenTelemetryConfig
->('opentelemetry.config');
+export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
+
+/** Logger : injection for a logger compatible */
+export const OTELCOL_LOGGER = new InjectionToken<Logger>('otelcol.logger');

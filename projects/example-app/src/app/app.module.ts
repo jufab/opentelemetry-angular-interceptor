@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { OpenTelemetryInterceptorModule } from 'projects/opentelemetry-interceptor/src/public-api';
+import { OpenTelemetryInterceptorModule, OTELCOL_LOGGER, OtelColExporterModule, CompositePropagatorModule } from 'projects/opentelemetry-interceptor/src/public-api';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewBackendComponent } from './view-backend/view-backend.component';
@@ -19,8 +18,7 @@ import { HighlightJsModule } from 'ngx-highlight-js';
 import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
-import { OtelColExporterModule } from '../../../opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module';
-import { CompositePropagatorModule } from '../../../opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.module';
+import { LoggerModule, NGXLogger } from 'ngx-logger';
 
 @NgModule({
   declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
@@ -43,8 +41,13 @@ import { CompositePropagatorModule } from '../../../opentelemetry-interceptor/sr
     BrowserAnimationsModule,
     HighlightJsModule,
     AppRoutingModule,
+    // Insert a logger (NGXLogger for this example...)
+    LoggerModule.forRoot(environment.loggerConfig),
   ],
-  providers: [],
+  providers: [
+    // Provide token OTELCOL_LOGGER with the NGXLogger
+    { provide: OTELCOL_LOGGER, useClass: NGXLogger }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
