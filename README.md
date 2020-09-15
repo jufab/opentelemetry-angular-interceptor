@@ -25,6 +25,8 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
     - [Angular module](#angular-module)
       - [Exporter module](#exporter-module)
       - [Propagator module](#propagator-module)
+    - [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
+      - [NGXLogger](#ngxlogger)
   - [How it works](#how-it-works)
   - [Example](#example)
     - [Run](#run)
@@ -88,6 +90,7 @@ opentelemetryConfig: {
 
 * url: (string) url of opentelemetry collector (default : http://localhost:55681/v1/trace)
 * headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector)
+* attributes : list of custom attributes (more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector)
 
 #### Jaeger Propagator Configuration
 
@@ -141,6 +144,41 @@ import { environment } from '../environments/environment';
 })
 export class AppModule {}
 ```
+
+### (Optional) Logging in OtelColExporterModule
+
+You can add a logger to the [OtelColExporterModule](projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts) with the [OTELCOL_LOGGER](projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts) token.
+
+You can use a custom logger which implements the [Logger](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-api/src/common/Logger.ts) in @opentelemetry/api.
+
+Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like [ngx-logger](https://www.npmjs.com/package/ngx-logger).
+
+#### NGXLogger
+
+You can use [ngx-logger](https://www.npmjs.com/package/ngx-logger).
+
+In your [appModule](projects/example-app/src/app/app.module.ts), insert LoggerModule and configure it
+
+```typescript
+@NgModule({
+  ...
+  imports: [
+    LoggerModule.forRoot(environment.loggerConfig),
+  ]
+  ...
+```
+And use OTELCOL_LOGGER token to inject NGXLogger
+```typescript
+@NgModule({
+  ...
+  providers: [
+    ...
+    { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
+    ...
+  ]
+```
+
+> You can see an example in the [example-app](#example).
 
 ## How it works
 

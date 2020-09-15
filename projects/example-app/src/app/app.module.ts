@@ -46,7 +46,7 @@ import { LoggerModule, NGXLogger } from 'ngx-logger';
   ],
   providers: [
     // Provide token OTELCOL_LOGGER with the NGXLogger
-    { provide: OTELCOL_LOGGER, useClass: NGXLogger }
+    { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
   ],
   bootstrap: [AppComponent],
 })
