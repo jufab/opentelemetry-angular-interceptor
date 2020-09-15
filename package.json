@@ -27,7 +27,8 @@
   "standard-version": {
     "bumpFiles": [
       "./projects/opentelemetry-interceptor/package.json",
-      "package.json"
+      "package.json",
+      "./projects/opentelemetry-interceptor/src/version.json"
     ]
   },
   "dependencies": {

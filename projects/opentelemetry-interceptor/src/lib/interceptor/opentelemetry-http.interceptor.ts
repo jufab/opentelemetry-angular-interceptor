@@ -31,7 +31,9 @@ import {
 } from '../configuration/opentelemetry-config';
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { TextMapPropagatorService } from '../services/propagator/text-map-propagator.service';
-import { version, name } from '../../../package.json';
+import { version } from '../../version.json';
+
+const NAME = '@jufab/opentelemetry-angular-interceptor';
 
 /**
  * OpenTelemetryInterceptor class
@@ -132,7 +134,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private initSpan(request: HttpRequest<unknown>): Span {
     const urlRequest = new URL(request.urlWithParams);
     const span = this.tracer
-      .getTracer(name, version)
+      .getTracer(NAME, version)
       .startSpan(
         request.url,
         {
