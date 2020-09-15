@@ -1,6 +1,6 @@
 {
   "name": "opentelemetry-angular-interceptor",
-  "version": "0.11.0",
+  "version": "0.11.0-1",
   "homepage": "https://github.com/jufab/opentelemetry-angular-interceptor",
   "author": {
     "name": "Julien Fabre"
@@ -28,7 +28,10 @@
     "bumpFiles": [
       "./projects/opentelemetry-interceptor/package.json",
       "package.json",
-      "./projects/opentelemetry-interceptor/src/version.json"
+      {
+        "filename": "./projects/opentelemetry-interceptor/src/version.json",
+        "type": "json"
+      }
     ]
   },
   "dependencies": {
