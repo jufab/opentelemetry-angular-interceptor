@@ -56,6 +56,10 @@
 <li><a href="#propagator-module">Propagator module</a></li>
 </ul>
 </li>
+<li><a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a><ul>
+<li><a href="#ngxlogger">NGXLogger</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#how-it-works">How it works</a></li>
@@ -108,6 +112,7 @@
 <ul>
 <li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:55681/v1/trace">http://localhost:55681/v1/trace</a>)</li>
 <li>headers: list of custom header (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector</a>)</li>
+<li>attributes : list of custom attributes (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector</a>)</li>
 </ul>
 <h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
 <ul>
@@ -154,7 +159,29 @@ import { environment } from &#39;../environments/environment&#39;;
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}</code></pre></div><h2 id="how-it-works">How it works</h2>
+export class AppModule {}</code></pre></div><h3 id="optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</h3>
+<p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTELCOL_LOGGER</a> token.</p>
+<p>You can use a custom logger which implements the <a href="https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-api/src/common/Logger.ts">Logger</a> in @opentelemetry/api.</p>
+<p>Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
+<h4 id="ngxlogger">NGXLogger</h4>
+<p>You can use <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
+<p>In your <a href="projects/example-app/src/app/app.module.ts">appModule</a>, insert LoggerModule and configure it</p>
+<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+  ...
+  imports: [
+    LoggerModule.forRoot(environment.loggerConfig),
+  ]
+  ...</code></pre></div><p>And use OTELCOL_LOGGER token to inject NGXLogger</p>
+<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+  ...
+  providers: [
+    ...
+    { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
+    ...
+  ]</code></pre></div><blockquote>
+<p>You can see an example in the <a href="#example">example-app</a>.</p>
+</blockquote>
+<h2 id="how-it-works">How it works</h2>
 <p>This library is based on <a href="https://angular.io/api/common/http/HttpClientModule">HttpClientModule</a> and the <a href="https://angular.io/api/common/http/HTTP_INTERCEPTORS">HTTP_INTERCEPTORS</a></p>
 <p>OpenTelemetryInterceptor implement an <a href="https://angular.io/api/common/http/HttpInterceptor">HttpInterceptor</a> and the intercept method.</p>
 <p>This implementation initialise a <a href="https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-web/src/WebTracerProvider.ts">WebTracerProvider</a>, create a <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html">Span</a> and add <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/httptextpropagator.html">header propagation</a> in the current call.</p>

@@ -119,12 +119,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>, logger: Logger)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -157,6 +157,22 @@
                                                     
                                                         <td>
                                                                 <code><p>OpenTelemetryConfig</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>logger</td>
+                                                  
+                                                        <td>
+                                                                    <code>Logger</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Logger (Optional)</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -196,8 +212,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -248,7 +264,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -267,7 +283,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Optional } from &#x27;@angular/core&#x27;;
 import { IExporter } from &#x27;../exporter.interface&#x27;;
 import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
 import {
@@ -280,6 +296,8 @@ import {
 import {
   CollectorExporterConfigBase,
 } from &#x27;@opentelemetry/exporter-collector/build/src/types&#x27;;
+import { Logger } from &#x27;@opentelemetry/api&#x27;;
+import { OTELCOL_LOGGER } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 
 /**
  * OtelcolExporterService class
@@ -296,12 +314,15 @@ export class OtelcolExporterService implements IExporter {
   /**
    * constructor
    * @param config OpenTelemetryConfig
+   * @param logger Logger (Optional)
    */
-  constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
+  constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig, @Optional() @Inject(OTELCOL_LOGGER) logger: Logger) {
     this.otelcolConfig &#x3D; {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
+      attributes: config.otelcolConfig?.attributes,
+      logger
     };
   }
 

@@ -64,6 +64,9 @@
                         <li>
                             <a href="#OpenTelemetryInjectConfig" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts"><b>OpenTelemetryInjectConfig</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
+                        <li>
+                            <a href="#OTELCOL_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts"><b>OTELCOL_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -117,15 +120,40 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;
-  OpenTelemetryConfig
-&gt;(&#x27;opentelemetry.config&#x27;)</code>
+                            <i>Default value : </i><code>new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;)</code>
                         </td>
                     </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>OpenTelemetryInjectConfig : Config injection </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="OTELCOL_LOGGER"></a>
+                        <span class="name">
+                            <b>
+                            OTELCOL_LOGGER</b>
+                            <a href="#OTELCOL_LOGGER"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new InjectionToken&lt;Logger&gt;(&#x27;otelcol.logger&#x27;)</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Logger : injection for a logger compatible </p>
 </div>
                     </td>
                 </tr>
