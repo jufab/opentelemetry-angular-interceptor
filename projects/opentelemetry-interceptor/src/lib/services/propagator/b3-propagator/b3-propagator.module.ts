@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { B3PropagatorService } from './b3-propagator.service';
-import { TextMapPropagatorService } from '../text-map-propagator.service';
+import { OTELCOL_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -11,7 +11,7 @@ import { TextMapPropagatorService } from '../text-map-propagator.service';
     CommonModule
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: B3PropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: B3PropagatorService }
   ]
 })
 export class B3PropagatorModule {

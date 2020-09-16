@@ -29,13 +29,9 @@ import {
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
 } from '../configuration/opentelemetry-config';
-import { SpanExporterService } from '../services/exporter/span-exporter.service';
-import { TextMapPropagatorService } from '../services/propagator/text-map-propagator.service';
-import { version } from '../../version.json';
-/**
- * Library name
- */
-const NAME = '@jufab/opentelemetry-angular-interceptor';
+import { version, name } from '../../version.json';
+import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
+import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 
 /**
  * OpenTelemetryInterceptor class
@@ -56,26 +52,26 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * constructor
    * @param config configuration
-   * @param spanExporterService service exporter injected
-   * @param textMapPropagatorService propagator
+   * @param exporterService service exporter injected
+   * @param propagatorService propagator
    */
   constructor(
     @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
-    @Inject(SpanExporterService)
-    private spanExporterService: SpanExporterService,
-    @Inject(TextMapPropagatorService)
-    private textMapPropagatorService: TextMapPropagatorService
+    @Inject(OTELCOL_EXPORTER)
+    private exporterService: IExporter,
+    @Inject(OTELCOL_PROPAGATOR)
+    private propagatorService: IPropagator
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
     });
     this.insertSpanProcessorProductionMode(
       this.config.commonConfig.production,
-      this.spanExporterService.getExporter()
+      this.exporterService.getExporter()
     );
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
     this.tracer.register({
-      propagator: this.textMapPropagatorService.getPropagator(),
+      propagator: this.propagatorService.getPropagator(),
     });
   }
 
@@ -136,7 +132,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private initSpan(request: HttpRequest<unknown>): Span {
     const urlRequest = new URL(request.urlWithParams);
     const span = this.tracer
-      .getTracer(NAME, version)
+      .getTracer(name, version)
       .startSpan(
         request.url,
         {
