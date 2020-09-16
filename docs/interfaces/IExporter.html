@@ -123,8 +123,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts:12</a></div>
                 </td>
             </tr>
 
@@ -154,7 +154,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
+import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
 
 /**
  * Exporter interface to define a default exporter
@@ -166,6 +167,9 @@ export interface IExporter {
    */
   getExporter(): SpanExporter;
 }
+
+/** injection for a Exporter */
+export const OTELCOL_EXPORTER &#x3D; new InjectionToken&lt;IExporter&gt;(&#x27;otelcol.exporter&#x27;);
 </code></pre>
     </div>
 </div>

@@ -74,7 +74,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ConsoleSpanExporterService } from &#x27;./console-span-exporter.service&#x27;;
-import { SpanExporterService } from &#x27;../span-exporter.service&#x27;;
+import { OTELCOL_EXPORTER } from &#x27;../exporter.interface&#x27;;
 
 
 
@@ -84,7 +84,7 @@ import { SpanExporterService } from &#x27;../span-exporter.service&#x27;;
     CommonModule
   ],
   providers: [
-    { provide: SpanExporterService, useClass: ConsoleSpanExporterService }
+    { provide: OTELCOL_EXPORTER, useClass: ConsoleSpanExporterService }
   ]
 })
 export class ConsoleSpanExporterModule {

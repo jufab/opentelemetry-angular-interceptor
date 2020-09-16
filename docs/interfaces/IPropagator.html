@@ -123,8 +123,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts:12</a></div>
                 </td>
             </tr>
 
@@ -154,7 +154,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
+import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 
 /**
  * Interface to define propagator
@@ -167,6 +168,8 @@ export interface IPropagator {
   getPropagator(): TextMapPropagator;
 }
 
+/** injection for a propagator */
+export const OTELCOL_PROPAGATOR &#x3D; new InjectionToken&lt;IPropagator&gt;(&#x27;otelcol.propagator&#x27;);
 </code></pre>
     </div>
 </div>

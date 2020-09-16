@@ -73,8 +73,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { TextMapPropagatorService } from &#x27;../text-map-propagator.service&#x27;;
 import { HttpTraceContextPropagatorService } from &#x27;./http-trace-context-propagator.service&#x27;;
+import { OTELCOL_PROPAGATOR } from &#x27;../propagator.interface&#x27;;
 
 
 
@@ -84,7 +84,7 @@ import { HttpTraceContextPropagatorService } from &#x27;./http-trace-context-pro
     CommonModule,
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: HttpTraceContextPropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: HttpTraceContextPropagatorService }
   ]
 })
 export class  HttpTraceContextPropagatorModule {
