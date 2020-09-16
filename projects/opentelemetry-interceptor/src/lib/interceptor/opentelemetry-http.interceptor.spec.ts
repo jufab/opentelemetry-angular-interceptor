@@ -9,7 +9,10 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
-import { OpenTelemetryConfig, OpenTelemetryInjectConfig } from '../configuration/opentelemetry-config';
+import {
+  OpenTelemetryConfig,
+  OpenTelemetryInjectConfig,
+} from '../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
   otelcolExporterWithProbabilitySamplerAndCompositeConfig,
@@ -25,7 +28,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
   let httpControllerMock: HttpTestingController;
   beforeEach(() => {
-    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterConfig));
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterConfig
+    ));
   });
   it('should be created', () => {
     const interceptor = TestBed.inject(OpenTelemetryHttpInterceptor);
@@ -43,7 +50,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('verify with production mode', () => {
-    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterProductionConfig));
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterProductionConfig
+    ));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -101,7 +112,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('verify probability sampler to be add', () => {
-    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAndCompositeConfig));
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterWithProbabilitySamplerAndCompositeConfig
+    ));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -112,7 +127,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 
   it('verify probability sampler to be add at zero', () => {
-    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig));
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig
+    ));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -122,7 +141,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
     httpControllerMock.verify();
   });
   it('verify probability sampler to be add at one', () => {
-    ({ httpClient, httpControllerMock } = defineModuleTest(httpClient, httpControllerMock, otelcolExporterWithProbabilitySamplerAtTwoConfig));
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterWithProbabilitySamplerAtTwoConfig
+    ));
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
@@ -133,11 +156,18 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 });
 
-
-function defineModuleTest(httpClient: HttpClient, httpControllerMock: HttpTestingController, otelcolConfig: OpenTelemetryConfig) {
+function defineModuleTest(
+  httpClient: HttpClient,
+  httpControllerMock: HttpTestingController,
+  otelcolConfig: OpenTelemetryConfig
+) {
   TestBed.resetTestingModule();
   TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule, ConsoleSpanExporterModule, HttpTraceContextPropagatorModule],
+    imports: [
+      HttpClientTestingModule,
+      ConsoleSpanExporterModule,
+      HttpTraceContextPropagatorModule,
+    ],
     providers: [
       {
         provide: OpenTelemetryInjectConfig,
@@ -154,4 +184,3 @@ function defineModuleTest(httpClient: HttpClient, httpControllerMock: HttpTestin
   httpControllerMock = TestBed.inject(HttpTestingController);
   return { httpClient, httpControllerMock };
 }
-
