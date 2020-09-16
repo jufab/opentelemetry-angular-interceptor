@@ -1,9 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
 import { TextMapPropagator } from '@opentelemetry/api';
-import {
-  CompositePropagator,
-} from '@opentelemetry/core';
+import { CompositePropagator } from '@opentelemetry/core';
 import { B3PropagatorService } from '../b3-propagator/b3-propagator.service';
 import { HttpTraceContextPropagatorService } from '../http-trace-context-propagator/http-trace-context-propagator.service';
 import { JaegerHttpTracePropagatorService } from '../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service';

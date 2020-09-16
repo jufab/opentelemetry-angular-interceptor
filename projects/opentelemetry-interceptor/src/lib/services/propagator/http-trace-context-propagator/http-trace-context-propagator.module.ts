@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextMapPropagatorService } from '../text-map-propagator.service';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
+import { OTELCOL_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -11,7 +11,7 @@ import { HttpTraceContextPropagatorService } from './http-trace-context-propagat
     CommonModule,
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: HttpTraceContextPropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: HttpTraceContextPropagatorService }
   ]
 })
 export class  HttpTraceContextPropagatorModule {

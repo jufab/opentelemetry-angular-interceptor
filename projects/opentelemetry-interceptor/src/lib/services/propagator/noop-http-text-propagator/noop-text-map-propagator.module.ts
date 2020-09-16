@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextMapPropagatorService } from '../text-map-propagator.service';
 import { NoopTextMapPropagatorService } from './noop-text-map-propagator.service';
+import { OTELCOL_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -11,7 +11,7 @@ import { NoopTextMapPropagatorService } from './noop-text-map-propagator.service
     CommonModule,
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: NoopTextMapPropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: NoopTextMapPropagatorService }
   ]
 })
 export class NoopTextMapPropagatorModule {

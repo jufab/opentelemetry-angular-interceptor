@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OtelcolExporterService } from './otelcol-exporter.service';
-import { SpanExporterService } from '../span-exporter.service';
+import { OTELCOL_EXPORTER } from '../exporter.interface';
 
 
 
@@ -11,7 +11,7 @@ import { SpanExporterService } from '../span-exporter.service';
     CommonModule
   ],
   providers: [
-    { provide: SpanExporterService, useClass: OtelcolExporterService }
+    { provide: OTELCOL_EXPORTER, useClass: OtelcolExporterService }
   ]
 })
 export class OtelColExporterModule {

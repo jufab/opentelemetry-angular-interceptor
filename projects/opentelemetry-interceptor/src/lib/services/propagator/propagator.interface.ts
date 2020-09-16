@@ -1,3 +1,4 @@
+import { InjectionToken } from '@angular/core';
 import { TextMapPropagator } from '@opentelemetry/api';
 
 /**
@@ -11,3 +12,5 @@ export interface IPropagator {
   getPropagator(): TextMapPropagator;
 }
 
+/** injection for a propagator */
+export const OTELCOL_PROPAGATOR = new InjectionToken<IPropagator>('otelcol.propagator');

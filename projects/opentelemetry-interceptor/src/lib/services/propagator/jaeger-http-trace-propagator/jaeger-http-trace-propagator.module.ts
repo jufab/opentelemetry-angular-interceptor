@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextMapPropagatorService } from '../text-map-propagator.service';
 import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
+import { OTELCOL_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -11,7 +11,7 @@ import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator
     CommonModule,
   ],
   providers: [
-    { provide: TextMapPropagatorService, useClass: JaegerHttpTracePropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: JaegerHttpTracePropagatorService }
   ]
 })
 export class JaegerHttpTracePropagatorModule {
