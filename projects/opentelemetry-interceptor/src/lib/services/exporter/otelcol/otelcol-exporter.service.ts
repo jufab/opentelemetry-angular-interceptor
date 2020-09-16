@@ -6,11 +6,9 @@ import {
   OpenTelemetryInjectConfig,
 } from '../../../configuration/opentelemetry-config';
 import {
-  CollectorTraceExporter
-} from '@opentelemetry/exporter-collector/build/src/platform/browser';
-import {
-  CollectorExporterConfigBase,
-} from '@opentelemetry/exporter-collector/build/src/types';
+  CollectorTraceExporter,
+  collectorTypes,
+} from '@opentelemetry/exporter-collector';
 import { Logger } from '@opentelemetry/api';
 import { OTELCOL_LOGGER } from '../../../configuration/opentelemetry-config';
 
@@ -24,20 +22,23 @@ export class OtelcolExporterService implements IExporter {
   /**
    * CollectorExporterConfigBase
    */
-  private otelcolConfig: CollectorExporterConfigBase;
+  private otelcolConfig: collectorTypes.CollectorExporterConfigBase;
 
   /**
    * constructor
    * @param config OpenTelemetryConfig
    * @param logger Logger (Optional)
    */
-  constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig, @Optional() @Inject(OTELCOL_LOGGER) logger: Logger) {
+  constructor(
+    @Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig,
+    @Optional() @Inject(OTELCOL_LOGGER) logger: Logger
+  ) {
     this.otelcolConfig = {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
       attributes: config.otelcolConfig?.attributes,
-      logger
+      logger,
     };
   }
 
