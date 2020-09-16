@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -196,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -248,10 +248,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.service.ts:18</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>custom Header</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -275,6 +281,9 @@ import { OpenTelemetryConfig } from &#x27;../../../../public-api&#x27;;
   providedIn: &#x27;root&#x27;,
 })
 export class JaegerHttpTracePropagatorService implements IPropagator {
+  /**
+   * custom Header
+   */
   private customHeader: string;
   /**
    * Constructor

@@ -32,7 +32,9 @@ import {
 import { SpanExporterService } from '../services/exporter/span-exporter.service';
 import { TextMapPropagatorService } from '../services/propagator/text-map-propagator.service';
 import { version } from '../../version.json';
-
+/**
+ * Library name
+ */
 const NAME = '@jufab/opentelemetry-angular-interceptor';
 
 /**

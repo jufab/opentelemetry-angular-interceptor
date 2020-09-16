@@ -12,6 +12,9 @@ import { OpenTelemetryConfig } from '../../../../public-api';
   providedIn: 'root',
 })
 export class JaegerHttpTracePropagatorService implements IPropagator {
+  /**
+   * custom Header
+   */
   private customHeader: string;
   /**
    * Constructor
