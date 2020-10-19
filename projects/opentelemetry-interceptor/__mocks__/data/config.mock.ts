@@ -21,7 +21,7 @@ export const otelcolExporterConfig: OpenTelemetryConfig = {
 export const otelcolExporterProductionConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
-    production : true,
+    production: true,
   },
   otelcolConfig: {
     url: 'http://localhost',
@@ -99,4 +99,32 @@ export const jaegerPropagatorWithoutCustomHeaderConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
   },
+};
+
+
+/**
+ * @ignore
+ */
+export const b3PropagatorMultiConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  }
+};
+
+/**
+ * @ignore
+ */
+export const b3PropagatorSingleConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  b3PropagatorConfig: {
+    multiHeader: '0',
+  }
 };

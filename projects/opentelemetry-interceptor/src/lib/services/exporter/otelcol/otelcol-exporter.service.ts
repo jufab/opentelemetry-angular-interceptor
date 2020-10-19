@@ -4,13 +4,13 @@ import { SpanExporter } from '@opentelemetry/tracing';
 import {
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
+  OTELCOL_LOGGER
 } from '../../../configuration/opentelemetry-config';
 import {
   CollectorTraceExporter,
   collectorTypes,
 } from '@opentelemetry/exporter-collector';
 import { Logger } from '@opentelemetry/api';
-import { OTELCOL_LOGGER } from '../../../configuration/opentelemetry-config';
 
 /**
  * OtelcolExporterService class

@@ -17,8 +17,8 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "@opentelemetry/exporter-collector": "^0.11.x",
-    "@opentelemetry/web": "^0.11.x",
+    "@opentelemetry/exporter-collector": "^0.12.x",
+    "@opentelemetry/web": "^0.12.x",
     "@opentelemetry/propagator-jaeger": "^0.10.0"
   },
   "dependencies": {
