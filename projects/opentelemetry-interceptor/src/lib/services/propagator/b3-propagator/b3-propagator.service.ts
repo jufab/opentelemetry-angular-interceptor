@@ -9,6 +9,10 @@ import {
 
 /**
  * B3PropagatorService
+ *
+ * Can be a single or multi header.
+ *
+ * See Configuration for more information
  */
 @Injectable({
   providedIn: 'root',
@@ -22,6 +26,11 @@ export class B3PropagatorService implements IPropagator {
     };
   }
 
+  /**
+   * Define if it's a single or multi header
+   * @param value string (0 => single header, 1 => Multi Header)
+   * @return B3InjectEncoding
+   */
   private static defineB3Encoding(value: string): B3InjectEncoding {
     if (value && '0' === value) {
       return B3InjectEncoding.SINGLE_HEADER;
