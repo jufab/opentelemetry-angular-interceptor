@@ -87,7 +87,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     this.contextManager = new StackContextManager();
     const span: Span = this.initSpan(request);
-    const tracedReq = this.injectContextAndHeader(span, request);
+    const tracedReq = this.injectContextAndHeader(request);
     return next.handle(tracedReq).pipe(
       tap(
         (event: HttpResponse<any>) => {
@@ -156,11 +156,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * Add header propagator in request and conserve original header
-   * @param span span
    * @param request request
    */
   private injectContextAndHeader(
-    span: Span,
     request: HttpRequest<unknown>
   ) {
     const carrier = {};
