@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Sampler, Span, CanonicalCode } from '@opentelemetry/api';
+import { Sampler, Span, CanonicalCode, setActiveSpan } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -20,9 +20,8 @@ import {
 import {
   AlwaysOnSampler,
   AlwaysOffSampler,
-  setActiveSpan,
-  ProbabilitySampler,
-  ParentOrElseSampler,
+  TraceIdRatioBasedSampler,
+  ParentBasedSampler,
 } from '@opentelemetry/core';
 import { tap, finalize } from 'rxjs/operators';
 import {
@@ -211,12 +210,12 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
     if (sampleConfig > 1) {
-      return new ParentOrElseSampler(new AlwaysOnSampler());
+      return new ParentBasedSampler({ root: new AlwaysOnSampler() });
     }
     else if (sampleConfig <= 0) {
-      return new ParentOrElseSampler(new AlwaysOffSampler());
+      return new ParentBasedSampler({ root: new AlwaysOffSampler() });
     } else {
-      return new ParentOrElseSampler(new ProbabilitySampler(sampleConfig));
+      return new ParentBasedSampler({ root: new TraceIdRatioBasedSampler(sampleConfig) });
     }
   }
 }

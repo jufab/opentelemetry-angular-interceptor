@@ -19,5 +19,7 @@ export {
   OtelCollectorConfig,
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
+  JaegerPropagatorConfig,
+  B3PropagatorConfig,
   OTELCOL_LOGGER
 } from './lib/configuration/opentelemetry-config';

@@ -6,6 +6,8 @@ This library uses [opentelemetry-js package](https://github.com/open-telemetry/o
 
 **Only works for Angular >= 9.0.0**
 
+**Breaking Change!!! version 0.12.0 OtelCol exporter works only with Opentelemtry-collector >= 0.12.0 (see example)**
+
 More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
 [![npm version](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg)](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor)

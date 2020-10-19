@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Logger } from '@opentelemetry/api';
+import { Logger, Attributes } from '@opentelemetry/api';
 
 /**
  * Common configuration
@@ -30,7 +30,7 @@ export interface OtelCollectorConfig {
   /**
    * attributes : define some custom attributes
    */
-  attributes?: Partial<Record<string, unknown>>;
+  attributes?: Attributes;
 }
 
 /**
@@ -42,6 +42,17 @@ export interface JaegerPropagatorConfig {
    */
   customHeader?: string;
 }
+
+/**
+ * Configuration for B3PropagatorConfig
+ */
+export interface B3PropagatorConfig {
+  /**
+   * Single or Multi Header for b3propagator (default: multi)
+   * Value : 'O' (single), '1' (multi)
+   */
+  multiHeader?: string;
+}
 /**
  * OpenTelemetryConfig
  */
@@ -52,6 +63,8 @@ export interface OpenTelemetryConfig {
   otelcolConfig?: OtelCollectorConfig;
   /** jaegerPropagatorConfig */
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
+  /** b3PropagatorConfig */
+  b3PropagatorConfig?: B3PropagatorConfig;
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
