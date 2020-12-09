@@ -34,6 +34,22 @@ export interface OtelCollectorConfig {
 }
 
 /**
+ * Configuration for Zipkin
+ */
+export interface ZipkinCollectorConfig {
+  /**
+   * An url (Default value: http://localhost:9411/api/v2/spans)
+   */
+  url?: string;
+  /**
+   * custom headers
+   */
+  headers?: {
+    [key: string]: string;
+  };
+}
+
+/**
  * Configuration for JaegerPropagatorConfig
  */
 export interface JaegerPropagatorConfig {
@@ -61,6 +77,8 @@ export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
   /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
+  /** zipkinConfig */
+  zipkinConfig?: ZipkinCollectorConfig;
   /** jaegerPropagatorConfig */
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */

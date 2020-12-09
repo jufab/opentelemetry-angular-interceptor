@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Sampler, Span, CanonicalCode, setActiveSpan } from '@opentelemetry/api';
+import { Sampler, Span, StatusCode, setActiveSpan } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -99,6 +99,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           if (event.body != null) {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
+          span.setStatus({
+            code: StatusCode.OK
+          });
         },
         (event: HttpErrorResponse) => {
           span.setAttributes(
@@ -112,9 +115,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             message: event.message,
             stack: event.error
           });
-          // TODO : To change after new spec...
           span.setStatus({
-            code: CanonicalCode.INTERNAL
+            code: StatusCode.ERROR
           });
         }
       ),
@@ -163,7 +165,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const carrier = {};
     api.propagation.inject(
       carrier,
-      api.defaultSetter,
+      api.defaultTextMapSetter,
       this.contextManager.active()
     );
     request.headers.keys().map(key => {

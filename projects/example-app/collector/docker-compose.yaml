@@ -8,13 +8,13 @@ services:
       - "16686:16686"
       - "14250"
   zipkin:
-    image: openzipkin/zipkin:latest
+    image: openzipkin/zipkin:2
     networks:
       - otelcol
     ports:
       - "9411:9411"
   otel-collector:
-    image: otel/opentelemetry-collector:0.13.0
+    image: otel/opentelemetry-collector:0.16.0
     networks:
       - otelcol
     command: ["--config=/etc/otel-collector-config.yaml"]

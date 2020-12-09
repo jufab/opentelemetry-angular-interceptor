@@ -50,7 +50,17 @@
             "main": "projects/example-app/src/main.ts",
             "polyfills": "projects/example-app/src/polyfills.ts",
             "tsConfig": "projects/example-app/tsconfig.app.json",
-            "allowedCommonJsDependencies": ["@opentelemetry/api","@opentelemetry/exporter-collector","@opentelemetry/tracing","@opentelemetry/web","@opentelemetry/core","@opentelemetry/context-base","@opentelemetry/propagator-jaeger"],
+            "allowedCommonJsDependencies": [
+              "@opentelemetry/api",
+              "@opentelemetry/exporter-collector",
+              "@opentelemetry/exporter-zipkin",
+              "@opentelemetry/tracing",
+              "@opentelemetry/web",
+              "@opentelemetry/core",
+              "@opentelemetry/context-base",
+              "@opentelemetry/propagator-jaeger",
+              "@opentelemetry/propagator-b3"
+            ],
             "aot": true,
             "assets": [
               "projects/example-app/src/favicon.ico",

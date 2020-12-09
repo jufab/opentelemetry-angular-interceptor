@@ -95,6 +95,18 @@ export const jaegerPropagatorConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
+export const zipkinConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+  },
+  zipkinConfig: {
+    url: 'http://localhost'
+  }
+};
+
+/**
+ * @ignore
+ */
 export const jaegerPropagatorWithoutCustomHeaderConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',

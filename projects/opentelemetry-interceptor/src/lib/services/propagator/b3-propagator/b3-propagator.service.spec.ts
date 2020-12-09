@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { B3Propagator } from '@opentelemetry/core';
+import { B3Propagator } from '@opentelemetry/propagator-b3';
 import { B3PropagatorService } from './b3-propagator.service';
 import {
   b3PropagatorSingleConfig,
