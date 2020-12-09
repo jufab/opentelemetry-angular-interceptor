@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
 import { TextMapPropagator } from '@opentelemetry/api';
-import { B3Propagator, B3PropagatorConfig, B3InjectEncoding } from '@opentelemetry/core';
+import { B3Propagator, B3PropagatorConfig, B3InjectEncoding } from '@opentelemetry/propagator-b3';
 import {
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
