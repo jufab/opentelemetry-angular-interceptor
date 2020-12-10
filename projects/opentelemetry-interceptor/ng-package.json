@@ -13,7 +13,8 @@
       "@opentelemetry/exporter-collector": "@opentelemetry/exporter-collector-browser",
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core",
-      "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger"
+      "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger",
+      "@opentelemetry/propagator-b3": "@opentelemetry/propagator-b3"
     }
   }
 }
