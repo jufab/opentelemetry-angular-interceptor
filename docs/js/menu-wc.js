@@ -90,6 +90,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="modules/OtelColExporterModule.html" data-type="entity-link">OtelColExporterModule</a>
                             </li>
+                            <li class="link">
+                                <a href="modules/ZipkinExporterModule.html" data-type="entity-link">ZipkinExporterModule</a>
+                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -121,6 +124,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/OtelcolExporterService.html" data-type="entity-link">OtelcolExporterService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/ZipkinExporterService.html" data-type="entity-link">ZipkinExporterService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -145,6 +151,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/B3PropagatorConfig.html" data-type="entity-link">B3PropagatorConfig</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CommonCollectorConfig.html" data-type="entity-link">CommonCollectorConfig</a>
                             </li>
                             <li class="link">
@@ -161,6 +170,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/OtelCollectorConfig.html" data-type="entity-link">OtelCollectorConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ZipkinCollectorConfig.html" data-type="entity-link">ZipkinCollectorConfig</a>
                             </li>
                         </ul>
                     </li>

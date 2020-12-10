@@ -147,7 +147,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
-import { Logger } from &#x27;@opentelemetry/api&#x27;;
+import { Logger, Attributes } from &#x27;@opentelemetry/api&#x27;;
 
 /**
  * Common configuration
@@ -178,7 +178,23 @@ export interface OtelCollectorConfig {
   /**
    * attributes : define some custom attributes
    */
-  attributes?: Partial&lt;Record&lt;string, unknown&gt;&gt;;
+  attributes?: Attributes;
+}
+
+/**
+ * Configuration for Zipkin
+ */
+export interface ZipkinCollectorConfig {
+  /**
+   * An url (Default value: http://localhost:9411/api/v2/spans)
+   */
+  url?: string;
+  /**
+   * custom headers
+   */
+  headers?: {
+    [key: string]: string;
+  };
 }
 
 /**
@@ -190,6 +206,17 @@ export interface JaegerPropagatorConfig {
    */
   customHeader?: string;
 }
+
+/**
+ * Configuration for B3PropagatorConfig
+ */
+export interface B3PropagatorConfig {
+  /**
+   * Single or Multi Header for b3propagator (default: multi)
+   * Value : &#x27;O&#x27; (single), &#x27;1&#x27; (multi)
+   */
+  multiHeader?: string;
+}
 /**
  * OpenTelemetryConfig
  */
@@ -198,8 +225,12 @@ export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
   /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
+  /** zipkinConfig */
+  zipkinConfig?: ZipkinCollectorConfig;
   /** jaegerPropagatorConfig */
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
+  /** b3PropagatorConfig */
+  b3PropagatorConfig?: B3PropagatorConfig;
 }
 
 /** OpenTelemetryInjectConfig : Config injection */

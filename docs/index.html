@@ -35,6 +35,7 @@
 <p>@jufab/opentelemetry-angular-interceptor is an Angular Library to deploy <a href="https://opentelemetry.io/">OpenTelemetry</a> in your Angular application</p>
 <p>This library uses <a href="https://github.com/open-telemetry/opentelemetry-js">opentelemetry-js package</a></p>
 <p><strong>Only works for Angular &gt;= 9.0.0</strong></p>
+<p><strong>Breaking Change!!! version 0.12.0 OtelCol exporter works only with Opentelemtry-collector &gt;= 0.12.0 (see example)</strong></p>
 <p>More info : <a href="https://jufab.github.io/opentelemetry-angular-interceptor/">https://jufab.github.io/opentelemetry-angular-interceptor/</a></p>
 <p><a href="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor"><img src="https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg" alt="npm version" class="img-responsive"></a>
 <a href="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor"><img src="https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"></a></p>
@@ -49,6 +50,8 @@
 <li><a href="#common-configuration">Common Configuration</a></li>
 <li><a href="#opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</a></li>
 <li><a href="#jaeger-propagator-configuration">Jaeger Propagator Configuration</a></li>
+<li><a href="#zipkin-exporter-configuration">Zipkin Exporter Configuration</a></li>
+<li><a href="#b3-propagator-configuration">B3 Propagator Configuration</a></li>
 </ul>
 </li>
 <li><a href="#angular-module">Angular module</a><ul>
@@ -79,12 +82,14 @@
 <h2 id="getting-started">Getting started</h2>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm install &#64;jufab/opentelemetry-angular-interceptor &#64;opentelemetry/web &#64;opentelemetry/exporter-collector &#64;opentelemetry/propagator-jaeger</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm install &#64;jufab/opentelemetry-angular-interceptor &#64;opentelemetry/web &#64;opentelemetry/exporter-collector &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/propagator-b3</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
   otelcolConfig?: OtelCollectorConfig;
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
+  zipkinConfig?: ZipkinCollectorConfig;
+  b3PropagatorConfig?: B3PropagatorConfig;
 }</code></pre></div><h4 id="example-global-configuration">Example global Configuration</h4>
 <p><em>From the example-app</em></p>
 <div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
@@ -118,13 +123,23 @@
 <ul>
 <li>customHeader: (string) custom header (more info : <a href="https://github.com/open-telemetry/opentelemetry-js-contrib/tree/master/propagators/opentelemetry-propagator-jaeger">https://github.com/open-telemetry/opentelemetry-js-contrib/tree/master/propagators/opentelemetry-propagator-jaeger</a>)</li>
 </ul>
+<h4 id="zipkin-exporter-configuration">Zipkin Exporter Configuration</h4>
+<ul>
+<li>url: (string) url of zipkin collector (default : <a href="http://localhost:9411/api/v2/spans">http://localhost:9411/api/v2/spans</a>)</li>
+<li>headers: list of custom header (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin</a>)</li>
+</ul>
+<h4 id="b3-propagator-configuration">B3 Propagator Configuration</h4>
+<ul>
+<li>multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : &#39;O&#39; (single), &#39;1&#39; (multi) (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-propagator-b3">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-propagator-b3</a>)</li>
+</ul>
 <h3 id="angular-module">Angular module</h3>
 <p>To insert OpenTelemetryInterceptorModule, you can add in your application module (generally app.module.ts)</p>
 <h4 id="exporter-module">Exporter module</h4>
-<p>There is 2 exporters:</p>
+<p>There is 3 exporters:</p>
 <ul>
 <li>OtelColExporterModule : OpenTelemetry exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector</a>)</li>
 <li>ConsoleSpanExporterModule : Console Exporter</li>
+<li>ZipkinExporterModule : Zipkin Exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin</a>)</li>
 </ul>
 <h4 id="propagator-module">Propagator module</h4>
 <p>there is 5 propagators (more info about propagator: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core">https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core</a>)</p>
@@ -228,7 +243,8 @@ For more info see: https://angular.io/guide/build#configuring-commonjs-dependenc
     &quot;&#64;opentelemetry/api&quot;,
     &quot;&#64;opentelemetry/exporter-collector&quot;,
     &quot;&#64;opentelemetry/context-base&quot;,
-    &quot;&#64;opentelemetry/propagator-jaeger&quot;
+    &quot;&#64;opentelemetry/propagator-jaeger&quot;,
+    &quot;&#64;opentelemetry/propagator-b3&quot;
   ],</code></pre></div><h3 id="other">Other</h3>
 <table class="table table-bordered compodoc-table">
 <thead>

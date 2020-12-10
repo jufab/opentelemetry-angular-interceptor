@@ -57,15 +57,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin-exporter.service.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>ZipkinExporter isn&#39;t operationnal for the moment in web application.
-it&#39;s present if one day..</p>
+                <p>ZipkinExporterService class</p>
 
             </p>
 
@@ -75,6 +74,21 @@ it&#39;s present if one day..</p>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#zipkinConfig">zipkinConfig</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -110,7 +124,7 @@ it&#39;s present if one day..</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin-exporter.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -182,15 +196,15 @@ it&#39;s present if one day..</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin-exporter.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:33</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return for the moment a ConsoleSpanExporter</p>
+                    <div class="io-description"><p>Return a ZipkinExporter configured with zipkinConfig field</p>
 </div>
 
                     <div>
@@ -208,46 +222,79 @@ it&#39;s present if one day..</p>
         </tbody>
     </table>
 </section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zipkinConfig"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            zipkinConfig</b>
+                            <a href="#zipkinConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ExporterConfig</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
-import { IExporter } from &#x27;./exporter.interface&#x27;;
-import {
-  OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
-} from &#x27;../../configuration/opentelemetry-config&#x27;;
-import { SpanExporter, ConsoleSpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
+import { IExporter } from &#x27;../exporter.interface&#x27;;
+import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
+import { OpenTelemetryConfig, OpenTelemetryInjectConfig } from &#x27;../../../configuration/opentelemetry-config&#x27;;
+import { ZipkinExporter } from &#x27;@opentelemetry/exporter-zipkin&#x27;;
+import { ExporterConfig } from &#x27;@opentelemetry/exporter-zipkin/build/src/types&#x27;;
 
 /**
- * ZipkinExporter isn&#x27;t operationnal for the moment in web application.
- * it&#x27;s present if one day..
+ * ZipkinExporterService class
  */
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class ZipkinExporterService implements IExporter {
-  // private zipkinConfig: ExporterConfig;
+  private zipkinConfig: ExporterConfig;
 
   /**
    * constructor
    * @param config OpenTelemetryConfig
    */
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
-    /*this.zipkinConfig &#x3D; {
+    this.zipkinConfig &#x3D; {
       serviceName: config.commonConfig.serviceName,
-      url: config.zipkinConfig.url,
-    };*/
+      url: config.zipkinConfig?.url,
+      headers: config.zipkinConfig?.headers
+    };
   }
 
   /**
-   * Return for the moment a ConsoleSpanExporter
+   * Return a ZipkinExporter configured with zipkinConfig field
    * @return SpanExporter
    */
   getExporter(): SpanExporter {
-    return new ConsoleSpanExporter();
+    return new ZipkinExporter(this.zipkinConfig);
   }
 }
 </code></pre>
