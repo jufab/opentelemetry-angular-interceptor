@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.13.0...v0.13.0-1) (2020-12-10)
+
+
+### Bug Fixes
+
+* error peerDependencies, umdModuleIds and doc ([e6073bf](https://github.com/jufab/opentelemetry-angular-interceptor/commit/e6073bffac043a1956bd267cade1fbe69d9426c0))
+
 ## [0.13.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.11.0-3...v0.13.0) (2020-12-10)
 
 
