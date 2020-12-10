@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.11.0-3...v0.13.0) (2020-12-10)
+
+
+### Features
+
+* add B3Propagator single or multi ([c71ba73](https://github.com/jufab/opentelemetry-angular-interceptor/commit/c71ba732c14e39d3194c5b6c396e4f3e59f75b42))
+* add B3Propagator single or multi ([de1f141](https://github.com/jufab/opentelemetry-angular-interceptor/commit/de1f1415936b329168e6da458bb41463408843b8))
+* update to 0.13.0. Add Zipkin Exporter ([f206c5e](https://github.com/jufab/opentelemetry-angular-interceptor/commit/f206c5e0c9d6eb296562ab4aeb206cc91eb0d7f9))
+
+
+### Bug Fixes
+
+* useless parameter ([bca88a0](https://github.com/jufab/opentelemetry-angular-interceptor/commit/bca88a0e41973e15e17a1677793b79d94c886f76))
+
 ## [0.11.0-3](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.11.0-2...v0.11.0-3) (2020-09-16)
 
 
