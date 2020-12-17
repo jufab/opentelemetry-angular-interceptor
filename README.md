@@ -70,6 +70,7 @@ opentelemetryConfig: {
     commonConfig: {
       console: true, //(boolean) Display trace on console
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
+      logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: 'example-app', //Service name send in trace
       probabilitySampler: '0.7', //Samples a configurable percentage of traces, string value between '0' to '1'
     },
@@ -89,6 +90,7 @@ opentelemetryConfig: {
  * production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It's recommend to use BatchSpanProcessor on Production.
  * serviceName: (string) Service name in your trace
  * probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1
+ * logBody: (boolean) true add body in a log, nothing otherwise
 
 #### OpenTelemetry-collector Configuration
 
