@@ -47,6 +47,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * context manager
    */
   contextManager: StackContextManager;
+  /**
+   * Log or not body
+   */
+  logBody = false;
 
   /**
    * constructor
@@ -72,6 +76,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
     });
+    this.logBody = config.commonConfig.logBody;
   }
 
   /**
@@ -96,7 +101,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
               'http.status_text': event.statusText,
             }
           );
-          if (event.body != null) {
+          if (this.logBody && event.body != null) {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
           span.setStatus({
@@ -164,9 +169,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   ) {
     const carrier = {};
     api.propagation.inject(
+      this.contextManager.active(),
       carrier,
-      api.defaultTextMapSetter,
-      this.contextManager.active()
+      api.defaultTextMapSetter
     );
     request.headers.keys().map(key => {
       carrier[key] = request.headers.get(key);

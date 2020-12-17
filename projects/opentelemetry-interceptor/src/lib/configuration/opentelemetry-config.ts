@@ -13,6 +13,8 @@ export interface CommonCollectorConfig {
   production?: boolean;
   /** probabilitySampler */
   probabilitySampler?: string;
+  /** log or not body response in span */
+  logBody?:boolean;
 }
 
 /**

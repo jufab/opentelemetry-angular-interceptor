@@ -19,6 +19,7 @@ export const environment: IEnvironment = {
       console: true, // Display trace on console
       production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'example-app', // Service name send in trace
+      logBody: true, // true add body in a log, nothing otherwise
       probabilitySampler: '1' // 75% sampling
     },
     otelcolConfig: {
