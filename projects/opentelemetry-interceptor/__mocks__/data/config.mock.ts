@@ -9,6 +9,7 @@ import {
 export const otelcolExporterConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
+    logBody: true
   },
   otelcolConfig: {
     url: 'http://localhost',
@@ -97,6 +98,7 @@ export const jaegerPropagatorConfig: OpenTelemetryConfig = {
  */
 export const zipkinConfig: OpenTelemetryConfig = {
   commonConfig: {
+    production: false,
     serviceName: 'test',
   },
   zipkinConfig: {
