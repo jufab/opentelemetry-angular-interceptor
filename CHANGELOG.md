@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.14.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.13.0-1...v0.14.0) (2020-12-18)
+
+
+### Features
+
+* add log body configurable ([332baf7](https://github.com/jufab/opentelemetry-angular-interceptor/commit/332baf7a4090e68d5a1a7035bb1d0e2b6f23d81d))
+* update angular 10.2 ([efa9083](https://github.com/jufab/opentelemetry-angular-interceptor/commit/efa90835122621b84106032d304862e9ffa2fdda))
+* update opentelemetry-js 0.14.0 ([dcde5bb](https://github.com/jufab/opentelemetry-angular-interceptor/commit/dcde5bba79ee5238e2151a9eedd02073675f94b7))
+
 ## [0.13.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.13.0...v0.13.0-1) (2020-12-10)
 
 
