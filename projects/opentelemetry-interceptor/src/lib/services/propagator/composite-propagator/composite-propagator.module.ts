@@ -14,5 +14,5 @@ import { OTELCOL_PROPAGATOR } from '../propagator.interface';
     { provide: OTELCOL_PROPAGATOR, useClass: CompositePropagatorService }
   ]
 })
-export class CompositePropagatorModule {
+export class  CompositePropagatorModule {
 }

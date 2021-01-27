@@ -7,7 +7,6 @@ import {
   jaegerPropagatorWithoutCustomHeaderConfig,
 } from '../../../../../__mocks__/data/config.mock';
 import { JaegerHttpTracePropagator } from '@opentelemetry/propagator-jaeger';
-import { NoopTextMapPropagator } from '@opentelemetry/api';
 
 describe('JaegerHttpTracePropagatorService', () => {
   let service: JaegerHttpTracePropagatorService;
@@ -24,8 +23,7 @@ describe('JaegerHttpTracePropagatorService', () => {
     });
     service = TestBed.inject(JaegerHttpTracePropagatorService);
     expect(service).toBeTruthy();
-    //expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
-    expect(service.getPropagator()).toBeInstanceOf(NoopTextMapPropagator);
+    expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
   });
 
   it('should return an JaegerHttpTracePropagator without customHeader', () => {
@@ -40,7 +38,6 @@ describe('JaegerHttpTracePropagatorService', () => {
     });
     service = TestBed.inject(JaegerHttpTracePropagatorService);
     expect(service).toBeTruthy();
-    //expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
-    expect(service.getPropagator()).toBeInstanceOf(NoopTextMapPropagator);
+    expect(service.getPropagator()).toBeInstanceOf(JaegerHttpTracePropagator);
   });
 });
