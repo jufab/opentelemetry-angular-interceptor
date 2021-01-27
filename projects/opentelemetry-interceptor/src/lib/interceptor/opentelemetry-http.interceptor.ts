@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Sampler, Span, StatusCode, setActiveSpan } from '@opentelemetry/api';
+import { Sampler, Span, StatusCode } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -73,8 +73,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       this.exporterService.getExporter()
     );
     this.insertConsoleSpanExporter(this.config.commonConfig.console);
+    this.contextManager = new StackContextManager();
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
+      contextManager: this.contextManager
     });
     this.logBody = config.commonConfig.logBody;
   }
@@ -89,7 +91,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.contextManager = new StackContextManager();
     const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(request);
     return next.handle(tracedReq).pipe(
@@ -153,7 +154,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         },
         this.contextManager.active()
       );
-    this.contextManager._currentContext = setActiveSpan(
+    this.contextManager._currentContext = api.setSpan(
       this.contextManager.active(),
       span
     );

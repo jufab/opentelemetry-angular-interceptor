@@ -16,7 +16,7 @@ module.exports = {
   ],
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json',
+      tsconfig: '<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.html$',
       astTransformers: {
         "before": [
