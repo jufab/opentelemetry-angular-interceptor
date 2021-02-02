@@ -269,7 +269,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
-import { TextMapPropagator, NoopTextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { JaegerHttpTracePropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
 import { OpenTelemetryInjectConfig } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 import { OpenTelemetryConfig } from &#x27;../../../../public-api&#x27;;
@@ -298,8 +298,7 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
    * @return TextMapPropagator as JaegerHttpTracePropagator
    */
   getPropagator(): TextMapPropagator {
-    return new NoopTextMapPropagator();
-    //return new JaegerHttpTracePropagator(this.customHeader); Wait
+    return new JaegerHttpTracePropagator(this.customHeader);
   }
 }
 </code></pre>
