@@ -91,6 +91,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    this.contextManager.enable();
     const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(request);
     return next.handle(tracedReq).pipe(
@@ -128,6 +129,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       ),
       finalize(() => {
         span.end();
+        this.contextManager.disable();
       })
     );
   }
@@ -155,9 +157,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         this.contextManager.active()
       );
     this.contextManager._currentContext = api.setSpan(
-      this.contextManager.active(),
-      span
-    );
+       this.contextManager.active(),
+       span
+     );
     return span;
   }
 
