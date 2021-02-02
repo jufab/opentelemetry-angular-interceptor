@@ -32,7 +32,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
   - [How it works](#how-it-works)
   - [Example](#example)
     - [Run](#run)
-    - [[Optional] Result in OpenTelemtery-collector](#optional-result-in-opentelemtery-collector)
+    - [[Optional] Result in OpenTelemetry-collector](#optional-result-in-opentelemetry-collector)
   - [Troubleshoot](#troubleshoot)
     - [Angular 10 Warning](#angular-10-warning)
     - [Other](#other)
@@ -227,7 +227,7 @@ npm run start:complete-example-app
 
 and open the application at http://localhost:4200
 
-### [Optional] Result in OpenTelemtery-collector
+### [Optional] Result in OpenTelemetry-collector
 
 If you want to see the result in a collector *, there's a docker-compose available in this project.
 

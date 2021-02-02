@@ -67,7 +67,7 @@
 <li><a href="#how-it-works">How it works</a></li>
 <li><a href="#example">Example</a><ul>
 <li><a href="#run">Run</a></li>
-<li><a href="#optional-result-in-opentelemtery-collector">[Optional] Result in OpenTelemtery-collector</a></li>
+<li><a href="#optional-result-in-opentelemetry-collector">[Optional] Result in OpenTelemetry-collector</a></li>
 </ul>
 </li>
 <li><a href="#troubleshoot">Troubleshoot</a><ul>
@@ -212,7 +212,7 @@ export class AppModule {}</code></pre></div><h3 id="optional-logging-in-otelcole
 <h3 id="run">Run</h3>
 <p>To start this Example application, run command :</p>
 <div><pre class="line-numbers"><code class="language-none">npm run start:complete-example-app</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
-<h3 id="optional-result-in-opentelemtery-collector">[Optional] Result in OpenTelemtery-collector</h3>
+<h3 id="optional-result-in-opentelemetry-collector">[Optional] Result in OpenTelemetry-collector</h3>
 <p>If you want to see the result in a collector *, there&#39;s a docker-compose available in this project.</p>
 <p>You can start it with this command :</p>
 <div><pre class="line-numbers"><code class="language-none">docker-compose -f projects/example-app/collector/docker-compose.yaml up -d</code></pre></div><p>Go to the jaeger application (<a href="http://localhost:16686">http://localhost:16686</a>) to see result.</p>
