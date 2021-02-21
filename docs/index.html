@@ -179,7 +179,7 @@ import { environment } from &#39;../environments/environment&#39;;
 })
 export class AppModule {}</code></pre></div><h3 id="optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</h3>
 <p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTELCOL_LOGGER</a> token.</p>
-<p>You can use a custom logger which implements the <a href="https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-api/src/common/Logger.ts">Logger</a> in @opentelemetry/api.</p>
+<p>You can use a custom logger which implements the <a href="https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-api/src/diag/logger.ts">DiagLogger</a> in @opentelemetry/api.</p>
 <p>Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
 <h4 id="ngxlogger">NGXLogger</h4>
 <p>You can use <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>

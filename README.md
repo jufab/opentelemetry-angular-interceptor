@@ -167,7 +167,7 @@ export class AppModule {}
 
 You can add a logger to the [OtelColExporterModule](projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts) with the [OTELCOL_LOGGER](projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts) token.
 
-You can use a custom logger which implements the [Logger](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-api/src/common/Logger.ts) in @opentelemetry/api.
+You can use a custom logger which implements the [DiagLogger](https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-api/src/diag/logger.ts) in @opentelemetry/api.
 
 Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like [ngx-logger](https://www.npmjs.com/package/ngx-logger).
 
