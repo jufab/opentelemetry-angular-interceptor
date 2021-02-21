@@ -98,6 +98,7 @@
       logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: &#39;example-app&#39;, //Service name send in trace
       probabilitySampler: &#39;0.7&#39;, //Samples a configurable percentage of traces, string value between &#39;0&#39; to &#39;1&#39;
+      logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from &#64;opentelemetry/api
     },
     otelcolConfig: {
       url: &#39;http://localhost:55681/v1/trace&#39;, //URL of opentelemetry collector
@@ -113,6 +114,7 @@
 <li>serviceName: (string) Service name in your trace</li>
 <li>probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1</li>
 <li>logBody: (boolean) true add body in a log, nothing otherwise</li>
+<li>logLevel: (DiagLogLevel) log level</li>
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
@@ -194,7 +196,8 @@ export class AppModule {}</code></pre></div><h3 id="optional-logging-in-otelcole
     ...
     { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
     ...
-  ]</code></pre></div><blockquote>
+  ]</code></pre></div><p>Don&#39;t forget to set &quot;logLevel&quot; in <a href="#common-configuration">Common Configuration</a> (Level must be the same between NGXLogger and common configuration)</p>
+<blockquote>
 <p>You can see an example in the <a href="#example">example-app</a>.</p>
 </blockquote>
 <h2 id="how-it-works">How it works</h2>
