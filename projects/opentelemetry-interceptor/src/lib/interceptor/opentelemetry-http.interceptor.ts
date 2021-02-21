@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Sampler, Span, StatusCode } from '@opentelemetry/api';
+import { Sampler, Span, SpanStatusCode, DiagLogger } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
 import {
   SimpleSpanProcessor,
@@ -31,6 +31,7 @@ import {
 import { version, name } from '../../version.json';
 import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
+import { OTELCOL_LOGGER } from '../configuration/opentelemetry-config';
 
 /**
  * OpenTelemetryInterceptor class
@@ -63,7 +64,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
-    private propagatorService: IPropagator
+    private propagatorService: IPropagator,
+    @Optional() @Inject(OTELCOL_LOGGER)
+    private logger: DiagLogger
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
@@ -79,6 +82,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       contextManager: this.contextManager
     });
     this.logBody = config.commonConfig.logBody;
+    api.diag.setLogger(logger);
+    api.diag.setLogLevel(config.commonConfig.logLevel);
   }
 
   /**
@@ -107,7 +112,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
           span.setStatus({
-            code: StatusCode.OK
+            code: SpanStatusCode.OK
           });
         },
         (event: HttpErrorResponse) => {
@@ -123,7 +128,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             stack: event.error
           });
           span.setStatus({
-            code: StatusCode.ERROR
+            code: SpanStatusCode.ERROR
           });
         }
       ),

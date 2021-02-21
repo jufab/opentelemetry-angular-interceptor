@@ -3,14 +3,12 @@ import { IExporter } from '../exporter.interface';
 import { SpanExporter } from '@opentelemetry/tracing';
 import {
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
-  OTELCOL_LOGGER
+  OpenTelemetryInjectConfig
 } from '../../../configuration/opentelemetry-config';
 import {
   CollectorTraceExporter,
   collectorTypes,
 } from '@opentelemetry/exporter-collector';
-import { Logger } from '@opentelemetry/api';
 
 /**
  * OtelcolExporterService class
@@ -27,18 +25,15 @@ export class OtelcolExporterService implements IExporter {
   /**
    * constructor
    * @param config OpenTelemetryConfig
-   * @param logger Logger (Optional)
    */
   constructor(
-    @Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig,
-    @Optional() @Inject(OTELCOL_LOGGER) logger: Logger
+    @Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig
   ) {
     this.otelcolConfig = {
       serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
-      attributes: config.otelcolConfig?.attributes,
-      logger,
+      attributes: config.otelcolConfig?.attributes
     };
   }
 

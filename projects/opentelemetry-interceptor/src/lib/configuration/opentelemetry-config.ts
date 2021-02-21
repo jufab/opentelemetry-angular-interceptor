@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Logger, Attributes } from '@opentelemetry/api';
+import { DiagLogger, SpanAttributes, DiagLogLevel} from '@opentelemetry/api';
 
 /**
  * Common configuration
@@ -15,6 +15,8 @@ export interface CommonCollectorConfig {
   probabilitySampler?: string;
   /** log or not body response in span */
   logBody?:boolean;
+  /** log level for opentelemetry */
+  logLevel?: DiagLogLevel;
 }
 
 /**
@@ -32,7 +34,7 @@ export interface OtelCollectorConfig {
   /**
    * attributes : define some custom attributes
    */
-  attributes?: Attributes;
+  attributes?: SpanAttributes;
 }
 
 /**
@@ -91,4 +93,4 @@ export interface OpenTelemetryConfig {
 export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
 
 /** Logger : injection for a logger compatible */
-export const OTELCOL_LOGGER = new InjectionToken<Logger>('otelcol.logger');
+export const OTELCOL_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');

@@ -1,4 +1,5 @@
-import { LoggerConfig, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerConfig, NgxLoggerLevel } from 'ngx-logger';
+import { DiagLogLevel } from '@opentelemetry/api';
 import {
   OpenTelemetryConfig
 } from '../../../opentelemetry-interceptor/src/public-api';
@@ -20,7 +21,8 @@ export const environment: IEnvironment = {
       production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'example-app', // Service name send in trace
       logBody: true, // true add body in a log, nothing otherwise
-      probabilitySampler: '1' // 75% sampling
+      probabilitySampler: '1', // 75% sampling
+      logLevel:DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
       url: 'http://localhost:55681/v1/trace', // URL of opentelemetry collector
@@ -40,3 +42,4 @@ export const environment: IEnvironment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
