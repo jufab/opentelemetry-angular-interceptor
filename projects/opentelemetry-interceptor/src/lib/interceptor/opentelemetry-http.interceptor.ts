@@ -82,8 +82,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       contextManager: this.contextManager
     });
     this.logBody = config.commonConfig.logBody;
-    api.diag.setLogger(logger);
-    api.diag.setLogLevel(config.commonConfig.logLevel);
+    api.diag.setLogger(logger, config.commonConfig.logLevel);
   }
 
   /**
@@ -162,9 +161,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         this.contextManager.active()
       );
     this.contextManager._currentContext = api.setSpan(
-       this.contextManager.active(),
-       span
-     );
+      this.contextManager.active(),
+      span
+    );
     return span;
   }
 
