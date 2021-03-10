@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   snapshotSerializers: [
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js'
+    'jest-preset-angular/build/serializers/ng-snapshot',
+    'jest-preset-angular/build/serializers/html-comment'
   ]
 };
