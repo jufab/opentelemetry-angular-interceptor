@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.17.0...v0.18.0) (2021-03-10)
+
+
+### Features
+
+* update to version 0.18.0 ([ead3251](https://github.com/jufab/opentelemetry-angular-interceptor/commit/ead3251aeace785bc5e08340549ce1be08072c54))
+
+
+### Bug Fixes
+
+* error package-lock ([c53447a](https://github.com/jufab/opentelemetry-angular-interceptor/commit/c53447a33ee6d72c3c3789f4cf4385d0e13e0207))
+
 ## [0.17.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.16.0...v0.17.0) (2021-02-21)
 
 
