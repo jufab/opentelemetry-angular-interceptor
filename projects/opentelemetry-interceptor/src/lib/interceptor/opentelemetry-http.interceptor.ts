@@ -7,6 +7,7 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
+import { PlatformLocation } from '@angular/common';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
 import { Sampler, Span, SpanStatusCode, DiagLogger } from '@opentelemetry/api';
@@ -66,7 +67,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     @Inject(OTELCOL_PROPAGATOR)
     private propagatorService: IPropagator,
     @Optional() @Inject(OTELCOL_LOGGER)
-    private logger: DiagLogger
+    private logger: DiagLogger,
+    private platformLocation: PlatformLocation
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
@@ -139,12 +141,19 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   }
 
   /**
+   * Get current scheme, hostname and port
+   */
+  private getURL() {
+    return this.platformLocation.href;
+  }
+
+  /**
    * Initialise a span for a request intercepted
    * @param request request
    */
   private initSpan(request: HttpRequest<unknown>): Span {
-    const urlRequest = new URL(request.urlWithParams);
-    const span = this.tracer
+     const urlRequest = (request.urlWithParams.startsWith('http')) ? new URL(request.urlWithParams) : new URL(this.getURL());
+     const span = this.tracer
       .getTracer(name, version)
       .startSpan(
         request.url,

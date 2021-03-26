@@ -49,6 +49,15 @@ describe('OpenTelemetryHttpInterceptor', () => {
     httpControllerMock.verify();
   });
 
+  it('Should accept pathname', () => {
+    const url = '/api/v1/test?key=value';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.url).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
   it('verify with production mode', () => {
     ({ httpClient, httpControllerMock } = defineModuleTest(
       httpClient,
