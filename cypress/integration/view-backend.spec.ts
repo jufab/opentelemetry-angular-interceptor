@@ -10,7 +10,7 @@ describe('View Page', () => {
     cy.get('i').should(() => {
       const value = JSON.parse(localStorage.getItem('consoleLog'));
       expect(value.traceId).to.be.not.null;
-      expect(value.name).to.eq('http://localhost:4200/api/');
+      expect(value.name).to.eq('HTTP GET');
     });
   });
 });
