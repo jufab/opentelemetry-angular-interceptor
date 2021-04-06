@@ -12,7 +12,7 @@ describe('Post Page', () => {
     cy.get('i').contains('result call : test').should(() => {
       const value = JSON.parse(localStorage.getItem('consoleLog'));
       expect(value.traceId).to.be.not.null;
-      expect(value.name).to.eq('http://localhost:4200/api/');
+      expect(value.name).to.eq('HTTP POST');
     });
   });
 });
