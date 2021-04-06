@@ -59,7 +59,12 @@
               "@opentelemetry/core",
               "@opentelemetry/context-base",
               "@opentelemetry/propagator-jaeger",
-              "@opentelemetry/propagator-b3"
+              "@opentelemetry/propagator-b3",
+              "@opentelemetry/instrumentation",
+              "@opentelemetry/instrumentation-xml-http-request",
+              "@opentelemetry/instrumentation-document-load",
+              "@opentelemetry/instrumentation-fetch",
+              "@opentelemetry/context-zone-peer-dep"
             ],
             "aot": true,
             "assets": [

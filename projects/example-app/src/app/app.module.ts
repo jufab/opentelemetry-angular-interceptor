@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { OpenTelemetryInterceptorModule, OTELCOL_LOGGER, OtelColExporterModule, CompositePropagatorModule } from 'projects/opentelemetry-interceptor/src/public-api';
+import { OpenTelemetryInterceptorModule, OTELCOL_LOGGER, OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule } from 'projects/opentelemetry-interceptor/src/public-api';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewBackendComponent } from './view-backend/view-backend.component';
@@ -28,6 +28,7 @@ import { LoggerModule, NGXLogger } from 'ngx-logger';
     OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     OtelColExporterModule,
     CompositePropagatorModule,
+    OtelWebTracerModule,
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
