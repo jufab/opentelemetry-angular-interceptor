@@ -16,7 +16,7 @@ export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaege
 // tslint:enable-next-line: max-line-length
 export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.module';
 //Component
-export { OtelWebTracerModule } from './lib/otel-webtracer/otel-webtracer.module';
+export { OtelWebTracerModule } from './lib/component/otel-webtracer/otel-webtracer.module';
 // Configuration
 export {
   CommonCollectorConfig,
@@ -26,5 +26,6 @@ export {
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,
+  InstrumentationConfig,
   OTELCOL_LOGGER
 } from './lib/configuration/opentelemetry-config';

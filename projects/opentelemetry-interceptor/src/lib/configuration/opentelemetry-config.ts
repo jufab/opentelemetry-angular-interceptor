@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { DiagLogger, SpanAttributes, DiagLogLevel} from '@opentelemetry/api';
+import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
 
 /**
  * Common configuration
@@ -14,9 +14,21 @@ export interface CommonCollectorConfig {
   /** probabilitySampler */
   probabilitySampler?: string;
   /** log or not body response in span */
-  logBody?:boolean;
+  logBody?: boolean;
   /** log level for opentelemetry */
   logLevel?: DiagLogLevel;
+}
+
+/**
+ * Instrumentation Configuration
+ */
+export interface InstrumentationConfig {
+  /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
+  xmlHttpRequest: boolean;
+  /** documentLoad : to add DocumentLoadInstrumentation */
+  documentLoad: boolean;
+  /** fetch : to add FetchInstrumentation */
+  fetch: boolean;
 }
 
 /**
@@ -87,6 +99,8 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
+  /** instrumentationConfig */
+  instrumentationConfig?: InstrumentationConfig;
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
