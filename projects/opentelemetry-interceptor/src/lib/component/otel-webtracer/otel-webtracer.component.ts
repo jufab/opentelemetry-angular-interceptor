@@ -7,7 +7,7 @@ import { InstrumentationService } from '../../services/instrumentation/instrumen
  */
 @Component({
   selector: 'otel-webtracer',
-  template: ''
+  template: '',
 })
 export class OtelWebTracerComponent implements OnInit {
 

@@ -22,10 +22,15 @@ export const environment: IEnvironment = {
       serviceName: 'example-app', // Service name send in trace
       logBody: true, // true add body in a log, nothing otherwise
       probabilitySampler: '1', // 75% sampling
-      logLevel:DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
+      logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
       url: 'http://localhost:55681/v1/trace', // URL of opentelemetry collector
+    },
+    instrumentationConfig: {
+      xmlHttpRequest: true,
+      fetch: true,
+      documentLoad: true,
     }
   },
   loggerConfig: {

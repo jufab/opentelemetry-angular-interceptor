@@ -1,3 +1,3 @@
 module.exports = {
-ignorableDeepImportMatchers: [/build\/.*/i]
+  ignorableDeepImportMatchers: [/build\/.*/i]
 };

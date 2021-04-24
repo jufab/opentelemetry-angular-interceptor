@@ -28,12 +28,12 @@ export class InstrumentationService {
   /**
    * contextManager
    */
-   private contextManager = new ZoneContextManager();
+  private contextManager = new ZoneContextManager();
 
   /**
    * instrumentationOptions
    */
-   private instrumentationOptions: InstrumentationOption[];
+  private instrumentationOptions: InstrumentationOption[];
 
   /**
    * Constructor

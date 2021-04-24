@@ -142,3 +142,37 @@ export const b3PropagatorSingleConfig: OpenTelemetryConfig = {
     multiHeader: '0',
   }
 };
+
+/**
+ * @ignore
+ */
+ export const instrumentationConsoleOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    xmlHttpRequest: true
+  }
+};
+
+/**
+ * @ignore
+ */
+ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: false,
+    production: true
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    xmlHttpRequest: true
+  }
+};

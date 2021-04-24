@@ -24,11 +24,11 @@ export interface CommonCollectorConfig {
  */
 export interface InstrumentationConfig {
   /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
-  xmlHttpRequest: boolean;
+  xmlHttpRequest?: boolean;
   /** documentLoad : to add DocumentLoadInstrumentation */
-  documentLoad: boolean;
+  documentLoad?: boolean;
   /** fetch : to add FetchInstrumentation */
-  fetch: boolean;
+  fetch?: boolean;
 }
 
 /**
