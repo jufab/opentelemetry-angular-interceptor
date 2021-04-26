@@ -18,6 +18,7 @@ export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http
 // Configuration
 export {
   CommonCollectorConfig,
+  BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
