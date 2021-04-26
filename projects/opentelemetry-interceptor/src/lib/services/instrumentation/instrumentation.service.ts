@@ -51,8 +51,8 @@ export class InstrumentationService {
    * Init instrumentation on init
    */
   public initInstrumentation() {
-    this.insertConsoleSpanExporter(this.config.commonConfig.console);
-    this.insertSpanProcessorProductionMode(this.config.commonConfig.production, this.exporterService);
+    this.insertConsoleSpanExporter(this.config.commonConfig?.console);
+    this.insertSpanProcessorProductionMode(this.config.commonConfig?.production, this.exporterService);
     this.addInstrumentationPlugin(this.config.instrumentationConfig);
 
     this.tracerProvider.register({
@@ -102,9 +102,9 @@ export class InstrumentationService {
    */
   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
     this.instrumentationOptions = [
-      new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig.xmlHttpRequest }),
-      new DocumentLoadInstrumentation({ enabled: instrumentationConfig.documentLoad }),
-      new FetchInstrumentation({ enabled: instrumentationConfig.fetch })
+      new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig?.xmlHttpRequest }),
+      new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
+      new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
     ]
   }
 }

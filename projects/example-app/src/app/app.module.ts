@@ -28,7 +28,6 @@ import { LoggerModule, NGXLogger } from 'ngx-logger';
     OpenTelemetryInterceptorModule.forRoot(environment.openTelemetryConfig),
     OtelColExporterModule,
     CompositePropagatorModule,
-    OtelWebTracerModule.forRoot(environment.openTelemetryConfig),
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
