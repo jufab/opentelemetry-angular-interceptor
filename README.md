@@ -20,6 +20,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
     - [Configuration](#configuration)
       - [Example global Configuration](#example-global-configuration)
       - [Common Configuration](#common-configuration)
+      - [BatchSpanProcessor Configuration](#batchspanprocessor-configuration)
       - [OpenTelemetry-collector Configuration](#opentelemetry-collector-configuration)
       - [Jaeger Propagator Configuration](#jaeger-propagator-configuration)
       - [Zipkin Exporter Configuration](#zipkin-exporter-configuration)
@@ -54,6 +55,7 @@ Use the "OpentelemetryConfig" interface to configure the Tracer
 ```typescript
 export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
+  batchSpanProcessorConfig?: BatchSpanProcessorConfig;
   otelcolConfig?: OtelCollectorConfig;
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
@@ -75,6 +77,12 @@ opentelemetryConfig: {
       probabilitySampler: '0.7', //Samples a configurable percentage of traces, string value between '0' to '1'
       logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from @opentelemetry/api
     },
+    batchSpanProcessorConfig: { //Only if production = true in commonConfig
+      maxQueueSize: '2048', // The maximum queue size. After the size is reached spans are dropped.
+      maxExportBatchSize: '512', // The maximum batch size of every export. It must be smaller or equal to maxQueueSize.
+      scheduledDelayMillis: '5000', // The interval between two consecutive exports
+      exportTimeoutMillis: '30000', // How long the export can run before it is cancelled
+    },
     otelcolConfig: {
       url: 'http://localhost:55681/v1/trace', //URL of opentelemetry collector
     },
@@ -93,6 +101,15 @@ opentelemetryConfig: {
  * probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1
  * logBody: (boolean) true add body in a log, nothing otherwise
  * logLevel: (DiagLogLevel) log level
+
+#### BatchSpanProcessor Configuration
+
+_This configuration applies if production is true in commonConfig._
+
+* maxQueueSize: (string) The maximum queue size. After the size is reached spans are dropped.
+* maxExportBatchSize: (string) The maximum batch size of every export. It must be smaller or equal to maxQueueSize.
+* scheduledDelayMillis: (string) The interval between two consecutive exports
+* exportTimeoutMillis: (string) How long the export can run before it is cancelled
 
 #### OpenTelemetry-collector Configuration
 
