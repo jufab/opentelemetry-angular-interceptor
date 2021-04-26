@@ -16,7 +16,7 @@ import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
-  SpanExporter,
+  BufferConfig
 } from '@opentelemetry/tracing';
 import {
   AlwaysOnSampler,
@@ -71,13 +71,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     private platformLocation: PlatformLocation
   ) {
     this.tracer = new WebTracerProvider({
-      sampler: this.defineProbabilitySampler(Number(config.commonConfig.probabilitySampler)),
+      sampler: this.defineProbabilitySampler(this.convertStringToNumber(config.commonConfig.probabilitySampler)),
     });
-    this.insertSpanProcessorProductionMode(
-      this.config.commonConfig.production,
-      this.exporterService.getExporter()
-    );
-    this.insertConsoleSpanExporter(this.config.commonConfig.console);
+    this.insertSpanProcessorProductionMode();
+    this.insertConsoleSpanExporter();
     this.contextManager = new StackContextManager();
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
@@ -152,8 +149,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param request request
    */
   private initSpan(request: HttpRequest<unknown>): Span {
-     const urlRequest = (request.urlWithParams.startsWith('http')) ? new URL(request.urlWithParams) : new URL(this.getURL());
-     const span = this.tracer
+    const urlRequest = (request.urlWithParams.startsWith('http')) ? new URL(request.urlWithParams) : new URL(this.getURL());
+    const span = this.tracer
       .getTracer(name, version)
       .startSpan(
         `${urlRequest.protocol.replace(':', '').toUpperCase()} ${request.method.toUpperCase()}`,
@@ -199,10 +196,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * Insert in tracer the console span if config is true
-   * @param console config to insert console span
    */
-  private insertConsoleSpanExporter(console: boolean) {
-    if (console) {
+  private insertConsoleSpanExporter() {
+    if (this.config.commonConfig.console) {
       this.tracer.addSpanProcessor(
         new SimpleSpanProcessor(new ConsoleSpanExporter())
       );
@@ -212,17 +208,18 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Insert BatchSpanProcessor in production mode
    * SimpleSpanProcessor otherwise
-   * @param production mode
-   * @param spanExporter Exporter
    */
-  private insertSpanProcessorProductionMode(
-    production: boolean,
-    spanExporter: SpanExporter
-  ) {
+  private insertSpanProcessorProductionMode() {
+    const bufferConfig: BufferConfig = {
+      maxExportBatchSize: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.maxExportBatchSize),
+      scheduledDelayMillis: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.scheduledDelayMillis),
+      exportTimeoutMillis: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.exportTimeoutMillis),
+      maxQueueSize: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.maxQueueSize)
+    }
     this.tracer.addSpanProcessor(
-      production
-        ? new BatchSpanProcessor(spanExporter)
-        : new SimpleSpanProcessor(spanExporter)
+      this.config.commonConfig.production
+        ? new BatchSpanProcessor(this.exporterService.getExporter(), bufferConfig)
+        : new SimpleSpanProcessor(this.exporterService.getExporter())
     );
   }
 
@@ -232,13 +229,22 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
-    if (sampleConfig > 1) {
+    if (sampleConfig >= 1) {
       return new ParentBasedSampler({ root: new AlwaysOnSampler() });
     }
-    else if (sampleConfig <= 0) {
+    else if (sampleConfig <= 0 || sampleConfig === undefined) {
       return new ParentBasedSampler({ root: new AlwaysOffSampler() });
     } else {
       return new ParentBasedSampler({ root: new TraceIdRatioBasedSampler(sampleConfig) });
     }
+  }
+
+  /**
+   * convert String to Number (or undefined)
+   * @param value
+   * @returns number or undefined
+   */
+  private convertStringToNumber(value: string): number {
+    return value !== undefined ? Number(value) : undefined
   }
 }

@@ -19,6 +19,7 @@ import {
   otelcolExporterWithProbabilitySamplerAtZeroAndCompositeConfig,
   otelcolExporterWithProbabilitySamplerAtTwoConfig,
   otelcolExporterProductionConfig,
+  otelcolExporterProductionAndBatchSpanProcessorConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
@@ -159,6 +160,22 @@ describe('OpenTelemetryHttpInterceptor', () => {
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
     const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('verify with BatchSpanProcessorConfig', () => {
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelcolExporterProductionAndBatchSpanProcessorConfig
+    ));
+
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
     expect(req.request.headers.get('traceparent')).not.toBeNull();
     req.flush({});
     httpControllerMock.verify();

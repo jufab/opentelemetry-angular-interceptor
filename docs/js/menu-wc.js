@@ -154,6 +154,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/B3PropagatorConfig.html" data-type="entity-link">B3PropagatorConfig</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/BatchSpanProcessorConfig.html" data-type="entity-link">BatchSpanProcessorConfig</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CommonCollectorConfig.html" data-type="entity-link">CommonCollectorConfig</a>
                             </li>
                             <li class="link">
