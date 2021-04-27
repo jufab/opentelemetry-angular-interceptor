@@ -45,7 +45,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 With npm :
 
 ```
-npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/exporter-zipkin @opentelemetry/propagator-jaeger @opentelemetry/propagator-b3
+npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/api @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/exporter-zipkin @opentelemetry/propagator-jaeger @opentelemetry/propagator-b3
 ```
 
 ### Configuration
