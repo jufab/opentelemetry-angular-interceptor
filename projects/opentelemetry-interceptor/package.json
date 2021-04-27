@@ -17,11 +17,12 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "@opentelemetry/exporter-collector": "^0.18.x",
-    "@opentelemetry/web": "^0.18.x",
-    "@opentelemetry/exporter-zipkin": "^0.18.x",
-    "@opentelemetry/propagator-jaeger": "^0.18.x",
-    "@opentelemetry/propagator-b3": "^0.18.x"
+    "@opentelemetry/exporter-collector": "^0.19.x",
+    "@opentelemetry/web": "^0.19.x",
+    "@opentelemetry/exporter-zipkin": "^0.19.x",
+    "@opentelemetry/propagator-jaeger": "^0.19.x",
+    "@opentelemetry/propagator-b3": "^0.19.x",
+    "@opentelemetry/api": "^1.0.0-rc.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

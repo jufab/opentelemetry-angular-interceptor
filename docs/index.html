@@ -47,6 +47,7 @@
 <li><a href="#configuration">Configuration</a><ul>
 <li><a href="#example-global-configuration">Example global Configuration</a></li>
 <li><a href="#common-configuration">Common Configuration</a></li>
+<li><a href="#batchspanprocessor-configuration">BatchSpanProcessor Configuration</a></li>
 <li><a href="#opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</a></li>
 <li><a href="#jaeger-propagator-configuration">Jaeger Propagator Configuration</a></li>
 <li><a href="#zipkin-exporter-configuration">Zipkin Exporter Configuration</a></li>
@@ -85,6 +86,7 @@
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
+  batchSpanProcessorConfig?: BatchSpanProcessorConfig;
   otelcolConfig?: OtelCollectorConfig;
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
@@ -99,6 +101,12 @@
       serviceName: &#39;example-app&#39;, //Service name send in trace
       probabilitySampler: &#39;0.7&#39;, //Samples a configurable percentage of traces, string value between &#39;0&#39; to &#39;1&#39;
       logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from &#64;opentelemetry/api
+    },
+    batchSpanProcessorConfig: { //Only if production = true in commonConfig
+      maxQueueSize: &#39;2048&#39;, // The maximum queue size. After the size is reached spans are dropped.
+      maxExportBatchSize: &#39;512&#39;, // The maximum batch size of every export. It must be smaller or equal to maxQueueSize.
+      scheduledDelayMillis: &#39;5000&#39;, // The interval between two consecutive exports
+      exportTimeoutMillis: &#39;30000&#39;, // How long the export can run before it is cancelled
     },
     otelcolConfig: {
       url: &#39;http://localhost:55681/v1/trace&#39;, //URL of opentelemetry collector
@@ -115,6 +123,14 @@
 <li>probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1</li>
 <li>logBody: (boolean) true add body in a log, nothing otherwise</li>
 <li>logLevel: (DiagLogLevel) log level</li>
+</ul>
+<h4 id="batchspanprocessor-configuration">BatchSpanProcessor Configuration</h4>
+<p><em>This configuration applies if production is true in commonConfig.</em></p>
+<ul>
+<li>maxQueueSize: (string) The maximum queue size. After the size is reached spans are dropped.</li>
+<li>maxExportBatchSize: (string) The maximum batch size of every export. It must be smaller or equal to maxQueueSize.</li>
+<li>scheduledDelayMillis: (string) The interval between two consecutive exports</li>
+<li>exportTimeoutMillis: (string) How long the export can run before it is cancelled</li>
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>

@@ -32,6 +32,25 @@ export const otelcolExporterProductionConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
+ export const otelcolExporterProductionAndBatchSpanProcessorConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    production: true,
+  },
+  batchSpanProcessorConfig: {
+    maxExportBatchSize : '512',
+    scheduledDelayMillis: '5000',
+    exportTimeoutMillis: '30000',
+    maxQueueSize: '2048',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+};
+
+/**
+ * @ignore
+ */
 export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',

@@ -32,6 +32,20 @@ export interface InstrumentationConfig {
 }
 
 /**
+ * BatchSpanExporter Configuration
+ */
+export interface BatchSpanProcessorConfig {
+  /** The maximum queue size. After the size is reached spans are dropped. */
+  maxQueueSize?: string;
+  /** The maximum batch size of every export. It must be smaller or equal to maxQueueSize. */
+  maxExportBatchSize?: string;
+  /** The interval between two consecutive exports */
+  scheduledDelayMillis?: string;
+  /** How long the export can run before it is cancelled */
+  exportTimeoutMillis?: string;
+}
+
+/**
  * OpenTelemetry Collector configuration
  */
 export interface OtelCollectorConfig {
@@ -91,6 +105,8 @@ export interface B3PropagatorConfig {
 export interface OpenTelemetryConfig {
   /** commonConfig */
   commonConfig: CommonCollectorConfig;
+  /** batchSpanProcessorConfig */
+  batchSpanProcessorConfig?: BatchSpanProcessorConfig;
   /** otelcolConfig */
   otelcolConfig?: OtelCollectorConfig;
   /** zipkinConfig */

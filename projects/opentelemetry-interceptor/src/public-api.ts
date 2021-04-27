@@ -20,6 +20,7 @@ export { OtelWebTracerModule } from './lib/otel-webtracer.module';
 // Configuration
 export {
   CommonCollectorConfig,
+  BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
