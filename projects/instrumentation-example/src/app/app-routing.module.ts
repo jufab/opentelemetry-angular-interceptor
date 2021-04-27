@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { ViewBackendComponent } from './view-backend/view-backend.component';
+import { PostBackendComponent } from './post-backend/post-backend.component';
+import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'view', component: ViewBackendComponent },
+  { path: 'post', component: PostBackendComponent },
+  { path: 'jsonp', component: JsonpBackendComponent },
+  { path: '', redirectTo: '/view', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

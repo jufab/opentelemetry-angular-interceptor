@@ -35,21 +35,21 @@
         }
       }
     },
-    "example-app": {
+    "interceptor-example": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/example-app",
-      "sourceRoot": "projects/example-app/src",
+      "root": "projects/interceptor-example",
+      "sourceRoot": "projects/interceptor-example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/example-app",
-            "index": "projects/example-app/src/index.html",
-            "main": "projects/example-app/src/main.ts",
-            "polyfills": "projects/example-app/src/polyfills.ts",
-            "tsConfig": "projects/example-app/tsconfig.app.json",
+            "outputPath": "dist/interceptor-example",
+            "index": "projects/interceptor-example/src/index.html",
+            "main": "projects/interceptor-example/src/main.ts",
+            "polyfills": "projects/interceptor-example/src/polyfills.ts",
+            "tsConfig": "projects/interceptor-example/tsconfig.app.json",
             "allowedCommonJsDependencies": [
               "@opentelemetry/api",
               "@opentelemetry/exporter-collector",
@@ -68,12 +68,12 @@
             ],
             "aot": true,
             "assets": [
-              "projects/example-app/src/favicon.ico",
-              "projects/example-app/src/assets"
+              "projects/interceptor-example/src/favicon.ico",
+              "projects/interceptor-example/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "projects/example-app/src/styles.css"
+              "projects/interceptor-example/src/styles.css"
             ],
             "scripts": []
           },
@@ -81,8 +81,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/example-app/src/environments/environment.ts",
-                  "with": "projects/example-app/src/environments/environment.prod.ts"
+                  "replace": "projects/interceptor-example/src/environments/environment.ts",
+                  "with": "projects/interceptor-example/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -111,28 +111,28 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "example-app:build",
-            "proxyConfig": "projects/example-app/proxy.conf.json"
+            "browserTarget": "interceptor-example:build",
+            "proxyConfig": "projects/interceptor-example/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-app:build:production"
+              "browserTarget": "interceptor-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-app:build"
+            "browserTarget": "interceptor-example:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/example-app/tsconfig.app.json",
-              "projects/example-app/tsconfig.spec.json",
-              "projects/example-app/e2e/tsconfig.json"
+              "projects/interceptor-example/tsconfig.app.json",
+              "projects/interceptor-example/tsconfig.spec.json",
+              "projects/interceptor-example/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -178,6 +178,7 @@
               "projects/instrumentation-example/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "projects/instrumentation-example/src/styles.css"
             ],
             "scripts": []
@@ -216,7 +217,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "instrumentation-example:build"
+            "browserTarget": "instrumentation-example:build",
+            "proxyConfig": "projects/instrumentation-example/proxy.conf.json"
           },
           "configurations": {
             "production": {

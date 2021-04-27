@@ -6,6 +6,7 @@ import {
 
 interface IEnvironment {
   production: boolean;
+  urlTest: string;
   openTelemetryConfig: OpenTelemetryConfig;
   loggerConfig: LoggerConfig;
 }
@@ -13,12 +14,13 @@ interface IEnvironment {
 // Example to configure the angular-interceptor library
 export const environment: IEnvironment = {
   production: false,
+  urlTest: 'http://localhost:4200/api',
   openTelemetryConfig: {
     commonConfig: {
       console: true, // Display trace on console
       production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'instrumentation-example', // Service name send in trace
-      probabilitySampler: '1', // 75% sampling
+      probabilitySampler: '0.75', // 75% sampling
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
