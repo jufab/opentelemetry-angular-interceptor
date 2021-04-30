@@ -71,7 +71,7 @@ _From the example-app_
 opentelemetryConfig: {
     commonConfig: {
       console: true, //(boolean) Display trace on console
-      production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false) more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-api#tracing
+      production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: 'example-app', //Service name send in trace
       probabilitySampler: '0.7', //Samples a configurable percentage of traces, string value between '0' to '1'
@@ -114,21 +114,21 @@ _This configuration applies if production is true in commonConfig._
 #### OpenTelemetry-collector Configuration
 
 * url: (string) url of opentelemetry collector (default : http://localhost:55681/v1/trace)
-* headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector)
-* attributes : list of custom attributes (more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector)
+* headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
+* attributes : list of custom attributes (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
 
 #### Jaeger Propagator Configuration
 
-* customHeader: (string) custom header (more info : https://github.com/open-telemetry/opentelemetry-js-contrib/tree/master/propagators/opentelemetry-propagator-jaeger)
+* customHeader: (string) custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger)
 
 #### Zipkin Exporter Configuration
 
 * url: (string) url of zipkin collector (default : http://localhost:9411/api/v2/spans)
-* headers: list of custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin)
+* headers: list of custom header (more info : hhttps://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
 
 #### B3 Propagator Configuration
 
-* multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-propagator-b3)
+* multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3)
 
 ### Angular module
 
@@ -137,17 +137,17 @@ To insert OpenTelemetryInterceptorModule, you can add in your application module
 #### Exporter module
 
 There is 3 exporters:
-* OtelColExporterModule : OpenTelemetry exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-collector)
+* OtelColExporterModule : OpenTelemetry exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
 * ConsoleSpanExporterModule : Console Exporter
-* ZipkinExporterModule : Zipkin Exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-exporter-zipkin)
+* ZipkinExporterModule : Zipkin Exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
 
 #### Propagator module
 
-there is 5 propagators (more info about propagator: https://github.com/open-telemetry/opentelemetry-js/tree/master/packages/opentelemetry-core)
+there is 5 propagators (more info about propagator: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core)
 * NoopHttpTextPropagatorModule : This is a fake propagator
 * B3PropagatorModule : Use B3 propagator
 * HttpTraceContextPropagatorModule : Use HttpTraceContext propagator
-* JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js-contrib/tree/master/propagators/opentelemetry-propagator-jaeger)
+* JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
 * CompositePropagatorModule : use all of the propagator
 
 
@@ -184,7 +184,7 @@ export class AppModule {}
 
 You can add a logger to the [OtelColExporterModule](projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts) with the [OTELCOL_LOGGER](projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts) token.
 
-You can use a custom logger which implements the [DiagLogger](https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-api/src/diag/logger.ts) in @opentelemetry/api.
+You can use a custom logger which implements the [DiagLogger](https://open-telemetry.github.io/opentelemetry-js/interfaces/diaglogger.html) in @opentelemetry/api.
 
 Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like [ngx-logger](https://www.npmjs.com/package/ngx-logger).
 
@@ -223,7 +223,7 @@ This library is based on [HttpClientModule](https://angular.io/api/common/http/H
 
 OpenTelemetryInterceptor implement an [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor) and the intercept method.
 
-This implementation initialise a [WebTracerProvider](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-web/src/WebTracerProvider.ts), create a [Span](https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html) and add [header propagation](https://open-telemetry.github.io/opentelemetry-js/interfaces/httptextpropagator.html) in the current call.
+This implementation initialise a [WebTracerProvider](https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-web/src/WebTracerProvider.ts), create a [Span](https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html) and add [header propagation](https://open-telemetry.github.io/opentelemetry-js/interfaces/textmappropagator.html) in the current call.
 
 > The response body is adding by an event in span.
 
@@ -231,7 +231,7 @@ This implementation initialise a [WebTracerProvider](https://github.com/open-tel
 
 This project have an "example-app" as Angular application example.
 
-[projects/example-app](https://github.com/jufab/opentelemetry-angular-interceptor/tree/master/projects/example-app)
+[projects/example-app](projects/example-app)
 
 You can see how configure and insert this module.
 
