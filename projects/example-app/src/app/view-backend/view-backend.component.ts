@@ -11,12 +11,17 @@ import { Result } from '../result';
 export class ViewBackendComponent implements OnInit {
 
   result: Result;
+  result2: Result;
 
   constructor(private exampleService: ExampleService, private logger: NGXLogger) { }
 
   ngOnInit(): void {
     this.logger.debug("View Backend Component");
-    this.exampleService.getApiBackend().subscribe(result => this.result = result);
+    //this.exampleService.getApiBackend().subscribe(result => this.result = result);
+    this.exampleService.getApiParallelBackEnd().subscribe(({result, result2}) => {
+      this.result = result;
+      this.result2 = result2;
+    });
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Result } from './result';
@@ -17,6 +17,13 @@ export class ExampleService {
     return this.http
       .get(`${this.urlTestBackend}/`, {})
       .pipe(map((result: Result) => result));
+  }
+
+  getApiParallelBackEnd() : Observable<any> {
+    return forkJoin({
+      result: this.getApiBackend(),
+      result2: this.getApiBackend()
+    });
   }
 
   postApiBackend(result: Result) {
