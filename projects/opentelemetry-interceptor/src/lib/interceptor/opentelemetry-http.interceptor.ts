@@ -94,6 +94,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    this.contextManager.disable(); //FIX - reinit contextManager for each http call
     this.contextManager.enable();
     const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(request);
