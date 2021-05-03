@@ -187,11 +187,11 @@ _this configuration is only for the instrumentation Mode_
 
 You need 3 modules to add to your application.
 
-- Propagator Module : to define propagation in your HTTP header
-- Exporter Module : to define type and export of traces.
+- [Exporter Module](#exporter-module) : to define type and export of traces.
+- [Propagator Module](#propagator-module) : to define propagation in your HTTP header.
 - Last Module, 2 choices :  
-  - [OpenTelemetryInterceptorModule](#interceptor-module) : to activate interceptor in all your http call
-  - [OtelWebTracerModule](#instrumentation-module) : to activate instrumentation (you need a component to activate it, see [Component otel-instrumentation](#component-otel-instrumentation))
+  - [OpenTelemetryInterceptorModule](#interceptor-module) : to activate interceptor in all your http call.
+  - [OtelWebTracerModule](#instrumentation-module) : to activate instrumentation (you need a component to activate it, see [Component otel-instrumentation](#component-otel-instrumentation)).
 
 #### Commons Module
 
