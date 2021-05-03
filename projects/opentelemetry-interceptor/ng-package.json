@@ -14,7 +14,12 @@
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core",
       "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger",
-      "@opentelemetry/propagator-b3": "@opentelemetry/propagator-b3"
+      "@opentelemetry/propagator-b3": "@opentelemetry/propagator-b3",
+      "@opentelemetry/context-zone-peer-dep": "@opentelemetry/context-zone-peer-dep",
+      "@opentelemetry/instrumentation": "@opentelemetry/instrumentation",
+      "@opentelemetry/instrumentation-document-load": "@opentelemetry/instrumentation-document-load",
+      "@opentelemetry/instrumentation-fetch": "@opentelemetry/instrumentation-fetch",
+      "@opentelemetry/instrumentation-xml-http-request": "@opentelemetry/instrumentation-xml-http-request"
     }
   }
 }

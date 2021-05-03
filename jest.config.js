@@ -11,7 +11,8 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/opentelemetry-interceptor/',
-    '<rootDir>/projects/example-app/',
+    '<rootDir>/projects/instrumentation-example/',
+    '<rootDir>/projects/interceptor-example/',
     '<rootDir>/cypress/'
   ],
   globals: {

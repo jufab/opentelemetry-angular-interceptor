@@ -1,0 +1,24 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>OpenTelemetry Tracing</mat-card-title>
+      <mat-card-subtitle>Example about this interceptor</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="opentelemery-config">
+      <p>This is a form to post a value and retrieve it in trace</p>
+      <form (ngSubmit)="onSubmit(resultForm.value)" #resultForm="ngForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a Value</mat-label>
+          <input matInput placeholder="Value" name="avalue" ngModel required>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button type="submit" color="accent">Submit</button>
+          <button mat-stroked-button type="reset" color="primary">Reset</button>
+        </div>
+      </form>
+      <div class="result">
+        <p><i>result call : {{result?.result}}</i></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

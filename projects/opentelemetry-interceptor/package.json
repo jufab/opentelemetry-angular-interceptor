@@ -22,7 +22,12 @@
     "@opentelemetry/exporter-zipkin": "^0.19.x",
     "@opentelemetry/propagator-jaeger": "^0.19.x",
     "@opentelemetry/propagator-b3": "^0.19.x",
-    "@opentelemetry/api": "^1.0.0-rc.0"
+    "@opentelemetry/api": "^1.0.0-rc.0",
+    "@opentelemetry/context-zone-peer-dep": "^0.19.x",
+    "@opentelemetry/instrumentation": "^0.19.x",
+    "@opentelemetry/instrumentation-document-load": "^0.16.x",
+    "@opentelemetry/instrumentation-fetch": "^0.19.x",
+    "@opentelemetry/instrumentation-xml-http-request": "^0.19.x"
   },
   "dependencies": {
     "tslib": "^2.0.0"

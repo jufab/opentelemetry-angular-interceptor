@@ -15,7 +15,4 @@ Todo in project...
 
 ### Done ✓
 
-- [x] Zipkin  
-  - [x] Add Zipkin exporter (when it's available)  
-  - [x] Add more configuration for Zipkin : [here](https://github.com/open-telemetry/opentelemetry-js/blob/master/packages/opentelemetry-exporter-zipkin/src/types.ts)  
 

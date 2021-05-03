@@ -35,21 +35,21 @@
         }
       }
     },
-    "example-app": {
+    "interceptor-example": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/example-app",
-      "sourceRoot": "projects/example-app/src",
+      "root": "projects/interceptor-example",
+      "sourceRoot": "projects/interceptor-example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/example-app",
-            "index": "projects/example-app/src/index.html",
-            "main": "projects/example-app/src/main.ts",
-            "polyfills": "projects/example-app/src/polyfills.ts",
-            "tsConfig": "projects/example-app/tsconfig.app.json",
+            "outputPath": "dist/interceptor-example",
+            "index": "projects/interceptor-example/src/index.html",
+            "main": "projects/interceptor-example/src/main.ts",
+            "polyfills": "projects/interceptor-example/src/polyfills.ts",
+            "tsConfig": "projects/interceptor-example/tsconfig.app.json",
             "allowedCommonJsDependencies": [
               "@opentelemetry/api",
               "@opentelemetry/exporter-collector",
@@ -57,18 +57,22 @@
               "@opentelemetry/tracing",
               "@opentelemetry/web",
               "@opentelemetry/core",
-              "@opentelemetry/context-base",
               "@opentelemetry/propagator-jaeger",
-              "@opentelemetry/propagator-b3"
+              "@opentelemetry/propagator-b3",
+              "@opentelemetry/instrumentation",
+              "@opentelemetry/instrumentation-xml-http-request",
+              "@opentelemetry/instrumentation-document-load",
+              "@opentelemetry/instrumentation-fetch",
+              "@opentelemetry/context-zone-peer-dep"
             ],
             "aot": true,
             "assets": [
-              "projects/example-app/src/favicon.ico",
-              "projects/example-app/src/assets"
+              "projects/interceptor-example/src/favicon.ico",
+              "projects/interceptor-example/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "projects/example-app/src/styles.css"
+              "projects/interceptor-example/src/styles.css"
             ],
             "scripts": []
           },
@@ -76,8 +80,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/example-app/src/environments/environment.ts",
-                  "with": "projects/example-app/src/environments/environment.prod.ts"
+                  "replace": "projects/interceptor-example/src/environments/environment.ts",
+                  "with": "projects/interceptor-example/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -106,32 +110,166 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "example-app:build",
-            "proxyConfig": "projects/example-app/proxy.conf.json"
+            "browserTarget": "interceptor-example:build",
+            "proxyConfig": "projects/interceptor-example/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-app:build:production"
+              "browserTarget": "interceptor-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-app:build"
+            "browserTarget": "interceptor-example:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/example-app/tsconfig.app.json",
-              "projects/example-app/tsconfig.spec.json",
-              "projects/example-app/e2e/tsconfig.json"
+              "projects/interceptor-example/tsconfig.app.json",
+              "projects/interceptor-example/tsconfig.spec.json",
+              "projects/interceptor-example/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "instrumentation-example": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/instrumentation-example",
+      "sourceRoot": "projects/instrumentation-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/instrumentation-example",
+            "index": "projects/instrumentation-example/src/index.html",
+            "main": "projects/instrumentation-example/src/main.ts",
+            "polyfills": "projects/instrumentation-example/src/polyfills.ts",
+            "tsConfig": "projects/instrumentation-example/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "@opentelemetry/api",
+              "@opentelemetry/exporter-collector",
+              "@opentelemetry/exporter-zipkin",
+              "@opentelemetry/tracing",
+              "@opentelemetry/web",
+              "@opentelemetry/core",
+              "@opentelemetry/propagator-jaeger",
+              "@opentelemetry/propagator-b3",
+              "@opentelemetry/instrumentation",
+              "@opentelemetry/instrumentation-xml-http-request",
+              "@opentelemetry/instrumentation-document-load",
+              "@opentelemetry/instrumentation-fetch",
+              "@opentelemetry/context-zone-peer-dep"
+            ],
+            "aot": true,
+            "assets": [
+              "projects/instrumentation-example/src/favicon.ico",
+              "projects/instrumentation-example/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "projects/instrumentation-example/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/instrumentation-example/src/environments/environment.ts",
+                  "with": "projects/instrumentation-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "instrumentation-example:build",
+            "proxyConfig": "projects/instrumentation-example/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "instrumentation-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "instrumentation-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/instrumentation-example/src/test.ts",
+            "polyfills": "projects/instrumentation-example/src/polyfills.ts",
+            "tsConfig": "projects/instrumentation-example/tsconfig.spec.json",
+            "karmaConfig": "projects/instrumentation-example/karma.conf.js",
+            "assets": [
+              "projects/instrumentation-example/src/favicon.ico",
+              "projects/instrumentation-example/src/assets"
+            ],
+            "styles": [
+              "projects/instrumentation-example/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/instrumentation-example/tsconfig.app.json",
+              "projects/instrumentation-example/tsconfig.spec.json",
+              "projects/instrumentation-example/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/instrumentation-example/e2e/protractor.conf.js",
+            "devServerTarget": "instrumentation-example:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "instrumentation-example:serve:production"
+            }
           }
         }
       }

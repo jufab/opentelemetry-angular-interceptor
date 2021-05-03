@@ -22,9 +22,6 @@
       "opentelemetry-interceptor": [
         "dist/opentelemetry-interceptor/opentelemetry-interceptor",
         "dist/opentelemetry-interceptor"
-      ],
-      "@exporter": [
-        "projects/opentelemetry-interceptor/src/lib/services/exporter"
       ]
     }
   },
