@@ -132,7 +132,6 @@ export const environment: IEnvironment = {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
-      userInteraction: true,
     }
   }
 };
@@ -181,7 +180,6 @@ _This configuration applies if production is true in commonConfig._
 _this configuration is only for the instrumentation Mode_
 
 * xmlHttpRequest: (boolean) Activate XmlHttpRequest plugin
-* userInteraction: (boolean) Activate UserInteraction plugin
 * fetch:(boolean) Activate fetch plugin
 * documentLoad: (boolean) Activate documentLoad plugin
 
