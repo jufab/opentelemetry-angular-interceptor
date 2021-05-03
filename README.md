@@ -185,9 +185,17 @@ _this configuration is only for the instrumentation Mode_
 
 ### Angular module
 
+You need 3 modules to add to your application
+
+- Propagator Module : to define propagation in your HTTP header
+- Exporter Module : to define type and export of traces.
+- Last Module, 2 choices :  
+  - OpenTelemetryInterceptorModule : to activate interceptor in all your http call
+  - OtelWebTracerModule : to activate instrumentation (you need a component to)
+
 #### Commons Module
 
-To insert OpenTelemetryInterceptorModule, you can add in your application module (generally app.module.ts)
+You add this modules in your application module (generally app.module.ts)
 
 ##### Exporter module
 
