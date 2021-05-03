@@ -30,6 +30,7 @@ export const environment: IEnvironment = {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
+      userInteraction: true,
     }
   },
   loggerConfig: {

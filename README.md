@@ -54,11 +54,10 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 This library offers two possibilities to use it in Angular App : 
 - **Interceptor** : catch every external call with the HttpClient from angular
 - **Instrumentation** : use instrumentation from opentelemetry-js with three web plugins : 
-  - [@opentelemetry/instrumentation-document-load]()
-  - [@opentelemetry/instrumentation-fetch]()
-  - [@opentelemetry/instrumentation-xml-http-request]()
-
-
+  - [@opentelemetry/instrumentation-document-load](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
+  - [@opentelemetry/instrumentation-user-interaction](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-user-interaction)
+  - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch)
+  - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request)
 
 ### Installation
 
@@ -134,6 +133,7 @@ export const environment: IEnvironment = {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
+      userInteraction: true,
     }
   }
 };
@@ -182,6 +182,7 @@ _This configuration applies if production is true in commonConfig._
 _this configuration is only for the instrumentation Mode_
 
 * xmlHttpRequest: (boolean) Activate XmlHttpRequest plugin
+* userInteraction: (boolean) Activate UserInteraction plugin
 * fetch:(boolean) Activate fetch plugin
 * documentLoad: (boolean) Activate documentLoad plugin
 

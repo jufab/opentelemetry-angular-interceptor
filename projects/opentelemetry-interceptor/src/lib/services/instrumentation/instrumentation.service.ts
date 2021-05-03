@@ -9,6 +9,7 @@ import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from '@o
 import { OpenTelemetryInjectConfig, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
 import { OTELCOL_EXPORTER, IExporter } from '../exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
+import { UserInteractionInstrumentation } from '@opentelemetry/instrumentation-user-interaction';
 
 
 /**
@@ -104,7 +105,8 @@ export class InstrumentationService {
     this.instrumentationOptions = [
       new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig?.xmlHttpRequest }),
       new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
-      new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
+      new FetchInstrumentation({ enabled: instrumentationConfig?.fetch }),
+      new UserInteractionInstrumentation({ enabled: instrumentationConfig?.userInteraction })
     ]
   }
 }

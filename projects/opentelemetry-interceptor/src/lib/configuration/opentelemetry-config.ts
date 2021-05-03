@@ -25,6 +25,8 @@ export interface CommonCollectorConfig {
 export interface InstrumentationConfig {
   /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
   xmlHttpRequest?: boolean;
+  /** userInteraction : to add UserInteractionInstrumentation */
+  userInteraction?: boolean;
   /** documentLoad : to add DocumentLoadInstrumentation */
   documentLoad?: boolean;
   /** fetch : to add FetchInstrumentation */
