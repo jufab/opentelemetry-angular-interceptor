@@ -64,7 +64,7 @@ This library offers two possibilities to use it in Angular App :
 With npm :
 
 ```
-npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/api @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/exporter-zipkin @opentelemetry/propagator-jaeger @opentelemetry/propagator-b3
+npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/api @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/exporter-zipkin @opentelemetry/propagator-jaeger @opentelemetry/propagator-b3 @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load @opentelemetry/instrumentation-fetch @opentelemetry/instrumentation-xml-http-request
 ```
 
 ### Configuration
@@ -271,7 +271,8 @@ export class AppModule { }
 
 #### Interceptor Module And Instrumentation Module
 
-**Don't use them at the same time : you're going to have the same trace twice.**
+`Don't use them at the same time : you're going to have the same trace twice.`
+
 
 ### Component otel-instrumentation
 
@@ -285,7 +286,7 @@ _In instrumentation-example, this component is in app.component.html like this :
 ...
 ```
 
-_there is no configuration need : all is in OtelWebTracerModule_
+_there is no configuration/directive need : all is in OtelWebTracerModule_
 
 ### (Optional) Logging in OtelColExporterModule
 
@@ -411,14 +412,19 @@ Add to your angular.json
 ```json
 "options": {
   "allowedCommonJsDependencies": [
-    "@opentelemetry/web",
-    "@opentelemetry/core",
-    "@opentelemetry/tracing",
     "@opentelemetry/api",
     "@opentelemetry/exporter-collector",
-    "@opentelemetry/context-base",
+    "@opentelemetry/exporter-zipkin",
+    "@opentelemetry/tracing",
+    "@opentelemetry/web",
+    "@opentelemetry/core",
     "@opentelemetry/propagator-jaeger",
-    "@opentelemetry/propagator-b3"
+    "@opentelemetry/propagator-b3",
+    "@opentelemetry/instrumentation",
+    "@opentelemetry/instrumentation-xml-http-request",
+    "@opentelemetry/instrumentation-document-load",
+    "@opentelemetry/instrumentation-fetch",
+    "@opentelemetry/context-zone-peer-dep"
   ],
 ```
 
