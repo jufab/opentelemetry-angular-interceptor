@@ -22,11 +22,17 @@ jobs:
       - run: npm ci
       - run: npm test
       - run:  ./node_modules/.bin/codecov --token="${{secrets.codecov_token}}"
-      - name: Cypress run
+      - name: Cypress interceptor run
         uses: cypress-io/github-action@v2
         with:
           start: npm run start:complete-interceptor-example
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 180
           install: false
-
+      - name: Cypress instrumentation run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run start:complete-instrumentation-example
+          wait-on: 'http://localhost:4200'
+          wait-on-timeout: 180
+          install: false
