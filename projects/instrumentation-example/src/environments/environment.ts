@@ -1,4 +1,3 @@
-import { LoggerConfig, NgxLoggerLevel } from 'ngx-logger';
 import { DiagLogLevel } from '@opentelemetry/api';
 import {
   OpenTelemetryConfig
@@ -8,7 +7,6 @@ interface IEnvironment {
   production: boolean;
   urlTest: string;
   openTelemetryConfig: OpenTelemetryConfig;
-  loggerConfig: LoggerConfig;
 }
 
 // Example to configure the angular-interceptor library
@@ -30,12 +28,7 @@ export const environment: IEnvironment = {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
-      userInteraction: true,
     }
-  },
-  loggerConfig: {
-    level: NgxLoggerLevel.DEBUG,
-    disableConsoleLogging: false,
   }
 };
 
