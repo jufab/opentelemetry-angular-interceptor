@@ -18,7 +18,6 @@ import { HighlightJsModule } from 'ngx-highlight-js';
 import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
-import { LoggerModule, NGXLogger } from 'ngx-logger';
 
 @NgModule({
   declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
@@ -40,8 +39,6 @@ import { LoggerModule, NGXLogger } from 'ngx-logger';
     BrowserAnimationsModule,
     HighlightJsModule,
     AppRoutingModule,
-    // Insert a logger (NGXLogger for this example...)
-    LoggerModule.forRoot(environment.loggerConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],
