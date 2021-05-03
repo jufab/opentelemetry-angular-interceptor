@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.18.2...v0.19.0) (2021-05-03)
+
+
+### Features
+
+* component with instrumentation ([#34](https://github.com/jufab/opentelemetry-angular-interceptor/issues/34)) ([caab7a9](https://github.com/jufab/opentelemetry-angular-interceptor/commit/caab7a9a31af1b3c9dd37b2575c33ea32197aede))
+* **issue#38:** add batchSpanProcessorConfig ([a73e382](https://github.com/jufab/opentelemetry-angular-interceptor/commit/a73e382689b8772318565b48a60dfae02b0a1762)), closes [issue#38](https://github.com/jufab/issue/issues/38)
+* **issue#38:** add batchSpanProcessorConfig ([dbaec60](https://github.com/jufab/opentelemetry-angular-interceptor/commit/dbaec605eb49a1deaeb94489aec43e124cf8c2c4)), closes [issue#38](https://github.com/jufab/issue/issues/38)
+
+
+### Bug Fixes
+
+* **issue#4:** link error on documentation ([2965c35](https://github.com/jufab/opentelemetry-angular-interceptor/commit/2965c35b7d809d159416f896ca30b4172c717d8b)), closes [issue#4](https://github.com/jufab/issue/issues/4)
+* **issue#42:** restart context for each http call ([c9f8667](https://github.com/jufab/opentelemetry-angular-interceptor/commit/c9f866749f26b4f90a811377b00773966405c8d9)), closes [issue#42](https://github.com/jufab/issue/issues/42)
+* api breaking change (don't forget in changelog...) ([18d04fd](https://github.com/jufab/opentelemetry-angular-interceptor/commit/18d04fdead6276edb41af19f9b70d92ed2ae56a9))
+* cypress test error on span name ([68d7aee](https://github.com/jufab/opentelemetry-angular-interceptor/commit/68d7aee35b24aed3cc4d1da6e45448e4d39d4c17))
+* github action rename branch main ([66ca86c](https://github.com/jufab/opentelemetry-angular-interceptor/commit/66ca86c77ee7337236c52e83a453f2d4f2f5ab74))
+* use protocol and method for span name ([1a56037](https://github.com/jufab/opentelemetry-angular-interceptor/commit/1a560371a44c8886b08538d4583c21acf8b8d230))
+
 ### [0.18.2](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.18.0-1...v0.18.2) (2021-03-30)
 
 
