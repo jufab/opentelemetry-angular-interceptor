@@ -17,6 +17,7 @@
     "cypress": "concurrently -k -p \"[{name}]\" -n \"backend,interceptor-example,cypress\" -c \"green.bold,cyan.bold,yellow.bold\" \"npm run start:backend-interceptor-example\" \"npm start interceptor-example\" \"cypress open\"",
     "cypress-instrumentation": "concurrently -k -p \"[{name}]\" -n \"backend,instrumentation-example,cypress\" -c \"green.bold,cyan.bold,yellow.bold\" \"npm run start:backend-instrumentation-example\" \"npm start instrumentation-example\" \"cypress open\"",
     "cypress:run": "concurrently -k -s first -p \"[{name}]\" -n \"backend,interceptor-example,cypress\" -c \"green.bold,cyan.bold,yellow.bold\" \"npm run start:backend-interceptor-example\" \"npm start interceptor-example\" \"cypress run\"",
+    "cypress-instrumentation:run": "concurrently -k -s first -p \"[{name}]\" -n \"backend,instrumentation-example,cypress\" -c \"green.bold,cyan.bold,yellow.bold\" \"npm run start:backend-instrumentation-example\" \"npm start instrumentation-example\" \"cypress run\"",
     "start:backend-interceptor-example": "node ./projects/interceptor-example/src/backend-api.js",
     "start:complete-interceptor-example": "concurrently -k -p \"[{name}]\" -n \"backend,interceptor-example\" -c \"green.bold,cyan.bold\" \"npm run start:backend-interceptor-example\" \"npm start interceptor-example\"",
     "start:backend-instrumentation-example": "node ./projects/instrumentation-example/src/backend-api.js",
