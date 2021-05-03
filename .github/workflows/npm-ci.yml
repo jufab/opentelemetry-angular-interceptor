@@ -25,6 +25,11 @@ jobs:
   cypress-interceptor:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
       - name: Cypress interceptor run
         uses: cypress-io/github-action@v2
         with:
@@ -35,6 +40,11 @@ jobs:
   cypress-instrumentation:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
       - name: Cypress instrumentation run
         uses: cypress-io/github-action@v2
         with:
