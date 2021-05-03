@@ -91,6 +91,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/OtelColExporterModule.html" data-type="entity-link">OtelColExporterModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/OtelWebTracerModule.html" data-type="entity-link">OtelWebTracerModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' :
+                                            'id="xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
+                                            <li class="link">
+                                                <a href="components/OtelWebTracerComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">OtelWebTracerComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ZipkinExporterModule.html" data-type="entity-link">ZipkinExporterModule</a>
                             </li>
                 </ul>
@@ -114,6 +132,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/HttpTraceContextPropagatorService.html" data-type="entity-link">HttpTraceContextPropagatorService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/InstrumentationService.html" data-type="entity-link">InstrumentationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link">JaegerHttpTracePropagatorService</a>
@@ -161,6 +182,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IExporter.html" data-type="entity-link">IExporter</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InstrumentationConfig.html" data-type="entity-link">InstrumentationConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPropagator.html" data-type="entity-link">IPropagator</a>
