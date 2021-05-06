@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
+import { CustomSpan } from '../interceptor/custom-span.interface';
 
 /**
  * Common configuration
@@ -124,3 +125,6 @@ export const OpenTelemetryInjectConfig = new InjectionToken<OpenTelemetryConfig>
 
 /** Logger : injection for a logger compatible */
 export const OTELCOL_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
+
+/** custom span */
+export const CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span')

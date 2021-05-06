@@ -32,7 +32,8 @@ import {
 import { version, name } from '../../version.json';
 import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
-import { OTELCOL_LOGGER } from '../configuration/opentelemetry-config';
+import { OTELCOL_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
+import { CustomSpan } from './custom-span.interface';
 
 /**
  * OpenTelemetryInterceptor class
@@ -68,6 +69,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     private propagatorService: IPropagator,
     @Optional() @Inject(OTELCOL_LOGGER)
     private logger: DiagLogger,
+    @Optional() @Inject(CUSTOM_SPAN)
+    private customSpan: CustomSpan,
     private platformLocation: PlatformLocation
   ) {
     this.tracer = new WebTracerProvider({
@@ -113,6 +116,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.OK
           });
+          this.setCustomSpan(span,request,event);
         },
         (event: HttpErrorResponse) => {
           span.setAttributes(
@@ -129,6 +133,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.ERROR
           });
+          this.setCustomSpan(span,request,event);
         }
       ),
       finalize(() => {
@@ -247,5 +252,16 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   private convertStringToNumber(value: string): number {
     return value !== undefined ? Number(value) : undefined
+  }
+
+  /**
+   * Set custom attributes in span with a CustomSpan
+   * @param span
+   * @param request
+   * @param response
+   * @returns Span
+   */
+  private setCustomSpan(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
+      return this.customSpan != null ? this.customSpan.add(span, request, response) : span;
   }
 }

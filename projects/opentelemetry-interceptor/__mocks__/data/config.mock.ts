@@ -32,13 +32,13 @@ export const otelcolExporterProductionConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
- export const otelcolExporterProductionAndBatchSpanProcessorConfig: OpenTelemetryConfig = {
+export const otelcolExporterProductionAndBatchSpanProcessorConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     production: true,
   },
   batchSpanProcessorConfig: {
-    maxExportBatchSize : '512',
+    maxExportBatchSize: '512',
     scheduledDelayMillis: '5000',
     exportTimeoutMillis: '30000',
     maxQueueSize: '2048',
@@ -121,7 +121,18 @@ export const zipkinConfig: OpenTelemetryConfig = {
     serviceName: 'test',
   },
   zipkinConfig: {
-    url: 'http://localhost'
+    url: 'http://localhost',
+    headers: { "test": "test" },
+  }
+};
+
+/**
+ * @ignore
+ */
+export const zipkinOtherConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    production: false,
+    serviceName: 'test',
   }
 };
 
@@ -165,7 +176,7 @@ export const b3PropagatorSingleConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
- export const instrumentationConsoleOtelConfig: OpenTelemetryConfig = {
+export const instrumentationConsoleOtelConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     console: true,
@@ -182,7 +193,7 @@ export const b3PropagatorSingleConfig: OpenTelemetryConfig = {
 /**
  * @ignore
  */
- export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
+export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     console: false,
@@ -190,8 +201,5 @@ export const b3PropagatorSingleConfig: OpenTelemetryConfig = {
   },
   otelcolConfig: {
     url: 'http://localhost',
-  },
-  instrumentationConfig: {
-    xmlHttpRequest: true
   }
 };
