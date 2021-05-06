@@ -28,5 +28,6 @@ export {
   JaegerPropagatorConfig,
   B3PropagatorConfig,
   InstrumentationConfig,
-  OTELCOL_LOGGER
+  OTELCOL_LOGGER,
+  CUSTOM_SPAN
 } from './lib/configuration/opentelemetry-config';

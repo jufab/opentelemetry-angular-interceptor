@@ -1,11 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
-import { zipkinConfig } from '../../../../../__mocks__/data/config.mock';
-import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
+import { zipkinConfig, zipkinOtherConfig } from '../../../../../__mocks__/data/config.mock';
+import { ExporterConfig, ZipkinExporter } from '@opentelemetry/exporter-zipkin';
+import { mocked } from 'ts-jest/utils';
+
+jest.mock('@opentelemetry/exporter-zipkin', () => {
+  return {
+    ZipkinExporter: jest.fn()
+  };
+});
 
 describe('ZipkinExporterService', () => {
   let zipkinExporterService: ZipkinExporterService;
+  let mockedZipkinExporter = mocked(ZipkinExporter, true);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +23,7 @@ describe('ZipkinExporterService', () => {
       ]
     });
     zipkinExporterService = TestBed.inject(ZipkinExporterService);
+    mockedZipkinExporter.mockClear();
   });
 
   it('should be created', () => {
@@ -25,5 +34,28 @@ describe('ZipkinExporterService', () => {
     const exporter = zipkinExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(ZipkinExporter);
+    const mockedZipkinConfig: ExporterConfig = mockedZipkinExporter.mock.calls[0][0];
+    expect(mockedZipkinConfig.serviceName).toEqual('test');
+    expect(mockedZipkinConfig.url).toEqual('http://localhost')
+    expect(mockedZipkinConfig.headers).toEqual({ "test": "test" });
   });
+
+  it('should generate an other zipkinExporter', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        ZipkinExporterService,
+        { provide: OpenTelemetryInjectConfig, useValue: zipkinOtherConfig },
+      ]
+    });
+    zipkinExporterService = TestBed.inject(ZipkinExporterService)
+    const exporter = zipkinExporterService.getExporter();
+    expect(exporter).not.toBeNull();
+    expect(exporter).toBeInstanceOf(ZipkinExporter);
+    const mockedZipkinConfig: ExporterConfig = mockedZipkinExporter.mock.calls[0][0];
+    expect(mockedZipkinConfig.serviceName).toEqual('test');
+    expect(mockedZipkinConfig.headers).toBeUndefined();
+    expect(mockedZipkinConfig.url).toBeUndefined();
+  });
+
 });

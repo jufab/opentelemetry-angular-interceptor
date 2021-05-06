@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { IExporter } from '../exporter.interface';
 import { SpanExporter } from '@opentelemetry/tracing';
 import { OpenTelemetryConfig, OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
-import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
-import { ExporterConfig } from '@opentelemetry/exporter-zipkin/build/src/types';
+import { ZipkinExporter, ExporterConfig } from '@opentelemetry/exporter-zipkin';
 
 /**
  * ZipkinExporterService class

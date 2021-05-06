@@ -7,9 +7,13 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
   HttpHeaders,
+  HttpErrorResponse,
+  HttpRequest,
+  HttpResponse,
 } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
 import {
+  CUSTOM_SPAN,
   OpenTelemetryConfig,
   OpenTelemetryInjectConfig,
 } from '../configuration/opentelemetry-config';
@@ -24,6 +28,8 @@ import {
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
 import { HttpTraceContextPropagatorModule } from '../services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
+import { CustomSpan } from './custom-span.interface';
+import { Span } from '@opentelemetry/api';
 
 describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
@@ -180,6 +186,43 @@ describe('OpenTelemetryHttpInterceptor', () => {
     req.flush({});
     httpControllerMock.verify();
   });
+
+  it('verify with CustomSpan', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        ConsoleSpanExporterModule,
+        HttpTraceContextPropagatorModule,
+      ],
+      providers: [
+        {
+          provide: OpenTelemetryInjectConfig,
+          useValue: otelcolExporterConfig,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: OpenTelemetryHttpInterceptor,
+          multi: true,
+        },
+        {
+          provide: CUSTOM_SPAN,
+          useClass: CustomSpanImpl,
+
+        }
+      ],
+    });
+    httpClient = TestBed.inject(HttpClient);
+    httpControllerMock = TestBed.inject(HttpTestingController);
+
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
 });
 
 function defineModuleTest(
@@ -209,4 +252,11 @@ function defineModuleTest(
   httpClient = TestBed.inject(HttpClient);
   httpControllerMock = TestBed.inject(HttpTestingController);
   return { httpClient, httpControllerMock };
+}
+
+class CustomSpanImpl implements CustomSpan {
+  add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
+    span.setAttribute('mycustom.key', request.params + ";" + response.status);
+    return span;
+  }
 }
