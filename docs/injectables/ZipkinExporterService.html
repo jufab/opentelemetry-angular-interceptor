@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -196,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -248,10 +248,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:17</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>zipkinConfig</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -265,8 +271,7 @@
 import { IExporter } from &#x27;../exporter.interface&#x27;;
 import { SpanExporter } from &#x27;@opentelemetry/tracing&#x27;;
 import { OpenTelemetryConfig, OpenTelemetryInjectConfig } from &#x27;../../../configuration/opentelemetry-config&#x27;;
-import { ZipkinExporter } from &#x27;@opentelemetry/exporter-zipkin&#x27;;
-import { ExporterConfig } from &#x27;@opentelemetry/exporter-zipkin/build/src/types&#x27;;
+import { ZipkinExporter, ExporterConfig } from &#x27;@opentelemetry/exporter-zipkin&#x27;;
 
 /**
  * ZipkinExporterService class
@@ -275,6 +280,9 @@ import { ExporterConfig } from &#x27;@opentelemetry/exporter-zipkin/build/src/ty
   providedIn: &#x27;root&#x27;,
 })
 export class ZipkinExporterService implements IExporter {
+  /**
+   * zipkinConfig
+   */
   private zipkinConfig: ExporterConfig;
 
   /**

@@ -72,6 +72,7 @@
 <li><a href="#ngxlogger">NGXLogger</a></li>
 </ul>
 </li>
+<li><a href="#optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</a></li>
 </ul>
 </li>
 <li><a href="#how-it-works">How it works</a></li>
@@ -312,7 +313,23 @@ export class AppModule { }
 <blockquote>
 <p>You can see an example in the <a href="#example">interceptor-example</a>.</p>
 </blockquote>
-<h2 id="how-it-works">How it works</h2>
+<h3 id="optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</h3>
+<p><em>This option is only available for Interceptor Module</em></p>
+<p>Implement a <a href="projects/opentelemetry-interceptor/src/lib/interceptor/custom-span.interface.ts"><code>CustomSpan</code></a> and the method <code>add(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span</code></p>
+<p>Implement CustomSpan class like : </p>
+<div><pre class="line-numbers"><code class="language-typescript">class CustomSpanImpl implements CustomSpan {
+  add(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span {
+    span.setAttribute(&#39;mycustom.key&#39;, request.params + &quot;;&quot; + response.status);
+    return span;
+  }
+}</code></pre></div><p>Inject it in you App module with <code>CUSTOM_SPAN</code> :</p>
+<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+  ...
+  providers: [
+    ...
+    { provide: CUSTOM_SPAN, useClass: CustomSpanImpl }
+    ...
+  ]</code></pre></div><h2 id="how-it-works">How it works</h2>
 <p>This library is based on <a href="https://angular.io/api/common/http/HttpClientModule">HttpClientModule</a> and the <a href="https://angular.io/api/common/http/HTTP_INTERCEPTORS">HTTP_INTERCEPTORS</a></p>
 <p>OpenTelemetryInterceptor implement an <a href="https://angular.io/api/common/http/HttpInterceptor">HttpInterceptor</a> and the intercept method.</p>
 <p>This implementation initialise a <a href="https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-web/src/WebTracerProvider.ts">WebTracerProvider</a>, create a <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html">Span</a> and add <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/textmappropagator.html">header propagation</a> in the current call.</p>

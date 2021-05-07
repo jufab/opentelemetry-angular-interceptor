@@ -663,8 +663,8 @@ export class InstrumentationService {
    * Init instrumentation on init
    */
   public initInstrumentation() {
-    this.insertConsoleSpanExporter(this.config.commonConfig?.console);
-    this.insertSpanProcessorProductionMode(this.config.commonConfig?.production, this.exporterService);
+    this.insertConsoleSpanExporter(this.config.commonConfig.console);
+    this.insertSpanProcessorProductionMode(this.config.commonConfig.production, this.exporterService);
     this.addInstrumentationPlugin(this.config.instrumentationConfig);
 
     this.tracerProvider.register({

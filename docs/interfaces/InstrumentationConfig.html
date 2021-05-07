@@ -236,6 +236,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
 import { DiagLogger, SpanAttributes, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
+import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
 /**
  * Common configuration
@@ -360,6 +361,9 @@ export const OpenTelemetryInjectConfig &#x3D; new InjectionToken&lt;OpenTelemetr
 
 /** Logger : injection for a logger compatible */
 export const OTELCOL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
+
+/** custom span */
+export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)
 </code></pre>
     </div>
 </div>

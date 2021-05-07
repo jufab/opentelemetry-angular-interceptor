@@ -37,6 +37,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
     - [Component otel-instrumentation](#component-otel-instrumentation)
     - [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
       - [NGXLogger](#ngxlogger)
+    - [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
   - [How it works](#how-it-works)
   - [Example](#example)
     - [Run](#run)
@@ -329,6 +330,35 @@ And use OTELCOL_LOGGER token to inject NGXLogger
 Don't forget to set "logLevel" in [Common Configuration](#common-configuration) (Level must be the same between NGXLogger and common configuration)
 
 > You can see an example in the [interceptor-example](#example).
+
+### (Optional) Add span attributes during interception
+
+_This option is only available for Interceptor Module_
+
+Implement a [`CustomSpan`](projects/opentelemetry-interceptor/src/lib/interceptor/custom-span.interface.ts) and the method `add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span`
+
+Implement CustomSpan class like : 
+
+```typescript
+class CustomSpanImpl implements CustomSpan {
+  add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
+    span.setAttribute('mycustom.key', request.params + ";" + response.status);
+    return span;
+  }
+}
+```
+
+Inject it in you App module with `CUSTOM_SPAN` :
+
+```typescript
+@NgModule({
+  ...
+  providers: [
+    ...
+    { provide: CUSTOM_SPAN, useClass: CustomSpanImpl }
+    ...
+  ]
+```
 
 ## How it works
 

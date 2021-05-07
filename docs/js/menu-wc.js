@@ -181,6 +181,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CommonCollectorConfig.html" data-type="entity-link">CommonCollectorConfig</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/CustomSpan.html" data-type="entity-link">CustomSpan</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IExporter.html" data-type="entity-link">IExporter</a>
                             </li>
                             <li class="link">
