@@ -134,6 +134,10 @@
                             <li>
                                 <a href="#intercept">intercept</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setCustomSpan">setCustomSpan</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -152,12 +156,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html">IPropagator</a>, logger: DiagLogger, platformLocation: <a href="https://angular.io/api/common/PlatformLocation" target="_blank">PlatformLocation</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html">IPropagator</a>, logger: DiagLogger, customSpan: <a href="../interfaces/CustomSpan.html">CustomSpan</a>, platformLocation: <a href="https://angular.io/api/common/PlatformLocation" target="_blank">PlatformLocation</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -240,6 +244,20 @@
                                                         </td>
                                                 </tr>
                                                 <tr>
+                                                        <td>customSpan</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/CustomSpan.html" target="_self" >CustomSpan</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
                                                         <td>platformLocation</td>
                                                   
                                                         <td>
@@ -291,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="248"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:248</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:253</a></div>
                 </td>
             </tr>
 
@@ -366,8 +384,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:237</a></div>
                 </td>
             </tr>
 
@@ -446,8 +464,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:144</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:149</a></div>
                 </td>
             </tr>
 
@@ -489,8 +507,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:157</a></div>
                 </td>
             </tr>
 
@@ -568,8 +586,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:186</a></div>
                 </td>
             </tr>
 
@@ -647,8 +665,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="201"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:201</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:206</a></div>
                 </td>
             </tr>
 
@@ -690,8 +708,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="213"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:213</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:218</a></div>
                 </td>
             </tr>
 
@@ -732,8 +750,8 @@ SimpleSpanProcessor otherwise</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:96</a></div>
                 </td>
             </tr>
 
@@ -804,6 +822,105 @@ Interceptor from HttpInterceptor Angular</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setCustomSpan"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            setCustomSpan
+                        </b>
+                        <a href="#setCustomSpan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setCustomSpan(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set custom attributes in span with a CustomSpan</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>span</td>
+                                    <td>
+                                            <code>Span</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                            <code>HttpRequest&lt;unknown&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>response</td>
+                                    <td>
+                                            <code>HttpResponse&lt;unknown&gt; | HttpErrorResponse</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Span</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Span</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section>
     
@@ -830,7 +947,7 @@ Interceptor from HttpInterceptor Angular</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -862,7 +979,7 @@ Interceptor from HttpInterceptor Angular</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -895,7 +1012,7 @@ Interceptor from HttpInterceptor Angular</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/interceptor/opentelemetry-http.interceptor.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -948,7 +1065,8 @@ import {
 import { version, name } from &#x27;../../version.json&#x27;;
 import { OTELCOL_EXPORTER, IExporter } from &#x27;../services/exporter/exporter.interface&#x27;;
 import { OTELCOL_PROPAGATOR, IPropagator } from &#x27;../services/propagator/propagator.interface&#x27;;
-import { OTELCOL_LOGGER } from &#x27;../configuration/opentelemetry-config&#x27;;
+import { OTELCOL_LOGGER, CUSTOM_SPAN } from &#x27;../configuration/opentelemetry-config&#x27;;
+import { CustomSpan } from &#x27;./custom-span.interface&#x27;;
 
 /**
  * OpenTelemetryInterceptor class
@@ -984,6 +1102,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     private propagatorService: IPropagator,
     @Optional() @Inject(OTELCOL_LOGGER)
     private logger: DiagLogger,
+    @Optional() @Inject(CUSTOM_SPAN)
+    private customSpan: CustomSpan,
     private platformLocation: PlatformLocation
   ) {
     this.tracer &#x3D; new WebTracerProvider({
@@ -1029,6 +1149,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.OK
           });
+          this.setCustomSpan(span,request,event);
         },
         (event: HttpErrorResponse) &#x3D;&gt; {
           span.setAttributes(
@@ -1045,6 +1166,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.ERROR
           });
+          this.setCustomSpan(span,request,event);
         }
       ),
       finalize(() &#x3D;&gt; {
@@ -1163,6 +1285,17 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   private convertStringToNumber(value: string): number {
     return value !&#x3D;&#x3D; undefined ? Number(value) : undefined
+  }
+
+  /**
+   * Set custom attributes in span with a CustomSpan
+   * @param span
+   * @param request
+   * @param response
+   * @returns Span
+   */
+  private setCustomSpan(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span {
+      return this.customSpan !&#x3D; null ? this.customSpan.add(span, request, response) : span;
   }
 }
 </code></pre>

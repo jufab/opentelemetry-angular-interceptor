@@ -18,8 +18,15 @@ import {
   providedIn: 'root',
 })
 export class B3PropagatorService implements IPropagator {
+  /**
+   * B3PropagatorConfig
+   */
   private b3PropagatorConfig: B3PropagatorConfig;
 
+  /**
+   * Constructor
+   * @param config OpenTelemetryConfig
+   */
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
     this.b3PropagatorConfig = {
       injectEncoding: B3PropagatorService.defineB3Encoding(config.b3PropagatorConfig?.multiHeader)

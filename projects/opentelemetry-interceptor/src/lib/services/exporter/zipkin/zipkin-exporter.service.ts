@@ -11,6 +11,9 @@ import { ZipkinExporter, ExporterConfig } from '@opentelemetry/exporter-zipkin';
   providedIn: 'root',
 })
 export class ZipkinExporterService implements IExporter {
+  /**
+   * zipkinConfig
+   */
   private zipkinConfig: ExporterConfig;
 
   /**
