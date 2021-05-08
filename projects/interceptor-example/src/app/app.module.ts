@@ -19,6 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
 import { LoggerModule, NGXLogger } from 'ngx-logger';
+import { CUSTOM_SPAN } from '../../../opentelemetry-interceptor/src/lib/configuration/opentelemetry-config';
+import { CustomSpanImpl } from './custom-span-impl';
 
 @NgModule({
   declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
@@ -46,7 +48,8 @@ import { LoggerModule, NGXLogger } from 'ngx-logger';
   ],
   providers: [
     // Provide token OTELCOL_LOGGER with the NGXLogger
-    { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
+    { provide: OTELCOL_LOGGER, useExisting: NGXLogger },
+    { provide: CUSTOM_SPAN, useClass: CustomSpanImpl}
   ],
   bootstrap: [AppComponent],
 })
