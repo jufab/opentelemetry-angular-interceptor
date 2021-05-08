@@ -337,6 +337,11 @@ _This option is only available for Interceptor Module_
 
 Implement a [`CustomSpan`](projects/opentelemetry-interceptor/src/lib/interceptor/custom-span.interface.ts) and the method `add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span`
 
+- span : Current span, you can set or get attributes
+- request : Current request in interceptor
+- response : Current response in interceptor 
+
+
 Implement CustomSpan class like : 
 
 ```typescript
