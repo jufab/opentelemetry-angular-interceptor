@@ -1,3 +1,4 @@
+import { CustomSpan } from './lib/interceptor/custom-span.interface';
 /*
  * Public API Surface of opentelemetry-interceptor
  */
@@ -17,6 +18,8 @@ export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaege
 export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.module';
 //Component
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
+//Interface
+export { CustomSpan } from './lib/interceptor/custom-span.interface';
 // Configuration
 export {
   CommonCollectorConfig,

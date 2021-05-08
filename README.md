@@ -360,6 +360,8 @@ Inject it in you App module with `CUSTOM_SPAN` :
   ]
 ```
 
+> You can see an example in the [interceptor-example](#example).
+
 ## How it works
 
 This library is based on [HttpClientModule](https://angular.io/api/common/http/HttpClientModule) and the [HTTP_INTERCEPTORS](https://angular.io/api/common/http/HTTP_INTERCEPTORS)
