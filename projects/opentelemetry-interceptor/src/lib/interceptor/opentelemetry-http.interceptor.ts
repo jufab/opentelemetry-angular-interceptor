@@ -97,13 +97,13 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.contextManager.disable(); //FIX - reinit contextManager for each http call
     this.contextManager.enable();
     const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(request);
     return next.handle(tracedReq).pipe(
       tap(
         (event: HttpResponse<any>) => {
+          this.logger.info(JSON.stringify(event));
           span.setAttributes(
             {
               'http.status_code': event.status,
@@ -114,9 +114,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
           span.setStatus({
-            code: SpanStatusCode.OK
+            code: SpanStatusCode.UNSET
           });
-          this.setCustomSpan(span,request,event);
+          this.setCustomSpan(span, request, event);
         },
         (event: HttpErrorResponse) => {
           span.setAttributes(
@@ -133,7 +133,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.ERROR
           });
-          this.setCustomSpan(span,request,event);
+          this.setCustomSpan(span, request, event);
         }
       ),
       finalize(() => {
@@ -169,6 +169,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.target']: urlRequest.pathname + urlRequest.search,
             ['http.user_agent']: window.navigator.userAgent
           },
+          kind: api.SpanKind.CLIENT,
+          root: true,
         },
         this.contextManager.active()
       );
@@ -262,6 +264,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @returns Span
    */
   private setCustomSpan(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
-      return this.customSpan != null ? this.customSpan.add(span, request, response) : span;
+    return this.customSpan != null ? this.customSpan.add(span, request, response) : span;
   }
 }
