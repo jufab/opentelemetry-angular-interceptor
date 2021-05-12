@@ -114,9 +114,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             span.addEvent('response', { body: JSON.stringify(event.body) });
           }
           span.setStatus({
-            code: SpanStatusCode.OK
+            code: SpanStatusCode.UNSET
           });
-          this.setCustomSpan(span,request,event);
+          this.setCustomSpan(span, request, event);
         },
         (event: HttpErrorResponse) => {
           span.setAttributes(
@@ -133,7 +133,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setStatus({
             code: SpanStatusCode.ERROR
           });
-          this.setCustomSpan(span,request,event);
+          this.setCustomSpan(span, request, event);
         }
       ),
       finalize(() => {
@@ -169,6 +169,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.target']: urlRequest.pathname + urlRequest.search,
             ['http.user_agent']: window.navigator.userAgent
           },
+          kind: api.SpanKind.CLIENT,
         },
         this.contextManager.active()
       );
@@ -262,6 +263,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @returns Span
    */
   private setCustomSpan(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
-      return this.customSpan != null ? this.customSpan.add(span, request, response) : span;
+    return this.customSpan != null ? this.customSpan.add(span, request, response) : span;
   }
 }
