@@ -97,13 +97,13 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    this.contextManager.disable(); //FIX - reinit contextManager for each http call
     this.contextManager.enable();
     const span: Span = this.initSpan(request);
     const tracedReq = this.injectContextAndHeader(request);
     return next.handle(tracedReq).pipe(
       tap(
         (event: HttpResponse<any>) => {
-          this.logger.info(JSON.stringify(event));
           span.setAttributes(
             {
               'http.status_code': event.status,
@@ -170,7 +170,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             ['http.user_agent']: window.navigator.userAgent
           },
           kind: api.SpanKind.CLIENT,
-          root: true,
         },
         this.contextManager.active()
       );
