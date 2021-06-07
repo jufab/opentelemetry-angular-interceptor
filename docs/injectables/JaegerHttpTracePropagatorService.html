@@ -204,7 +204,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return an JaegerHttpTracePropagator</p>
+                    <div class="io-description"><p>Return an JaegerPropagator</p>
 </div>
 
                     <div>
@@ -214,7 +214,7 @@
 
                     </div>
                     <div class="io-description">
-                        <p>TextMapPropagator as JaegerHttpTracePropagator</p>
+                        <p>TextMapPropagator as JaegerPropagator</p>
 
                     </div>
                 </td>
@@ -270,7 +270,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
 import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
-import { JaegerHttpTracePropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
+import { JaegerPropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
 import { OpenTelemetryInjectConfig } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 import { OpenTelemetryConfig } from &#x27;../../../../public-api&#x27;;
 
@@ -294,11 +294,11 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
   }
 
   /**
-   * Return an JaegerHttpTracePropagator
-   * @return TextMapPropagator as JaegerHttpTracePropagator
+   * Return an JaegerPropagator
+   * @return TextMapPropagator as JaegerPropagator
    */
   getPropagator(): TextMapPropagator {
-    return new JaegerHttpTracePropagator(this.customHeader);
+    return new JaegerPropagator(this.customHeader);
   }
 }
 </code></pre>

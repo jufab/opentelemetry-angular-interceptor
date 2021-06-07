@@ -424,6 +424,10 @@ export interface OtelCollectorConfig {
    * attributes : define some custom attributes
    */
   attributes?: SpanAttributes;
+  /**
+   * An optional limit on pending requests
+   */
+  concurrencyLimit?: string;
 }
 
 /**

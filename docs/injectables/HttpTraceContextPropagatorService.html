@@ -134,7 +134,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return an HttpTraceContext</p>
+                    <div class="io-description"><p>Return an HttpTraceContextPropagator</p>
 </div>
 
                     <div>
@@ -144,7 +144,7 @@
 
                     </div>
                     <div class="io-description">
-                        <p>TextMapPropagator as HttpTraceContext</p>
+                        <p>TextMapPropagator as HttpTraceContextPropagator</p>
 
                     </div>
                 </td>
@@ -160,7 +160,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
 import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
-import { HttpTraceContext } from &#x27;@opentelemetry/core&#x27;;
+import { HttpTraceContextPropagator } from &#x27;@opentelemetry/core&#x27;;
 
 /**
  * HttpTraceContextPropagatorService
@@ -170,11 +170,11 @@ import { HttpTraceContext } from &#x27;@opentelemetry/core&#x27;;
 })
 export class HttpTraceContextPropagatorService implements IPropagator {
   /**
-   * Return an HttpTraceContext
-   * @return TextMapPropagator as HttpTraceContext
+   * Return an HttpTraceContextPropagator
+   * @return TextMapPropagator as HttpTraceContextPropagator
    */
   getPropagator(): TextMapPropagator {
-    return new HttpTraceContext();
+    return new HttpTraceContextPropagator();
   }
 }
 </code></pre>

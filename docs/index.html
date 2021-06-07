@@ -135,7 +135,7 @@
       exportTimeoutMillis: &#39;30000&#39;, // How long the export can run before it is cancelled
     },
     otelcolConfig: {
-      url: &#39;http://localhost:55681/v1/trace&#39;, //URL of opentelemetry collector
+      url: &#39;http://localhost:55681/v1/traces&#39;, //URL of opentelemetry collector
     },
     jaegerPropagatorConfig: {
       customHeader: &#39;custom-header&#39;,
@@ -153,7 +153,7 @@
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from &#64;opentelemetry/api
     },
     otelcolConfig: {
-      url: &#39;http://localhost:55681/v1/trace&#39;, // URL of opentelemetry collector
+      url: &#39;http://localhost:55681/v1/traces&#39;, // URL of opentelemetry collector
     },
     instrumentationConfig: {
       xmlHttpRequest: true,
@@ -181,9 +181,10 @@
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
-<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:55681/v1/trace">http://localhost:55681/v1/trace</a>)</li>
+<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:55681/v1/traces">http://localhost:55681/v1/traces</a>)</li>
 <li>headers: list of custom header (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
 <li>attributes : list of custom attributes (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
+<li>concurrencyLimit (string) : An optional limit on pending requests (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
 </ul>
 <h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
 <ul>
@@ -316,6 +317,11 @@ export class AppModule { }
 <h3 id="optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</h3>
 <p><em>This option is only available for Interceptor Module</em></p>
 <p>Implement a <a href="projects/opentelemetry-interceptor/src/lib/interceptor/custom-span.interface.ts"><code>CustomSpan</code></a> and the method <code>add(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span</code></p>
+<ul>
+<li>span : Current span, you can set or get attributes</li>
+<li>request : Current request in interceptor</li>
+<li>response : Current response in interceptor </li>
+</ul>
 <p>Implement CustomSpan class like : </p>
 <div><pre class="line-numbers"><code class="language-typescript">class CustomSpanImpl implements CustomSpan {
   add(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span {
@@ -329,7 +335,10 @@ export class AppModule { }
     ...
     { provide: CUSTOM_SPAN, useClass: CustomSpanImpl }
     ...
-  ]</code></pre></div><h2 id="how-it-works">How it works</h2>
+  ]</code></pre></div><blockquote>
+<p>You can see an example in the <a href="#example">interceptor-example</a>.</p>
+</blockquote>
+<h2 id="how-it-works">How it works</h2>
 <p>This library is based on <a href="https://angular.io/api/common/http/HttpClientModule">HttpClientModule</a> and the <a href="https://angular.io/api/common/http/HTTP_INTERCEPTORS">HTTP_INTERCEPTORS</a></p>
 <p>OpenTelemetryInterceptor implement an <a href="https://angular.io/api/common/http/HttpInterceptor">HttpInterceptor</a> and the intercept method.</p>
 <p>This implementation initialise a <a href="https://github.com/open-telemetry/opentelemetry-js/blob/main/packages/opentelemetry-web/src/WebTracerProvider.ts">WebTracerProvider</a>, create a <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/span.html">Span</a> and add <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/textmappropagator.html">header propagation</a> in the current call.</p>
