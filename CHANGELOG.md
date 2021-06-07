@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.20.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.19.0...v0.20.0) (2021-06-07)
+
+
+### Features
+
+* add concurencyLimit ([40f33cc](https://github.com/jufab/opentelemetry-angular-interceptor/commit/40f33ccdcaa3a296b27942f5988c370202f410e5))
+
+
+### Bug Fixes
+
+* span.kind to client value and status.code to unset ([#51](https://github.com/jufab/opentelemetry-angular-interceptor/issues/51)) ([b3e15af](https://github.com/jufab/opentelemetry-angular-interceptor/commit/b3e15af465601ce5f026c8ce02e7078ea478b346))
+* **issue#41:** add custom dynamic span attributes ([1c7c0c0](https://github.com/jufab/opentelemetry-angular-interceptor/commit/1c7c0c0a27bb269111d8194e9687b2af84e3b32a)), closes [issue#41](https://github.com/jufab/issue/issues/41)
+
 ## [0.19.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.18.2...v0.19.0) (2021-05-03)
 
 
