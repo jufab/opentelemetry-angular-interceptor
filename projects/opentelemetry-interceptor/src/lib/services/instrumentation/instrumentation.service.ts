@@ -1,5 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { ZoneContextManager } from '@opentelemetry/context-zone-peer-dep';
+import { Sampler } from '@opentelemetry/api';
+import {
+  AlwaysOnSampler,
+  AlwaysOffSampler,
+  TraceIdRatioBasedSampler,
+  ParentBasedSampler,
+} from '@opentelemetry/core';
+import { ResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
 import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
 import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
@@ -23,7 +32,7 @@ export class InstrumentationService {
   /**
    * tracerProvider
    */
-  private tracerProvider = new WebTracerProvider();
+  private tracerProvider: WebTracerProvider;
 
   /**
    * contextManager
@@ -45,7 +54,16 @@ export class InstrumentationService {
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
-    private propagatorService: IPropagator) { }
+    private propagatorService: IPropagator) {
+      this.tracerProvider = new WebTracerProvider({
+        sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
+        resource: Resource.default().merge(
+          new Resource({
+            [ResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
+          })
+        ),
+      });
+    }
 
   /**
    * Init instrumentation on init
@@ -106,5 +124,30 @@ export class InstrumentationService {
       new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
       new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
     ]
+  }
+
+  /**
+   * convert String to Number (or undefined)
+   * @param value
+   * @returns number or undefined
+   */
+  private convertStringToNumber(value: string): number {
+    return value !== undefined ? Number(value) : undefined
+  }
+
+  /**
+ * define the Probability Sampler
+ * By Default, it's always (or 1)
+ * @param sampleConfig the sample configuration
+ */
+  private defineProbabilitySampler(sampleConfig: number): Sampler {
+    if (sampleConfig >= 1) {
+      return new ParentBasedSampler({ root: new AlwaysOnSampler() });
+    }
+    else if (sampleConfig <= 0 || sampleConfig === undefined) {
+      return new ParentBasedSampler({ root: new AlwaysOffSampler() });
+    } else {
+      return new ParentBasedSampler({ root: new TraceIdRatioBasedSampler(sampleConfig) });
+    }
   }
 }

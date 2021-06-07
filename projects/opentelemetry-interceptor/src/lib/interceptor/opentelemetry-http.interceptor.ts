@@ -24,6 +24,8 @@ import {
   TraceIdRatioBasedSampler,
   ParentBasedSampler,
 } from '@opentelemetry/core';
+import { ResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpenTelemetryConfig,
@@ -59,7 +61,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * constructor
    * @param config configuration
    * @param exporterService service exporter injected
-   * @param propagatorService propagator
+   * @param propagatorService propagator injected
+   * @param logger define logger
+   * @param customSpan a customSpan interface to add attributes
+   * @param platformLocation encapsulates all calls to DOM APIs
    */
   constructor(
     @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
@@ -75,6 +80,11 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(config.commonConfig.probabilitySampler)),
+      resource: Resource.default().merge(
+        new Resource({
+          [ResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
+        })
+      ),
     });
     this.insertSpanProcessorProductionMode();
     this.insertConsoleSpanExporter();
@@ -173,7 +183,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         },
         this.contextManager.active()
       );
-    this.contextManager._currentContext = api.setSpan(
+    this.contextManager._currentContext = api.trace.setSpan(
       this.contextManager.active(),
       span
     );

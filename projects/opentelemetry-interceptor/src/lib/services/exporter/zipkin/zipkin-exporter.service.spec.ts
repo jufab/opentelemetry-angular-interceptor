@@ -35,7 +35,6 @@ describe('ZipkinExporterService', () => {
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(ZipkinExporter);
     const mockedZipkinConfig: ExporterConfig = mockedZipkinExporter.mock.calls[0][0];
-    expect(mockedZipkinConfig.serviceName).toEqual('test');
     expect(mockedZipkinConfig.url).toEqual('http://localhost')
     expect(mockedZipkinConfig.headers).toEqual({ "test": "test" });
   });
@@ -53,7 +52,6 @@ describe('ZipkinExporterService', () => {
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(ZipkinExporter);
     const mockedZipkinConfig: ExporterConfig = mockedZipkinExporter.mock.calls[0][0];
-    expect(mockedZipkinConfig.serviceName).toEqual('test');
     expect(mockedZipkinConfig.headers).toBeUndefined();
     expect(mockedZipkinConfig.url).toBeUndefined();
   });

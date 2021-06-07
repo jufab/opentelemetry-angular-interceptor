@@ -30,7 +30,6 @@ export class OtelcolExporterService implements IExporter {
     @Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig
   ) {
     this.otelcolConfig = {
-      serviceName: config.commonConfig.serviceName,
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
       attributes: config.otelcolConfig?.attributes

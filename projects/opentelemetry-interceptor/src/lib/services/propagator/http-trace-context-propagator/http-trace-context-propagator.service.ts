@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
 import { TextMapPropagator } from '@opentelemetry/api';
-import { HttpTraceContext } from '@opentelemetry/core';
+import { HttpTraceContextPropagator } from '@opentelemetry/core';
 
 /**
  * HttpTraceContextPropagatorService
@@ -11,10 +11,10 @@ import { HttpTraceContext } from '@opentelemetry/core';
 })
 export class HttpTraceContextPropagatorService implements IPropagator {
   /**
-   * Return an HttpTraceContext
-   * @return TextMapPropagator as HttpTraceContext
+   * Return an HttpTraceContextPropagator
+   * @return TextMapPropagator as HttpTraceContextPropagator
    */
   getPropagator(): TextMapPropagator {
-    return new HttpTraceContext();
+    return new HttpTraceContextPropagator();
   }
 }

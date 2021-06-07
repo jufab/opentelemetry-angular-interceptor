@@ -22,7 +22,6 @@ export class ZipkinExporterService implements IExporter {
    */
   constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
     this.zipkinConfig = {
-      serviceName: config.commonConfig.serviceName,
       url: config.zipkinConfig?.url,
       headers: config.zipkinConfig?.headers
     };

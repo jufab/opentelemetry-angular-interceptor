@@ -17,17 +17,17 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "@opentelemetry/exporter-collector": "^0.19.x",
-    "@opentelemetry/web": "^0.19.x",
-    "@opentelemetry/exporter-zipkin": "^0.19.x",
-    "@opentelemetry/propagator-jaeger": "^0.19.x",
-    "@opentelemetry/propagator-b3": "^0.19.x",
-    "@opentelemetry/api": "^1.0.0-rc.0",
-    "@opentelemetry/context-zone-peer-dep": "^0.19.x",
-    "@opentelemetry/instrumentation": "^0.19.x",
-    "@opentelemetry/instrumentation-document-load": "^0.16.x",
-    "@opentelemetry/instrumentation-fetch": "^0.19.x",
-    "@opentelemetry/instrumentation-xml-http-request": "^0.19.x"
+    "@opentelemetry/exporter-collector": "0.20.0",
+    "@opentelemetry/web": "0.20.0",
+    "@opentelemetry/exporter-zipkin": "0.20.0",
+    "@opentelemetry/propagator-jaeger": "0.20.0",
+    "@opentelemetry/propagator-b3": "0.20.0",
+    "@opentelemetry/api": "0.20.0",
+    "@opentelemetry/context-zone-peer-dep": "0.20.0",
+    "@opentelemetry/instrumentation": "0.20.0",
+    "@opentelemetry/instrumentation-document-load": "0.20.0",
+    "@opentelemetry/instrumentation-fetch": "0.20.0",
+    "@opentelemetry/instrumentation-xml-http-request": "0.20.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
