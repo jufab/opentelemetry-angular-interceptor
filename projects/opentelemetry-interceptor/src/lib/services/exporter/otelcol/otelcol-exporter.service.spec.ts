@@ -29,7 +29,6 @@ describe('OtelcolExporterService', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(CollectorTraceExporter);
-    expect((exporter as CollectorTraceExporter).serviceName).toEqual('test');
     expect((exporter as CollectorTraceExporter).url).toEqual(
       'http://localhost'
     );
@@ -50,9 +49,8 @@ describe('OtelcolExporterService', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(CollectorTraceExporter);
-    expect((exporter as CollectorTraceExporter).serviceName).toEqual('test');
     expect((exporter as CollectorTraceExporter).url).toEqual(
-      'http://localhost:55681/v1/trace'
+      'http://localhost:55681/v1/traces'
     );
   });
 });

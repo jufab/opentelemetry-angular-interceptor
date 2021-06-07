@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTraceContext } from '@opentelemetry/core';
+import { HttpTraceContextPropagator } from '@opentelemetry/core';
 import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
 
 describe('HttpTraceContextPropagatorService', () => {
@@ -17,6 +17,6 @@ describe('HttpTraceContextPropagatorService', () => {
   });
 
   it('should return an HttpTraceContext', () => {
-    expect(service.getPropagator()).toBeInstanceOf(HttpTraceContext);
+    expect(service.getPropagator()).toBeInstanceOf(HttpTraceContextPropagator);
   });
 });

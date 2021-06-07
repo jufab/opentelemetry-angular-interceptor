@@ -22,7 +22,7 @@ export const environment: IEnvironment = {
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
-      url: 'http://localhost:55681/v1/trace', // URL of opentelemetry collector
+      url: 'http://localhost:55681/v1/traces', // URL of opentelemetry collector
     },
     instrumentationConfig: {
       xmlHttpRequest: true,
