@@ -68,6 +68,7 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
   },
   otelcolConfig: {
     url: 'http://localhost',
+    concurrencyLimit: '10',
   },
 };
 
@@ -180,7 +181,26 @@ export const instrumentationConsoleOtelConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     console: true,
-    production: false
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    xmlHttpRequest: true
+  }
+};
+
+/**
+ * @ignore
+ */
+ export const instrumentationConsoleOtelConfigSamplerOff: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '0',
   },
   otelcolConfig: {
     url: 'http://localhost',
@@ -197,9 +217,11 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
     console: false,
-    production: true
+    production: true,
+    probabilitySampler: '0.7',
   },
   otelcolConfig: {
     url: 'http://localhost',
+    concurrencyLimit: '10',
   }
 };

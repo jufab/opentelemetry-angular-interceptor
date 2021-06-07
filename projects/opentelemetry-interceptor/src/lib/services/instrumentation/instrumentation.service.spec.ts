@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ConsoleSpanExporterModule, HttpTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
-import { instrumentationConsoleOtelConfig, instrumentationProductionOtelConfig } from '../../../../__mocks__/data/config.mock';
+import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig } from '../../../../__mocks__/data/config.mock';
 
 import { InstrumentationService } from './instrumentation.service';
 import { OTELCOL_EXPORTER } from '../exporter/exporter.interface';
@@ -36,6 +36,21 @@ describe('InstrumentationService', () => {
   });
 
   it('must init instrumentation with console config', () => {
+    instrumentationService.initInstrumentation();
+  });
+
+  it('must init instrumentation with sampler Off config', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        ConsoleSpanExporterModule,
+        HttpTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: instrumentationConsoleOtelConfigSamplerOff },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
     instrumentationService.initInstrumentation();
   });
 
