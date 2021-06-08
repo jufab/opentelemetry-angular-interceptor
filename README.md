@@ -64,7 +64,7 @@ This library offers two possibilities to use it in Angular App :
 With npm :
 
 ```
-npm install @jufab/opentelemetry-angular-interceptor @opentelemetry/api @opentelemetry/web @opentelemetry/exporter-collector @opentelemetry/exporter-zipkin @opentelemetry/propagator-jaeger @opentelemetry/propagator-b3 @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load @opentelemetry/instrumentation-fetch @opentelemetry/instrumentation-xml-http-request
+npm install @jufab/opentelemetry-angular-interceptor
 ```
 
 ### Configuration
