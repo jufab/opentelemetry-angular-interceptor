@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
-import { NoopTextMapPropagator, TextMapPropagator } from '@opentelemetry/api';
-
+import { TextMapPropagator } from '@opentelemetry/api';
+import { NoopTextMapPropagator } from '@opentelemetry/api/build/src/propagation/NoopTextMapPropagator';
 /**
  * NoopHttpTextPropagatorService
  */
@@ -17,3 +17,4 @@ export class NoopTextMapPropagatorService implements IPropagator {
     return new NoopTextMapPropagator();
   }
 }
+

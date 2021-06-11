@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { NoopTextMapPropagatorService } from './noop-text-map-propagator.service';
-import { NoopTextMapPropagator } from '@opentelemetry/api';
+import { NoopTextMapPropagator } from '@opentelemetry/api/build/src/propagation/NoopTextMapPropagator';
 
 describe('NoopTextMapPropagatorService', () => {
   let service: NoopTextMapPropagatorService;
@@ -16,3 +15,6 @@ describe('NoopTextMapPropagatorService', () => {
     expect(service.getPropagator()).toBeInstanceOf(NoopTextMapPropagator);
   });
 });
+
+
+
