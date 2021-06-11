@@ -159,8 +159,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
-import { NoopTextMapPropagator, TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
-
+import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+import { NoopTextMapPropagator } from &#x27;@opentelemetry/api/build/src/propagation/NoopTextMapPropagator&#x27;;
 /**
  * NoopHttpTextPropagatorService
  */
@@ -176,6 +176,7 @@ export class NoopTextMapPropagatorService implements IPropagator {
     return new NoopTextMapPropagator();
   }
 }
+
 </code></pre>
     </div>
 
