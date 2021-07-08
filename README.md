@@ -431,6 +431,14 @@ More info about the collector here : https://github.com/open-telemetry/opentelem
 
 ## Troubleshoot
 
+### Otel Collector
+
+Otel Collector 0.29.0 is not compatible with this library in version 0.23.0.
+
+A bug fix is in progress here: https://github.com/open-telemetry/opentelemetry-js/issues/2321
+
+Otel Collector 0.28.0 is OK.
+
 ### Angular 10 Warning
 
 ```shell
