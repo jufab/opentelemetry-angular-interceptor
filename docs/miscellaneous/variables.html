@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -59,19 +60,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts"><b>CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OpenTelemetryInjectConfig" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts"><b>OpenTelemetryInjectConfig</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#OpenTelemetryInjectConfig" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OpenTelemetryInjectConfig</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTELCOL_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts"><b>OTELCOL_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
+                            <a href="#OTELCOL_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTELCOL_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTELCOL_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts"><b>OTELCOL_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#OTELCOL_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTELCOL_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTELCOL_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts"><b>OTELCOL_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
+                            <a href="#OTELCOL_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts" ><b>OTELCOL_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -82,147 +83,142 @@
 
     <h3>projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts</h3>
     <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CUSTOM_SPAN"></a>
+                    <span class="name">
+                        <span ><b>CUSTOM_SPAN</b></span>
+                        <a href="#CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="CUSTOM_SPAN"></a>
-                        <span class="name">
-                            <b>
-                            CUSTOM_SPAN</b>
-                            <a href="#CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)</code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)</code>
-                        </td>
-                    </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>custom span </p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>custom span </p>
 </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OpenTelemetryInjectConfig"></a>
+                    <span class="name">
+                        <span ><b>OpenTelemetryInjectConfig</b></span>
+                        <a href="#OpenTelemetryInjectConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;)</code>
                     </td>
                 </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="OpenTelemetryInjectConfig"></a>
-                        <span class="name">
-                            <b>
-                            OpenTelemetryInjectConfig</b>
-                            <a href="#OpenTelemetryInjectConfig"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;)</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>OpenTelemetryInjectConfig : Config injection </p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>OpenTelemetryInjectConfig : Config injection </p>
 </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTELCOL_LOGGER"></a>
+                    <span class="name">
+                        <span ><b>OTELCOL_LOGGER</b></span>
+                        <a href="#OTELCOL_LOGGER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;)</code>
                     </td>
                 </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="OTELCOL_LOGGER"></a>
-                        <span class="name">
-                            <b>
-                            OTELCOL_LOGGER</b>
-                            <a href="#OTELCOL_LOGGER"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;)</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Logger : injection for a logger compatible </p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Logger : injection for a logger compatible </p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
     <h3>projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts</h3>
     <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTELCOL_EXPORTER"></a>
+                    <span class="name">
+                        <span ><b>OTELCOL_EXPORTER</b></span>
+                        <a href="#OTELCOL_EXPORTER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="OTELCOL_EXPORTER"></a>
-                        <span class="name">
-                            <b>
-                            OTELCOL_EXPORTER</b>
-                            <a href="#OTELCOL_EXPORTER"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>new InjectionToken&lt;IExporter&gt;(&#x27;otelcol.exporter&#x27;)</code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;IExporter&gt;(&#x27;otelcol.exporter&#x27;)</code>
-                        </td>
-                    </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>injection for a Exporter </p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>injection for a Exporter </p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
     <h3>projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts</h3>
     <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTELCOL_PROPAGATOR"></a>
+                    <span class="name">
+                        <span ><b>OTELCOL_PROPAGATOR</b></span>
+                        <a href="#OTELCOL_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="OTELCOL_PROPAGATOR"></a>
-                        <span class="name">
-                            <b>
-                            OTELCOL_PROPAGATOR</b>
-                            <a href="#OTELCOL_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>new InjectionToken&lt;IPropagator&gt;(&#x27;otelcol.propagator&#x27;)</code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new InjectionToken&lt;IPropagator&gt;(&#x27;otelcol.propagator&#x27;)</code>
-                        </td>
-                    </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>injection for a propagator </p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>injection for a propagator </p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 
@@ -250,9 +246,9 @@
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

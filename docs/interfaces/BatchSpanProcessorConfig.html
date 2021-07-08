@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -44,7 +45,9 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>BatchSpanProcessorConfig</li>
+  <li
+  >
+  BatchSpanProcessorConfig</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
         <p class="comment">
             <code>projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -88,19 +92,31 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#exportTimeoutMillis">exportTimeoutMillis</a>
+                                        <a href="#exportTimeoutMillis" 
+>
+                                            exportTimeoutMillis
+                                        </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#maxExportBatchSize">maxExportBatchSize</a>
+                                        <a href="#maxExportBatchSize" 
+>
+                                            maxExportBatchSize
+                                        </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#maxQueueSize">maxQueueSize</a>
+                                        <a href="#maxQueueSize" 
+>
+                                            maxQueueSize
+                                        </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#scheduledDelayMillis">scheduledDelayMillis</a>
+                                        <a href="#scheduledDelayMillis" 
+>
+                                            scheduledDelayMillis
+                                        </a>
                                 </li>
                             </ul>
                         </td>
@@ -118,7 +134,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="exportTimeoutMillis"></a>
-                                        <span class="name"><b>exportTimeoutMillis</b><a href="#exportTimeoutMillis"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>exportTimeoutMillis</b>
+                                            <a href="#exportTimeoutMillis">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -147,7 +167,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>How long the export can run before it is cancelled </p>
+                                    <div class="io-description"><p>How long the export can run before it is cancelled</p>
 </div>
                                 </td>
                             </tr>
@@ -158,7 +178,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="maxExportBatchSize"></a>
-                                        <span class="name"><b>maxExportBatchSize</b><a href="#maxExportBatchSize"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>maxExportBatchSize</b>
+                                            <a href="#maxExportBatchSize">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +211,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The maximum batch size of every export. It must be smaller or equal to maxQueueSize. </p>
+                                    <div class="io-description"><p>The maximum batch size of every export. It must be smaller or equal to maxQueueSize.</p>
 </div>
                                 </td>
                             </tr>
@@ -198,7 +222,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="maxQueueSize"></a>
-                                        <span class="name"><b>maxQueueSize</b><a href="#maxQueueSize"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>maxQueueSize</b>
+                                            <a href="#maxQueueSize">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -227,7 +255,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The maximum queue size. After the size is reached spans are dropped. </p>
+                                    <div class="io-description"><p>The maximum queue size. After the size is reached spans are dropped.</p>
 </div>
                                 </td>
                             </tr>
@@ -238,7 +266,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="scheduledDelayMillis"></a>
-                                        <span class="name"><b>scheduledDelayMillis</b><a href="#scheduledDelayMillis"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>scheduledDelayMillis</b>
+                                            <a href="#scheduledDelayMillis">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -267,7 +299,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The interval between two consecutive exports </p>
+                                    <div class="io-description"><p>The interval between two consecutive exports</p>
 </div>
                                 </td>
                             </tr>
@@ -445,9 +477,9 @@ export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelc
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

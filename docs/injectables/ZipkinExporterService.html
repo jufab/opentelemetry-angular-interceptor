@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -39,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>ZipkinExporterService</li>
+  <li >ZipkinExporterService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -59,6 +60,7 @@
         <p class="comment">
             <code>projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -84,7 +86,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#zipkinConfig">zipkinConfig</a>
+                                <a href="#zipkinConfig" >zipkinConfig</a>
                             </li>
                         </ul>
                     </td>
@@ -99,7 +101,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getExporter">getExporter</a>
+                                <a href="#getExporter" >getExporter</a>
                             </li>
                         </ul>
                     </td>
@@ -119,7 +121,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html">OpenTelemetryConfig</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -180,9 +182,7 @@
                 <td class="col-md-4">
                     <a name="getExporter"></a>
                     <span class="name">
-                        <b>
-                            getExporter
-                        </b>
+                        <span ><b>getExporter</b></span>
                         <a href="#getExporter"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -224,43 +224,42 @@
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zipkinConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>zipkinConfig</b></span>
+                        <a href="#zipkinConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="zipkinConfig"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            zipkinConfig</b>
-                            <a href="#zipkinConfig"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>ExporterConfig</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>ExporterConfig</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:17</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/zipkin/zipkin-exporter.service.ts:17</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>zipkinConfig</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>zipkinConfig</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -343,9 +342,9 @@ export class ZipkinExporterService implements IExporter {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

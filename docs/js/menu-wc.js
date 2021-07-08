@@ -67,31 +67,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
-                                <a href="modules/B3PropagatorModule.html" data-type="entity-link">B3PropagatorModule</a>
+                                <a href="modules/B3PropagatorModule.html" data-type="entity-link" >B3PropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/CompositePropagatorModule.html" data-type="entity-link">CompositePropagatorModule</a>
+                                <a href="modules/CompositePropagatorModule.html" data-type="entity-link" >CompositePropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/ConsoleSpanExporterModule.html" data-type="entity-link">ConsoleSpanExporterModule</a>
+                                <a href="modules/ConsoleSpanExporterModule.html" data-type="entity-link" >ConsoleSpanExporterModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/HttpTraceContextPropagatorModule.html" data-type="entity-link">HttpTraceContextPropagatorModule</a>
+                                <a href="modules/HttpTraceContextPropagatorModule.html" data-type="entity-link" >HttpTraceContextPropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link">JaegerHttpTracePropagatorModule</a>
+                                <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link" >JaegerHttpTracePropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/NoopTextMapPropagatorModule.html" data-type="entity-link">NoopTextMapPropagatorModule</a>
+                                <a href="modules/NoopTextMapPropagatorModule.html" data-type="entity-link" >NoopTextMapPropagatorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/OpenTelemetryInterceptorModule.html" data-type="entity-link">OpenTelemetryInterceptorModule</a>
+                                <a href="modules/OpenTelemetryInterceptorModule.html" data-type="entity-link" >OpenTelemetryInterceptorModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/OtelColExporterModule.html" data-type="entity-link">OtelColExporterModule</a>
+                                <a href="modules/OtelColExporterModule.html" data-type="entity-link" >OtelColExporterModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/OtelWebTracerModule.html" data-type="entity-link">OtelWebTracerModule</a>
+                                <a href="modules/OtelWebTracerModule.html" data-type="entity-link" >OtelWebTracerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
@@ -103,13 +103,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             'id="xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
                                             <li class="link">
                                                 <a href="components/OtelWebTracerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">OtelWebTracerComponent</a>
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/ZipkinExporterModule.html" data-type="entity-link">ZipkinExporterModule</a>
+                                <a href="modules/ZipkinExporterModule.html" data-type="entity-link" >ZipkinExporterModule</a>
                             </li>
                 </ul>
                 </li>
@@ -122,31 +122,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
-                                    <a href="injectables/B3PropagatorService.html" data-type="entity-link">B3PropagatorService</a>
+                                    <a href="injectables/B3PropagatorService.html" data-type="entity-link" >B3PropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/CompositePropagatorService.html" data-type="entity-link">CompositePropagatorService</a>
+                                    <a href="injectables/CompositePropagatorService.html" data-type="entity-link" >CompositePropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ConsoleSpanExporterService.html" data-type="entity-link">ConsoleSpanExporterService</a>
+                                    <a href="injectables/ConsoleSpanExporterService.html" data-type="entity-link" >ConsoleSpanExporterService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/HttpTraceContextPropagatorService.html" data-type="entity-link">HttpTraceContextPropagatorService</a>
+                                    <a href="injectables/HttpTraceContextPropagatorService.html" data-type="entity-link" >HttpTraceContextPropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/InstrumentationService.html" data-type="entity-link">InstrumentationService</a>
+                                    <a href="injectables/InstrumentationService.html" data-type="entity-link" >InstrumentationService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link">JaegerHttpTracePropagatorService</a>
+                                    <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link" >JaegerHttpTracePropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/NoopTextMapPropagatorService.html" data-type="entity-link">NoopTextMapPropagatorService</a>
+                                    <a href="injectables/NoopTextMapPropagatorService.html" data-type="entity-link" >NoopTextMapPropagatorService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/OtelcolExporterService.html" data-type="entity-link">OtelcolExporterService</a>
+                                    <a href="injectables/OtelcolExporterService.html" data-type="entity-link" >OtelcolExporterService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ZipkinExporterService.html" data-type="entity-link">ZipkinExporterService</a>
+                                    <a href="injectables/ZipkinExporterService.html" data-type="entity-link" >ZipkinExporterService</a>
                                 </li>
                             </ul>
                         </li>
@@ -159,7 +159,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="interceptors-links"' : 'id="xs-interceptors-links"' }>
                             <li class="link">
-                                <a href="interceptors/OpenTelemetryHttpInterceptor.html" data-type="entity-link">OpenTelemetryHttpInterceptor</a>
+                                <a href="interceptors/OpenTelemetryHttpInterceptor.html" data-type="entity-link" >OpenTelemetryHttpInterceptor</a>
                             </li>
                         </ul>
                     </li>
@@ -172,37 +172,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/B3PropagatorConfig.html" data-type="entity-link">B3PropagatorConfig</a>
+                                <a href="interfaces/B3PropagatorConfig.html" data-type="entity-link" >B3PropagatorConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/BatchSpanProcessorConfig.html" data-type="entity-link">BatchSpanProcessorConfig</a>
+                                <a href="interfaces/BatchSpanProcessorConfig.html" data-type="entity-link" >BatchSpanProcessorConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/CommonCollectorConfig.html" data-type="entity-link">CommonCollectorConfig</a>
+                                <a href="interfaces/CommonCollectorConfig.html" data-type="entity-link" >CommonCollectorConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/CustomSpan.html" data-type="entity-link">CustomSpan</a>
+                                <a href="interfaces/CustomSpan.html" data-type="entity-link" >CustomSpan</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IExporter.html" data-type="entity-link">IExporter</a>
+                                <a href="interfaces/IExporter.html" data-type="entity-link" >IExporter</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/InstrumentationConfig.html" data-type="entity-link">InstrumentationConfig</a>
+                                <a href="interfaces/InstrumentationConfig.html" data-type="entity-link" >InstrumentationConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IPropagator.html" data-type="entity-link">IPropagator</a>
+                                <a href="interfaces/IPropagator.html" data-type="entity-link" >IPropagator</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/JaegerPropagatorConfig.html" data-type="entity-link">JaegerPropagatorConfig</a>
+                                <a href="interfaces/JaegerPropagatorConfig.html" data-type="entity-link" >JaegerPropagatorConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/OpenTelemetryConfig.html" data-type="entity-link">OpenTelemetryConfig</a>
+                                <a href="interfaces/OpenTelemetryConfig.html" data-type="entity-link" >OpenTelemetryConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/OtelCollectorConfig.html" data-type="entity-link">OtelCollectorConfig</a>
+                                <a href="interfaces/OtelCollectorConfig.html" data-type="entity-link" >OtelCollectorConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ZipkinCollectorConfig.html" data-type="entity-link">ZipkinCollectorConfig</a>
+                                <a href="interfaces/ZipkinCollectorConfig.html" data-type="entity-link" >ZipkinCollectorConfig</a>
                             </li>
                         </ul>
                     </li>

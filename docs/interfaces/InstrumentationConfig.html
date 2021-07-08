@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -44,7 +45,9 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>InstrumentationConfig</li>
+  <li
+  >
+  InstrumentationConfig</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
         <p class="comment">
             <code>projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -88,15 +92,24 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#documentLoad">documentLoad</a>
+                                        <a href="#documentLoad" 
+>
+                                            documentLoad
+                                        </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#fetch">fetch</a>
+                                        <a href="#fetch" 
+>
+                                            fetch
+                                        </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#xmlHttpRequest">xmlHttpRequest</a>
+                                        <a href="#xmlHttpRequest" 
+>
+                                            xmlHttpRequest
+                                        </a>
                                 </li>
                             </ul>
                         </td>
@@ -114,7 +127,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="documentLoad"></a>
-                                        <span class="name"><b>documentLoad</b><a href="#documentLoad"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>documentLoad</b>
+                                            <a href="#documentLoad">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -143,7 +160,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>documentLoad : to add DocumentLoadInstrumentation </p>
+                                    <div class="io-description"><p>documentLoad : to add DocumentLoadInstrumentation</p>
 </div>
                                 </td>
                             </tr>
@@ -154,7 +171,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="fetch"></a>
-                                        <span class="name"><b>fetch</b><a href="#fetch"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>fetch</b>
+                                            <a href="#fetch">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -183,7 +204,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>fetch : to add FetchInstrumentation </p>
+                                    <div class="io-description"><p>fetch : to add FetchInstrumentation</p>
 </div>
                                 </td>
                             </tr>
@@ -194,7 +215,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="xmlHttpRequest"></a>
-                                        <span class="name"><b>xmlHttpRequest</b><a href="#xmlHttpRequest"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>xmlHttpRequest</b>
+                                            <a href="#xmlHttpRequest">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -223,7 +248,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>xmlHttpRequest : to add XmlHttRequestInstrumentation </p>
+                                    <div class="io-description"><p>xmlHttpRequest : to add XmlHttRequestInstrumentation</p>
 </div>
                                 </td>
                             </tr>
@@ -401,9 +426,9 @@ export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelc
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
