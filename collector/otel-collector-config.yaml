@@ -2,7 +2,7 @@ receivers:
   otlp:
     protocols:
       http:
-        endpoint: "0.0.0.0:55681"
+        endpoint: "http://0.0.0.0:55681"
         cors_allowed_origins:
         - http://*
         - https://*

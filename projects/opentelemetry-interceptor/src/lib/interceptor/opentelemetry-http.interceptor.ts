@@ -24,7 +24,7 @@ import {
   TraceIdRatioBasedSampler,
   ParentBasedSampler,
 } from '@opentelemetry/core';
-import { ResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
@@ -36,6 +36,7 @@ import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.inter
 import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 import { OTELCOL_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
+import { tokenToString } from 'typescript';
 
 /**
  * OpenTelemetryInterceptor class
@@ -82,7 +83,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(config.commonConfig.probabilitySampler)),
       resource: Resource.default().merge(
         new Resource({
-          [ResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
+          [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
         })
       ),
     });
@@ -116,7 +117,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpResponse<any>) => {
           span.setAttributes(
             {
-              'http.status_code': event.status,
+              [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
               'http.status_text': event.statusText,
             }
           );
@@ -131,8 +132,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpErrorResponse) => {
           span.setAttributes(
             {
+              [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
               'http.status_text': event.statusText,
-              'http.status_code': event.status,
             }
           );
           span.recordException({
@@ -172,12 +173,12 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         `${urlRequest.protocol.replace(':', '').toUpperCase()} ${request.method.toUpperCase()}`,
         {
           attributes: {
-            ['http.method']: request.method,
-            ['http.url']: request.urlWithParams,
-            ['http.host']: urlRequest.host,
-            ['http.scheme']: urlRequest.protocol.replace(':', ''),
-            ['http.target']: urlRequest.pathname + urlRequest.search,
-            ['http.user_agent']: window.navigator.userAgent
+            [SemanticAttributes.HTTP_METHOD]: request.method,
+            [SemanticAttributes.HTTP_URL]: request.urlWithParams,
+            [SemanticAttributes.HTTP_HOST]: urlRequest.host,
+            [SemanticAttributes.HTTP_SCHEME]: urlRequest.protocol.replace(':', ''),
+            [SemanticAttributes.HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
+            [SemanticAttributes.HTTP_USER_AGENT]: window.navigator.userAgent
           },
           kind: api.SpanKind.CLIENT,
         },
