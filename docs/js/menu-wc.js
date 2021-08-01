@@ -102,8 +102,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' :
                                             'id="xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
                                             <li class="link">
-                                                <a href="components/OtelWebTracerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
+                                                <a href="components/OtelWebTracerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
                                             </li>
                                         </ul>
                                     </li>
