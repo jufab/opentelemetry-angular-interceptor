@@ -23,6 +23,7 @@ export const environment: IEnvironment = {
     },
     otelcolConfig: {
       url: 'http://localhost:55681/v1/traces', // URL of opentelemetry collector
+      headers: {} // Bug with sendBeacon...force use XHR
     },
     instrumentationConfig: {
       xmlHttpRequest: true,

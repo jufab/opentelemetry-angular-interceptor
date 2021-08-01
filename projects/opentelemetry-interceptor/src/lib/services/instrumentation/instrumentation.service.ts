@@ -7,7 +7,7 @@ import {
   TraceIdRatioBasedSampler,
   ParentBasedSampler,
 } from '@opentelemetry/core';
-import { ResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
 import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
@@ -59,7 +59,7 @@ export class InstrumentationService {
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
         resource: Resource.default().merge(
           new Resource({
-            [ResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
+            [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
           })
         ),
       });

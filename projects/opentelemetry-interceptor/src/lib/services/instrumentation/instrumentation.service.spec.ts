@@ -26,9 +26,9 @@ describe('InstrumentationService', () => {
   });
 
   it('must verify all call in init instrumentation', () => {
-    const insertConsoleSpanExporterSpy = spyOn(InstrumentationService.prototype as any, 'insertConsoleSpanExporter');
-    const insertSpanProcessorProductionModeSpy = spyOn(InstrumentationService.prototype as any, 'insertSpanProcessorProductionMode');
-    const addInstrumentationPluginSpy = spyOn(InstrumentationService.prototype as any, 'addInstrumentationPlugin');
+    const insertConsoleSpanExporterSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertConsoleSpanExporter');
+    const insertSpanProcessorProductionModeSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertSpanProcessorProductionMode');
+    const addInstrumentationPluginSpy = jest.spyOn(InstrumentationService.prototype as any, 'addInstrumentationPlugin');
     instrumentationService.initInstrumentation();
     expect(insertConsoleSpanExporterSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.console);
     expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTELCOL_EXPORTER));
