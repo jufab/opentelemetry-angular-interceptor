@@ -6,6 +6,7 @@ import { InstrumentationService } from '../../services/instrumentation/instrumen
  * Otel Web Tracer Component
  */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'otel-instrumentation',
   template: '',
 })
@@ -13,6 +14,7 @@ export class OtelWebTracerComponent implements OnInit {
 
   /**
    * Constructor
+   *
    * @param instrumentationService InstrumentationService
    */
   constructor(private instrumentationService: InstrumentationService) { }

@@ -16,7 +16,7 @@ export class ViewBackendComponent implements OnInit {
   constructor(private exampleService: ExampleService, private logger: NGXLogger) { }
 
   ngOnInit(): void {
-    this.logger.debug("View Backend Component");
+    this.logger.debug('View Backend Component');
     //this.exampleService.getApiBackend().subscribe(result => this.result = result);
     this.exampleService.getApiParallelBackEnd().subscribe(({result, result2}) => {
       this.result = result;

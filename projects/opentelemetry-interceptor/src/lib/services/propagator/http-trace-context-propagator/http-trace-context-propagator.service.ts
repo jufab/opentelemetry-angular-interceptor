@@ -12,6 +12,7 @@ import { HttpTraceContextPropagator } from '@opentelemetry/core';
 export class HttpTraceContextPropagatorService implements IPropagator {
   /**
    * Return an HttpTraceContextPropagator
+   *
    * @return TextMapPropagator as HttpTraceContextPropagator
    */
   getPropagator(): TextMapPropagator {

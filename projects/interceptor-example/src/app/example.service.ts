@@ -19,7 +19,7 @@ export class ExampleService {
       .pipe(map((result: Result) => result));
   }
 
-  getApiParallelBackEnd() : Observable<any> {
+  getApiParallelBackEnd(): Observable<any> {
     return forkJoin({
       result: this.getApiBackend(),
       result2: this.getApiBackend()

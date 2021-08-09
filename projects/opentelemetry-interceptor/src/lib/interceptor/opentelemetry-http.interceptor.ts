@@ -29,14 +29,13 @@ import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
+  OTELCOL_CONFIG,
 } from '../configuration/opentelemetry-config';
 import { version, name } from '../../version.json';
 import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 import { OTELCOL_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
-import { tokenToString } from 'typescript';
 
 /**
  * OpenTelemetryInterceptor class
@@ -60,6 +59,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * constructor
+   *
    * @param config configuration
    * @param exporterService service exporter injected
    * @param propagatorService propagator injected
@@ -68,7 +68,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param platformLocation encapsulates all calls to DOM APIs
    */
   constructor(
-    @Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
+    @Inject(OTELCOL_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
@@ -101,6 +101,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Overide method
    * Interceptor from HttpInterceptor Angular
+   *
    * @param request the current request
    * @param next next
    */
@@ -118,7 +119,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setAttributes(
             {
               [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
-              'http.status_text': event.statusText,
             }
           );
           if (this.logBody && event.body != null) {
@@ -133,7 +133,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           span.setAttributes(
             {
               [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
-              'http.status_text': event.statusText,
             }
           );
           span.recordException({
@@ -163,6 +162,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * Initialise a span for a request intercepted
+   *
    * @param request request
    */
   private initSpan(request: HttpRequest<unknown>): Span {
@@ -184,6 +184,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         },
         this.contextManager.active()
       );
+    /*eslint no-underscore-dangle: ["error", { "allow": ["_currentContext"] }]*/
     this.contextManager._currentContext = api.trace.setSpan(
       this.contextManager.active(),
       span
@@ -193,6 +194,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * Add header propagator in request and conserve original header
+   *
    * @param request request
    */
   private injectContextAndHeader(
@@ -233,7 +235,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       scheduledDelayMillis: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.scheduledDelayMillis),
       exportTimeoutMillis: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.exportTimeoutMillis),
       maxQueueSize: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.maxQueueSize)
-    }
+    };
     this.tracer.addSpanProcessor(
       this.config.commonConfig.production
         ? new BatchSpanProcessor(this.exporterService.getExporter(), bufferConfig)
@@ -244,6 +246,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * define the Probability Sampler
    * By Default, it's always (or 1)
+   *
    * @param sampleConfig the sample configuration
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
@@ -259,15 +262,17 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
 
   /**
    * convert String to Number (or undefined)
+   *
    * @param value
    * @returns number or undefined
    */
   private convertStringToNumber(value: string): number {
-    return value !== undefined ? Number(value) : undefined
+    return value !== undefined ? Number(value) : undefined;
   }
 
   /**
    * Set custom attributes in span with a CustomSpan
+   *
    * @param span
    * @param request
    * @param response

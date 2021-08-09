@@ -15,7 +15,7 @@ import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
 import {
   CUSTOM_SPAN,
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
+  OTELCOL_CONFIG,
 } from '../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
@@ -27,6 +27,7 @@ import {
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
+// eslint-disable-next-line max-len
 import { HttpTraceContextPropagatorModule } from '../services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
 import { CustomSpan } from './custom-span.interface';
 import { Span } from '@opentelemetry/api';
@@ -98,13 +99,13 @@ describe('OpenTelemetryHttpInterceptor', () => {
 
   it('Add traceparent header on a given request with an error', () => {
     const url = 'http://url.test.com';
-    httpClient.get(url).subscribe({
-      error(actualError) {
+    httpClient.get(url).subscribe(
+      (actualError) => {
         expect(of(actualError)).toBeTruthy();
         expect(actualError).not.toBeNull();
         expect(actualError).not.toBeUndefined();
       },
-    });
+    );
     const req = httpControllerMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
 
@@ -197,7 +198,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
       ],
       providers: [
         {
-          provide: OpenTelemetryInjectConfig,
+          provide: OTELCOL_CONFIG,
           useValue: otelcolExporterConfig,
         },
         {
@@ -225,11 +226,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
   });
 });
 
-function defineModuleTest(
+const defineModuleTest = (
   httpClient: HttpClient,
   httpControllerMock: HttpTestingController,
   otelcolConfig: OpenTelemetryConfig
-) {
+) => {
   TestBed.resetTestingModule();
   TestBed.configureTestingModule({
     imports: [
@@ -239,7 +240,7 @@ function defineModuleTest(
     ],
     providers: [
       {
-        provide: OpenTelemetryInjectConfig,
+        provide: OTELCOL_CONFIG,
         useValue: otelcolConfig,
       },
       {
@@ -252,11 +253,11 @@ function defineModuleTest(
   httpClient = TestBed.inject(HttpClient);
   httpControllerMock = TestBed.inject(HttpTestingController);
   return { httpClient, httpControllerMock };
-}
+};
 
 class CustomSpanImpl implements CustomSpan {
   add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span {
-    span.setAttribute('mycustom.key', request.params + ";" + response.status);
+    span.setAttribute('mycustom.key', request.params + ';' + response.status);
     return span;
   }
 }

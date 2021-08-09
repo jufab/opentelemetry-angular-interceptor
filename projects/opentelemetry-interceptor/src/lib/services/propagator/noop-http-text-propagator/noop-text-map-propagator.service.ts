@@ -11,6 +11,7 @@ import { NoopTextMapPropagator } from '@opentelemetry/api/build/src/propagation/
 export class NoopTextMapPropagatorService implements IPropagator {
   /**
    * Return an NoopTextMapPropagator
+   *
    * @return TextMapPropagator as NoopTextMapPropagator
    */
   getPropagator(): TextMapPropagator {

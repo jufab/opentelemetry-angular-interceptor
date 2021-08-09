@@ -16,7 +16,7 @@ describe('OpenTelemetryInterceptorModule', () => {
 
   it('should be created', () => {
     expect(openTelemetryInterceptorModule).toBeTruthy();
-    let config = TestBed.inject(OpenTelemetryInjectConfig);
+    const config = TestBed.inject(OpenTelemetryInjectConfig);
     expect(config).not.toBeUndefined();
   });
 });

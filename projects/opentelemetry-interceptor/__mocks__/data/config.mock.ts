@@ -123,7 +123,7 @@ export const zipkinConfig: OpenTelemetryConfig = {
   },
   zipkinConfig: {
     url: 'http://localhost',
-    headers: { "test": "test" },
+    headers: { test: 'test' },
   }
 };
 

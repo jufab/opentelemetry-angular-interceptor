@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ConsoleSpanExporterModule, HttpTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
+// eslint-disable-next-line max-len
 import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig } from '../../../../__mocks__/data/config.mock';
 
 import { InstrumentationService } from './instrumentation.service';
@@ -31,6 +32,7 @@ describe('InstrumentationService', () => {
     const addInstrumentationPluginSpy = jest.spyOn(InstrumentationService.prototype as any, 'addInstrumentationPlugin');
     instrumentationService.initInstrumentation();
     expect(insertConsoleSpanExporterSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.console);
+    // eslint-disable-next-line max-len
     expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTELCOL_EXPORTER));
     expect(addInstrumentationPluginSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.instrumentationConfig);
   });
