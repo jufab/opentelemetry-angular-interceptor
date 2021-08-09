@@ -4,7 +4,7 @@ import { TextMapPropagator } from '@opentelemetry/api';
 import { B3Propagator, B3PropagatorConfig, B3InjectEncoding } from '@opentelemetry/propagator-b3';
 import {
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
+  OTELCOL_CONFIG,
 } from '../../../configuration/opentelemetry-config';
 
 /**
@@ -25,9 +25,10 @@ export class B3PropagatorService implements IPropagator {
 
   /**
    * Constructor
+   *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OpenTelemetryInjectConfig) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTELCOL_CONFIG) config: OpenTelemetryConfig) {
     this.b3PropagatorConfig = {
       injectEncoding: B3PropagatorService.defineB3Encoding(config.b3PropagatorConfig?.multiHeader)
     };
@@ -35,6 +36,7 @@ export class B3PropagatorService implements IPropagator {
 
   /**
    * Define if it's a single or multi header
+   *
    * @param value string (0 => single header, 1 => Multi Header)
    * @return B3InjectEncoding
    */
@@ -47,6 +49,7 @@ export class B3PropagatorService implements IPropagator {
 
   /**
    * Return an B3Propagator
+   *
    * @return TextMapPropagator as B3Propagator
    */
   getPropagator(): TextMapPropagator {

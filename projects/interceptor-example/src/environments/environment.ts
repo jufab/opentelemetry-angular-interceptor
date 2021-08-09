@@ -27,7 +27,7 @@ export const environment: IEnvironment = {
     otelcolConfig: {
       url: 'http://127.0.0.1:55681/v1/traces', // URL of opentelemetry collector
       attributes: {
-        "test": "test"
+        test: 'test'
       },
       headers: {} // Bug with sendBeacon...force use XHR
     }

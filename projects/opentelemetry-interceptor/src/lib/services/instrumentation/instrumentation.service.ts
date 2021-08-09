@@ -15,7 +15,7 @@ import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
 import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 import { WebTracerProvider } from '@opentelemetry/web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from '@opentelemetry/tracing';
-import { OpenTelemetryInjectConfig, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
+import { OTELCOL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
 import { OTELCOL_EXPORTER, IExporter } from '../exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
 
@@ -46,11 +46,12 @@ export class InstrumentationService {
 
   /**
    * Constructor
+   *
    * @param config
    * @param exporterService
    * @param propagatorService
    */
-  constructor(@Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
+  constructor(@Inject(OTELCOL_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
@@ -87,6 +88,7 @@ export class InstrumentationService {
 
   /**
    * Insert in tracer the console span if config is true
+   *
    * @param console config to insert console span
    */
   private insertConsoleSpanExporter(console: boolean) {
@@ -100,6 +102,7 @@ export class InstrumentationService {
   /**
    * Insert BatchSpanProcessor in production mode
    * SimpleSpanProcessor otherwise
+   *
    * @param boolean production
    * @param IExporter exporter
    */
@@ -116,6 +119,7 @@ export class InstrumentationService {
 
   /**
    * Enable plugin instrumentation
+   *
    * @param instrumentationConfig
    */
   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
@@ -123,23 +127,25 @@ export class InstrumentationService {
       new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig?.xmlHttpRequest }),
       new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
       new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
-    ]
+    ];
   }
 
   /**
    * convert String to Number (or undefined)
+   *
    * @param value
    * @returns number or undefined
    */
   private convertStringToNumber(value: string): number {
-    return value !== undefined ? Number(value) : undefined
+    return value !== undefined ? Number(value) : undefined;
   }
 
   /**
- * define the Probability Sampler
- * By Default, it's always (or 1)
- * @param sampleConfig the sample configuration
- */
+   * define the Probability Sampler
+   * By Default, it's always (or 1)
+   *
+   * @param sampleConfig the sample configuration
+   */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
     if (sampleConfig >= 1) {
       return new ParentBasedSampler({ root: new AlwaysOnSampler() });

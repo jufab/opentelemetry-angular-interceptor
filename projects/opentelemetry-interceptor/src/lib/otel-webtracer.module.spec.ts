@@ -19,7 +19,7 @@ describe('OtelWebTracerModule', () => {
 
   it('should be created', () => {
     expect(otelWebTracerModule).toBeTruthy();
-    let config = TestBed.inject(OpenTelemetryInjectConfig);
+    const config = TestBed.inject(OpenTelemetryInjectConfig);
     expect(config).not.toBeUndefined();
   });
 });

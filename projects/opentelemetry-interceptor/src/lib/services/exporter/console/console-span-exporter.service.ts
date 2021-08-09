@@ -12,6 +12,7 @@ import { SpanExporter, ConsoleSpanExporter } from '@opentelemetry/tracing';
 export class ConsoleSpanExporterService implements IExporter {
   /**
    * Return a ConsoleSpanExporter
+   *
    * @return SpanExporter
    */
   getExporter(): SpanExporter {

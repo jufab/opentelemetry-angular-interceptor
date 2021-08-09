@@ -26,6 +26,7 @@ export class CompositePropagatorService implements IPropagator {
 
   /**
    * Return an CompositePropagator
+   *
    * @return TextMapPropagator as CompositePropagator
    */
   getPropagator(): TextMapPropagator {

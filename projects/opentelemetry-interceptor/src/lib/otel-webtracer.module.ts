@@ -1,9 +1,9 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from "@angular/core";
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import {
   OpenTelemetryConfig,
-  OpenTelemetryInjectConfig,
+  OTELCOL_CONFIG,
 } from './configuration/opentelemetry-config';
-import { OtelWebTracerComponent } from "./component/otel-webtracer/otel-webtracer.component";
+import { OtelWebTracerComponent } from './component/otel-webtracer/otel-webtracer.component';
 import { InstrumentationService } from './services/instrumentation/instrumentation.service';
 
 @NgModule({
@@ -25,7 +25,7 @@ export class OtelWebTracerModule {
     return {
       ngModule: OtelWebTracerModule,
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: config },
+        { provide: OTELCOL_CONFIG, useValue: config },
         InstrumentationService
       ],
     };

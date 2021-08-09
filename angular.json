@@ -22,14 +22,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/opentelemetry-interceptor/tsconfig.lib.json",
-              "projects/opentelemetry-interceptor/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/opentelemetry-interceptor/**/*.ts",
+              "projects/opentelemetry-interceptor/**/*.html"
             ]
           }
         }
@@ -126,15 +123,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/interceptor-example/tsconfig.app.json",
-              "projects/interceptor-example/tsconfig.spec.json",
-              "projects/interceptor-example/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/interceptor-example/**/*.ts",
+              "projects/interceptor-example/**/*.html"
             ]
           }
         }
@@ -248,28 +241,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/instrumentation-example/tsconfig.app.json",
-              "projects/instrumentation-example/tsconfig.spec.json",
-              "projects/instrumentation-example/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/instrumentation-example/**/*.ts",
+              "projects/instrumentation-example/**/*.html"
             ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/instrumentation-example/e2e/protractor.conf.js",
-            "devServerTarget": "instrumentation-example:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "instrumentation-example:serve:production"
-            }
           }
         }
       }

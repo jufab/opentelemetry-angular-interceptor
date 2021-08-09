@@ -1,25 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { ZipkinExporterService } from './zipkin-exporter.service';
-import { OpenTelemetryInjectConfig } from '../../../configuration/opentelemetry-config';
+import { OTELCOL_CONFIG } from '../../../configuration/opentelemetry-config';
 import { zipkinConfig, zipkinOtherConfig } from '../../../../../__mocks__/data/config.mock';
 import { ExporterConfig, ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { mocked } from 'ts-jest/utils';
 
-jest.mock('@opentelemetry/exporter-zipkin', () => {
-  return {
+jest.mock('@opentelemetry/exporter-zipkin', () => ({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     ZipkinExporter: jest.fn()
-  };
-});
+  }));
 
 describe('ZipkinExporterService', () => {
   let zipkinExporterService: ZipkinExporterService;
-  let mockedZipkinExporter = mocked(ZipkinExporter, true);
+  const mockedZipkinExporter = mocked(ZipkinExporter, true);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        { provide: OpenTelemetryInjectConfig, useValue: zipkinConfig },
+        { provide: OTELCOL_CONFIG, useValue: zipkinConfig },
       ]
     });
     zipkinExporterService = TestBed.inject(ZipkinExporterService);
@@ -35,8 +34,8 @@ describe('ZipkinExporterService', () => {
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(ZipkinExporter);
     const mockedZipkinConfig: ExporterConfig = mockedZipkinExporter.mock.calls[0][0];
-    expect(mockedZipkinConfig.url).toEqual('http://localhost')
-    expect(mockedZipkinConfig.headers).toEqual({ "test": "test" });
+    expect(mockedZipkinConfig.url).toEqual('http://localhost');
+    expect(mockedZipkinConfig.headers).toEqual({ test: 'test' });
   });
 
   it('should generate an other zipkinExporter', () => {
@@ -44,10 +43,10 @@ describe('ZipkinExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        { provide: OpenTelemetryInjectConfig, useValue: zipkinOtherConfig },
+        { provide: OTELCOL_CONFIG, useValue: zipkinOtherConfig },
       ]
     });
-    zipkinExporterService = TestBed.inject(ZipkinExporterService)
+    zipkinExporterService = TestBed.inject(ZipkinExporterService);
     const exporter = zipkinExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(ZipkinExporter);
