@@ -45,6 +45,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Instrumentation](#instrumentation)
     - [[Optional] Result in OpenTelemetry-collector](#optional-result-in-opentelemetry-collector)
   - [Troubleshoot](#troubleshoot)
+    - [Otel Collector](#otel-collector)
     - [Angular 10 Warning](#angular-10-warning)
     - [Other](#other)
 
@@ -104,7 +105,7 @@ opentelemetryConfig: {
       exportTimeoutMillis: '30000', // How long the export can run before it is cancelled
     },
     otelcolConfig: {
-      url: 'http://localhost:55681/v1/traces', //URL of opentelemetry collector
+      url: 'http://localhost:4318/v1/traces', //URL of opentelemetry collector
     },
     jaegerPropagatorConfig: {
       customHeader: 'custom-header',
@@ -127,7 +128,7 @@ export const environment: IEnvironment = {
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
-      url: 'http://localhost:55681/v1/traces', // URL of opentelemetry collector
+      url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
     },
     instrumentationConfig: {
       xmlHttpRequest: true,
@@ -159,7 +160,7 @@ _This configuration applies if production is true in commonConfig._
 
 #### OpenTelemetry-collector Configuration
 
-* url: (string) url of opentelemetry collector (default : http://localhost:55681/v1/traces)
+* url: (string) url of opentelemetry collector (default : http://localhost:4318/v1/traces)
 * headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
 * attributes : list of custom attributes (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
 * concurrencyLimit (string) : An optional limit on pending requests (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector)
