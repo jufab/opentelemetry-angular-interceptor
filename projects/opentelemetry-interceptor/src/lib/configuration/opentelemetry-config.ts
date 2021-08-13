@@ -51,7 +51,7 @@ export interface BatchSpanProcessorConfig {
  */
 export interface OtelCollectorConfig {
   /**
-   * An url (Default value: http://localhost:55681/v1/trace)
+   * An url (Default value: http://localhost:4318/v1/trace)
    */
   url?: string;
   /**

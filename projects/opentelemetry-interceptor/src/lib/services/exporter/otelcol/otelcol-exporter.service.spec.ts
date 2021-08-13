@@ -50,7 +50,7 @@ describe('OtelcolExporterService', () => {
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(CollectorTraceExporter);
     expect((exporter as CollectorTraceExporter).url).toEqual(
-      'http://localhost:55681/v1/traces'
+      'http://localhost:4318/v1/traces'
     );
   });
 });

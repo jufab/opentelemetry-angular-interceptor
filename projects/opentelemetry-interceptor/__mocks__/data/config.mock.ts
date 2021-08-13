@@ -55,6 +55,9 @@ export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
   },
+  otelcolConfig: {
+    url: 'http://localhost:4318/v1/traces',
+  }
 };
 
 /**
