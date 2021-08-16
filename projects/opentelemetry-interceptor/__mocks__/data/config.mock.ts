@@ -225,3 +225,39 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
     concurrencyLimit: '10',
   }
 };
+
+/**
+ * @ignore
+ */
+ export const instrumentationFetchOnlyOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    fetch: true
+  }
+};
+
+/**
+ * @ignore
+ */
+ export const instrumentationDocumentLoadOnlyOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    documentLoad: true
+  }
+};
