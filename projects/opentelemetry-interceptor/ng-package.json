@@ -8,8 +8,8 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "@opentelemetry/api": "@opentelemetry/api",
-      "@opentelemetry/web": "@opentelemetry/web",
-      "@opentelemetry/tracing": "@opentelemetry/tracing",
+      "@opentelemetry/sdk-trace-web": "@opentelemetry/sdk-trace-web",
+      "@opentelemetry/sdk-trace-base": "@opentelemetry/sdk-trace-base",
       "@opentelemetry/exporter-collector": "@opentelemetry/exporter-collector-browser",
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core",
