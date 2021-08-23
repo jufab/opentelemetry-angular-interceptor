@@ -5,10 +5,7 @@ import { zipkinConfig, zipkinOtherConfig } from '../../../../../__mocks__/data/c
 import { ExporterConfig, ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { mocked } from 'ts-jest/utils';
 
-jest.mock('@opentelemetry/exporter-zipkin', () => ({
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    ZipkinExporter: jest.fn()
-  }));
+jest.mock('@opentelemetry/exporter-zipkin');
 
 describe('ZipkinExporterService', () => {
   let zipkinExporterService: ZipkinExporterService;
