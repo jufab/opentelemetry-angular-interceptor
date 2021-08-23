@@ -28,8 +28,7 @@ export const environment: IEnvironment = {
       url: 'http://127.0.0.1:4318/v1/traces', // URL of opentelemetry collector
       attributes: {
         test: 'test'
-      },
-      headers: {} // Bug with sendBeacon...force use XHR
+      }
     }
   },
   loggerConfig: {
