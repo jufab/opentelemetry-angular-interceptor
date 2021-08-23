@@ -21,7 +21,8 @@ services:
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
-      - "55681:55681"
+      - "4318:4318"
+      - "55681:55681" #legacy endpoint
       - "55679:55679"
     depends_on:
       - jaeger

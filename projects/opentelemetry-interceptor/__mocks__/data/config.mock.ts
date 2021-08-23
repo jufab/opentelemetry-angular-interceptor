@@ -55,6 +55,9 @@ export const otelcolExporterWithoutUrlAndB3Config: OpenTelemetryConfig = {
   commonConfig: {
     serviceName: 'test',
   },
+  otelcolConfig: {
+    url: 'http://localhost:4318/v1/traces',
+  }
 };
 
 /**
@@ -223,5 +226,41 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
   otelcolConfig: {
     url: 'http://localhost',
     concurrencyLimit: '10',
+  }
+};
+
+/**
+ * @ignore
+ */
+ export const instrumentationFetchOnlyOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    fetch: true
+  }
+};
+
+/**
+ * @ignore
+ */
+ export const instrumentationDocumentLoadOnlyOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    documentLoad: true
   }
 };

@@ -122,12 +122,17 @@ export class InstrumentationService {
    *
    * @param instrumentationConfig
    */
-  private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
-    this.instrumentationOptions = [
-      new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig?.xmlHttpRequest }),
-      new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
-      new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
-    ];
+   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
+    this.instrumentationOptions = [];
+    if(instrumentationConfig?.xmlHttpRequest) {
+      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation());
+    }
+    if(instrumentationConfig?.documentLoad) {
+      this.instrumentationOptions.push(new DocumentLoadInstrumentation());
+    }
+    if(instrumentationConfig?.fetch) {
+      this.instrumentationOptions.push(new FetchInstrumentation());
+    }
   }
 
   /**

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ConsoleSpanExporterModule, HttpTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
 // eslint-disable-next-line max-len
-import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig } from '../../../../__mocks__/data/config.mock';
+import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 
 import { InstrumentationService } from './instrumentation.service';
 import { OTELCOL_EXPORTER } from '../exporter/exporter.interface';
@@ -65,6 +65,36 @@ describe('InstrumentationService', () => {
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationProductionOtelConfig },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
+    instrumentationService.initInstrumentation();
+  });
+
+  it('must init instrumentation with fetch only', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        ConsoleSpanExporterModule,
+        HttpTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: instrumentationFetchOnlyOtelConfig },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
+    instrumentationService.initInstrumentation();
+  });
+
+  it('must init instrumentation with documentLoad only', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        ConsoleSpanExporterModule,
+        HttpTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: instrumentationDocumentLoadOnlyOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
