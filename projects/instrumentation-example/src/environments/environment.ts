@@ -24,6 +24,9 @@ export const environment: IEnvironment = {
     zipkinConfig: {
       url: 'http://localhost:9411/api/v2/spans'
     },
+    b3PropagatorConfig: {
+      multiHeader: '0' //Value : 'O' (single), '1' (multi)
+    },
     instrumentationConfig: {
       xmlHttpRequest: true,
       fetch: true,
