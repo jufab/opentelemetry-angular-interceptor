@@ -21,9 +21,8 @@ export const environment: IEnvironment = {
       probabilitySampler: '0.75', // 75% sampling
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
-    otelcolConfig: {
-      url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
-      headers: {} // Bug with sendBeacon...force use XHR
+    zipkinConfig: {
+      url: 'http://localhost:9411/api/v2/spans'
     },
     instrumentationConfig: {
       xmlHttpRequest: true,

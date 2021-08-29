@@ -24,12 +24,8 @@ export const environment: IEnvironment = {
       probabilitySampler: '1', // 75% sampling
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
-    otelcolConfig: {
-      url: 'http://127.0.0.1:4318/v1/traces', // URL of opentelemetry collector
-      attributes: {
-        test: 'test'
-      },
-      headers: {} // Bug with sendBeacon...force use XHR
+    zipkinConfig: {
+      url: 'http://localhost:9411/api/v2/spans'
     }
   },
   loggerConfig: {
@@ -46,4 +42,6 @@ export const environment: IEnvironment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import { ZipkinCollectorConfig } from '../../../../dist/opentelemetry-interceptor/lib/configuration/opentelemetry-config';
+import { zipkinConfig } from '../../../opentelemetry-interceptor/__mocks__/data/config.mock';
 
