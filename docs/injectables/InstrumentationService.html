@@ -247,8 +247,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -260,6 +260,7 @@ Service for component to add instrumentation.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -319,8 +320,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:144</a></div>
                 </td>
             </tr>
 
@@ -332,6 +333,7 @@ Service for component to add instrumentation.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -392,8 +394,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:154</a></div>
                 </td>
             </tr>
 
@@ -406,6 +408,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -470,8 +473,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:72</a></div>
                 </td>
             </tr>
 
@@ -511,8 +514,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -524,6 +527,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -588,8 +592,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:109</a></div>
                 </td>
             </tr>
 
@@ -602,6 +606,7 @@ SimpleSpanProcessor otherwise</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -778,7 +783,7 @@ import { FetchInstrumentation } from &#x27;@opentelemetry/instrumentation-fetch&
 import { XMLHttpRequestInstrumentation } from &#x27;@opentelemetry/instrumentation-xml-http-request&#x27;;
 import { WebTracerProvider } from &#x27;@opentelemetry/web&#x27;;
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from &#x27;@opentelemetry/tracing&#x27;;
-import { OpenTelemetryInjectConfig, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
+import { OTELCOL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import { OTELCOL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
 import { OTELCOL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
 
@@ -809,11 +814,12 @@ export class InstrumentationService {
 
   /**
    * Constructor
+   *
    * @param config
    * @param exporterService
    * @param propagatorService
    */
-  constructor(@Inject(OpenTelemetryInjectConfig) private config: OpenTelemetryConfig,
+  constructor(@Inject(OTELCOL_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
@@ -850,6 +856,7 @@ export class InstrumentationService {
 
   /**
    * Insert in tracer the console span if config is true
+   *
    * @param console config to insert console span
    */
   private insertConsoleSpanExporter(console: boolean) {
@@ -863,6 +870,7 @@ export class InstrumentationService {
   /**
    * Insert BatchSpanProcessor in production mode
    * SimpleSpanProcessor otherwise
+   *
    * @param boolean production
    * @param IExporter exporter
    */
@@ -879,30 +887,38 @@ export class InstrumentationService {
 
   /**
    * Enable plugin instrumentation
+   *
    * @param instrumentationConfig
    */
-  private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
-    this.instrumentationOptions &#x3D; [
-      new XMLHttpRequestInstrumentation({ enabled: instrumentationConfig?.xmlHttpRequest }),
-      new DocumentLoadInstrumentation({ enabled: instrumentationConfig?.documentLoad }),
-      new FetchInstrumentation({ enabled: instrumentationConfig?.fetch })
-    ]
+   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
+    this.instrumentationOptions &#x3D; [];
+    if(instrumentationConfig?.xmlHttpRequest) {
+      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation());
+    }
+    if(instrumentationConfig?.documentLoad) {
+      this.instrumentationOptions.push(new DocumentLoadInstrumentation());
+    }
+    if(instrumentationConfig?.fetch) {
+      this.instrumentationOptions.push(new FetchInstrumentation());
+    }
   }
 
   /**
    * convert String to Number (or undefined)
+   *
    * @param value
    * @returns number or undefined
    */
   private convertStringToNumber(value: string): number {
-    return value !&#x3D;&#x3D; undefined ? Number(value) : undefined
+    return value !&#x3D;&#x3D; undefined ? Number(value) : undefined;
   }
 
   /**
- * define the Probability Sampler
- * By Default, it&#x27;s always (or 1)
- * @param sampleConfig the sample configuration
- */
+   * define the Probability Sampler
+   * By Default, it&#x27;s always (or 1)
+   *
+   * @param sampleConfig the sample configuration
+   */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
     if (sampleConfig &gt;&#x3D; 1) {
       return new ParentBasedSampler({ root: new AlwaysOnSampler() });
@@ -925,14 +941,14 @@ export class InstrumentationService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -953,8 +969,8 @@ export class InstrumentationService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

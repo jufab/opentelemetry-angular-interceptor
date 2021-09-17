@@ -1,6 +1,5 @@
 'use strict';
 
-
 customElements.define('compodoc-menu', class extends HTMLElement {
     constructor() {
         super();
@@ -94,13 +93,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/OtelWebTracerModule.html" data-type="entity-link" >OtelWebTracerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
+                                            'data-target="#components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' :
-                                            'id="xs-components-links-module-OtelWebTracerModule-95b06fb782d3f28e88fa34204e9fbb15"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' :
+                                            'id="xs-components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' }>
                                             <li class="link">
                                                 <a href="components/OtelWebTracerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
                                             </li>

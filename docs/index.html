@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li><a href="#troubleshoot">Troubleshoot</a><ul>
+<li><a href="#otel-collector">Otel Collector</a></li>
 <li><a href="#angular-10-warning">Angular 10 Warning</a></li>
 <li><a href="#other">Other</a></li>
 </ul>
@@ -108,7 +109,7 @@
 </ul>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &#64;opentelemetry/api &#64;opentelemetry/web &#64;opentelemetry/tracing &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-collector &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-collector &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
@@ -136,7 +137,7 @@
       exportTimeoutMillis: &#39;30000&#39;, // How long the export can run before it is cancelled
     },
     otelcolConfig: {
-      url: &#39;http://localhost:55681/v1/traces&#39;, //URL of opentelemetry collector
+      url: &#39;http://localhost:4318/v1/traces&#39;, //URL of opentelemetry collector
     },
     jaegerPropagatorConfig: {
       customHeader: &#39;custom-header&#39;,
@@ -154,7 +155,7 @@
       logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from &#64;opentelemetry/api
     },
     otelcolConfig: {
-      url: &#39;http://localhost:55681/v1/traces&#39;, // URL of opentelemetry collector
+      url: &#39;http://localhost:4318/v1/traces&#39;, // URL of opentelemetry collector
     },
     instrumentationConfig: {
       xmlHttpRequest: true,
@@ -182,7 +183,7 @@
 </ul>
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
-<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:55681/v1/traces">http://localhost:55681/v1/traces</a>)</li>
+<li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:4318/v1/traces">http://localhost:4318/v1/traces</a>)</li>
 <li>headers: list of custom header (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
 <li>attributes : list of custom attributes (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
 <li>concurrencyLimit (string) : An optional limit on pending requests (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
@@ -321,7 +322,7 @@ export class AppModule { }
 <ul>
 <li>span : Current span, you can set or get attributes</li>
 <li>request : Current request in interceptor</li>
-<li>response : Current response in interceptor </li>
+<li>response : Current response in interceptor</li>
 </ul>
 <p>Implement CustomSpan class like : </p>
 <div><pre class="line-numbers"><code class="language-typescript">class CustomSpanImpl implements CustomSpan {
@@ -437,14 +438,14 @@ For more info see: https://angular.io/guide/build#configuring-commonjs-dependenc
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -465,8 +466,8 @@ For more info see: https://angular.io/guide/build#configuring-commonjs-dependenc
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       
-       <script type="module" src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/menu-wc.js" defer></script>
        <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>

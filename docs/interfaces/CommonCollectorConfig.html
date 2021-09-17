@@ -459,7 +459,7 @@ export interface BatchSpanProcessorConfig {
  */
 export interface OtelCollectorConfig {
   /**
-   * An url (Default value: http://localhost:55681/v1/trace)
+   * An url (Default value: http://localhost:4318/v1/trace)
    */
   url?: string;
   /**
@@ -533,26 +533,26 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OpenTelemetryInjectConfig &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
+export const OTELCOL_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
 
 /** Logger : injection for a logger compatible */
 export const OTELCOL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
 
 /** custom span */
-export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)
+export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
 </code></pre>
     </div>
 </div>
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -573,8 +573,8 @@ export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelc
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
