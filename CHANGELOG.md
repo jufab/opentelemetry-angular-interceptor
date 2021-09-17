@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.25.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.24.0-1...v0.25.0) (2021-09-17)
+
+
+### Features
+
+* update collector and add new default http port collector (4318) ([5a7c375](https://github.com/jufab/opentelemetry-angular-interceptor/commit/5a7c37572e7598d29b32809733aed48f8a342086))
+
+
+### Bug Fixes
+
+* add test for instrumentation ([23e35d1](https://github.com/jufab/opentelemetry-angular-interceptor/commit/23e35d14d4ceb5c184a0f3d3079fdbeb85814b78))
+* peer dependencies version number ([41c8947](https://github.com/jufab/opentelemetry-angular-interceptor/commit/41c894755d7a8759be60478783a7d37e16a96127))
+* return to 0.24.0 in document-load to release ([1f22380](https://github.com/jufab/opentelemetry-angular-interceptor/commit/1f223806552b39962882cfb7530e72e43b6b19bc))
+
 ## [0.24.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.24.0...v0.24.0-1) (2021-08-04)
 
 
