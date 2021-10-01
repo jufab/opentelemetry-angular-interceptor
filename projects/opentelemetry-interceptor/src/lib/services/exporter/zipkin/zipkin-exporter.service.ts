@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { IExporter } from '../exporter.interface';
-import { SpanExporter } from '@opentelemetry/tracing';
+import { SpanExporter } from '@opentelemetry/sdk-trace-base';
 import { OpenTelemetryConfig, OTELCOL_CONFIG } from '../../../configuration/opentelemetry-config';
 import { ZipkinExporter, ExporterConfig } from '@opentelemetry/exporter-zipkin';
 

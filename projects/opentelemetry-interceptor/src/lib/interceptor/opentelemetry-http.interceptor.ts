@@ -11,13 +11,13 @@ import { PlatformLocation } from '@angular/common';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
 import { Sampler, Span, SpanStatusCode, DiagLogger } from '@opentelemetry/api';
-import { WebTracerProvider, StackContextManager } from '@opentelemetry/web';
+import { WebTracerProvider, StackContextManager } from '@opentelemetry/sdk-trace-web';
 import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
   BufferConfig
-} from '@opentelemetry/tracing';
+} from '@opentelemetry/sdk-trace-base';
 import {
   AlwaysOnSampler,
   AlwaysOffSampler,
