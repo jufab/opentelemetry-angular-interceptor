@@ -1037,13 +1037,13 @@ import { PlatformLocation } from &#x27;@angular/common&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import * as api from &#x27;@opentelemetry/api&#x27;;
 import { Sampler, Span, SpanStatusCode, DiagLogger } from &#x27;@opentelemetry/api&#x27;;
-import { WebTracerProvider, StackContextManager } from &#x27;@opentelemetry/web&#x27;;
+import { WebTracerProvider, StackContextManager } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
 import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
   BufferConfig
-} from &#x27;@opentelemetry/tracing&#x27;;
+} from &#x27;@opentelemetry/sdk-trace-base&#x27;;
 import {
   AlwaysOnSampler,
   AlwaysOffSampler,

@@ -781,8 +781,8 @@ import { InstrumentationOption, registerInstrumentations } from &#x27;@opentelem
 import { DocumentLoadInstrumentation } from &#x27;@opentelemetry/instrumentation-document-load&#x27;;
 import { FetchInstrumentation } from &#x27;@opentelemetry/instrumentation-fetch&#x27;;
 import { XMLHttpRequestInstrumentation } from &#x27;@opentelemetry/instrumentation-xml-http-request&#x27;;
-import { WebTracerProvider } from &#x27;@opentelemetry/web&#x27;;
-import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from &#x27;@opentelemetry/tracing&#x27;;
+import { WebTracerProvider } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
+import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
 import { OTELCOL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import { OTELCOL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
 import { OTELCOL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
