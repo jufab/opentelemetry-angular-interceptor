@@ -9,7 +9,8 @@ receivers:
 exporters:
   jaeger:
     endpoint: jaeger:14250
-    insecure: true
+    tls:
+      insecure: true
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
   logging:

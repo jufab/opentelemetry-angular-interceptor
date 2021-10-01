@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { SpanExporter } from '@opentelemetry/tracing';
+import { SpanExporter } from '@opentelemetry/sdk-trace-base';
 
 /**
  * Exporter interface to define a default exporter
