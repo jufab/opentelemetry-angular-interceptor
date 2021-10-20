@@ -11,6 +11,7 @@ export { ZipkinExporterModule } from './lib/services/exporter/zipkin/zipkin-expo
 // Propagator
 export { B3PropagatorModule } from './lib/services/propagator/b3-propagator/b3-propagator.module';
 export { CompositePropagatorModule } from './lib/services/propagator/composite-propagator/composite-propagator.module';
+export { AwsXrayPropagatorModule } from './lib/services/propagator/aws-xray-propagator/aws-xray-propagator.module';
 /* eslint-disable max-len */
 export { HttpTraceContextPropagatorModule } from './lib/services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
 export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.module';
