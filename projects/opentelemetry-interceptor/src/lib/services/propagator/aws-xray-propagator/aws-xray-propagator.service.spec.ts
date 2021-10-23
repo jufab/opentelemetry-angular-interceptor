@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { AWSXRayPropagator } from '@opentelemetry/propagator-aws-xray';
 import { AwsXrayPropagatorService } from './aws-xray-propagator.service';
 
 
@@ -12,6 +13,6 @@ describe('AwsXrayPropagatorService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-    expect(service.getPropagator()).toBeInstanceOf(AwsXrayPropagatorService);
+    expect(service.getPropagator()).toBeInstanceOf(AWSXRayPropagator);
   });
 });
