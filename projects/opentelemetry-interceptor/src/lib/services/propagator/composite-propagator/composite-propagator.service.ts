@@ -5,6 +5,7 @@ import { CompositePropagator } from '@opentelemetry/core';
 import { B3PropagatorService } from '../b3-propagator/b3-propagator.service';
 import { HttpTraceContextPropagatorService } from '../http-trace-context-propagator/http-trace-context-propagator.service';
 import { JaegerHttpTracePropagatorService } from '../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service';
+import { AwsXrayPropagatorService } from '../aws-xray-propagator/aws-xray-propagator.service';
 /**
  * CompositePropagatorService
  */
@@ -21,7 +22,9 @@ export class CompositePropagatorService implements IPropagator {
     @Inject(HttpTraceContextPropagatorService)
     private httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
     @Inject(JaegerHttpTracePropagatorService)
-    private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService
+    private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService,
+    @Inject(AwsXrayPropagatorService)
+    private awsXrayPropagatorService: AwsXrayPropagatorService
   ) {}
 
   /**
@@ -35,6 +38,7 @@ export class CompositePropagatorService implements IPropagator {
         this.b3PropagatorService.getPropagator(),
         this.httpTraceContextPropagatorService.getPropagator(),
         this.jaegerHttpTracePropagatorService.getPropagator(),
+        this.awsXrayPropagatorService.getPropagator()
       ],
     });
   }
