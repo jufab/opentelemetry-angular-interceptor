@@ -66,6 +66,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
+                                <a href="modules/AwsXrayPropagatorModule.html" data-type="entity-link" >AwsXrayPropagatorModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/B3PropagatorModule.html" data-type="entity-link" >B3PropagatorModule</a>
                             </li>
                             <li class="link">
@@ -119,6 +122,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/AwsXrayPropagatorService.html" data-type="entity-link" >AwsXrayPropagatorService</a>
+                                </li>
                                 <li class="link">
                                     <a href="injectables/B3PropagatorService.html" data-type="entity-link" >B3PropagatorService</a>
                                 </li>

@@ -214,8 +214,8 @@ there is 6 propagators (more info about propagator: https://github.com/open-tele
 * B3PropagatorModule : Use B3 propagator
 * HttpTraceContextPropagatorModule : Use HttpTraceContext propagator
 * JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
-* CompositePropagatorModule : use all of the propagator
 * AwsXrayPropagatorModule : Use AWS X-Ray propagator
+* CompositePropagatorModule : use all of the propagator
 
 #### Interceptor Module
 

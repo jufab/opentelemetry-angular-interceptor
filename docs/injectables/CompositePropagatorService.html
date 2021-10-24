@@ -106,12 +106,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(b3PropagatorService: <a href="../injectables/B3PropagatorService.html" target="_self">B3PropagatorService</a>, httpTraceContextPropagatorService: <a href="../injectables/HttpTraceContextPropagatorService.html" target="_self">HttpTraceContextPropagatorService</a>, jaegerHttpTracePropagatorService: <a href="../injectables/JaegerHttpTracePropagatorService.html" target="_self">JaegerHttpTracePropagatorService</a>)</code>
+<code>constructor(b3PropagatorService: <a href="../injectables/B3PropagatorService.html" target="_self">B3PropagatorService</a>, httpTraceContextPropagatorService: <a href="../injectables/HttpTraceContextPropagatorService.html" target="_self">HttpTraceContextPropagatorService</a>, jaegerHttpTracePropagatorService: <a href="../injectables/JaegerHttpTracePropagatorService.html" target="_self">JaegerHttpTracePropagatorService</a>, awsXrayPropagatorService: <a href="../injectables/AwsXrayPropagatorService.html" target="_self">AwsXrayPropagatorService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -166,6 +166,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>awsXrayPropagatorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AwsXrayPropagatorService.html" target="_self" >AwsXrayPropagatorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -200,8 +212,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/composite-propagator/composite-propagator.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -238,6 +250,7 @@ import { CompositePropagator } from &#x27;@opentelemetry/core&#x27;;
 import { B3PropagatorService } from &#x27;../b3-propagator/b3-propagator.service&#x27;;
 import { HttpTraceContextPropagatorService } from &#x27;../http-trace-context-propagator/http-trace-context-propagator.service&#x27;;
 import { JaegerHttpTracePropagatorService } from &#x27;../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service&#x27;;
+import { AwsXrayPropagatorService } from &#x27;../aws-xray-propagator/aws-xray-propagator.service&#x27;;
 /**
  * CompositePropagatorService
  */
@@ -254,7 +267,9 @@ export class CompositePropagatorService implements IPropagator {
     @Inject(HttpTraceContextPropagatorService)
     private httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
     @Inject(JaegerHttpTracePropagatorService)
-    private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService
+    private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService,
+    @Inject(AwsXrayPropagatorService)
+    private awsXrayPropagatorService: AwsXrayPropagatorService
   ) {}
 
   /**
@@ -268,6 +283,7 @@ export class CompositePropagatorService implements IPropagator {
         this.b3PropagatorService.getPropagator(),
         this.httpTraceContextPropagatorService.getPropagator(),
         this.jaegerHttpTracePropagatorService.getPropagator(),
+        this.awsXrayPropagatorService.getPropagator()
       ],
     });
   }

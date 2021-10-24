@@ -109,7 +109,7 @@
 </ul>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-collector &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-collector &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
@@ -229,12 +229,13 @@
 <li>ZipkinExporterModule : Zipkin Exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin</a>)</li>
 </ul>
 <h5 id="propagator-module">Propagator module</h5>
-<p>there is 5 propagators (more info about propagator: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core</a>)</p>
+<p>there is 6 propagators (more info about propagator: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core</a>)</p>
 <ul>
 <li>NoopHttpTextPropagatorModule : This is a fake propagator</li>
 <li>B3PropagatorModule : Use B3 propagator</li>
 <li>HttpTraceContextPropagatorModule : Use HttpTraceContext propagator</li>
 <li>JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger</a>)</li>
+<li>AwsXrayPropagatorModule : Use AWS X-Ray propagator</li>
 <li>CompositePropagatorModule : use all of the propagator</li>
 </ul>
 <h4 id="interceptor-module">Interceptor Module</h4>
