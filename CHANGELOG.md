@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.25.0-2](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.25.0-1...v0.25.0-2) (2021-10-24)
+
+
+### Bug Fixes
+
+* review aws propagator integration ([4fcec62](https://github.com/jufab/opentelemetry-angular-interceptor/commit/4fcec6281b51f6746def977960d112c9f1b45f14))
+* test ([3ae307e](https://github.com/jufab/opentelemetry-angular-interceptor/commit/3ae307ec7090c9a5d1e4648f8572caad334ffb14))
+
 ## [0.25.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.25.0...v0.25.0-1) (2021-10-01)
 
 
