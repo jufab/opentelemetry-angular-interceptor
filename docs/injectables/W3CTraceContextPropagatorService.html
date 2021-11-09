@@ -29,46 +29,79 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content module">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-    <li>Modules</li>
-    <li >OpenTelemetryInterceptorModule</li>
+  <li>Injectables</li>
+  <li >W3CTraceContextPropagatorService</li>
 </ol>
 
-
 <ul class="nav nav-tabs" role="tablist">
-    <li  class="active" >
-        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-    </li>
-    <li >
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
-
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/opentelemetry-interceptor.module.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.service.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>W3CTraceContextPropagatorService</p>
+
+            </p>
 
 
 
-        <div class="container-fluid module">
-            <div class="row">
-            </div>
-        </div>
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
 
-        <section>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getPropagator" >getPropagator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
     
     <h3 id="methods">
         Methods
@@ -77,127 +110,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="forRoot"></a>
+                    <a name="getPropagator"></a>
                     <span class="name">
-                        <span class="modifier">Static</span>
-                        <span ><b>forRoot</b></span>
-                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getPropagator</b></span>
+                        <a href="#getPropagator"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>forRoot(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>)</code>
+<code>getPropagator()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/opentelemetry-interceptor.module.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.service.ts:18</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Return an W3CTraceContextPropagatorService</p>
+</div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>config</td>
-                                    <td>
-                                                <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>ModuleWithProviders&lt;OpenTelemetryInterceptorModule&gt;</code>
+                        <b>Returns : </b>    <code>TextMapPropagator</code>
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>TextMapPropagator as W3CTraceContextPropagatorService</p>
+
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  NgModule,
-  ModuleWithProviders,
-  Optional,
-  SkipSelf,
-} from &#x27;@angular/core&#x27;;
-import {
-  OpenTelemetryConfig,
-  OTLP_CONFIG,
-} from &#x27;./configuration/opentelemetry-config&#x27;;
-import { HTTP_INTERCEPTORS, HttpClientModule } from &#x27;@angular/common/http&#x27;;
-import { OpenTelemetryHttpInterceptor } from &#x27;./interceptor/opentelemetry-http.interceptor&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { IPropagator } from &#x27;../propagator.interface&#x27;;
+import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
+import { W3CTraceContextPropagator } from &#x27;@opentelemetry/core&#x27;;
 
-@NgModule({
-  declarations: [],
-  imports: [HttpClientModule],
-  exports: [],
+/**
+ * W3CTraceContextPropagatorService
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
 })
-export class OpenTelemetryInterceptorModule {
-  constructor(
-    @Optional() @SkipSelf() parentModule?: OpenTelemetryInterceptorModule
-  ) {
-    if (parentModule) {
-      throw new Error(
-        &#x27;OpentelemetryInterceptorModule is already loaded. Import it in the AppModule only&#x27;
-      );
-    }
-  }
-
-  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders&lt;OpenTelemetryInterceptorModule&gt; {
-    return {
-      ngModule: OpenTelemetryInterceptorModule,
-      providers: [
-        { provide: OTLP_CONFIG, useValue: config },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
-      ],
-    };
+export class W3CTraceContextPropagatorService implements IPropagator {
+  /**
+   * Return an W3CTraceContextPropagatorService
+   *
+   * @return TextMapPropagator as W3CTraceContextPropagatorService
+   */
+  getPropagator(): TextMapPropagator {
+    return new W3CTraceContextPropagator();
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -226,8 +210,8 @@ export class OpenTelemetryInterceptorModule {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'OpenTelemetryInterceptorModule.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'W3CTraceContextPropagatorService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

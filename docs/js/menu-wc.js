@@ -78,9 +78,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ConsoleSpanExporterModule.html" data-type="entity-link" >ConsoleSpanExporterModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/HttpTraceContextPropagatorModule.html" data-type="entity-link" >HttpTraceContextPropagatorModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link" >JaegerHttpTracePropagatorModule</a>
                             </li>
                             <li class="link">
@@ -96,18 +93,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/OtelWebTracerModule.html" data-type="entity-link" >OtelWebTracerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' }>
+                                            'data-target="#components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' :
-                                            'id="xs-components-links-module-OtelWebTracerModule-9bd65015ed536cf0be91d272eb7fadab"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' :
+                                            'id="xs-components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' }>
                                             <li class="link">
                                                 <a href="components/OtelWebTracerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
                                             </li>
                                         </ul>
                                     </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/W3CTraceContextPropagatorModule.html" data-type="entity-link" >W3CTraceContextPropagatorModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/ZipkinExporterModule.html" data-type="entity-link" >ZipkinExporterModule</a>
@@ -135,9 +135,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ConsoleSpanExporterService.html" data-type="entity-link" >ConsoleSpanExporterService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/HttpTraceContextPropagatorService.html" data-type="entity-link" >HttpTraceContextPropagatorService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/InstrumentationService.html" data-type="entity-link" >InstrumentationService</a>
                                 </li>
                                 <li class="link">
@@ -148,6 +145,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/OtelcolExporterService.html" data-type="entity-link" >OtelcolExporterService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/W3CTraceContextPropagatorService.html" data-type="entity-link" >W3CTraceContextPropagatorService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ZipkinExporterService.html" data-type="entity-link" >ZipkinExporterService</a>

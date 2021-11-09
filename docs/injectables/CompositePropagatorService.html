@@ -106,7 +106,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(b3PropagatorService: <a href="../injectables/B3PropagatorService.html" target="_self">B3PropagatorService</a>, httpTraceContextPropagatorService: <a href="../injectables/HttpTraceContextPropagatorService.html" target="_self">HttpTraceContextPropagatorService</a>, jaegerHttpTracePropagatorService: <a href="../injectables/JaegerHttpTracePropagatorService.html" target="_self">JaegerHttpTracePropagatorService</a>, awsXrayPropagatorService: <a href="../injectables/AwsXrayPropagatorService.html" target="_self">AwsXrayPropagatorService</a>)</code>
+<code>constructor(b3PropagatorService: <a href="../injectables/B3PropagatorService.html" target="_self">B3PropagatorService</a>, w3cTraceContextPropagatorService: <a href="../injectables/W3CTraceContextPropagatorService.html" target="_self">W3CTraceContextPropagatorService</a>, jaegerHttpTracePropagatorService: <a href="../injectables/JaegerHttpTracePropagatorService.html" target="_self">JaegerHttpTracePropagatorService</a>, awsXrayPropagatorService: <a href="../injectables/AwsXrayPropagatorService.html" target="_self">AwsXrayPropagatorService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -143,10 +143,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>httpTraceContextPropagatorService</td>
+                                                        <td>w3cTraceContextPropagatorService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/HttpTraceContextPropagatorService.html" target="_self" >HttpTraceContextPropagatorService</a></code>
+                                                                        <code><a href="../injectables/W3CTraceContextPropagatorService.html" target="_self" >W3CTraceContextPropagatorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -248,7 +248,7 @@ import { IPropagator } from &#x27;../propagator.interface&#x27;;
 import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { CompositePropagator } from &#x27;@opentelemetry/core&#x27;;
 import { B3PropagatorService } from &#x27;../b3-propagator/b3-propagator.service&#x27;;
-import { HttpTraceContextPropagatorService } from &#x27;../http-trace-context-propagator/http-trace-context-propagator.service&#x27;;
+import { W3CTraceContextPropagatorService } from &#x27;../w3c-trace-context-propagator/w3c-trace-context-propagator.service&#x27;;
 import { JaegerHttpTracePropagatorService } from &#x27;../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service&#x27;;
 import { AwsXrayPropagatorService } from &#x27;../aws-xray-propagator/aws-xray-propagator.service&#x27;;
 /**
@@ -264,8 +264,8 @@ export class CompositePropagatorService implements IPropagator {
   constructor(
     @Inject(B3PropagatorService)
     private b3PropagatorService: B3PropagatorService,
-    @Inject(HttpTraceContextPropagatorService)
-    private httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
+    @Inject(W3CTraceContextPropagatorService)
+    private w3cTraceContextPropagatorService: W3CTraceContextPropagatorService,
     @Inject(JaegerHttpTracePropagatorService)
     private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService,
     @Inject(AwsXrayPropagatorService)
@@ -281,7 +281,7 @@ export class CompositePropagatorService implements IPropagator {
     return new CompositePropagator({
       propagators: [
         this.b3PropagatorService.getPropagator(),
-        this.httpTraceContextPropagatorService.getPropagator(),
+        this.w3cTraceContextPropagatorService.getPropagator(),
         this.jaegerHttpTracePropagatorService.getPropagator(),
         this.awsXrayPropagatorService.getPropagator()
       ],

@@ -359,7 +359,7 @@ import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { B3Propagator, B3PropagatorConfig, B3InjectEncoding } from &#x27;@opentelemetry/propagator-b3&#x27;;
 import {
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 
 /**
@@ -383,7 +383,7 @@ export class B3PropagatorService implements IPropagator {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTELCOL_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
     this.b3PropagatorConfig &#x3D; {
       injectEncoding: B3PropagatorService.defineB3Encoding(config.b3PropagatorConfig?.multiHeader)
     };

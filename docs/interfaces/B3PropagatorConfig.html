@@ -285,10 +285,10 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OTELCOL_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
+export const OTLP_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
 
 /** Logger : injection for a logger compatible */
-export const OTELCOL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
+export const OTLP_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
 
 /** custom span */
 export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);

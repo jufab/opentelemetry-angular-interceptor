@@ -87,7 +87,6 @@
 </ul>
 </li>
 <li><a href="#troubleshoot">Troubleshoot</a><ul>
-<li><a href="#otel-collector">Otel Collector</a></li>
 <li><a href="#angular-10-warning">Angular 10 Warning</a></li>
 <li><a href="#other">Other</a></li>
 </ul>
@@ -109,7 +108,7 @@
 </ul>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-collector &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-otlp-http &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
@@ -184,9 +183,9 @@
 <h4 id="opentelemetry-collector-configuration">OpenTelemetry-collector Configuration</h4>
 <ul>
 <li>url: (string) url of opentelemetry collector (default : <a href="http://localhost:4318/v1/traces">http://localhost:4318/v1/traces</a>)</li>
-<li>headers: list of custom header (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
-<li>attributes : list of custom attributes (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
-<li>concurrencyLimit (string) : An optional limit on pending requests (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
+<li>headers: list of custom header (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http">https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http</a>)</li>
+<li>attributes : list of custom attributes (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http">https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http</a>)</li>
+<li>concurrencyLimit (string) : An optional limit on pending requests (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http">https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http</a>)</li>
 </ul>
 <h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
 <ul>
@@ -224,7 +223,7 @@
 <h5 id="exporter-module">Exporter module</h5>
 <p>There is 3 exporters:</p>
 <ul>
-<li>OtelColExporterModule : OpenTelemetry exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-collector</a>)</li>
+<li>OtelColExporterModule : OpenTelemetry exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http">https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http</a>)</li>
 <li>ConsoleSpanExporterModule : Console Exporter</li>
 <li>ZipkinExporterModule : Zipkin Exporter (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin</a>)</li>
 </ul>
@@ -233,7 +232,7 @@
 <ul>
 <li>NoopHttpTextPropagatorModule : This is a fake propagator</li>
 <li>B3PropagatorModule : Use B3 propagator</li>
-<li>HttpTraceContextPropagatorModule : Use HttpTraceContext propagator</li>
+<li>W3CTraceContextPropagatorModule : Use W3CTraceContext propagator</li>
 <li>JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger</a>)</li>
 <li>AwsXrayPropagatorModule : Use AWS X-Ray propagator</li>
 <li>CompositePropagatorModule : use all of the propagator</li>
@@ -295,8 +294,8 @@ export class AppModule { }
 &lt;otel-instrumentation&gt;&lt;/otel-instrumentation&gt;
 ...</code></pre></div><p><em>there is no configuration/directive need : all is in OtelWebTracerModule</em></p>
 <h3 id="optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</h3>
-<p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTELCOL_LOGGER</a> token.</p>
-<p>You can use a custom logger which implements the <a href="https://open-telemetry.github.io/opentelemetry-js/interfaces/diaglogger.html">DiagLogger</a> in @opentelemetry/api.</p>
+<p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTLP_LOGGER</a> token.</p>
+<p>You can use a custom logger which implements the <a href="https://open-telemetry.github.io/opentelemetry-js-api/enums/diagloglevel.html">DiagLogger</a> in @opentelemetry/api.</p>
 <p>Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
 <h4 id="ngxlogger">NGXLogger</h4>
 <p>You can use <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
@@ -306,12 +305,12 @@ export class AppModule { }
   imports: [
     LoggerModule.forRoot(environment.loggerConfig),
   ]
-  ...</code></pre></div><p>And use OTELCOL_LOGGER token to inject NGXLogger</p>
+  ...</code></pre></div><p>And use OTLP_LOGGER token to inject NGXLogger</p>
 <div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   providers: [
     ...
-    { provide: OTELCOL_LOGGER, useExisting: NGXLogger }
+    { provide: OTLP_LOGGER, useExisting: NGXLogger }
     ...
   ]</code></pre></div><p>Don&#39;t forget to set &quot;logLevel&quot; in <a href="#common-configuration">Common Configuration</a> (Level must be the same between NGXLogger and common configuration)</p>
 <blockquote>
@@ -372,10 +371,6 @@ export class AppModule { }
 <p><em>* without an Agent or a Collector you can see an error in your browser about sending a &quot;trace&quot;.</em></p>
 </blockquote>
 <h2 id="troubleshoot">Troubleshoot</h2>
-<h3 id="otel-collector">Otel Collector</h3>
-<p>Otel Collector 0.29.0 is not compatible with this library in version 0.23.0.</p>
-<p>A bug fix is in progress here: <a href="https://github.com/open-telemetry/opentelemetry-js/issues/2321">https://github.com/open-telemetry/opentelemetry-js/issues/2321</a></p>
-<p>Otel Collector 0.28.0 is OK.</p>
 <h3 id="angular-10-warning">Angular 10 Warning</h3>
 <div><pre class="line-numbers"><code class="language-shell">WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/web&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
 For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies

@@ -269,7 +269,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 import { IExporter } from &#x27;../exporter.interface&#x27;;
 import { SpanExporter } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
-import { OpenTelemetryConfig, OTELCOL_CONFIG } from &#x27;../../../configuration/opentelemetry-config&#x27;;
+import { OpenTelemetryConfig, OTLP_CONFIG } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 import { ZipkinExporter, ExporterConfig } from &#x27;@opentelemetry/exporter-zipkin&#x27;;
 
 /**
@@ -289,7 +289,7 @@ export class ZipkinExporterService implements IExporter {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTELCOL_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
     this.zipkinConfig &#x3D; {
       url: config.zipkinConfig?.url,
       headers: config.zipkinConfig?.headers
