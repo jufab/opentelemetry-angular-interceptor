@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { instrumentationConsoleOtelConfig } from '../../__mocks__/data/config.mock';
-import { OpenTelemetryInjectConfig, OpenTelemetryInterceptorModule, OtelWebTracerModule } from '../public-api';
+import { OpenTelemetryInjectConfig, OtelWebTracerModule } from '../public-api';
 
 describe('OtelWebTracerModule', () => {
   let otelWebTracerModule: OtelWebTracerModule;

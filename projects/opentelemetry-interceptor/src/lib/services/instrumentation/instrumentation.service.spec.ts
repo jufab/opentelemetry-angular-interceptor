@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ConsoleSpanExporterModule, HttpTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
+import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
 // eslint-disable-next-line max-len
 import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 
@@ -13,7 +13,7 @@ describe('InstrumentationService', () => {
     TestBed.configureTestingModule({
       imports: [
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationConsoleOtelConfig },
@@ -46,7 +46,7 @@ describe('InstrumentationService', () => {
     TestBed.configureTestingModule({
       imports: [
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationConsoleOtelConfigSamplerOff },
@@ -61,7 +61,7 @@ describe('InstrumentationService', () => {
     TestBed.configureTestingModule({
       imports: [
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationProductionOtelConfig },
@@ -76,7 +76,7 @@ describe('InstrumentationService', () => {
     TestBed.configureTestingModule({
       imports: [
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationFetchOnlyOtelConfig },
@@ -91,7 +91,7 @@ describe('InstrumentationService', () => {
     TestBed.configureTestingModule({
       imports: [
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         { provide: OpenTelemetryInjectConfig, useValue: instrumentationDocumentLoadOnlyOtelConfig },

@@ -47,21 +47,6 @@
             "main": "projects/interceptor-example/src/main.ts",
             "polyfills": "projects/interceptor-example/src/polyfills.ts",
             "tsConfig": "projects/interceptor-example/tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "@opentelemetry/api",
-              "@opentelemetry/exporter-collector",
-              "@opentelemetry/exporter-zipkin",
-              "@opentelemetry/tracing",
-              "@opentelemetry/web",
-              "@opentelemetry/core",
-              "@opentelemetry/propagator-jaeger",
-              "@opentelemetry/propagator-b3",
-              "@opentelemetry/instrumentation",
-              "@opentelemetry/instrumentation-xml-http-request",
-              "@opentelemetry/instrumentation-document-load",
-              "@opentelemetry/instrumentation-fetch",
-              "@opentelemetry/context-zone-peer-dep"
-            ],
             "aot": true,
             "assets": [
               "projects/interceptor-example/src/favicon.ico",
@@ -148,21 +133,6 @@
             "main": "projects/instrumentation-example/src/main.ts",
             "polyfills": "projects/instrumentation-example/src/polyfills.ts",
             "tsConfig": "projects/instrumentation-example/tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "@opentelemetry/api",
-              "@opentelemetry/exporter-collector",
-              "@opentelemetry/exporter-zipkin",
-              "@opentelemetry/tracing",
-              "@opentelemetry/web",
-              "@opentelemetry/core",
-              "@opentelemetry/propagator-jaeger",
-              "@opentelemetry/propagator-b3",
-              "@opentelemetry/instrumentation",
-              "@opentelemetry/instrumentation-xml-http-request",
-              "@opentelemetry/instrumentation-document-load",
-              "@opentelemetry/instrumentation-fetch",
-              "@opentelemetry/context-zone-peer-dep"
-            ],
             "aot": true,
             "assets": [
               "projects/instrumentation-example/src/favicon.ico",

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ZipkinExporterService } from './zipkin-exporter.service';
-import { OTELCOL_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
 import { zipkinConfig, zipkinOtherConfig } from '../../../../../__mocks__/data/config.mock';
 import { ExporterConfig, ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { mocked } from 'ts-jest/utils';
@@ -15,7 +15,7 @@ describe('ZipkinExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        { provide: OTELCOL_CONFIG, useValue: zipkinConfig },
+        { provide: OTLP_CONFIG, useValue: zipkinConfig },
       ]
     });
     zipkinExporterService = TestBed.inject(ZipkinExporterService);
@@ -40,7 +40,7 @@ describe('ZipkinExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         ZipkinExporterService,
-        { provide: OTELCOL_CONFIG, useValue: zipkinOtherConfig },
+        { provide: OTLP_CONFIG, useValue: zipkinOtherConfig },
       ]
     });
     zipkinExporterService = TestBed.inject(ZipkinExporterService);

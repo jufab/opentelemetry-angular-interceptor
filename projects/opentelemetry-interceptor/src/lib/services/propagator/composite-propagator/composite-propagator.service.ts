@@ -3,7 +3,7 @@ import { IPropagator } from '../propagator.interface';
 import { TextMapPropagator } from '@opentelemetry/api';
 import { CompositePropagator } from '@opentelemetry/core';
 import { B3PropagatorService } from '../b3-propagator/b3-propagator.service';
-import { HttpTraceContextPropagatorService } from '../http-trace-context-propagator/http-trace-context-propagator.service';
+import { W3CTraceContextPropagatorService } from '../w3c-trace-context-propagator/w3c-trace-context-propagator.service';
 import { JaegerHttpTracePropagatorService } from '../jaeger-http-trace-propagator/jaeger-http-trace-propagator.service';
 import { AwsXrayPropagatorService } from '../aws-xray-propagator/aws-xray-propagator.service';
 /**
@@ -19,8 +19,8 @@ export class CompositePropagatorService implements IPropagator {
   constructor(
     @Inject(B3PropagatorService)
     private b3PropagatorService: B3PropagatorService,
-    @Inject(HttpTraceContextPropagatorService)
-    private httpTraceContextPropagatorService: HttpTraceContextPropagatorService,
+    @Inject(W3CTraceContextPropagatorService)
+    private w3cTraceContextPropagatorService: W3CTraceContextPropagatorService,
     @Inject(JaegerHttpTracePropagatorService)
     private jaegerHttpTracePropagatorService: JaegerHttpTracePropagatorService,
     @Inject(AwsXrayPropagatorService)
@@ -36,7 +36,7 @@ export class CompositePropagatorService implements IPropagator {
     return new CompositePropagator({
       propagators: [
         this.b3PropagatorService.getPropagator(),
-        this.httpTraceContextPropagatorService.getPropagator(),
+        this.w3cTraceContextPropagatorService.getPropagator(),
         this.jaegerHttpTracePropagatorService.getPropagator(),
         this.awsXrayPropagatorService.getPropagator()
       ],

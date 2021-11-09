@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from './configuration/opentelemetry-config';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './interceptor/opentelemetry-http.interceptor';
@@ -31,7 +31,7 @@ export class OpenTelemetryInterceptorModule {
     return {
       ngModule: OpenTelemetryInterceptorModule,
       providers: [
-        { provide: OTELCOL_CONFIG, useValue: config },
+        { provide: OTLP_CONFIG, useValue: config },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: OpenTelemetryHttpInterceptor,

@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import {
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from './configuration/opentelemetry-config';
 import { OtelWebTracerComponent } from './component/otel-webtracer/otel-webtracer.component';
 import { InstrumentationService } from './services/instrumentation/instrumentation.service';
@@ -25,7 +25,7 @@ export class OtelWebTracerModule {
     return {
       ngModule: OtelWebTracerModule,
       providers: [
-        { provide: OTELCOL_CONFIG, useValue: config },
+        { provide: OTLP_CONFIG, useValue: config },
         InstrumentationService
       ],
     };

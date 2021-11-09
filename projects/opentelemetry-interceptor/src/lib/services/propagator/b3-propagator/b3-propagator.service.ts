@@ -4,7 +4,7 @@ import { TextMapPropagator } from '@opentelemetry/api';
 import { B3Propagator, B3PropagatorConfig, B3InjectEncoding } from '@opentelemetry/propagator-b3';
 import {
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from '../../../configuration/opentelemetry-config';
 
 /**
@@ -28,7 +28,7 @@ export class B3PropagatorService implements IPropagator {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTELCOL_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
     this.b3PropagatorConfig = {
       injectEncoding: B3PropagatorService.defineB3Encoding(config.b3PropagatorConfig?.multiHeader)
     };

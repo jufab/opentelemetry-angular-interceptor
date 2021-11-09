@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OtelcolExporterService } from './otelcol-exporter.service';
-import { OTELCOL_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
   otelcolExporterWithoutUrlAndB3Config,
 } from '../../../../../__mocks__/data/config.mock';
-import { CollectorTraceExporter } from '@opentelemetry/exporter-collector';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-otlp-http';
+
 
 describe('OtelcolExporterService', () => {
   let otelcolExporterService: OtelcolExporterService;
@@ -15,7 +16,7 @@ describe('OtelcolExporterService', () => {
     TestBed.configureTestingModule({
       providers: [
         OtelcolExporterService,
-        { provide: OTELCOL_CONFIG, useValue: otelcolExporterConfig },
+        { provide: OTLP_CONFIG, useValue: otelcolExporterConfig },
       ],
     });
     otelcolExporterService = TestBed.inject(OtelcolExporterService);
@@ -28,8 +29,8 @@ describe('OtelcolExporterService', () => {
   it('should generate a CollectorTraceExporter', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
-    expect(exporter).toBeInstanceOf(CollectorTraceExporter);
-    expect((exporter as CollectorTraceExporter).url).toEqual(
+    expect(exporter).toBeInstanceOf(OTLPTraceExporter);
+    expect((exporter as OTLPTraceExporter).url).toEqual(
       'http://localhost'
     );
   });
@@ -40,7 +41,7 @@ describe('OtelcolExporterService', () => {
       providers: [
         OtelcolExporterService,
         {
-          provide: OTELCOL_CONFIG,
+          provide: OTLP_CONFIG,
           useValue: otelcolExporterWithoutUrlAndB3Config,
         },
       ],
@@ -48,8 +49,8 @@ describe('OtelcolExporterService', () => {
     otelcolExporterService = TestBed.inject(OtelcolExporterService);
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
-    expect(exporter).toBeInstanceOf(CollectorTraceExporter);
-    expect((exporter as CollectorTraceExporter).url).toEqual(
+    expect(exporter).toBeInstanceOf(OTLPTraceExporter);
+    expect((exporter as OTLPTraceExporter).url).toEqual(
       'http://localhost:4318/v1/traces'
     );
   });

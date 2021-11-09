@@ -29,12 +29,12 @@ import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from '../configuration/opentelemetry-config';
 import { version, name } from '../../version.json';
 import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
-import { OTELCOL_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
+import { OTLP_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
 
 /**
@@ -68,12 +68,12 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param platformLocation encapsulates all calls to DOM APIs
    */
   constructor(
-    @Inject(OTELCOL_CONFIG) private config: OpenTelemetryConfig,
+    @Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)
     private propagatorService: IPropagator,
-    @Optional() @Inject(OTELCOL_LOGGER)
+    @Optional() @Inject(OTLP_LOGGER)
     private logger: DiagLogger,
     @Optional() @Inject(CUSTOM_SPAN)
     private customSpan: CustomSpan,

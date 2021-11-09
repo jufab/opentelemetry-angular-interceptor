@@ -125,10 +125,10 @@ export interface OpenTelemetryConfig {
 }
 
 /** OpenTelemetryInjectConfig : Config injection */
-export const OTELCOL_CONFIG = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
+export const OTLP_CONFIG = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
 
 /** Logger : injection for a logger compatible */
-export const OTELCOL_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
+export const OTLP_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
 
 /** custom span */
 export const CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span');

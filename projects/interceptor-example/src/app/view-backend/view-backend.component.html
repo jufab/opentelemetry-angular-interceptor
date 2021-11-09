@@ -33,7 +33,7 @@ OtelColExporterModule,
 //Propagator
 CompositePropagatorModule,
       </textarea>
-      <p>You can see the B3 headers, HttpTraceContext header, Jaeger Propagator header And AWS X-Ray header added</p>
+      <p>You can see the B3 headers, W3CTraceContext header, Jaeger Propagator header And AWS X-Ray header added</p>
       <textarea textarea highlight-js [lang]="'curl'">
         GET /api/ HTTP/1.1
 Host: localhost:4200
@@ -43,7 +43,7 @@ Accept: application/json, text/plain, */*
 x-b3-spanid: 37eb49958da2dec4
 x-b3-sampled: 1
 x-b3-traceid: 5b0cdb4b5811364fba80fbaca87d5984
-//HttpTraceContext
+//W3CTraceContextPropagator
 traceparent: 00-5b0cdb4b5811364fba80fbaca87d5984-37eb49958da2dec4-01
 //JaegerPropagator
 uber-trace-id: 5b0cdb4b5811364fba80fbaca87d5984:37eb49958da2dec4:0:01
