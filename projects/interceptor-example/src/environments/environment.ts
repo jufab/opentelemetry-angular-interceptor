@@ -1,4 +1,4 @@
-import { LoggerConfig, NgxLoggerLevel } from 'ngx-logger';
+import { INGXLoggerConfig, NgxLoggerLevel } from 'ngx-logger';
 import { DiagLogLevel } from '@opentelemetry/api';
 import {
   OpenTelemetryConfig
@@ -8,7 +8,7 @@ interface IEnvironment {
   production: boolean;
   urlTest: string;
   openTelemetryConfig: OpenTelemetryConfig;
-  loggerConfig: LoggerConfig;
+  loggerConfig: INGXLoggerConfig;
 }
 
 // Example to configure the angular-interceptor library
@@ -18,7 +18,7 @@ export const environment: IEnvironment = {
   openTelemetryConfig: {
     commonConfig: {
       console: true, // Display trace on console
-      production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
+      production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'interceptor-example', // Service name send in trace
       logBody: true, // true add body in a log, nothing otherwise
       probabilitySampler: '1', // 75% sampling

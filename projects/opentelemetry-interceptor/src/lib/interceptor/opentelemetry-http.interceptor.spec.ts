@@ -15,7 +15,7 @@ import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
 import {
   CUSTOM_SPAN,
   OpenTelemetryConfig,
-  OTELCOL_CONFIG,
+  OTLP_CONFIG,
 } from '../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
@@ -28,7 +28,7 @@ import {
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
 // eslint-disable-next-line max-len
-import { HttpTraceContextPropagatorModule } from '../services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
+import { W3CTraceContextPropagatorModule } from '../services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.module';
 import { CustomSpan } from './custom-span.interface';
 import { Span } from '@opentelemetry/api';
 
@@ -194,11 +194,11 @@ describe('OpenTelemetryHttpInterceptor', () => {
       imports: [
         HttpClientTestingModule,
         ConsoleSpanExporterModule,
-        HttpTraceContextPropagatorModule,
+        W3CTraceContextPropagatorModule,
       ],
       providers: [
         {
-          provide: OTELCOL_CONFIG,
+          provide: OTLP_CONFIG,
           useValue: otelcolExporterConfig,
         },
         {
@@ -236,11 +236,11 @@ const defineModuleTest = (
     imports: [
       HttpClientTestingModule,
       ConsoleSpanExporterModule,
-      HttpTraceContextPropagatorModule,
+      W3CTraceContextPropagatorModule,
     ],
     providers: [
       {
-        provide: OTELCOL_CONFIG,
+        provide: OTLP_CONFIG,
         useValue: otelcolConfig,
       },
       {

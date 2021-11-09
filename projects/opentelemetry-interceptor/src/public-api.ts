@@ -13,7 +13,7 @@ export { B3PropagatorModule } from './lib/services/propagator/b3-propagator/b3-p
 export { CompositePropagatorModule } from './lib/services/propagator/composite-propagator/composite-propagator.module';
 export { AwsXrayPropagatorModule } from './lib/services/propagator/aws-xray-propagator/aws-xray-propagator.module';
 /* eslint-disable max-len */
-export { HttpTraceContextPropagatorModule } from './lib/services/propagator/http-trace-context-propagator/http-trace-context-propagator.module';
+export { W3CTraceContextPropagatorModule } from './lib/services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.module';
 export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaeger-http-trace-propagator/jaeger-http-trace-propagator.module';
 /* eslint-enable max-len */
 export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.module';
@@ -27,11 +27,11 @@ export {
   BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
-  OTELCOL_CONFIG as OpenTelemetryInjectConfig,
+  OTLP_CONFIG as OpenTelemetryInjectConfig,
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,
   InstrumentationConfig,
-  OTELCOL_LOGGER,
+  OTLP_LOGGER,
   CUSTOM_SPAN
 } from './lib/configuration/opentelemetry-config';

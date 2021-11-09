@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CompositePropagator } from '@opentelemetry/core';
 import { CompositePropagatorService } from './composite-propagator.service';
-import { OTELCOL_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
 import { jaegerPropagatorConfig } from '../../../../../__mocks__/data/config.mock';
 
 describe('CompositePropagatorService', () => {
@@ -12,7 +12,7 @@ describe('CompositePropagatorService', () => {
       providers: [
         CompositePropagatorService,
         {
-          provide: OTELCOL_CONFIG,
+          provide: OTLP_CONFIG,
           useValue: jaegerPropagatorConfig,
         },
       ],

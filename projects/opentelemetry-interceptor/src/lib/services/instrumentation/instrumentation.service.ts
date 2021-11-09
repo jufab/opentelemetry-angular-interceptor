@@ -15,7 +15,7 @@ import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
 import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
-import { OTELCOL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
+import { OTLP_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
 import { OTELCOL_EXPORTER, IExporter } from '../exporter/exporter.interface';
 import { OTELCOL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
 
@@ -51,7 +51,7 @@ export class InstrumentationService {
    * @param exporterService
    * @param propagatorService
    */
-  constructor(@Inject(OTELCOL_CONFIG) private config: OpenTelemetryConfig,
+  constructor(@Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTELCOL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTELCOL_PROPAGATOR)

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpTraceContextPropagatorService } from './http-trace-context-propagator.service';
+import { W3CTraceContextPropagatorService } from './w3c-trace-context-propagator.service';
 import { OTELCOL_PROPAGATOR } from '../propagator.interface';
 
 
@@ -11,8 +11,8 @@ import { OTELCOL_PROPAGATOR } from '../propagator.interface';
     CommonModule,
   ],
   providers: [
-    { provide: OTELCOL_PROPAGATOR, useClass: HttpTraceContextPropagatorService }
+    { provide: OTELCOL_PROPAGATOR, useClass: W3CTraceContextPropagatorService }
   ]
 })
-export class  HttpTraceContextPropagatorModule {
+export class W3CTraceContextPropagatorModule {
 }
