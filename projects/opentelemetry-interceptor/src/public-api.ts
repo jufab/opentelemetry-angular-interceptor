@@ -27,7 +27,7 @@ export {
   BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
-  OTLP_CONFIG as OpenTelemetryInjectConfig,
+  OTLP_CONFIG,
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,

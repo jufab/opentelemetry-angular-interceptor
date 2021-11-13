@@ -3,13 +3,19 @@ import {
   ModuleWithProviders,
   Optional,
   SkipSelf,
+  ValueProvider,
+  ClassProvider,
+  ConstructorProvider,
+  ExistingProvider,
+  FactoryProvider,
 } from '@angular/core';
 import {
+  defineConfigProvider,
   OpenTelemetryConfig,
-  OTLP_CONFIG,
 } from './configuration/opentelemetry-config';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './interceptor/opentelemetry-http.interceptor';
+
 
 @NgModule({
   declarations: [],
@@ -27,17 +33,27 @@ export class OpenTelemetryInterceptorModule {
     }
   }
 
-  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders<OpenTelemetryInterceptorModule> {
+  public static forRoot(
+    config: OpenTelemetryConfig | null | undefined,
+    configProvider?: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
+    ): ModuleWithProviders<OpenTelemetryInterceptorModule> {
+
+      //Interceptor
+      const interceptorProvider = {
+        provide: HTTP_INTERCEPTORS,
+        useClass: OpenTelemetryHttpInterceptor,
+        multi: true,
+      };
+
+      configProvider = defineConfigProvider(config,configProvider);
+
     return {
       ngModule: OpenTelemetryInterceptorModule,
       providers: [
-        { provide: OTLP_CONFIG, useValue: config },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: OpenTelemetryHttpInterceptor,
-          multi: true,
-        },
+        configProvider,
+        interceptorProvider,
       ],
     };
   }
+
 }

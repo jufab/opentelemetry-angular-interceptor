@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OpenTelemetryInjectConfig } from '../../../public-api';
+import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG } from '../../../public-api';
 // eslint-disable-next-line max-len
 import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 
@@ -16,7 +16,7 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -49,7 +49,7 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: instrumentationConsoleOtelConfigSamplerOff },
+        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfigSamplerOff },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -64,7 +64,7 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: instrumentationProductionOtelConfig },
+        { provide: OTLP_CONFIG, useValue: instrumentationProductionOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -79,7 +79,7 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: instrumentationFetchOnlyOtelConfig },
+        { provide: OTLP_CONFIG, useValue: instrumentationFetchOnlyOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -94,7 +94,7 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OpenTelemetryInjectConfig, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+        { provide: OTLP_CONFIG, useValue: instrumentationDocumentLoadOnlyOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
