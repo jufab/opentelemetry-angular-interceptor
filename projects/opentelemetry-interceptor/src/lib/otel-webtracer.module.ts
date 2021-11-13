@@ -1,7 +1,17 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import {
+  ClassProvider,
+  ConstructorProvider,
+  ExistingProvider,
+  FactoryProvider,
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+  ValueProvider,
+} from '@angular/core';
+import {
+  defineConfigProvider,
   OpenTelemetryConfig,
-  OTLP_CONFIG,
 } from './configuration/opentelemetry-config';
 import { OtelWebTracerComponent } from './component/otel-webtracer/otel-webtracer.component';
 import { InstrumentationService } from './services/instrumentation/instrumentation.service';
@@ -21,11 +31,17 @@ export class OtelWebTracerModule {
     }
   }
 
-  public static forRoot(config: OpenTelemetryConfig): ModuleWithProviders<OtelWebTracerModule> {
+  public static forRoot(
+    config: OpenTelemetryConfig | null | undefined,
+    configProvider?: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
+  ): ModuleWithProviders<OtelWebTracerModule> {
+
+    configProvider = defineConfigProvider(config,configProvider);
+
     return {
       ngModule: OtelWebTracerModule,
       providers: [
-        { provide: OTLP_CONFIG, useValue: config },
+        configProvider,
         InstrumentationService
       ],
     };
