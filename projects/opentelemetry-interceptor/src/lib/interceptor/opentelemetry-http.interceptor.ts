@@ -32,8 +32,8 @@ import {
   OTLP_CONFIG,
 } from '../configuration/opentelemetry-config';
 import { version, name } from '../../version.json';
-import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
-import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
+import { OTLP__EXPORTER, IExporter } from '../services/exporter/exporter.interface';
+import { OTLP__PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 import { OTLP_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
 
@@ -69,9 +69,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   constructor(
     @Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTELCOL_EXPORTER)
+    @Inject(OTLP__EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTELCOL_PROPAGATOR)
+    @Inject(OTLP__PROPAGATOR)
     private propagatorService: IPropagator,
     @Optional() @Inject(OTLP_LOGGER)
     private logger: DiagLogger,

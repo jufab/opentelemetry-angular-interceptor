@@ -7,6 +7,12 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
+(async () => {
+  const response = await fetch(environment.urlOtelConfig);
+  const config = await response.json();
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  environment.openTelemetryConfig = config;
+
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));
+})();

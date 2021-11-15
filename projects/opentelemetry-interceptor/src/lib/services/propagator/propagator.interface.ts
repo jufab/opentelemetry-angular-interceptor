@@ -14,4 +14,4 @@ export interface IPropagator {
 }
 
 /** injection for a propagator */
-export const OTELCOL_PROPAGATOR = new InjectionToken<IPropagator>('otelcol.propagator');
+export const OTLP__PROPAGATOR = new InjectionToken<IPropagator>('otelcol.propagator');
