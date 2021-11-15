@@ -1,11 +1,11 @@
 'use strict';
+
 const express = require('express');
-var bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 const backendApp = express();
-backendApp.use(bodyParser.urlencoded({ extended: false }));
-backendApp.use(bodyParser.json());
+backendApp.use(express.json());
+backendApp.use(express.urlencoded({ extended: false }));
 
 class Result {
   constructor(result) {
@@ -27,6 +27,26 @@ backendApp.post('/api', (req, res) => {
 backendApp.get('/api/jsonp', (req, res) => {
   const result = new Result("ok");
   return res.jsonp(result);
+})
+
+backendApp.get('/api/config', (req,res) => {
+  return res.status(200).send({
+    commonConfig: {
+      console: true, // Display trace on console
+      production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
+      serviceName: 'instrumentation-example', // Service name send in trace
+      probabilitySampler: '0.75', // 75% sampling
+      logLevel: 99 //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
+    },
+    otelcolConfig: {
+      url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
+    },
+    instrumentationConfig: {
+      xmlHttpRequest: true,
+      fetch: true,
+      documentLoad: true,
+    }
+  });
 })
 
 backendApp.listen(PORT, () =>
