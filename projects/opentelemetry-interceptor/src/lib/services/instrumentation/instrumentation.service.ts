@@ -16,8 +16,8 @@ import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xm
 import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { OTLP_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
-import { OTLP__EXPORTER, IExporter } from '../exporter/exporter.interface';
-import { OTLP__PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
+import { OTLP_EXPORTER, IExporter } from '../exporter/exporter.interface';
+import { OTLP_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
 
 
 /**
@@ -52,9 +52,9 @@ export class InstrumentationService {
    * @param propagatorService
    */
   constructor(@Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTLP__EXPORTER)
+    @Inject(OTLP_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTLP__PROPAGATOR)
+    @Inject(OTLP_PROPAGATOR)
     private propagatorService: IPropagator) {
       this.tracerProvider = new WebTracerProvider({
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
