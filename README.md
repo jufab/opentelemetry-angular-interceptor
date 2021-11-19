@@ -201,7 +201,9 @@ You add this modules in your application module (generally app.module.ts)
 
 ##### Exporter module
 
-There is 3 exporters:
+There is 4 exporters:
+
+* NoopSpanExporterModule : This a fake exporter
 * OtelColExporterModule : OpenTelemetry exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
 * ConsoleSpanExporterModule : Console Exporter
 * ZipkinExporterModule : Zipkin Exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)

@@ -5,6 +5,7 @@ import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSampl
 
 import { InstrumentationService } from './instrumentation.service';
 import { OTELCOL_EXPORTER } from '../exporter/exporter.interface';
+import { NoopSpanExporterModule } from '../exporter/noop-exporter/noop-span-exporter.module';
 
 describe('InstrumentationService', () => {
   let instrumentationService: InstrumentationService;
@@ -100,4 +101,20 @@ describe('InstrumentationService', () => {
     instrumentationService = TestBed.inject(InstrumentationService);
     instrumentationService.initInstrumentation();
   });
+
+  it('must init instrumentation with noop span exporter', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        NoopSpanExporterModule,
+        W3CTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OpenTelemetryInjectConfig, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
+    instrumentationService.initInstrumentation();
+  });
+
 });
