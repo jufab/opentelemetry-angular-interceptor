@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { OTLP__PROPAGATOR } from '../propagator.interface';
+import { OTLP_PROPAGATOR } from '../propagator.interface';
 import { AwsXrayPropagatorService } from './aws-xray-propagator.service';
 
 
@@ -8,7 +8,7 @@ import { AwsXrayPropagatorService } from './aws-xray-propagator.service';
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP__PROPAGATOR, useClass: AwsXrayPropagatorService }
+    { provide: OTLP_PROPAGATOR, useClass: AwsXrayPropagatorService }
   ]
 })
 export class AwsXrayPropagatorModule {

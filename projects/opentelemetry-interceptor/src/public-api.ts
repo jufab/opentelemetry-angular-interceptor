@@ -1,4 +1,6 @@
 import { CustomSpan } from './lib/interceptor/custom-span.interface';
+import { OTLP_EXPORTER, IExporter } from './lib/services/exporter/exporter.interface';
+import { OTLP_PROPAGATOR, IPropagator } from './lib/services/propagator/propagator.interface';
 /*
  * Public API Surface of opentelemetry-interceptor
  */
@@ -21,6 +23,9 @@ export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';
+export { OTLP_EXPORTER, IExporter} from './lib/services/exporter/exporter.interface';
+export { OTLP_PROPAGATOR, IPropagator} from './lib/services/propagator/propagator.interface';
+
 // Configuration
 export {
   CommonCollectorConfig,

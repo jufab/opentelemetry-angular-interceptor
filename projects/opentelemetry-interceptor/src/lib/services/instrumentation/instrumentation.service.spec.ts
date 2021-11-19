@@ -4,7 +4,7 @@ import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG
 import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 
 import { InstrumentationService } from './instrumentation.service';
-import { OTLP__EXPORTER } from '../exporter/exporter.interface';
+import { OTLP_EXPORTER } from '../exporter/exporter.interface';
 
 describe('InstrumentationService', () => {
   let instrumentationService: InstrumentationService;
@@ -33,7 +33,7 @@ describe('InstrumentationService', () => {
     instrumentationService.initInstrumentation();
     expect(insertConsoleSpanExporterSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.console);
     // eslint-disable-next-line max-len
-    expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTLP__EXPORTER));
+    expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTLP_EXPORTER));
     expect(addInstrumentationPluginSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.instrumentationConfig);
   });
 

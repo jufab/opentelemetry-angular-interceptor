@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { B3PropagatorService } from './b3-propagator.service';
-import { OTLP__PROPAGATOR } from '../propagator.interface';
+import { OTLP_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -8,7 +8,7 @@ import { OTLP__PROPAGATOR } from '../propagator.interface';
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP__PROPAGATOR, useClass: B3PropagatorService }
+    { provide: OTLP_PROPAGATOR, useClass: B3PropagatorService }
   ]
 })
 export class B3PropagatorModule {
