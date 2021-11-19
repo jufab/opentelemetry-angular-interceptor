@@ -27,6 +27,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Zipkin Exporter Configuration](#zipkin-exporter-configuration)
       - [B3 Propagator Configuration](#b3-propagator-configuration)
       - [Instrumentation Configuration](#instrumentation-configuration)
+      - [External Configuration](#external-configuration)
     - [Angular module](#angular-module)
       - [Commons Module](#commons-module)
         - [Exporter module](#exporter-module)
@@ -34,6 +35,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Interceptor Module](#interceptor-module)
       - [Instrumentation Module](#instrumentation-module)
       - [Interceptor Module And Instrumentation Module](#interceptor-module-and-instrumentation-module)
+      - [Injection token](#injection-token)
     - [Component otel-instrumentation](#component-otel-instrumentation)
     - [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
       - [NGXLogger](#ngxlogger)
@@ -115,16 +117,14 @@ opentelemetryConfig: {
 _From the instrumentation-example_
 
 ```typescript
-export const environment: IEnvironment = {
-  production: false,
-  urlTest: 'http://localhost:4200/api',
-  openTelemetryConfig: {
+backendApp.get('/api/config', (req,res) => {
+  return res.status(200).send({
     commonConfig: {
       console: true, // Display trace on console
-      production: false, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
+      production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'instrumentation-example', // Service name send in trace
       probabilitySampler: '0.75', // 75% sampling
-      logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
+      logLevel: 99 //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
       url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
@@ -134,8 +134,8 @@ export const environment: IEnvironment = {
       fetch: true,
       documentLoad: true,
     }
-  }
-};
+  });
+})
 
 ```
 
@@ -185,6 +185,11 @@ _this configuration is only for the instrumentation Mode_
 * fetch:(boolean) Activate fetch plugin
 * documentLoad: (boolean) Activate documentLoad plugin
 
+#### External Configuration
+
+Instrumentation example project have an external configuration to show how you can do it.
+
+
 ### Angular module
 
 You need 3 modules to add to your application.
@@ -215,6 +220,7 @@ there is 6 propagators (more info about propagator: https://github.com/open-tele
 * JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
 * AwsXrayPropagatorModule : Use AWS X-Ray propagator
 * CompositePropagatorModule : use all of the propagator
+
 
 #### Interceptor Module
 
@@ -281,6 +287,16 @@ export class AppModule { }
 
 `Don't use them at the same time : you're going to have the same trace twice.`
 
+#### Injection token
+
+This library exposes injection token.
+You can use them to override or customize. 
+
+* OTLP_EXPORTER : token to inject an implementation of `IExporter`
+* OTLP_PROPAGATOR : token to inject an implementation of `IPropagator`
+* OTLP_CONFIG : token to inject an `OpenTelemetryConfig`
+* OTLP_LOGGER : more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
+* CUSTOM_SPAN : more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
 
 ### Component otel-instrumentation
 

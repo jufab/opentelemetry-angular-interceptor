@@ -29,7 +29,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     OtelWebTracerModule.forRoot(
-      null,
+      undefined,
       {provide: OTLP_CONFIG, useFactory: () => (environment.openTelemetryConfig)}
     ),
     OtelColExporterModule,
