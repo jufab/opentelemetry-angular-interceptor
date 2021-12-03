@@ -16,6 +16,7 @@ import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
+  NoopSpanProcessor,
   BufferConfig
 } from '@opentelemetry/sdk-trace-base';
 import {
@@ -87,8 +88,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         })
       ),
     });
-    this.insertSpanProcessorProductionMode();
-    this.insertConsoleSpanExporter();
+    this.insertOrNotSpanExporter();
     this.contextManager = new StackContextManager();
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
@@ -212,6 +212,18 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     return request.clone({
       setHeaders: carrier,
     });
+  }
+
+  /**
+   * Verify to insert or not a Span Exporter
+   */
+  private insertOrNotSpanExporter() {
+    if(this.exporterService.getExporter()!==undefined) {
+      this.insertSpanProcessorProductionMode();
+      this.insertConsoleSpanExporter();
+    } else {
+      this.tracer.addSpanProcessor(new NoopSpanProcessor());
+    }
   }
 
   /**

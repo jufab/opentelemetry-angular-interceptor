@@ -4,6 +4,7 @@ import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG
 import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 
 import { InstrumentationService } from './instrumentation.service';
+import { NoopSpanExporterModule } from '../exporter/noop-exporter/noop-span-exporter.module';
 import { OTLP_EXPORTER } from '../exporter/exporter.interface';
 
 describe('InstrumentationService', () => {
@@ -100,4 +101,20 @@ describe('InstrumentationService', () => {
     instrumentationService = TestBed.inject(InstrumentationService);
     instrumentationService.initInstrumentation();
   });
+
+  it('must init instrumentation with noop span exporter', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        NoopSpanExporterModule,
+        W3CTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OTLP_CONFIG, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
+    instrumentationService.initInstrumentation();
+  });
+
 });

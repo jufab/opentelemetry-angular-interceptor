@@ -31,6 +31,7 @@ import { ConsoleSpanExporterModule } from '../services/exporter/console/console-
 import { W3CTraceContextPropagatorModule } from '../services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.module';
 import { CustomSpan } from './custom-span.interface';
 import { Span } from '@opentelemetry/api';
+import { NoopSpanExporterModule } from '../services/exporter/noop-exporter/noop-span-exporter.module';
 
 describe('OpenTelemetryHttpInterceptor', () => {
   let httpClient: HttpClient;
@@ -178,6 +179,38 @@ describe('OpenTelemetryHttpInterceptor', () => {
       httpControllerMock,
       otelcolExporterProductionAndBatchSpanProcessorConfig
     ));
+
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
+    expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('verify with a NoopSpanExporterService', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        NoopSpanExporterModule,
+        W3CTraceContextPropagatorModule,
+      ],
+      providers: [
+        {
+          provide: OTLP_CONFIG,
+          useValue: otelcolExporterConfig,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: OpenTelemetryHttpInterceptor,
+          multi: true,
+        }
+      ],
+    });
+    httpClient = TestBed.inject(HttpClient);
+    httpControllerMock = TestBed.inject(HttpTestingController);
 
     const url = 'http://url.test.com';
     httpClient.get(url).subscribe();
