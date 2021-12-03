@@ -16,6 +16,7 @@ import {
   SimpleSpanProcessor,
   ConsoleSpanExporter,
   BatchSpanProcessor,
+  NoopSpanProcessor,
   BufferConfig
 } from '@opentelemetry/sdk-trace-base';
 import {
@@ -32,8 +33,8 @@ import {
   OTLP_CONFIG,
 } from '../configuration/opentelemetry-config';
 import { version, name } from '../../version.json';
-import { OTELCOL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
-import { OTELCOL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
+import { OTLP_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
+import { OTLP_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 import { OTLP_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
 
@@ -69,9 +70,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   constructor(
     @Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTELCOL_EXPORTER)
+    @Inject(OTLP_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTELCOL_PROPAGATOR)
+    @Inject(OTLP_PROPAGATOR)
     private propagatorService: IPropagator,
     @Optional() @Inject(OTLP_LOGGER)
     private logger: DiagLogger,
@@ -87,8 +88,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         })
       ),
     });
-    this.insertSpanProcessorProductionMode();
-    this.insertConsoleSpanExporter();
+    this.insertOrNotSpanExporter();
     this.contextManager = new StackContextManager();
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
@@ -212,6 +212,18 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     return request.clone({
       setHeaders: carrier,
     });
+  }
+
+  /**
+   * Verify to insert or not a Span Exporter
+   */
+  private insertOrNotSpanExporter() {
+    if(this.exporterService.getExporter()!==undefined) {
+      this.insertSpanProcessorProductionMode();
+      this.insertConsoleSpanExporter();
+    } else {
+      this.tracer.addSpanProcessor(new NoopSpanProcessor());
+    }
   }
 
   /**

@@ -1,4 +1,3 @@
-import { CustomSpan } from './lib/interceptor/custom-span.interface';
 /*
  * Public API Surface of opentelemetry-interceptor
  */
@@ -8,6 +7,7 @@ export { OpenTelemetryInterceptorModule } from './lib/opentelemetry-interceptor.
 export { OtelColExporterModule } from './lib/services/exporter/otelcol/otelcol-exporter.module';
 export { ConsoleSpanExporterModule } from './lib/services/exporter/console/console-span-exporter.module';
 export { ZipkinExporterModule } from './lib/services/exporter/zipkin/zipkin-exporter.module';
+export { NoopSpanExporterModule } from './lib/services/exporter/noop-exporter/noop-span-exporter.module';
 // Propagator
 export { B3PropagatorModule } from './lib/services/propagator/b3-propagator/b3-propagator.module';
 export { CompositePropagatorModule } from './lib/services/propagator/composite-propagator/composite-propagator.module';
@@ -21,13 +21,16 @@ export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';
+export { OTLP_EXPORTER, IExporter} from './lib/services/exporter/exporter.interface';
+export { OTLP_PROPAGATOR, IPropagator} from './lib/services/propagator/propagator.interface';
+
 // Configuration
 export {
   CommonCollectorConfig,
   BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
-  OTLP_CONFIG as OpenTelemetryInjectConfig,
+  OTLP_CONFIG,
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,

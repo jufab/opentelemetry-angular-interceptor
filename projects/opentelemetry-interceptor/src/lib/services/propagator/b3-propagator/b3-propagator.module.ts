@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { B3PropagatorService } from './b3-propagator.service';
-import { OTELCOL_PROPAGATOR } from '../propagator.interface';
+import { OTLP_PROPAGATOR } from '../propagator.interface';
 
 
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [],
   providers: [
-    { provide: OTELCOL_PROPAGATOR, useClass: B3PropagatorService }
+    { provide: OTLP_PROPAGATOR, useClass: B3PropagatorService }
   ]
 })
 export class B3PropagatorModule {
