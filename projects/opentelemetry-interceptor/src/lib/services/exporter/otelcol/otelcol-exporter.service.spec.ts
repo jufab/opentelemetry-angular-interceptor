@@ -6,7 +6,7 @@ import {
   otelcolExporterConfig,
   otelcolExporterWithoutUrlAndB3Config,
 } from '../../../../../__mocks__/data/config.mock';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-otlp-http';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
 
 describe('OtelcolExporterService', () => {
