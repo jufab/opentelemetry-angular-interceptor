@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.0.0...v1.0.1) (2021-12-03)
+
+
+### Features
+
+* add config provider for external config ([7bbaf2e](https://github.com/jufab/opentelemetry-angular-interceptor/commit/7bbaf2ef16bdb4f9005ed4054be696b13ee79d27))
+* add example in instrumentation ([e29c839](https://github.com/jufab/opentelemetry-angular-interceptor/commit/e29c839d2bca8da78f12aaf258c3dd3a9533c376))
+
 ## [1.0.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.25.0-2...v1.0.0) (2021-11-09)
 
 ## [0.25.0-2](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v0.25.0-1...v0.25.0-2) (2021-10-24)
