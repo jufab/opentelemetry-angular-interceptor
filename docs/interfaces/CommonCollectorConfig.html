@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -406,7 +406,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
 import { DiagLogger, SpanAttributes, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
@@ -532,7 +532,7 @@ export interface OpenTelemetryConfig {
   instrumentationConfig?: InstrumentationConfig;
 }
 
-/** OpenTelemetryInjectConfig : Config injection */
+/** OTLP_CONFIG : Config injection */
 export const OTLP_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
 
 /** Logger : injection for a logger compatible */
@@ -540,6 +540,24 @@ export const OTLP_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelc
 
 /** custom span */
 export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
+
+export const defineConfigProvider &#x3D; (
+  config: OpenTelemetryConfig | null | undefined,
+  configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
+  ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
+  if(config) {
+    configProvider &#x3D; { provide: OTLP_CONFIG, useValue: config };
+  } else {
+    if(configProvider) {
+      if(configProvider.provide !&#x3D;&#x3D; OTLP_CONFIG) {
+        throw new Error(&#x60;Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
+      }
+    } else {
+      throw new Error(&#x60;Configuration error. you must specify a configuration in config or configProvider&#x60;);
+    }
+  }
+  return configProvider;
+};
 </code></pre>
     </div>
 </div>
@@ -563,6 +581,15 @@ export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelc
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

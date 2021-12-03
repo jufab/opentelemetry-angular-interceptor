@@ -29,159 +29,74 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content module">
                    <div class="content-data">
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >W3CTraceContextPropagatorService</li>
+    <li>Modules</li>
+    <li >NoopSpanExporterModule</li>
 </ol>
 
+
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
+
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/opentelemetry-interceptor/src/lib/services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.service.ts</code>
+            <code>projects/opentelemetry-interceptor/src/lib/services/exporter/noop-exporter/noop-span-exporter.module.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>W3CTraceContextPropagatorService</p>
-
-            </p>
 
 
 
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#getPropagator" >getPropagator</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getPropagator"></a>
-                    <span class="name">
-                        <span ><b>getPropagator</b></span>
-                        <a href="#getPropagator"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getPropagator()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/w3c-trace-context-propagator/w3c-trace-context-propagator.service.ts:18</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Return an W3CTraceContextPropagatorService</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>TextMapPropagator</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>TextMapPropagator as W3CTraceContextPropagatorService</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { IPropagator } from &#x27;../propagator.interface&#x27;;
-import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
-import { W3CTraceContextPropagator } from &#x27;@opentelemetry/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { NoopSpanExporterService } from &#x27;./noop-span-exporter.service&#x27;;
+import { OTLP_EXPORTER } from &#x27;../exporter.interface&#x27;;
 
-/**
- * W3CTraceContextPropagatorService
- */
-@Injectable({
-  providedIn: &#x27;root&#x27;,
+
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule
+  ],
+  providers: [
+    { provide: OTLP_EXPORTER, useClass: NoopSpanExporterService }
+  ]
 })
-export class W3CTraceContextPropagatorService implements IPropagator {
-  /**
-   * Return an W3CTraceContextPropagatorService
-   *
-   * @return TextMapPropagator as W3CTraceContextPropagatorService
-   */
-  getPropagator(): TextMapPropagator {
-    return new W3CTraceContextPropagator();
-  }
+export class NoopSpanExporterModule {
 }
 </code></pre>
     </div>
-
 </div>
+
+
+
 
 
 
@@ -219,8 +134,8 @@ export class W3CTraceContextPropagatorService implements IPropagator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'W3CTraceContextPropagatorService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'NoopSpanExporterModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

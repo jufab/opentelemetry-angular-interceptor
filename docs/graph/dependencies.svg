@@ -10,15 +10,15 @@
 <title>dependencies</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-242.8 224,-242.8 224,4 -4,4"/>
 <text text-anchor="middle" x="110" y="-8.2" font-family="sans-serif" font-size="14.00">dependencies</text>
-<g id="clust49" class="cluster">
+<g id="clust55" class="cluster">
 <title>cluster_OtelWebTracerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 212,-230.8 212,-32.8 8,-32.8"/>
 </g>
-<g id="clust50" class="cluster">
+<g id="clust56" class="cluster">
 <title>cluster_OtelWebTracerModule_declarations</title>
 <polygon fill="none" stroke="black" points="18,-40.8 18,-92.8 202,-92.8 202,-40.8 18,-40.8"/>
 </g>
-<g id="clust53" class="cluster">
+<g id="clust59" class="cluster">
 <title>cluster_OtelWebTracerModule_exports</title>
 <polygon fill="none" stroke="black" points="16,-170.8 16,-222.8 204,-222.8 204,-170.8 16,-170.8"/>
 </g>

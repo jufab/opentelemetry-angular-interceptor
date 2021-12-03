@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -131,6 +131,10 @@ Service for component to add instrumentation.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#insertOrNotSpanExporter" >insertOrNotSpanExporter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#insertSpanProcessorProductionMode" >insertSpanProcessorProductionMode</a>
                             </li>
                         </ul>
@@ -247,8 +251,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -320,8 +324,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:144</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -394,8 +398,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:165</a></div>
                 </td>
             </tr>
 
@@ -514,8 +518,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:105</a></div>
                 </td>
             </tr>
 
@@ -574,6 +578,103 @@ By Default, it&#39;s always (or 1)</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="insertOrNotSpanExporter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>insertOrNotSpanExporter</b></span>
+                        <a href="#insertOrNotSpanExporter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>insertOrNotSpanExporter(production: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, exporter: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, console: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Verify to insert or not a Span Exporter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>production</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>exporter</td>
+                                    <td>
+                                                <code><a href="../interfaces/IExporter.html" target="_self" >IExporter</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>console</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="insertSpanProcessorProductionMode"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -592,8 +693,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:120</a></div>
                 </td>
             </tr>
 
@@ -782,10 +883,10 @@ import { DocumentLoadInstrumentation } from &#x27;@opentelemetry/instrumentation
 import { FetchInstrumentation } from &#x27;@opentelemetry/instrumentation-fetch&#x27;;
 import { XMLHttpRequestInstrumentation } from &#x27;@opentelemetry/instrumentation-xml-http-request&#x27;;
 import { WebTracerProvider } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
-import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
+import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
 import { OTLP_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
-import { OTELCOL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
-import { OTELCOL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
+import { OTLP_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
+import { OTLP_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
 
 
 /**
@@ -820,9 +921,9 @@ export class InstrumentationService {
    * @param propagatorService
    */
   constructor(@Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTELCOL_EXPORTER)
+    @Inject(OTLP_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTELCOL_PROPAGATOR)
+    @Inject(OTLP_PROPAGATOR)
     private propagatorService: IPropagator) {
       this.tracerProvider &#x3D; new WebTracerProvider({
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
@@ -838,8 +939,8 @@ export class InstrumentationService {
    * Init instrumentation on init
    */
   public initInstrumentation() {
-    this.insertConsoleSpanExporter(this.config.commonConfig.console);
-    this.insertSpanProcessorProductionMode(this.config.commonConfig.production, this.exporterService);
+    this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService,this.config.commonConfig.console);
+
     this.addInstrumentationPlugin(this.config.instrumentationConfig);
 
     this.tracerProvider.register({
@@ -851,7 +952,18 @@ export class InstrumentationService {
       instrumentations: this.instrumentationOptions,
       tracerProvider: this.tracerProvider,
     });
+  }
 
+  /**
+   * Verify to insert or not a Span Exporter
+   */
+   private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean) {
+    if(this.exporterService.getExporter()!&#x3D;&#x3D;undefined) {
+      this.insertSpanProcessorProductionMode(production, exporter);
+      this.insertConsoleSpanExporter(console);
+    } else {
+      this.tracerProvider.addSpanProcessor(new NoopSpanProcessor());
+    }
   }
 
   /**
@@ -959,6 +1071,15 @@ export class InstrumentationService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

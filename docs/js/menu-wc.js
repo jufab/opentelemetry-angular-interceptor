@@ -81,6 +81,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/JaegerHttpTracePropagatorModule.html" data-type="entity-link" >JaegerHttpTracePropagatorModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/NoopSpanExporterModule.html" data-type="entity-link" >NoopSpanExporterModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/NoopTextMapPropagatorModule.html" data-type="entity-link" >NoopTextMapPropagatorModule</a>
                             </li>
                             <li class="link">
@@ -93,13 +96,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/OtelWebTracerModule.html" data-type="entity-link" >OtelWebTracerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' }>
+                                            'data-target="#components-links-module-OtelWebTracerModule-0da939b655ccfe134b7aa45786545cdb02006a4a12ba884650cc4d2d2049522da325e91f629cd4fb484fe71abb535c56ae4d4c0cb8230e226eec0fe1ee23f129"' : 'data-target="#xs-components-links-module-OtelWebTracerModule-0da939b655ccfe134b7aa45786545cdb02006a4a12ba884650cc4d2d2049522da325e91f629cd4fb484fe71abb535c56ae4d4c0cb8230e226eec0fe1ee23f129"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' :
-                                            'id="xs-components-links-module-OtelWebTracerModule-cbb57a46107542f3997a0a0efe00cef3"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OtelWebTracerModule-0da939b655ccfe134b7aa45786545cdb02006a4a12ba884650cc4d2d2049522da325e91f629cd4fb484fe71abb535c56ae4d4c0cb8230e226eec0fe1ee23f129"' :
+                                            'id="xs-components-links-module-OtelWebTracerModule-0da939b655ccfe134b7aa45786545cdb02006a4a12ba884650cc4d2d2049522da325e91f629cd4fb484fe71abb535c56ae4d4c0cb8230e226eec0fe1ee23f129"' }>
                                             <li class="link">
                                                 <a href="components/OtelWebTracerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OtelWebTracerComponent</a>
                                             </li>
@@ -139,6 +142,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/JaegerHttpTracePropagatorService.html" data-type="entity-link" >JaegerHttpTracePropagatorService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/NoopSpanExporterService.html" data-type="entity-link" >NoopSpanExporterService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/NoopTextMapPropagatorService.html" data-type="entity-link" >NoopTextMapPropagatorService</a>

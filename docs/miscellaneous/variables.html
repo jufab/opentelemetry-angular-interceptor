@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
         <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
@@ -63,16 +63,19 @@
                             <a href="#CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTELCOL_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTELCOL_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#OTELCOL_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts" ><b>OTELCOL_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
+                            <a href="#defineConfigProvider" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>defineConfigProvider</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
                             <a href="#OTLP_CONFIG" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTLP_CONFIG</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
+                            <a href="#OTLP_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTLP_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OTLP_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTLP_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OTLP_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts" ><b>OTLP_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -113,6 +116,42 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="defineConfigProvider"></a>
+                    <span class="name">
+                        <span ><b>defineConfigProvider</b></span>
+                        <a href="#defineConfigProvider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(
+  config: OpenTelemetryConfig | null | undefined,
+  configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
+  ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
+  if(config) {
+    configProvider &#x3D; { provide: OTLP_CONFIG, useValue: config };
+  } else {
+    if(configProvider) {
+      if(configProvider.provide !&#x3D;&#x3D; OTLP_CONFIG) {
+        throw new Error(&#x60;Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
+      }
+    } else {
+      throw new Error(&#x60;Configuration error. you must specify a configuration in config or configProvider&#x60;);
+    }
+  }
+  return configProvider;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="OTLP_CONFIG"></a>
                     <span class="name">
                         <span ><b>OTLP_CONFIG</b></span>
@@ -128,7 +167,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>OpenTelemetryInjectConfig : Config injection</p>
+                    <div class="io-description"><p>OTLP_CONFIG : Config injection</p>
 </div>
                 </td>
             </tr>
@@ -168,10 +207,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTELCOL_EXPORTER"></a>
+                    <a name="OTLP_EXPORTER"></a>
                     <span class="name">
-                        <span ><b>OTELCOL_EXPORTER</b></span>
-                        <a href="#OTELCOL_EXPORTER"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTLP_EXPORTER</b></span>
+                        <a href="#OTLP_EXPORTER"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -197,10 +236,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTELCOL_PROPAGATOR"></a>
+                    <a name="OTLP_PROPAGATOR"></a>
                     <span class="name">
-                        <span ><b>OTELCOL_PROPAGATOR</b></span>
-                        <a href="#OTELCOL_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTLP_PROPAGATOR</b></span>
+                        <a href="#OTLP_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -236,6 +275,15 @@
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
