@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from '@angular/core';
 import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
 import { CustomSpan } from '../interceptor/custom-span.interface';
 
@@ -124,7 +124,7 @@ export interface OpenTelemetryConfig {
   instrumentationConfig?: InstrumentationConfig;
 }
 
-/** OpenTelemetryInjectConfig : Config injection */
+/** OTLP_CONFIG : Config injection */
 export const OTLP_CONFIG = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
 
 /** Logger : injection for a logger compatible */
@@ -132,3 +132,21 @@ export const OTLP_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
 
 /** custom span */
 export const CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span');
+
+export const defineConfigProvider = (
+  config: OpenTelemetryConfig | null | undefined,
+  configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
+  ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider => {
+  if(config) {
+    configProvider = { provide: OTLP_CONFIG, useValue: config };
+  } else {
+    if(configProvider) {
+      if(configProvider.provide !== OTLP_CONFIG) {
+        throw new Error(`Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}`);
+      }
+    } else {
+      throw new Error(`Configuration error. you must specify a configuration in config or configProvider`);
+    }
+  }
+  return configProvider;
+};

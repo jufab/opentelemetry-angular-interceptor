@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OTELCOL_EXPORTER } from '../exporter.interface';
+import { OTLP_EXPORTER } from '../exporter.interface';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 
 
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [],
   providers: [
-    { provide: OTELCOL_EXPORTER, useClass: ZipkinExporterService }
+    { provide: OTLP_EXPORTER, useClass: ZipkinExporterService }
   ]
 })
 export class ZipkinExporterModule {

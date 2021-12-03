@@ -1,11 +1,12 @@
 'use strict';
+
 const express = require('express');
-var bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 const backendApp = express();
-backendApp.use(bodyParser.urlencoded({ extended: false }));
-backendApp.use(bodyParser.json());
+backendApp.use(express.json());
+backendApp.use(express.urlencoded({ extended: false }));
+
 
 class Result {
   constructor(result) {
@@ -15,18 +16,15 @@ class Result {
 
 //
 backendApp.get('/api', (req, res) => {
-  const result = new Result("ok");
-  return res.status(200).send(result);
+  return res.status(200).send(new Result("ok"));
 })
 
 backendApp.post('/api', (req, res) => {
-  const result = new Result(req.body.result);
-  return res.status(201).send(result);
+  return res.status(201).send(new Result(req.body.result));
 })
 
 backendApp.get('/api/jsonp', (req, res) => {
-  const result = new Result("ok");
-  return res.jsonp(result);
+  return res.jsonp(new Result("ok"));
 })
 
 backendApp.listen(PORT, () =>

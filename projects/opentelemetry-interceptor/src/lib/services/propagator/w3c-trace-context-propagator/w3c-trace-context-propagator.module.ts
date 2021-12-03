@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { W3CTraceContextPropagatorService } from './w3c-trace-context-propagator.service';
-import { OTELCOL_PROPAGATOR } from '../propagator.interface';
+import { OTLP_PROPAGATOR } from '../propagator.interface';
 
 
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-  ],
+  imports: [],
   providers: [
-    { provide: OTELCOL_PROPAGATOR, useClass: W3CTraceContextPropagatorService }
+    { provide: OTLP_PROPAGATOR, useClass: W3CTraceContextPropagatorService }
   ]
 })
 export class W3CTraceContextPropagatorModule {

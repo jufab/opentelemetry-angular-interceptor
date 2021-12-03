@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OTELCOL_PROPAGATOR } from '../propagator.interface';
+import { OTLP_PROPAGATOR } from '../propagator.interface';
 import { AwsXrayPropagatorService } from './aws-xray-propagator.service';
 
 
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-  ],
+  imports: [],
   providers: [
-    { provide: OTELCOL_PROPAGATOR, useClass: AwsXrayPropagatorService }
+    { provide: OTLP_PROPAGATOR, useClass: AwsXrayPropagatorService }
   ]
 })
 export class AwsXrayPropagatorModule {

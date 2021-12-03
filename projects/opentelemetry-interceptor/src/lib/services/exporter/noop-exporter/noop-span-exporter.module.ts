@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoopSpanExporterService } from './noop-span-exporter.service';
-import { OTELCOL_EXPORTER } from '../exporter.interface';
+import { OTLP_EXPORTER } from '../exporter.interface';
 
 
 
@@ -11,7 +11,7 @@ import { OTELCOL_EXPORTER } from '../exporter.interface';
     CommonModule
   ],
   providers: [
-    { provide: OTELCOL_EXPORTER, useClass: NoopSpanExporterService }
+    { provide: OTLP_EXPORTER, useClass: NoopSpanExporterService }
   ]
 })
 export class NoopSpanExporterModule {

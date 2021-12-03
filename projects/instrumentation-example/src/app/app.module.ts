@@ -10,22 +10,30 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule } from 'projects/opentelemetry-interceptor/src/public-api';
-import { environment } from '../environments/environment';
+import {
+  OtelColExporterModule,
+  CompositePropagatorModule,
+  OtelWebTracerModule,
+  OTLP_CONFIG } from 'projects/opentelemetry-interceptor/src/public-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewBackendComponent } from './view-backend/view-backend.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [AppComponent, ViewBackendComponent, PostBackendComponent, JsonpBackendComponent],
   imports: [
     BrowserModule,
+    OtelWebTracerModule.forRoot(
+      undefined,
+      {provide: OTLP_CONFIG, useFactory: () => (environment.openTelemetryConfig)}
+    ),
     OtelColExporterModule,
     CompositePropagatorModule,
-    OtelWebTracerModule.forRoot(environment.openTelemetryConfig),
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
