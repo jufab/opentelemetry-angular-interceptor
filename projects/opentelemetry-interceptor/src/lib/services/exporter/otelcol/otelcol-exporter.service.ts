@@ -5,8 +5,8 @@ import {
   OpenTelemetryConfig,
   OTLP_CONFIG
 } from '../../../configuration/opentelemetry-config';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-otlp-http';
-import { OTLPExporterConfigBase } from '@opentelemetry/exporter-otlp-http/build/src/types';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+import { OTLPExporterConfigBase } from '@opentelemetry/exporter-trace-otlp-http/build/src/types';
 
 /**
  * OtelcolExporterService class

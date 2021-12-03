@@ -10,7 +10,7 @@
       "@opentelemetry/api": "@opentelemetry/api",
       "@opentelemetry/sdk-trace-web": "@opentelemetry/sdk-trace-web",
       "@opentelemetry/sdk-trace-base": "@opentelemetry/sdk-trace-base",
-      "@opentelemetry/exporter-otlp-http": "@opentelemetry/exporter-otlp-http-browser",
+      "@opentelemetry/exporter-trace-otlp-http": "@opentelemetry/exporter-trace-otlp-http",
       "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
       "@opentelemetry/core": "@opentelemetry/core",
       "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger",
