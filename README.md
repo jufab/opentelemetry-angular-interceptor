@@ -56,17 +56,18 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
 This library offers two possibilities to use it in Angular App : 
 - **Interceptor** : catch every external call with the HttpClient from angular
-- **Instrumentation** : use instrumentation from opentelemetry-js with three web plugins : 
+- **Instrumentation** : use instrumentation from opentelemetry-js with four web plugins : 
   - [@opentelemetry/instrumentation-document-load](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
   - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch)
   - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request)
+  - [@opentelemetry/instrumentation-long-task](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-long-task)
 
 ### Installation
 
 With npm :
 
 ```
-npm i @jufab/opentelemetry-angular-interceptor && npm i @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/sdk-trace-base @opentelemetry/core @opentelemetry/semantic-conventions @opentelemetry/resources @opentelemetry/exporter-trace-otlp-http @opentelemetry/exporter-zipkin @opentelemetry/propagator-b3 @opentelemetry/propagator-jaeger @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load @opentelemetry/instrumentation-fetch @opentelemetry/instrumentation-xml-http-request @opentelemetry/propagator-aws-xray --save-dev
+npm i @jufab/opentelemetry-angular-interceptor && npm i @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/sdk-trace-base @opentelemetry/core @opentelemetry/semantic-conventions @opentelemetry/resources @opentelemetry/exporter-trace-otlp-http @opentelemetry/exporter-zipkin @opentelemetry/propagator-b3 @opentelemetry/propagator-jaeger @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load @opentelemetry/instrumentation-fetch @opentelemetry/instrumentation-xml-http-request @opentelemetry/instrumentation-long-task @opentelemetry/propagator-aws-xray --save-dev
 ```
 
 ### Configuration
@@ -133,6 +134,7 @@ backendApp.get('/api/config', (req,res) => {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
+      longTask: true,
     }
   });
 })
@@ -182,8 +184,11 @@ _This configuration applies if production is true in commonConfig._
 _this configuration is only for the instrumentation Mode_
 
 * xmlHttpRequest: (boolean) Activate XmlHttpRequest plugin
-* fetch:(boolean) Activate fetch plugin
+* xmlHtppRequestConfig: [(XMLHttpRequestInstrumentationConfig)](https://github.com/open-telemetry/opentelemetry-js/blob/e1c32b2daab842dc96b79a149f496d649491043c/experimental/packages/opentelemetry-instrumentation-xml-http-request/src/xhr.ts#L57) Extra configuration for XmlHttpRequestPlugin
+* fetch: (boolean) Activate fetch plugin
+* fetchConfig: [(FetchInstrumentationConfig)](https://github.com/open-telemetry/opentelemetry-js/blob/e1c32b2daab842dc96b79a149f496d649491043c/experimental/packages/opentelemetry-instrumentation-fetch/src/fetch.ts#L49)
 * documentLoad: (boolean) Activate documentLoad plugin
+* longTask: (boolean) Activate LongTask plugin
 
 #### External Configuration
 

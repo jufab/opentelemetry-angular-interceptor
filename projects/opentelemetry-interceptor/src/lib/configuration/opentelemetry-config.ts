@@ -1,5 +1,7 @@
 import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from '@angular/core';
 import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
+import { FetchInstrumentationConfig } from '@opentelemetry/instrumentation-fetch';
+import { XMLHttpRequestInstrumentationConfig } from '@opentelemetry/instrumentation-xml-http-request';
 import { CustomSpan } from '../interceptor/custom-span.interface';
 
 /**
@@ -26,10 +28,15 @@ export interface CommonCollectorConfig {
 export interface InstrumentationConfig {
   /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
   xmlHttpRequest?: boolean;
+  xmlHttpRequestConfig?: XMLHttpRequestInstrumentationConfig;
   /** documentLoad : to add DocumentLoadInstrumentation */
   documentLoad?: boolean;
+  //documentLoadConfig?: InstrumentationConfig;
   /** fetch : to add FetchInstrumentation */
   fetch?: boolean;
+  fetchConfig?: FetchInstrumentationConfig;
+  /** longTask : to add LongTaskInstrumentation */
+  longTask?: boolean;
 }
 
 /**

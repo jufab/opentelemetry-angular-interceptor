@@ -12,6 +12,7 @@ import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
 import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
 import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
+import { LongTaskInstrumentation } from '@opentelemetry/instrumentation-long-task';
 import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
@@ -136,13 +137,16 @@ export class InstrumentationService {
    private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
     this.instrumentationOptions = [];
     if(instrumentationConfig?.xmlHttpRequest) {
-      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation());
+      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation(instrumentationConfig.xmlHttpRequestConfig));
     }
     if(instrumentationConfig?.documentLoad) {
       this.instrumentationOptions.push(new DocumentLoadInstrumentation());
     }
     if(instrumentationConfig?.fetch) {
-      this.instrumentationOptions.push(new FetchInstrumentation());
+      this.instrumentationOptions.push(new FetchInstrumentation(instrumentationConfig.fetchConfig));
+    }
+    if(instrumentationConfig?.longTask) {
+      this.instrumentationOptions.push(new LongTaskInstrumentation());
     }
   }
 

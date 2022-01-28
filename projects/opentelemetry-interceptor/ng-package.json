@@ -22,7 +22,8 @@
       "@opentelemetry/instrumentation": "@opentelemetry/instrumentation",
       "@opentelemetry/instrumentation-document-load": "@opentelemetry/instrumentation-document-load",
       "@opentelemetry/instrumentation-fetch": "@opentelemetry/instrumentation-fetch",
-      "@opentelemetry/instrumentation-xml-http-request": "@opentelemetry/instrumentation-xml-http-request"
+      "@opentelemetry/instrumentation-xml-http-request": "@opentelemetry/instrumentation-xml-http-request",
+      "@opentelemetry/instrumentation-long-task": "@opentelemetry/instrumentation-long-task"
     }
   }
 }

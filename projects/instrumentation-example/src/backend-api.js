@@ -45,6 +45,7 @@ backendApp.get('/api/config', (req,res) => {
       xmlHttpRequest: true,
       fetch: true,
       documentLoad: true,
+      longTask: true,
     }
   });
 })
