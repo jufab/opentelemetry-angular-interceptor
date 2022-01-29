@@ -264,3 +264,21 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
     documentLoad: true
   }
 };
+
+/**
+ * @ignore
+ */
+ export const instrumentationLongTaskOnlyOtelConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    console: true,
+    production: false,
+    probabilitySampler: '2',
+  },
+  otelcolConfig: {
+    url: 'http://localhost',
+  },
+  instrumentationConfig: {
+    longTask: true
+  }
+};

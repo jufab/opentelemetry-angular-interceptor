@@ -1,8 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG } from '../../../public-api';
 // eslint-disable-next-line max-len
-import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
-
+import { instrumentationConsoleOtelConfig,
+   instrumentationConsoleOtelConfigSamplerOff,
+   instrumentationProductionOtelConfig,
+   instrumentationFetchOnlyOtelConfig,
+   instrumentationDocumentLoadOnlyOtelConfig,
+   instrumentationLongTaskOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
 import { InstrumentationService } from './instrumentation.service';
 import { NoopSpanExporterModule } from '../exporter/noop-exporter/noop-span-exporter.module';
 import { OTLP_EXPORTER } from '../exporter/exporter.interface';
@@ -111,6 +115,21 @@ describe('InstrumentationService', () => {
       ],
       providers: [
         { provide: OTLP_CONFIG, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+      ],
+    });
+    instrumentationService = TestBed.inject(InstrumentationService);
+    instrumentationService.initInstrumentation();
+  });
+
+  it('must init instrumentation with LongTask only', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        ConsoleSpanExporterModule,
+        W3CTraceContextPropagatorModule,
+      ],
+      providers: [
+        { provide: OTLP_CONFIG, useValue: instrumentationLongTaskOnlyOtelConfig },
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
