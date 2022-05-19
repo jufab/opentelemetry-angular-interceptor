@@ -76,7 +76,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { NoopSpanExporterService } from &#x27;./noop-span-exporter.service&#x27;;
-import { OTLP_EXPORTER } from &#x27;../exporter.interface&#x27;;
+import { OTEL_EXPORTER } from &#x27;../exporter.interface&#x27;;
 
 
 
@@ -86,7 +86,7 @@ import { OTLP_EXPORTER } from &#x27;../exporter.interface&#x27;;
     CommonModule
   ],
   providers: [
-    { provide: OTLP_EXPORTER, useClass: NoopSpanExporterService }
+    { provide: OTEL_EXPORTER, useClass: NoopSpanExporterService }
   ]
 })
 export class NoopSpanExporterModule {

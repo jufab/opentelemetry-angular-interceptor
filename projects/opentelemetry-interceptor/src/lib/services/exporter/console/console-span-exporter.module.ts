@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ConsoleSpanExporterService } from './console-span-exporter.service';
-import { OTLP_EXPORTER } from '../exporter.interface';
+import { OTEL_EXPORTER } from '../exporter.interface';
 
 
 
@@ -8,7 +8,7 @@ import { OTLP_EXPORTER } from '../exporter.interface';
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP_EXPORTER, useClass: ConsoleSpanExporterService }
+    { provide: OTEL_EXPORTER, useClass: ConsoleSpanExporterService }
   ]
 })
 export class ConsoleSpanExporterModule {

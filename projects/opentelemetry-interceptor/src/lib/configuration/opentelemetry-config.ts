@@ -1,5 +1,6 @@
 import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from '@angular/core';
 import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
+import { InstrumentationOption } from '@opentelemetry/instrumentation';
 import { CustomSpan } from '../interceptor/custom-span.interface';
 
 /**
@@ -18,18 +19,6 @@ export interface CommonCollectorConfig {
   logBody?: boolean;
   /** log level for opentelemetry */
   logLevel?: DiagLogLevel;
-}
-
-/**
- * Instrumentation Configuration
- */
-export interface InstrumentationConfig {
-  /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
-  xmlHttpRequest?: boolean;
-  /** documentLoad : to add DocumentLoadInstrumentation */
-  documentLoad?: boolean;
-  /** fetch : to add FetchInstrumentation */
-  fetch?: boolean;
 }
 
 /**
@@ -120,29 +109,29 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
-  /** instrumentationConfig */
-  instrumentationConfig?: InstrumentationConfig;
 }
 
-/** OTLP_CONFIG : Config injection */
-export const OTLP_CONFIG = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
+/** OTEL_CONFIG : Config injection */
+export const OTEL_CONFIG = new InjectionToken<OpenTelemetryConfig>('opentelemetry.config');
 
 /** Logger : injection for a logger compatible */
-export const OTLP_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
+export const OTEL_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
 
 /** custom span */
-export const CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span');
+export const OTEL_CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span');
+
+export const OTEL_INSTRUMENTATION_PLUGINS = new InjectionToken<InstrumentationOption[]>('otelcol.instrumentation.plugins');
 
 export const defineConfigProvider = (
   config: OpenTelemetryConfig | null | undefined,
   configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
   ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider => {
   if(config) {
-    configProvider = { provide: OTLP_CONFIG, useValue: config };
+    configProvider = { provide: OTEL_CONFIG, useValue: config };
   } else {
     if(configProvider) {
-      if(configProvider.provide !== OTLP_CONFIG) {
-        throw new Error(`Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}`);
+      if(configProvider.provide !== OTEL_CONFIG) {
+        throw new Error(`Configuration error. token must be : ${OTEL_CONFIG} ,  your token value is : ${configProvider.provide}`);
       }
     } else {
       throw new Error(`Configuration error. you must specify a configuration in config or configProvider`);

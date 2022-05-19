@@ -75,7 +75,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { NoopTextMapPropagatorService } from &#x27;./noop-text-map-propagator.service&#x27;;
-import { OTLP_PROPAGATOR } from &#x27;../propagator.interface&#x27;;
+import { OTEL_PROPAGATOR } from &#x27;../propagator.interface&#x27;;
 
 
 
@@ -83,7 +83,7 @@ import { OTLP_PROPAGATOR } from &#x27;../propagator.interface&#x27;;
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP_PROPAGATOR, useClass: NoopTextMapPropagatorService }
+    { provide: OTEL_PROPAGATOR, useClass: NoopTextMapPropagatorService }
   ]
 })
 export class NoopTextMapPropagatorModule {

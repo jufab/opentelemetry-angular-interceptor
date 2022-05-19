@@ -294,11 +294,11 @@ export class AppModule { }
 <p>This library exposes injection token.
 You can use them to override or customize. </p>
 <ul>
-<li>OTLP_EXPORTER : token to inject an implementation of <code>IExporter</code></li>
-<li>OTLP_PROPAGATOR : token to inject an implementation of <code>IPropagator</code></li>
-<li>OTLP_CONFIG : token to inject an <code>OpenTelemetryConfig</code></li>
-<li>OTLP_LOGGER : more info in <a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a></li>
-<li>CUSTOM_SPAN : more infor in <a href="#optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</a></li>
+<li>OTEL_EXPORTER : token to inject an implementation of <code>IExporter</code></li>
+<li>OTEL_PROPAGATOR : token to inject an implementation of <code>IPropagator</code></li>
+<li>OTEL_CONFIG : token to inject an <code>OpenTelemetryConfig</code></li>
+<li>OTEL_LOGGER : more info in <a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a></li>
+<li>OTEL_CUSTOM_SPAN : more infor in <a href="#optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</a></li>
 </ul>
 <h3 id="component-otel-instrumentation">Component otel-instrumentation</h3>
 <p>A component named <code>otel-instrumentation</code> must be add in your application.</p>
@@ -307,7 +307,7 @@ You can use them to override or customize. </p>
 &lt;otel-instrumentation&gt;&lt;/otel-instrumentation&gt;
 ...</code></pre></div><p><em>there is no configuration/directive need : all is in OtelWebTracerModule</em></p>
 <h3 id="optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</h3>
-<p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTLP_LOGGER</a> token.</p>
+<p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTEL_LOGGER</a> token.</p>
 <p>You can use a custom logger which implements the <a href="https://open-telemetry.github.io/opentelemetry-js-api/enums/diagloglevel.html">DiagLogger</a> in @opentelemetry/api.</p>
 <p>Or, you can use an existing logger which implements the same functions (error, warn, info, debug) like <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
 <h4 id="ngxlogger">NGXLogger</h4>
@@ -318,12 +318,12 @@ You can use them to override or customize. </p>
   imports: [
     LoggerModule.forRoot(environment.loggerConfig),
   ]
-  ...</code></pre></div><p>And use OTLP_LOGGER token to inject NGXLogger</p>
+  ...</code></pre></div><p>And use OTEL_LOGGER token to inject NGXLogger</p>
 <div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   providers: [
     ...
-    { provide: OTLP_LOGGER, useExisting: NGXLogger }
+    { provide: OTEL_LOGGER, useExisting: NGXLogger }
     ...
   ]</code></pre></div><p>Don&#39;t forget to set &quot;logLevel&quot; in <a href="#common-configuration">Common Configuration</a> (Level must be the same between NGXLogger and common configuration)</p>
 <blockquote>
@@ -343,12 +343,12 @@ You can use them to override or customize. </p>
     span.setAttribute(&#39;mycustom.key&#39;, request.params + &quot;;&quot; + response.status);
     return span;
   }
-}</code></pre></div><p>Inject it in you App module with <code>CUSTOM_SPAN</code> :</p>
+}</code></pre></div><p>Inject it in you App module with <code>OTEL_CUSTOM_SPAN</code> :</p>
 <div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   providers: [
     ...
-    { provide: CUSTOM_SPAN, useClass: CustomSpanImpl }
+    { provide: OTEL_CUSTOM_SPAN, useClass: CustomSpanImpl }
     ...
   ]</code></pre></div><blockquote>
 <p>You can see an example in the <a href="#example">interceptor-example</a>.</p>

@@ -40,11 +40,6 @@ backendApp.get('/api/config', (req,res) => {
     },
     otelcolConfig: {
       url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
-    },
-    instrumentationConfig: {
-      xmlHttpRequest: true,
-      fetch: true,
-      documentLoad: true,
     }
   });
 })

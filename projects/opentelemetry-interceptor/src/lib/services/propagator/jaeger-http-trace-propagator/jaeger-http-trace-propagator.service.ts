@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { IPropagator } from '../propagator.interface';
 import { TextMapPropagator } from '@opentelemetry/api';
 import { JaegerPropagator } from '@opentelemetry/propagator-jaeger';
-import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTEL_CONFIG } from '../../../configuration/opentelemetry-config';
 import { OpenTelemetryConfig } from '../../../../public-api';
 
 /**
@@ -21,7 +21,7 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTEL_CONFIG) config: OpenTelemetryConfig) {
     this.customHeader = config.jaegerPropagatorConfig?.customHeader;
   }
 

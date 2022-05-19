@@ -30,12 +30,12 @@ import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   OpenTelemetryConfig,
-  OTLP_CONFIG,
+  OTEL_CONFIG,
 } from '../configuration/opentelemetry-config';
 import { version, name } from '../../version.json';
-import { OTLP_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
-import { OTLP_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
-import { OTLP_LOGGER, CUSTOM_SPAN } from '../configuration/opentelemetry-config';
+import { OTEL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
+import { OTEL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
+import { OTEL_LOGGER, OTEL_CUSTOM_SPAN } from '../configuration/opentelemetry-config';
 import { CustomSpan } from './custom-span.interface';
 
 /**
@@ -69,14 +69,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param platformLocation encapsulates all calls to DOM APIs
    */
   constructor(
-    @Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTLP_EXPORTER)
+    @Inject(OTEL_CONFIG) private config: OpenTelemetryConfig,
+    @Inject(OTEL_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTLP_PROPAGATOR)
+    @Inject(OTEL_PROPAGATOR)
     private propagatorService: IPropagator,
-    @Optional() @Inject(OTLP_LOGGER)
+    @Optional() @Inject(OTEL_LOGGER)
     private logger: DiagLogger,
-    @Optional() @Inject(CUSTOM_SPAN)
+    @Optional() @Inject(OTEL_CUSTOM_SPAN)
     private customSpan: CustomSpan,
     private platformLocation: PlatformLocation
   ) {

@@ -21,8 +21,8 @@ export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';
-export { OTLP_EXPORTER, IExporter} from './lib/services/exporter/exporter.interface';
-export { OTLP_PROPAGATOR, IPropagator} from './lib/services/propagator/propagator.interface';
+export { OTEL_EXPORTER, IExporter} from './lib/services/exporter/exporter.interface';
+export { OTEL_PROPAGATOR, IPropagator} from './lib/services/propagator/propagator.interface';
 
 // Configuration
 export {
@@ -30,11 +30,11 @@ export {
   BatchSpanProcessorConfig,
   OtelCollectorConfig,
   OpenTelemetryConfig,
-  OTLP_CONFIG,
+  OTEL_CONFIG,
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,
-  InstrumentationConfig,
-  OTLP_LOGGER,
-  CUSTOM_SPAN
+  OTEL_LOGGER,
+  OTEL_CUSTOM_SPAN,
+  OTEL_INSTRUMENTATION_PLUGINS
 } from './lib/configuration/opentelemetry-config';

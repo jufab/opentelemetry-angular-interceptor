@@ -26,7 +26,6 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Jaeger Propagator Configuration](#jaeger-propagator-configuration)
       - [Zipkin Exporter Configuration](#zipkin-exporter-configuration)
       - [B3 Propagator Configuration](#b3-propagator-configuration)
-      - [Instrumentation Configuration](#instrumentation-configuration)
       - [External Configuration](#external-configuration)
     - [Angular module](#angular-module)
       - [Commons Module](#commons-module)
@@ -56,17 +55,19 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
 This library offers two possibilities to use it in Angular App : 
 - **Interceptor** : catch every external call with the HttpClient from angular
-- **Instrumentation** : use instrumentation from opentelemetry-js with three web plugins : 
+- **Instrumentation** : use instrumentation from opentelemetry-js with web plugins _(You need to install and configure it)_ like : 
   - [@opentelemetry/instrumentation-document-load](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
   - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch)
   - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request)
+  - ...
+  
 
 ### Installation
 
 With npm :
 
 ```
-npm i @jufab/opentelemetry-angular-interceptor && npm i @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/sdk-trace-base @opentelemetry/core @opentelemetry/semantic-conventions @opentelemetry/resources @opentelemetry/exporter-trace-otlp-http @opentelemetry/exporter-zipkin @opentelemetry/propagator-b3 @opentelemetry/propagator-jaeger @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load @opentelemetry/instrumentation-fetch @opentelemetry/instrumentation-xml-http-request @opentelemetry/propagator-aws-xray --save-dev
+npm i @jufab/opentelemetry-angular-interceptor && npm i @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/sdk-trace-base @opentelemetry/core @opentelemetry/semantic-conventions @opentelemetry/resources @opentelemetry/exporter-trace-otlp-http @opentelemetry/exporter-zipkin @opentelemetry/propagator-b3 @opentelemetry/propagator-jaeger @opentelemetry/context-zone-peer-dep @opentelemetry/instrumentation @opentelemetry/propagator-aws-xray --save-dev
 ```
 
 ### Configuration
@@ -81,7 +82,6 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
   b3PropagatorConfig?: B3PropagatorConfig;
-  instrumentationConfig?: InstrumentationConfig;
 }
 ```
 
@@ -128,11 +128,6 @@ backendApp.get('/api/config', (req,res) => {
     },
     otelcolConfig: {
       url: 'http://localhost:4318/v1/traces', // URL of opentelemetry collector
-    },
-    instrumentationConfig: {
-      xmlHttpRequest: true,
-      fetch: true,
-      documentLoad: true,
     }
   });
 })
@@ -177,13 +172,6 @@ _This configuration applies if production is true in commonConfig._
 
 * multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3)
 
-#### Instrumentation Configuration
-
-_this configuration is only for the instrumentation Mode_
-
-* xmlHttpRequest: (boolean) Activate XmlHttpRequest plugin
-* fetch:(boolean) Activate fetch plugin
-* documentLoad: (boolean) Activate documentLoad plugin
 
 #### External Configuration
 
@@ -258,8 +246,11 @@ export class AppModule {}
 
 #### Instrumentation Module
 
-Declare this OtelWebTracerModule to configure instrumentation
+Declare this OtelWebTracerModule to configure instrumentation.
 
+You need to provide Web instrumentation on the `OTEL_INSTRUMENTATION_PLUGINS` token in providers section of NgModule
+
+_Example in instrumentation-example project_
 
 ```typescript
 ...
@@ -278,7 +269,9 @@ import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule }
     OtelWebTracerModule.forRoot(environment.openTelemetryConfig),
     ...
   ],
-  providers: [],
+  providers: [
+    {provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
@@ -294,11 +287,12 @@ export class AppModule { }
 This library exposes injection token.
 You can use them to override or customize. 
 
-* OTLP_EXPORTER : token to inject an implementation of `IExporter`
-* OTLP_PROPAGATOR : token to inject an implementation of `IPropagator`
-* OTLP_CONFIG : token to inject an `OpenTelemetryConfig`
-* OTLP_LOGGER : more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
-* CUSTOM_SPAN : more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
+* OTEL_EXPORTER : token to inject an implementation of `IExporter`
+* OTEL_PROPAGATOR : token to inject an implementation of `IPropagator`
+* OTEL_CONFIG : token to inject an `OpenTelemetryConfig`
+* OTEL_INSTRUMENTATION_PLUGINS : token to inject an `InstrumentationOption` array
+* OTEL_LOGGER : more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
+* OTEL_CUSTOM_SPAN : more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
 
 ### Component otel-instrumentation
 
@@ -316,7 +310,7 @@ _there is no configuration/directive need : all is in OtelWebTracerModule_
 
 ### (Optional) Logging in OtelColExporterModule
 
-You can add a logger to the [OtelColExporterModule](projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts) with the [OTLP_LOGGER](projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts) token.
+You can add a logger to the [OtelColExporterModule](projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts) with the [OTEL_LOGGER](projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts) token.
 
 You can use a custom logger which implements the [DiagLogger](https://open-telemetry.github.io/opentelemetry-js-api/enums/diagloglevel.html) in @opentelemetry/api.
 
@@ -336,13 +330,13 @@ In your [appModule](projects/example-app/src/app/app.module.ts), insert LoggerMo
   ]
   ...
 ```
-And use OTLP_LOGGER token to inject NGXLogger
+And use OTEL_LOGGER token to inject NGXLogger
 ```typescript
 @NgModule({
   ...
   providers: [
     ...
-    { provide: OTLP_LOGGER, useExisting: NGXLogger }
+    { provide: OTEL_LOGGER, useExisting: NGXLogger }
     ...
   ]
 ```
@@ -373,14 +367,14 @@ class CustomSpanImpl implements CustomSpan {
 }
 ```
 
-Inject it in you App module with `CUSTOM_SPAN` :
+Inject it in you App module with `OTEL_CUSTOM_SPAN` :
 
 ```typescript
 @NgModule({
   ...
   providers: [
     ...
-    { provide: CUSTOM_SPAN, useClass: CustomSpanImpl }
+    { provide: OTEL_CUSTOM_SPAN, useClass: CustomSpanImpl }
     ...
   ]
 ```

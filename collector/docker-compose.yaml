@@ -14,7 +14,7 @@ services:
     ports:
       - "9411:9411"
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.38.0
+    image: otel/opentelemetry-collector-contrib:0.51.0
     networks:
       - otelcol
     command: ["--config=/etc/otel-collector-config.yaml"]
@@ -22,7 +22,6 @@ services:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - "4318:4318"
-      - "55681:55681" #legacy endpoint
       - "55679:55679"
     depends_on:
       - jaeger

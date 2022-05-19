@@ -14,4 +14,4 @@ export interface IExporter {
 }
 
 /** injection for a Exporter */
-export const OTLP_EXPORTER = new InjectionToken<IExporter>('otelcol.exporter');
+export const OTEL_EXPORTER = new InjectionToken<IExporter>('otelcol.exporter');

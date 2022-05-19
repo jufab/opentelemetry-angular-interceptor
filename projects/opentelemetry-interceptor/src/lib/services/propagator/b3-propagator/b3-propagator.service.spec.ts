@@ -5,7 +5,7 @@ import {
   b3PropagatorSingleConfig,
   b3PropagatorMultiConfig
 } from '../../../../../__mocks__/data/config.mock';
-import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTEL_CONFIG } from '../../../configuration/opentelemetry-config';
 
 describe('B3PropagatorService', () => {
   let b3PropagatorService: B3PropagatorService;
@@ -14,7 +14,7 @@ describe('B3PropagatorService', () => {
     TestBed.configureTestingModule({
       providers: [
         B3PropagatorService,
-        { provide: OTLP_CONFIG, useValue: b3PropagatorMultiConfig },
+        { provide: OTEL_CONFIG, useValue: b3PropagatorMultiConfig },
       ],
     });
     b3PropagatorService = TestBed.inject(B3PropagatorService);
@@ -33,7 +33,7 @@ describe('B3PropagatorService', () => {
     TestBed.configureTestingModule({
       providers: [
         B3PropagatorService,
-        { provide: OTLP_CONFIG, useValue: b3PropagatorSingleConfig },
+        { provide: OTEL_CONFIG, useValue: b3PropagatorSingleConfig },
       ],
     });
     b3PropagatorService = TestBed.inject(B3PropagatorService);
