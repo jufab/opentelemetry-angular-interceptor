@@ -75,7 +75,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { ConsoleSpanExporterService } from &#x27;./console-span-exporter.service&#x27;;
-import { OTLP_EXPORTER } from &#x27;../exporter.interface&#x27;;
+import { OTEL_EXPORTER } from &#x27;../exporter.interface&#x27;;
 
 
 
@@ -83,7 +83,7 @@ import { OTLP_EXPORTER } from &#x27;../exporter.interface&#x27;;
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP_EXPORTER, useClass: ConsoleSpanExporterService }
+    { provide: OTEL_EXPORTER, useClass: ConsoleSpanExporterService }
   ]
 })
 export class ConsoleSpanExporterModule {

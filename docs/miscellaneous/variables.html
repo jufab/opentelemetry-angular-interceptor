@@ -60,22 +60,22 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#OTEL_CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
                             <a href="#defineConfigProvider" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>defineConfigProvider</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTLP_CONFIG" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTLP_CONFIG</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#OTEL_CONFIG" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CONFIG</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTLP_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTLP_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
+                            <a href="#OTEL_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTEL_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTLP_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTLP_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                            <a href="#OTEL_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
-                            <a href="#OTLP_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts" ><b>OTLP_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
+                            <a href="#OTEL_PROPAGATOR" title="projects/opentelemetry-interceptor/src/lib/services/propagator/propagator.interface.ts" ><b>OTEL_PROPAGATOR</b>&nbsp;&nbsp;&nbsp;(projects/.../propagator.interface.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -90,10 +90,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="CUSTOM_SPAN"></a>
+                    <a name="OTEL_CUSTOM_SPAN"></a>
                     <span class="name">
-                        <span ><b>CUSTOM_SPAN</b></span>
-                        <a href="#CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTEL_CUSTOM_SPAN</b></span>
+                        <a href="#OTEL_CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -130,11 +130,11 @@
   configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
   ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
   if(config) {
-    configProvider &#x3D; { provide: OTLP_CONFIG, useValue: config };
+    configProvider &#x3D; { provide: OTEL_CONFIG, useValue: config };
   } else {
     if(configProvider) {
-      if(configProvider.provide !&#x3D;&#x3D; OTLP_CONFIG) {
-        throw new Error(&#x60;Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
+      if(configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
+        throw new Error(&#x60;Configuration error. token must be : ${OTEL_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
       }
     } else {
       throw new Error(&#x60;Configuration error. you must specify a configuration in config or configProvider&#x60;);
@@ -152,10 +152,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTLP_CONFIG"></a>
+                    <a name="OTEL_CONFIG"></a>
                     <span class="name">
-                        <span ><b>OTLP_CONFIG</b></span>
-                        <a href="#OTLP_CONFIG"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTEL_CONFIG</b></span>
+                        <a href="#OTEL_CONFIG"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -167,7 +167,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>OTLP_CONFIG : Config injection</p>
+                    <div class="io-description"><p>OTEL_CONFIG : Config injection</p>
 </div>
                 </td>
             </tr>
@@ -178,10 +178,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTLP_LOGGER"></a>
+                    <a name="OTEL_LOGGER"></a>
                     <span class="name">
-                        <span ><b>OTLP_LOGGER</b></span>
-                        <a href="#OTLP_LOGGER"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTEL_LOGGER</b></span>
+                        <a href="#OTEL_LOGGER"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -207,10 +207,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTLP_EXPORTER"></a>
+                    <a name="OTEL_EXPORTER"></a>
                     <span class="name">
-                        <span ><b>OTLP_EXPORTER</b></span>
-                        <a href="#OTLP_EXPORTER"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTEL_EXPORTER</b></span>
+                        <a href="#OTEL_EXPORTER"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -236,10 +236,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OTLP_PROPAGATOR"></a>
+                    <a name="OTEL_PROPAGATOR"></a>
                     <span class="name">
-                        <span ><b>OTLP_PROPAGATOR</b></span>
-                        <a href="#OTLP_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>OTEL_PROPAGATOR</b></span>
+                        <a href="#OTEL_PROPAGATOR"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>

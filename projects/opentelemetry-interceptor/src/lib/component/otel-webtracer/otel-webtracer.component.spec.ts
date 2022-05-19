@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG } from '../../../public-api';
+import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTEL_CONFIG, OTEL_INSTRUMENTATION_PLUGINS } from '../../../public-api';
 import { OtelWebTracerComponent } from './otel-webtracer.component';
 import { instrumentationConsoleOtelConfig } from '../../../../__mocks__/data/config.mock';
+import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 
 describe('OtelWebtracerComponent', () => {
   let component: OtelWebTracerComponent;
@@ -15,7 +16,8 @@ describe('OtelWebtracerComponent', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTEL_CONFIG, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]},
       ],
     })
     .compileComponents();

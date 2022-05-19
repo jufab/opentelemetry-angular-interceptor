@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { otelcolExporterConfig } from '../../__mocks__/data/config.mock';
-import { OTLP_CONFIG, OpenTelemetryInterceptorModule } from '../public-api';
+import { OTEL_CONFIG, OpenTelemetryInterceptorModule } from '../public-api';
 
 describe('OpenTelemetryInterceptorModule', () => {
   let openTelemetryInterceptorModule: OpenTelemetryInterceptorModule;
@@ -14,18 +14,18 @@ describe('OpenTelemetryInterceptorModule', () => {
     });
     openTelemetryInterceptorModule = TestBed.inject(OpenTelemetryInterceptorModule);
     expect(openTelemetryInterceptorModule).toBeTruthy();
-    const config = TestBed.inject(OTLP_CONFIG);
+    const config = TestBed.inject(OTEL_CONFIG);
     expect(config).not.toBeUndefined();
   });
   it('should be created with configProvider', () => {
     TestBed.configureTestingModule({
       imports: [
-        OpenTelemetryInterceptorModule.forRoot(null,{provide: OTLP_CONFIG, useValue: otelcolExporterConfig}),
+        OpenTelemetryInterceptorModule.forRoot(null,{provide: OTEL_CONFIG, useValue: otelcolExporterConfig}),
       ]
     });
     openTelemetryInterceptorModule = TestBed.inject(OpenTelemetryInterceptorModule);
     expect(openTelemetryInterceptorModule).toBeTruthy();
-    const config = TestBed.inject(OTLP_CONFIG);
+    const config = TestBed.inject(OTEL_CONFIG);
     expect(config).not.toBeUndefined();
   });
   it('should return error without config', () => {

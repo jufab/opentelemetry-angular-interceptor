@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { IExporter } from '../exporter.interface';
 import { SpanExporter } from '@opentelemetry/sdk-trace-base';
-import { OpenTelemetryConfig, OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OpenTelemetryConfig, OTEL_CONFIG } from '../../../configuration/opentelemetry-config';
 import { ZipkinExporter, ExporterConfig } from '@opentelemetry/exporter-zipkin';
 
 /**
@@ -21,7 +21,7 @@ export class ZipkinExporterService implements IExporter {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTEL_CONFIG) config: OpenTelemetryConfig) {
     this.zipkinConfig = {
       url: config.zipkinConfig?.url,
       headers: config.zipkinConfig?.headers

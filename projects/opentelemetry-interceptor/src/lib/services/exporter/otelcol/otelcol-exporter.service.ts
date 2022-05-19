@@ -3,7 +3,7 @@ import { IExporter } from '../exporter.interface';
 import { SpanExporter } from '@opentelemetry/sdk-trace-base';
 import {
   OpenTelemetryConfig,
-  OTLP_CONFIG
+  OTEL_CONFIG
 } from '../../../configuration/opentelemetry-config';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPExporterConfigBase } from '@opentelemetry/exporter-trace-otlp-http/build/src/types';
@@ -26,7 +26,7 @@ export class OtelcolExporterService implements IExporter {
    * @param config OpenTelemetryConfig
    */
   constructor(
-    @Inject(OTLP_CONFIG) config: OpenTelemetryConfig
+    @Inject(OTEL_CONFIG) config: OpenTelemetryConfig
   ) {
     this.otelcolConfig = {
       url: config.otelcolConfig?.url,

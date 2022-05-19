@@ -92,28 +92,28 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#exportTimeoutMillis" 
+                                        <a href="#exportTimeoutMillis"
 >
                                             exportTimeoutMillis
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#maxExportBatchSize" 
+                                        <a href="#maxExportBatchSize"
 >
                                             maxExportBatchSize
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#maxQueueSize" 
+                                        <a href="#maxQueueSize"
 >
                                             maxQueueSize
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#scheduledDelayMillis" 
+                                        <a href="#scheduledDelayMillis"
 >
                                             scheduledDelayMillis
                                         </a>
@@ -436,25 +436,25 @@ export interface OpenTelemetryConfig {
   instrumentationConfig?: InstrumentationConfig;
 }
 
-/** OTLP_CONFIG : Config injection */
-export const OTLP_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
+/** OTEL_CONFIG : Config injection */
+export const OTEL_CONFIG &#x3D; new InjectionToken&lt;OpenTelemetryConfig&gt;(&#x27;opentelemetry.config&#x27;);
 
 /** Logger : injection for a logger compatible */
-export const OTLP_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
+export const OTEL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelcol.logger&#x27;);
 
 /** custom span */
-export const CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
+export const OTEL_CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
 
 export const defineConfigProvider &#x3D; (
   config: OpenTelemetryConfig | null | undefined,
   configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
   ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
   if(config) {
-    configProvider &#x3D; { provide: OTLP_CONFIG, useValue: config };
+    configProvider &#x3D; { provide: OTEL_CONFIG, useValue: config };
   } else {
     if(configProvider) {
-      if(configProvider.provide !&#x3D;&#x3D; OTLP_CONFIG) {
-        throw new Error(&#x60;Configuration error. token must be : ${OTLP_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
+      if(configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
+        throw new Error(&#x60;Configuration error. token must be : ${OTEL_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
       }
     } else {
       throw new Error(&#x60;Configuration error. you must specify a configuration in config or configProvider&#x60;);

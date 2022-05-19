@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { JaegerHttpTracePropagatorService } from './jaeger-http-trace-propagator.service';
-import { OTLP_CONFIG } from '../../../configuration/opentelemetry-config';
+import { OTEL_CONFIG } from '../../../configuration/opentelemetry-config';
 import {
   jaegerPropagatorConfig,
   jaegerPropagatorWithoutCustomHeaderConfig,
@@ -16,7 +16,7 @@ describe('JaegerHttpTracePropagatorService', () => {
       providers: [
         JaegerHttpTracePropagatorService,
         {
-          provide: OTLP_CONFIG,
+          provide: OTEL_CONFIG,
           useValue: jaegerPropagatorConfig,
         },
       ],
@@ -31,7 +31,7 @@ describe('JaegerHttpTracePropagatorService', () => {
       providers: [
         JaegerHttpTracePropagatorService,
         {
-          provide: OTLP_CONFIG,
+          provide: OTEL_CONFIG,
           useValue: jaegerPropagatorWithoutCustomHeaderConfig,
         },
       ],

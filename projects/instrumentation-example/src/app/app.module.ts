@@ -14,7 +14,7 @@ import {
   OtelColExporterModule,
   CompositePropagatorModule,
   OtelWebTracerModule,
-  OTLP_CONFIG } from 'projects/opentelemetry-interceptor/src/public-api';
+  OTEL_CONFIG } from 'projects/opentelemetry-interceptor/src/public-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewBackendComponent } from './view-backend/view-backend.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
@@ -22,6 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PostBackendComponent } from './post-backend/post-backend.component';
 import { JsonpBackendComponent } from './jsonp-backend/jsonp-backend.component';
 import { environment } from '../environments/environment';
+import { OTEL_INSTRUMENTATION_PLUGINS } from '../../../opentelemetry-interceptor/src/lib/configuration/opentelemetry-config';
+import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 
 
 @NgModule({
@@ -30,7 +32,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     OtelWebTracerModule.forRoot(
       undefined,
-      {provide: OTLP_CONFIG, useFactory: () => (environment.openTelemetryConfig)}
+      {provide: OTEL_CONFIG, useFactory: () => (environment.openTelemetryConfig)}
     ),
     OtelColExporterModule,
     CompositePropagatorModule,
@@ -48,7 +50,9 @@ import { environment } from '../environments/environment';
     HighlightJsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

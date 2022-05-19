@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CompositePropagatorService } from './composite-propagator.service';
-import { OTLP_PROPAGATOR } from '../propagator.interface';
+import { OTEL_PROPAGATOR } from '../propagator.interface';
 
 
 
@@ -8,7 +8,7 @@ import { OTLP_PROPAGATOR } from '../propagator.interface';
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP_PROPAGATOR, useClass: CompositePropagatorService }
+    { provide: OTEL_PROPAGATOR, useClass: CompositePropagatorService }
   ]
 })
 export class  CompositePropagatorModule {

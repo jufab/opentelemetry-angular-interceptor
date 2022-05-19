@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTLP_CONFIG } from '../../../public-api';
+import { ConsoleSpanExporterModule, W3CTraceContextPropagatorModule, OTEL_CONFIG, OTEL_INSTRUMENTATION_PLUGINS } from '../../../public-api';
 // eslint-disable-next-line max-len
-import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig, instrumentationFetchOnlyOtelConfig, instrumentationDocumentLoadOnlyOtelConfig } from '../../../../__mocks__/data/config.mock';
-
+import { instrumentationConsoleOtelConfig, instrumentationConsoleOtelConfigSamplerOff, instrumentationProductionOtelConfig } from '../../../../__mocks__/data/config.mock';
 import { InstrumentationService } from './instrumentation.service';
 import { NoopSpanExporterModule } from '../exporter/noop-exporter/noop-span-exporter.module';
-import { OTLP_EXPORTER } from '../exporter/exporter.interface';
+import { OTEL_EXPORTER } from '../exporter/exporter.interface';
+import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 
 describe('InstrumentationService', () => {
   let instrumentationService: InstrumentationService;
@@ -17,7 +17,8 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTEL_CONFIG, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]},
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -30,12 +31,10 @@ describe('InstrumentationService', () => {
   it('must verify all call in init instrumentation', () => {
     const insertConsoleSpanExporterSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertConsoleSpanExporter');
     const insertSpanProcessorProductionModeSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertSpanProcessorProductionMode');
-    const addInstrumentationPluginSpy = jest.spyOn(InstrumentationService.prototype as any, 'addInstrumentationPlugin');
     instrumentationService.initInstrumentation();
     expect(insertConsoleSpanExporterSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.console);
     // eslint-disable-next-line max-len
-    expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTLP_EXPORTER));
-    expect(addInstrumentationPluginSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.instrumentationConfig);
+    expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTEL_EXPORTER));
   });
 
   it('must init instrumentation with console config', () => {
@@ -50,7 +49,8 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfigSamplerOff },
+        { provide: OTEL_CONFIG, useValue: instrumentationConsoleOtelConfigSamplerOff },
+        { provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]},
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -65,37 +65,8 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationProductionOtelConfig },
-      ],
-    });
-    instrumentationService = TestBed.inject(InstrumentationService);
-    instrumentationService.initInstrumentation();
-  });
-
-  it('must init instrumentation with fetch only', () => {
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      imports: [
-        ConsoleSpanExporterModule,
-        W3CTraceContextPropagatorModule,
-      ],
-      providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationFetchOnlyOtelConfig },
-      ],
-    });
-    instrumentationService = TestBed.inject(InstrumentationService);
-    instrumentationService.initInstrumentation();
-  });
-
-  it('must init instrumentation with documentLoad only', () => {
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      imports: [
-        ConsoleSpanExporterModule,
-        W3CTraceContextPropagatorModule,
-      ],
-      providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+        { provide: OTEL_CONFIG, useValue: instrumentationProductionOtelConfig },
+        { provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]},
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);
@@ -110,7 +81,8 @@ describe('InstrumentationService', () => {
         W3CTraceContextPropagatorModule,
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationDocumentLoadOnlyOtelConfig },
+        { provide: OTEL_CONFIG, useValue: instrumentationProductionOtelConfig },
+        { provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]},
       ],
     });
     instrumentationService = TestBed.inject(InstrumentationService);

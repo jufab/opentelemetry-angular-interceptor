@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { instrumentationConsoleOtelConfig } from '../../__mocks__/data/config.mock';
-import { OTLP_CONFIG, OtelWebTracerModule } from '../public-api';
+import { OTEL_CONFIG, OtelWebTracerModule } from '../public-api';
 
 describe('OtelWebTracerModule', () => {
   let otelWebTracerModule: OtelWebTracerModule;
@@ -12,24 +12,24 @@ describe('OtelWebTracerModule', () => {
         OtelWebTracerModule.forRoot(instrumentationConsoleOtelConfig),
       ],
       providers: [
-        { provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfig },
+        { provide: OTEL_CONFIG, useValue: instrumentationConsoleOtelConfig },
       ],
     });
     otelWebTracerModule = TestBed.inject(OtelWebTracerModule);
     expect(otelWebTracerModule).toBeTruthy();
-    const config = TestBed.inject(OTLP_CONFIG);
+    const config = TestBed.inject(OTEL_CONFIG);
     expect(config).not.toBeUndefined();
   });
 
   it('should be created with configProvider', () => {
     TestBed.configureTestingModule({
       imports: [
-        OtelWebTracerModule.forRoot(null,{provide: OTLP_CONFIG, useValue: instrumentationConsoleOtelConfig}),
+        OtelWebTracerModule.forRoot(null,{provide: OTEL_CONFIG, useValue: instrumentationConsoleOtelConfig}),
       ]
     });
     otelWebTracerModule = TestBed.inject(OtelWebTracerModule);
     expect(otelWebTracerModule).toBeTruthy();
-    const config = TestBed.inject(OTLP_CONFIG);
+    const config = TestBed.inject(OTEL_CONFIG);
     expect(config).not.toBeUndefined();
   });
   it('should return error without config', () => {

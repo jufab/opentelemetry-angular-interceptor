@@ -148,15 +148,15 @@
                                         <tbody>
                                                 <tr>
                                                         <td>config</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                         <td>
                                                                 <p>OpenTelemetryConfig</p>
 
@@ -172,7 +172,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -223,7 +223,7 @@
     </table>
 </section>
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -270,7 +270,7 @@
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
 import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
 import { JaegerPropagator } from &#x27;@opentelemetry/propagator-jaeger&#x27;;
-import { OTLP_CONFIG } from &#x27;../../../configuration/opentelemetry-config&#x27;;
+import { OTEL_CONFIG } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 import { OpenTelemetryConfig } from &#x27;../../../../public-api&#x27;;
 
 /**
@@ -289,7 +289,7 @@ export class JaegerHttpTracePropagatorService implements IPropagator {
    *
    * @param config OpenTelemetryConfig
    */
-  constructor(@Inject(OTLP_CONFIG) config: OpenTelemetryConfig) {
+  constructor(@Inject(OTEL_CONFIG) config: OpenTelemetryConfig) {
     this.customHeader &#x3D; config.jaegerPropagatorConfig?.customHeader;
   }
 

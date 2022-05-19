@@ -181,39 +181,39 @@ Service for component to add instrumentation.</p>
                                         <tbody>
                                                 <tr>
                                                         <td>config</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>exporterService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../interfaces/IExporter.html" target="_self" >IExporter</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>propagatorService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../interfaces/IPropagator.html" target="_self" >IPropagator</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -225,7 +225,7 @@ Service for component to add instrumentation.</p>
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -264,7 +264,7 @@ Service for component to add instrumentation.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -296,7 +296,7 @@ Service for component to add instrumentation.</p>
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -337,7 +337,7 @@ Service for component to add instrumentation.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -412,7 +412,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -449,7 +449,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -531,7 +531,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -568,7 +568,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -609,7 +609,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -665,7 +665,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -707,7 +707,7 @@ SimpleSpanProcessor otherwise</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -751,7 +751,7 @@ SimpleSpanProcessor otherwise</p>
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -759,7 +759,7 @@ SimpleSpanProcessor otherwise</p>
     </table>
 </section>
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -884,9 +884,9 @@ import { FetchInstrumentation } from &#x27;@opentelemetry/instrumentation-fetch&
 import { XMLHttpRequestInstrumentation } from &#x27;@opentelemetry/instrumentation-xml-http-request&#x27;;
 import { WebTracerProvider } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
-import { OTLP_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
-import { OTLP_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
-import { OTLP_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
+import { OTEL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
+import { OTEL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
+import { OTEL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
 
 
 /**
@@ -920,10 +920,10 @@ export class InstrumentationService {
    * @param exporterService
    * @param propagatorService
    */
-  constructor(@Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTLP_EXPORTER)
+  constructor(@Inject(OTEL_CONFIG) private config: OpenTelemetryConfig,
+    @Inject(OTEL_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTLP_PROPAGATOR)
+    @Inject(OTEL_PROPAGATOR)
     private propagatorService: IPropagator) {
       this.tracerProvider &#x3D; new WebTracerProvider({
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),

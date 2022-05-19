@@ -3,9 +3,10 @@ receivers:
     protocols:
       http:
         endpoint: "0.0.0.0:4318"
-        cors_allowed_origins:
-        - http://*
-        - https://*
+        cors:
+          allowed_origins:
+            - http://*
+            - https://*
 exporters:
   jaeger:
     endpoint: jaeger:14250

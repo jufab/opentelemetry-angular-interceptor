@@ -13,9 +13,9 @@ import {
 } from '@angular/common/http';
 import { OpenTelemetryHttpInterceptor } from './opentelemetry-http.interceptor';
 import {
-  CUSTOM_SPAN,
+  OTEL_CUSTOM_SPAN,
   OpenTelemetryConfig,
-  OTLP_CONFIG,
+  OTEL_CONFIG,
 } from '../configuration/opentelemetry-config';
 import {
   otelcolExporterConfig,
@@ -199,7 +199,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
       ],
       providers: [
         {
-          provide: OTLP_CONFIG,
+          provide: OTEL_CONFIG,
           useValue: otelcolExporterConfig,
         },
         {
@@ -231,7 +231,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
       ],
       providers: [
         {
-          provide: OTLP_CONFIG,
+          provide: OTEL_CONFIG,
           useValue: otelcolExporterConfig,
         },
         {
@@ -240,7 +240,7 @@ describe('OpenTelemetryHttpInterceptor', () => {
           multi: true,
         },
         {
-          provide: CUSTOM_SPAN,
+          provide: OTEL_CUSTOM_SPAN,
           useClass: CustomSpanImpl,
 
         }
@@ -273,7 +273,7 @@ const defineModuleTest = (
     ],
     providers: [
       {
-        provide: OTLP_CONFIG,
+        provide: OTEL_CONFIG,
         useValue: otelcolConfig,
       },
       {

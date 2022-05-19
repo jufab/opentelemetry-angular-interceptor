@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { OTLP_EXPORTER } from '../exporter.interface';
+import { OTEL_EXPORTER } from '../exporter.interface';
 import { ZipkinExporterService } from './zipkin-exporter.service';
 
 
@@ -8,7 +8,7 @@ import { ZipkinExporterService } from './zipkin-exporter.service';
   declarations: [],
   imports: [],
   providers: [
-    { provide: OTLP_EXPORTER, useClass: ZipkinExporterService }
+    { provide: OTEL_EXPORTER, useClass: ZipkinExporterService }
   ]
 })
 export class ZipkinExporterModule {

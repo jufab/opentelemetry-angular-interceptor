@@ -148,15 +148,15 @@
                                         <tbody>
                                                 <tr>
                                                         <td>config</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                         <td>
                                                                 <p>OpenTelemetryConfig</p>
 
@@ -172,7 +172,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -223,7 +223,7 @@
     </table>
 </section>
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -271,7 +271,7 @@ import { IExporter } from &#x27;../exporter.interface&#x27;;
 import { SpanExporter } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
 import {
   OpenTelemetryConfig,
-  OTLP_CONFIG
+  OTEL_CONFIG
 } from &#x27;../../../configuration/opentelemetry-config&#x27;;
 import { OTLPTraceExporter } from &#x27;@opentelemetry/exporter-trace-otlp-http&#x27;;
 import { OTLPExporterConfigBase } from &#x27;@opentelemetry/exporter-trace-otlp-http/build/src/types&#x27;;
@@ -294,7 +294,7 @@ export class OtelcolExporterService implements IExporter {
    * @param config OpenTelemetryConfig
    */
   constructor(
-    @Inject(OTLP_CONFIG) config: OpenTelemetryConfig
+    @Inject(OTEL_CONFIG) config: OpenTelemetryConfig
   ) {
     this.otelcolConfig &#x3D; {
       url: config.otelcolConfig?.url,

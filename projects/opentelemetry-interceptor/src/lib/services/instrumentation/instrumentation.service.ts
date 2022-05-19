@@ -10,14 +10,11 @@ import {
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
-import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
-import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
-import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
-import { OTLP_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from '../../configuration/opentelemetry-config';
-import { OTLP_EXPORTER, IExporter } from '../exporter/exporter.interface';
-import { OTLP_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
+import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS } from '../../configuration/opentelemetry-config';
+import { OTEL_EXPORTER, IExporter } from '../exporter/exporter.interface';
+import { OTEL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
 
 
 /**
@@ -40,22 +37,19 @@ export class InstrumentationService {
   private contextManager = new ZoneContextManager();
 
   /**
-   * instrumentationOptions
-   */
-  private instrumentationOptions: InstrumentationOption[];
-
-  /**
    * Constructor
    *
    * @param config
    * @param exporterService
    * @param propagatorService
    */
-  constructor(@Inject(OTLP_CONFIG) private config: OpenTelemetryConfig,
-    @Inject(OTLP_EXPORTER)
+  constructor(@Inject(OTEL_CONFIG) private config: OpenTelemetryConfig,
+    @Inject(OTEL_EXPORTER)
     private exporterService: IExporter,
-    @Inject(OTLP_PROPAGATOR)
-    private propagatorService: IPropagator) {
+    @Inject(OTEL_PROPAGATOR)
+    private propagatorService: IPropagator,
+    @Inject(OTEL_INSTRUMENTATION_PLUGINS)
+    private instrumentationOptions: InstrumentationOption[]) {
       this.tracerProvider = new WebTracerProvider({
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
         resource: Resource.default().merge(
@@ -71,8 +65,6 @@ export class InstrumentationService {
    */
   public initInstrumentation() {
     this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService,this.config.commonConfig.console);
-
-    this.addInstrumentationPlugin(this.config.instrumentationConfig);
 
     this.tracerProvider.register({
       contextManager: this.contextManager,
@@ -129,24 +121,6 @@ export class InstrumentationService {
   }
 
   /**
-   * Enable plugin instrumentation
-   *
-   * @param instrumentationConfig
-   */
-   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
-    this.instrumentationOptions = [];
-    if(instrumentationConfig?.xmlHttpRequest) {
-      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation());
-    }
-    if(instrumentationConfig?.documentLoad) {
-      this.instrumentationOptions.push(new DocumentLoadInstrumentation());
-    }
-    if(instrumentationConfig?.fetch) {
-      this.instrumentationOptions.push(new FetchInstrumentation());
-    }
-  }
-
-  /**
    * convert String to Number (or undefined)
    *
    * @param value
@@ -173,3 +147,5 @@ export class InstrumentationService {
     }
   }
 }
+
+
