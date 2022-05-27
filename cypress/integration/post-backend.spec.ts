@@ -10,8 +10,8 @@ describe('Post Page', () => {
     cy.get('button[type="submit"]').click();
     cy.wait(1000);
     cy.get('i').contains('result call : test').should(() => {
-      const value = JSON.parse(localStorage.getItem('consoleLog'));
-      expect(value.traceId).to.be.not.null;
+      const value = JSON.parse(localStorage.getItem('consoleDir'));
+      expect(value.traceId).to.be.not.undefined;
       expect(value.name).to.eq('HTTP POST');
     });
   });

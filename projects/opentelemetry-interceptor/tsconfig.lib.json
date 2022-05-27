@@ -7,6 +7,7 @@
     "types": [],
     "lib": [
       "dom",
+      "ESNext",
       "es2018"
     ]
   },
