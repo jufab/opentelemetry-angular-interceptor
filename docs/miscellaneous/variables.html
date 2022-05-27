@@ -47,6 +47,8 @@
 
 
 
+
+
 <ol class="breadcrumb">
   <li>Miscellaneous</li>
   <li>Variables</li>
@@ -60,16 +62,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#OTEL_CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
-                        </li>
-                        <li>
                             <a href="#defineConfigProvider" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>defineConfigProvider</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
                             <a href="#OTEL_CONFIG" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CONFIG</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
+                            <a href="#OTEL_CUSTOM_SPAN" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CUSTOM_SPAN</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OTEL_EXPORTER" title="projects/opentelemetry-interceptor/src/lib/services/exporter/exporter.interface.ts" ><b>OTEL_EXPORTER</b>&nbsp;&nbsp;&nbsp;(projects/.../exporter.interface.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OTEL_INSTRUMENTATION_PLUGINS" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_INSTRUMENTATION_PLUGINS</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
                             <a href="#OTEL_LOGGER" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_LOGGER</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
@@ -87,32 +92,6 @@
     <h3>projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="OTEL_CUSTOM_SPAN"></a>
-                    <span class="name">
-                        <span ><b>OTEL_CUSTOM_SPAN</b></span>
-                        <a href="#OTEL_CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>custom span</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -171,6 +150,52 @@
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTEL_CUSTOM_SPAN"></a>
+                    <span class="name">
+                        <span ><b>OTEL_CUSTOM_SPAN</b></span>
+                        <a href="#OTEL_CUSTOM_SPAN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>custom span</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTEL_INSTRUMENTATION_PLUGINS"></a>
+                    <span class="name">
+                        <span ><b>OTEL_INSTRUMENTATION_PLUGINS</b></span>
+                        <a href="#OTEL_INSTRUMENTATION_PLUGINS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;InstrumentationOption[]&gt;(&#x27;otelcol.instrumentation.plugins&#x27;)</code>
+                    </td>
+                </tr>
+
 
         </tbody>
     </table>

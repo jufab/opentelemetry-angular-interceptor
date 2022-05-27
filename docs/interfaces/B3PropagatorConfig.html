@@ -43,6 +43,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Interfaces</li>
   <li
@@ -92,7 +93,7 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#multiHeader"
+                                        <a href="#multiHeader" 
 >
                                             multiHeader
                                         </a>
@@ -160,6 +161,7 @@ Value : &#39;O&#39; (single), &#39;1&#39; (multi)</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
 import { DiagLogger, SpanAttributes, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
+import { InstrumentationOption } from &#x27;@opentelemetry/instrumentation&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
 /**
@@ -178,18 +180,6 @@ export interface CommonCollectorConfig {
   logBody?: boolean;
   /** log level for opentelemetry */
   logLevel?: DiagLogLevel;
-}
-
-/**
- * Instrumentation Configuration
- */
-export interface InstrumentationConfig {
-  /** xmlHttpRequest : to add XmlHttRequestInstrumentation */
-  xmlHttpRequest?: boolean;
-  /** documentLoad : to add DocumentLoadInstrumentation */
-  documentLoad?: boolean;
-  /** fetch : to add FetchInstrumentation */
-  fetch?: boolean;
 }
 
 /**
@@ -280,8 +270,6 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
-  /** instrumentationConfig */
-  instrumentationConfig?: InstrumentationConfig;
 }
 
 /** OTEL_CONFIG : Config injection */
@@ -292,6 +280,8 @@ export const OTEL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelc
 
 /** custom span */
 export const OTEL_CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
+
+export const OTEL_INSTRUMENTATION_PLUGINS &#x3D; new InjectionToken&lt;InstrumentationOption[]&gt;(&#x27;otelcol.instrumentation.plugins&#x27;);
 
 export const defineConfigProvider &#x3D; (
   config: OpenTelemetryConfig | null | undefined,
@@ -313,6 +303,7 @@ export const defineConfigProvider &#x3D; (
 </code></pre>
     </div>
 </div>
+
 
 
 

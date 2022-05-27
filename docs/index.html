@@ -54,7 +54,6 @@
 <li><a href="#jaeger-propagator-configuration">Jaeger Propagator Configuration</a></li>
 <li><a href="#zipkin-exporter-configuration">Zipkin Exporter Configuration</a></li>
 <li><a href="#b3-propagator-configuration">B3 Propagator Configuration</a></li>
-<li><a href="#instrumentation-configuration">Instrumentation Configuration</a></li>
 <li><a href="#external-configuration">External Configuration</a></li>
 </ul>
 </li>
@@ -101,16 +100,17 @@
 <p>This library offers two possibilities to use it in Angular App : </p>
 <ul>
 <li><strong>Interceptor</strong> : catch every external call with the HttpClient from angular</li>
-<li><strong>Instrumentation</strong> : use instrumentation from opentelemetry-js with three web plugins : <ul>
+<li><strong>Instrumentation</strong> : use instrumentation from opentelemetry-js with web plugins <em>(You need to install and configure it)</em> like : <ul>
 <li><a href="https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load">@opentelemetry/instrumentation-document-load</a></li>
 <li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch">@opentelemetry/instrumentation-fetch</a></li>
 <li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request">@opentelemetry/instrumentation-xml-http-request</a></li>
+<li>...</li>
 </ul>
 </li>
 </ul>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-trace-otlp-http &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/instrumentation-document-load &#64;opentelemetry/instrumentation-fetch &#64;opentelemetry/instrumentation-xml-http-request &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-trace-otlp-http &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
@@ -119,7 +119,6 @@
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
   b3PropagatorConfig?: B3PropagatorConfig;
-  instrumentationConfig?: InstrumentationConfig;
 }</code></pre></div><h4 id="example-global-configuration">Example global Configuration</h4>
 <p><em>From the interceptor-example</em></p>
 <div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
@@ -155,11 +154,6 @@
     },
     otelcolConfig: {
       url: &#39;http://localhost:4318/v1/traces&#39;, // URL of opentelemetry collector
-    },
-    instrumentationConfig: {
-      xmlHttpRequest: true,
-      fetch: true,
-      documentLoad: true,
     }
   });
 })
@@ -199,13 +193,6 @@
 <h4 id="b3-propagator-configuration">B3 Propagator Configuration</h4>
 <ul>
 <li>multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : &#39;O&#39; (single), &#39;1&#39; (multi) (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3</a>)</li>
-</ul>
-<h4 id="instrumentation-configuration">Instrumentation Configuration</h4>
-<p><em>this configuration is only for the instrumentation Mode</em></p>
-<ul>
-<li>xmlHttpRequest: (boolean) Activate XmlHttpRequest plugin</li>
-<li>fetch:(boolean) Activate fetch plugin</li>
-<li>documentLoad: (boolean) Activate documentLoad plugin</li>
 </ul>
 <h4 id="external-configuration">External Configuration</h4>
 <p>Instrumentation example project have an external configuration to show how you can do it.</p>
@@ -267,7 +254,9 @@ import { environment } from &#39;../environments/environment&#39;;
   bootstrap: [AppComponent],
 })
 export class AppModule {}</code></pre></div><h4 id="instrumentation-module">Instrumentation Module</h4>
-<p>Declare this OtelWebTracerModule to configure instrumentation</p>
+<p>Declare this OtelWebTracerModule to configure instrumentation.</p>
+<p>You need to provide Web instrumentation on the <code>OTEL_INSTRUMENTATION_PLUGINS</code> token in providers section of NgModule</p>
+<p><em>Example in instrumentation-example project</em></p>
 <div><pre class="line-numbers"><code class="language-typescript">...
 import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule } from &#39;projects/opentelemetry-interceptor/src/public-api&#39;;
 ...
@@ -284,7 +273,9 @@ import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule }
     OtelWebTracerModule.forRoot(environment.openTelemetryConfig),
     ...
   ],
-  providers: [],
+  providers: [
+    {provide: OTEL_INSTRUMENTATION_PLUGINS, useValue: [new XMLHttpRequestInstrumentation()]}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
@@ -297,6 +288,7 @@ You can use them to override or customize. </p>
 <li>OTEL_EXPORTER : token to inject an implementation of <code>IExporter</code></li>
 <li>OTEL_PROPAGATOR : token to inject an implementation of <code>IPropagator</code></li>
 <li>OTEL_CONFIG : token to inject an <code>OpenTelemetryConfig</code></li>
+<li>OTEL_INSTRUMENTATION_PLUGINS : token to inject an <code>InstrumentationOption</code> array</li>
 <li>OTEL_LOGGER : more info in <a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a></li>
 <li>OTEL_CUSTOM_SPAN : more infor in <a href="#optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</a></li>
 </ul>
@@ -433,6 +425,8 @@ For more info see: https://angular.io/guide/build#configuring-commonjs-dependenc
 </tr>
 </tbody>
 </table>
+
+
 
 
 

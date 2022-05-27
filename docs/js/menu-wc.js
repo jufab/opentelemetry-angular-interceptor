@@ -53,6 +53,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <span class="icon ion-ios-list"></span>Dependencies
                                     </a>
                                 </li>
+                                <li class="link">
+                                    <a href="properties.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-apps"></span>Properties
+                                    </a>
+                                </li>
                     </ul>
                 </li>
                     <li class="chapter modules">
@@ -195,9 +200,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IExporter.html" data-type="entity-link" >IExporter</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/InstrumentationConfig.html" data-type="entity-link" >InstrumentationConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPropagator.html" data-type="entity-link" >IPropagator</a>

@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >InstrumentationService</li>
@@ -91,10 +92,6 @@ Service for component to add instrumentation.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#instrumentationOptions" >instrumentationOptions</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#tracerProvider" >tracerProvider</a>
                             </li>
                         </ul>
@@ -109,10 +106,6 @@ Service for component to add instrumentation.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#addInstrumentationPlugin" >addInstrumentationPlugin</a>
-                            </li>
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#convertStringToNumber" >convertStringToNumber</a>
@@ -155,12 +148,12 @@ Service for component to add instrumentation.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>, instrumentationOptions: InstrumentationOption[])</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -181,39 +174,51 @@ Service for component to add instrumentation.</p>
                                         <tbody>
                                                 <tr>
                                                         <td>config</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                 </tr>
                                                 <tr>
                                                         <td>exporterService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../interfaces/IExporter.html" target="_self" >IExporter</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                 </tr>
                                                 <tr>
                                                         <td>propagatorService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../interfaces/IPropagator.html" target="_self" >IPropagator</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>instrumentationOptions</td>
+                                                  
+                                                        <td>
+                                                                    <code>InstrumentationOption[]</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -225,83 +230,10 @@ Service for component to add instrumentation.</p>
 </section>
 
             <section>
-
+    
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="addInstrumentationPlugin"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>addInstrumentationPlugin</b></span>
-                        <a href="#addInstrumentationPlugin"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInstrumentationPlugin(instrumentationConfig: <a href="../interfaces/InstrumentationConfig.html" target="_self">InstrumentationConfig</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:136</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Enable plugin instrumentation</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>instrumentationConfig</td>
-                                    <td>
-                                                <code><a href="../interfaces/InstrumentationConfig.html" target="_self" >InstrumentationConfig</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -324,8 +256,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -337,7 +269,7 @@ Service for component to add instrumentation.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -398,8 +330,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:165</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:139</a></div>
                 </td>
             </tr>
 
@@ -412,7 +344,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -449,7 +381,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
                 </td>
             </tr>
@@ -477,8 +409,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -518,8 +450,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -531,7 +463,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -568,7 +500,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
                 </td>
             </tr>
@@ -596,8 +528,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -609,7 +541,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -665,7 +597,7 @@ By Default, it&#39;s always (or 1)</p>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
                 </td>
             </tr>
@@ -693,8 +625,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -707,7 +639,7 @@ SimpleSpanProcessor otherwise</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
-
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -751,7 +683,7 @@ SimpleSpanProcessor otherwise</p>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
                 </td>
             </tr>
@@ -759,7 +691,7 @@ SimpleSpanProcessor otherwise</p>
     </table>
 </section>
             <section>
-
+    
     <h3 id="inputs">
         Properties
     </h3>
@@ -782,46 +714,13 @@ SimpleSpanProcessor otherwise</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:37</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>contextManager</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="instrumentationOptions"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>instrumentationOptions</b></span>
-                        <a href="#instrumentationOptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>InstrumentationOption[]</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:45</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>instrumentationOptions</p>
 </div>
                 </td>
             </tr>
@@ -848,7 +747,7 @@ SimpleSpanProcessor otherwise</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -879,12 +778,9 @@ import {
 import { SemanticResourceAttributes } from &#x27;@opentelemetry/semantic-conventions&#x27;;
 import { Resource } from &#x27;@opentelemetry/resources&#x27;;
 import { InstrumentationOption, registerInstrumentations } from &#x27;@opentelemetry/instrumentation&#x27;;
-import { DocumentLoadInstrumentation } from &#x27;@opentelemetry/instrumentation-document-load&#x27;;
-import { FetchInstrumentation } from &#x27;@opentelemetry/instrumentation-fetch&#x27;;
-import { XMLHttpRequestInstrumentation } from &#x27;@opentelemetry/instrumentation-xml-http-request&#x27;;
 import { WebTracerProvider } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
-import { OTEL_CONFIG, OpenTelemetryConfig, InstrumentationConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
+import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import { OTEL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
 import { OTEL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
 
@@ -909,11 +805,6 @@ export class InstrumentationService {
   private contextManager &#x3D; new ZoneContextManager();
 
   /**
-   * instrumentationOptions
-   */
-  private instrumentationOptions: InstrumentationOption[];
-
-  /**
    * Constructor
    *
    * @param config
@@ -924,7 +815,9 @@ export class InstrumentationService {
     @Inject(OTEL_EXPORTER)
     private exporterService: IExporter,
     @Inject(OTEL_PROPAGATOR)
-    private propagatorService: IPropagator) {
+    private propagatorService: IPropagator,
+    @Inject(OTEL_INSTRUMENTATION_PLUGINS)
+    private instrumentationOptions: InstrumentationOption[]) {
       this.tracerProvider &#x3D; new WebTracerProvider({
         sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
         resource: Resource.default().merge(
@@ -940,8 +833,6 @@ export class InstrumentationService {
    */
   public initInstrumentation() {
     this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService,this.config.commonConfig.console);
-
-    this.addInstrumentationPlugin(this.config.instrumentationConfig);
 
     this.tracerProvider.register({
       contextManager: this.contextManager,
@@ -998,24 +889,6 @@ export class InstrumentationService {
   }
 
   /**
-   * Enable plugin instrumentation
-   *
-   * @param instrumentationConfig
-   */
-   private addInstrumentationPlugin(instrumentationConfig: InstrumentationConfig) {
-    this.instrumentationOptions &#x3D; [];
-    if(instrumentationConfig?.xmlHttpRequest) {
-      this.instrumentationOptions.push(new XMLHttpRequestInstrumentation());
-    }
-    if(instrumentationConfig?.documentLoad) {
-      this.instrumentationOptions.push(new DocumentLoadInstrumentation());
-    }
-    if(instrumentationConfig?.fetch) {
-      this.instrumentationOptions.push(new FetchInstrumentation());
-    }
-  }
-
-  /**
    * convert String to Number (or undefined)
    *
    * @param value
@@ -1042,10 +915,13 @@ export class InstrumentationService {
     }
   }
 }
+
+
 </code></pre>
     </div>
 
 </div>
+
 
 
 

@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >OtelcolExporterService</li>
@@ -148,15 +149,15 @@
                                         <tbody>
                                                 <tr>
                                                         <td>config</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../interfaces/OpenTelemetryConfig.html" target="_self" >OpenTelemetryConfig</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                         <td>
                                                                 <p>OpenTelemetryConfig</p>
 
@@ -172,7 +173,7 @@
 </section>
 
             <section>
-
+    
     <h3 id="methods">
         Methods
     </h3>
@@ -223,7 +224,7 @@
     </table>
 </section>
             <section>
-
+    
     <h3 id="inputs">
         Properties
     </h3>
@@ -273,8 +274,8 @@ import {
   OpenTelemetryConfig,
   OTEL_CONFIG
 } from &#x27;../../../configuration/opentelemetry-config&#x27;;
-import { OTLPTraceExporter } from &#x27;@opentelemetry/exporter-trace-otlp-http&#x27;;
-import { OTLPExporterConfigBase } from &#x27;@opentelemetry/exporter-trace-otlp-http/build/src/types&#x27;;
+import { OTLPTraceExporter } from &#x27;@opentelemetry/exporter-trace-otlp-http/build/src/platform/browser/OTLPTraceExporter&#x27;;
+import { OTLPExporterConfigBase } from &#x27;@opentelemetry/otlp-exporter-base&#x27;;
 
 /**
  * OtelcolExporterService class
@@ -317,6 +318,7 @@ export class OtelcolExporterService implements IExporter {
     </div>
 
 </div>
+
 
 
 
