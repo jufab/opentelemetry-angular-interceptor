@@ -19,7 +19,6 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 Cypress.on('window:before:load',(win) => {
-  cy.stub(win.console, 'log', msg => {
-      localStorage.setItem('consoleLog', JSON.stringify(msg));
-  }).as('globalStubLog');
+  cy.stub(win.console, 'log', msg => localStorage.setItem('consoleLog', JSON.stringify(msg))).as('globalStubLog');
+  cy.stub(win.console, 'dir', msg => localStorage.setItem('consoleDir', JSON.stringify(msg))).as('globalStubDir');
 });

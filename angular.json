@@ -12,9 +12,6 @@
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "allowedCommonJsDependencies": [
-              "@opentelemetry/exporter-trace-otlp-http"
-            ],
             "tsConfig": "projects/opentelemetry-interceptor/tsconfig.lib.json",
             "project": "projects/opentelemetry-interceptor/ng-package.json"
           },
@@ -46,7 +43,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "@opentelemetry/exporter-trace-otlp-http"
+              "@opentelemetry/exporter-trace-otlp-http",
+              "os"
             ],
             "outputPath": "dist/interceptor-example",
             "index": "projects/interceptor-example/src/index.html",
@@ -135,7 +133,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "@opentelemetry/exporter-trace-otlp-http"
+              "@opentelemetry/exporter-trace-otlp-http",
+              "os"
             ],
             "outputPath": "dist/instrumentation-example",
             "index": "projects/instrumentation-example/src/index.html",
