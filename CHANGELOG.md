@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.0.1...v1.1.0) (2022-05-27)
+
+
+### Features
+
+* remove instrumentation plugin and rename token ([#106](https://github.com/jufab/opentelemetry-angular-interceptor/issues/106)) ([59ac6ca](https://github.com/jufab/opentelemetry-angular-interceptor/commit/59ac6cade2e4f2d08ebe6d5c51516dfadf20286e))
+
+
+### Bug Fixes
+
+* package-lock.json ([e9dc64b](https://github.com/jufab/opentelemetry-angular-interceptor/commit/e9dc64b93492ce9309a2834ef9531ad23dea320a))
+
 ### [1.0.1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.0.0...v1.0.1) (2021-12-03)
 
 
