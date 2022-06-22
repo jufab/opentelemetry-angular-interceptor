@@ -155,9 +155,9 @@ _This configuration applies if production is true in commonConfig._
 #### OpenTelemetry-collector Configuration
 
 * url: (string) url of opentelemetry collector (default : http://localhost:4318/v1/traces)
-* headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
-* attributes : list of custom attributes (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
-* concurrencyLimit (string) : An optional limit on pending requests (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
+* headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
+* concurrencyLimit (string) : An optional limit on pending requests (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
+* timeoutMillis (string): Maximum time the OTLP exporter will wait for each batch export. The default value is 10000ms (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
 
 #### Jaeger Propagator Configuration
 

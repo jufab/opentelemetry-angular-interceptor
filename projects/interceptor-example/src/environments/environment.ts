@@ -26,9 +26,7 @@ export const environment: IEnvironment = {
     },
     otelcolConfig: {
       url: 'http://127.0.0.1:4318/v1/traces', // URL of opentelemetry collector
-      attributes: {
-        test: 'test'
-      }
+      timeoutMillis: '10000'
     }
   },
   loggerConfig: {

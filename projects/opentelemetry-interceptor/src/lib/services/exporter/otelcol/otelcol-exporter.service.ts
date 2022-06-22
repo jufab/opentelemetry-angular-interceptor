@@ -31,8 +31,8 @@ export class OtelcolExporterService implements IExporter {
     this.otelcolConfig = {
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
-      attributes: config.otelcolConfig?.attributes,
       concurrencyLimit: Number(config.otelcolConfig?.concurrencyLimit),
+      timeoutMillis: Number(config.otelcolConfig?.timeoutMillis)
     };
   }
 

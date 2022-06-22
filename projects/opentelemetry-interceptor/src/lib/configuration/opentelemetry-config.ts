@@ -48,13 +48,14 @@ export interface OtelCollectorConfig {
    */
   headers?: Partial<Record<string, unknown>>;
   /**
-   * attributes : define some custom attributes
-   */
-  attributes?: SpanAttributes;
-  /**
    * An optional limit on pending requests
    */
   concurrencyLimit?: string;
+  /**
+   * Maximum time the OTLP exporter will wait for each batch export.
+   * The default value is 10000ms.
+   * */
+   timeoutMillis?: string;
 }
 
 /**
