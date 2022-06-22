@@ -95,7 +95,6 @@
     "jest": "^27.0.6",
     "jest-preset-angular": "^9.0.5",
     "ng-packagr": "^10.1.0",
-    "os": "^0.1.2",
     "standard-version": "^9.3.1",
     "ts-jest": "^27.0.5",
     "ts-node": "~10.2.1",
