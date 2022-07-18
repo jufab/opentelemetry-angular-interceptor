@@ -24,6 +24,7 @@ import {
   otelcolExporterWithProbabilitySamplerAtTwoConfig,
   otelcolExporterProductionConfig,
   otelcolExporterProductionAndBatchSpanProcessorConfig,
+  otelTraceparentIgnoreUrlsConfig,
 } from '../../../__mocks__/data/config.mock';
 import { of } from 'rxjs';
 import { ConsoleSpanExporterModule } from '../services/exporter/console/console-span-exporter.module';
@@ -125,6 +126,21 @@ describe('OpenTelemetryHttpInterceptor', () => {
       url: url + '/test?myCallback=JSONP_CALLBACK',
     });
     expect(req.request.headers.get('traceparent')).not.toBeNull();
+    req.flush({});
+    httpControllerMock.verify();
+  });
+
+  it('Exclude traceparent header on a given request that is included in the ignoreUrls array', () => {
+    ({ httpClient, httpControllerMock } = defineModuleTest(
+      httpClient,
+      httpControllerMock,
+      otelTraceparentIgnoreUrlsConfig
+    ));
+    const url = 'http://url.test.com';
+    httpClient.get(url).subscribe();
+    const req = httpControllerMock.expectOne(url);
+    expect(req.request.headers).not.toBeNull();
+    expect(req.request.headers.get('traceparent')).toBeNull();
     req.flush({});
     httpControllerMock.verify();
   });

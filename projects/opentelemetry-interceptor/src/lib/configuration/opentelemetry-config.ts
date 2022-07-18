@@ -94,6 +94,19 @@ export interface B3PropagatorConfig {
    */
   multiHeader?: string;
 }
+
+/**
+ * Configuration for IgnoreUrlsConfig
+ */
+ export interface IgnoreUrlsConfig {
+  /**
+   * URLs that partially match any regex in ignoreUrls will not be traced.
+   * In addition, URLs that are _exact matches_ of strings in ignoreUrls will
+   * also not be traced.
+   */
+  urls?: Array<string | RegExp>;
+}
+
 /**
  * OpenTelemetryConfig
  */
@@ -110,6 +123,8 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
+  /** ignoreUrls */
+  ignoreUrls?: IgnoreUrlsConfig;
 }
 
 /** OTEL_CONFIG : Config injection */
