@@ -24,6 +24,7 @@ import {
   AlwaysOffSampler,
   TraceIdRatioBasedSampler,
   ParentBasedSampler,
+  isUrlIgnored
 } from '@opentelemetry/core';
 import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
@@ -109,7 +110,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (this.isUrlIgnored(request.url, this.config.ignoreUrls?.urls)) {
+    if (isUrlIgnored(request.url, this.config.ignoreUrls?.urls)) {
       return next.handle(request);
     }
     this.contextManager.disable(); //FIX - reinit contextManager for each http call
@@ -154,32 +155,6 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         this.contextManager.disable();
       })
     );
-  }
-
-  /**
-   * Check if {@param url} should be ignored when comparing against {@param ignoredUrls}
-   *
-   * @param ignoredUrls
-   * @param url
-   */
-  private isUrlIgnored(url, ignoredUrls) {
-    if (!ignoredUrls) {
-      return false;
-    }
-    for (const ignoreUrl of ignoredUrls) {
-      if (this.urlMatches(url, ignoreUrl)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private urlMatches(url, urlToMatch) {
-    if (typeof urlToMatch === 'string') {
-      return url === urlToMatch;
-    } else {
-      return !!url.match(urlToMatch);
-    }
   }
 
   /**
