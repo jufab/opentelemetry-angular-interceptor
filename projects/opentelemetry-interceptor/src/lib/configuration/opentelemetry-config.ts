@@ -1,5 +1,5 @@
 import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from '@angular/core';
-import { DiagLogger, SpanAttributes, DiagLogLevel } from '@opentelemetry/api';
+import { DiagLogger, DiagLogLevel } from '@opentelemetry/api';
 import { InstrumentationOption } from '@opentelemetry/instrumentation';
 import { CustomSpan } from '../interceptor/custom-span.interface';
 
