@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0-2](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.1.0-1...v1.1.0-2) (2022-07-19)
+
+
+### Features
+
+* add config to ignore urls in interceptor ([6763f97](https://github.com/jufab/opentelemetry-angular-interceptor/commit/6763f9700048d1b5a36a8c17e7063994671153bb))
+
+
+### Bug Fixes
+
+* import isUrlIgnored ([c36e295](https://github.com/jufab/opentelemetry-angular-interceptor/commit/c36e2956538402a562f405b438648cc553e7dc8a))
+
 ## [1.1.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.1.0...v1.1.0-1) (2022-06-22)
 
 
