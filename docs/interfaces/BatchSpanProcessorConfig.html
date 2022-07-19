@@ -312,7 +312,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
-import { DiagLogger, SpanAttributes, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
+import { DiagLogger, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
 import { InstrumentationOption } from &#x27;@opentelemetry/instrumentation&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
@@ -407,6 +407,19 @@ export interface B3PropagatorConfig {
    */
   multiHeader?: string;
 }
+
+/**
+ * Configuration for IgnoreUrlsConfig
+ */
+ export interface IgnoreUrlsConfig {
+  /**
+   * URLs that partially match any regex in ignoreUrls will not be traced.
+   * In addition, URLs that are _exact matches_ of strings in ignoreUrls will
+   * also not be traced.
+   */
+  urls?: Array&lt;string | RegExp&gt;;
+}
+
 /**
  * OpenTelemetryConfig
  */
@@ -423,6 +436,8 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
+  /** ignoreUrls */
+  ignoreUrls?: IgnoreUrlsConfig;
 }
 
 /** OTEL_CONFIG : Config injection */

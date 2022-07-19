@@ -113,6 +113,13 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#ignoreUrls" 
+>
+                                            ignoreUrls
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#jaegerPropagatorConfig" 
 >
                                             jaegerPropagatorConfig
@@ -274,6 +281,50 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="ignoreUrls"></a>
+                                        <span class="name "><b>ignoreUrls</b>
+                                            <a href="#ignoreUrls">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>ignoreUrls:         <code><a href="../interfaces/IgnoreUrlsConfig.html" target="_self" >IgnoreUrlsConfig</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/IgnoreUrlsConfig.html" target="_self" >IgnoreUrlsConfig</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>ignoreUrls</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="jaegerPropagatorConfig"></a>
                                         <span class="name "><b>jaegerPropagatorConfig</b>
                                             <a href="#jaegerPropagatorConfig">
@@ -408,7 +459,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
-import { DiagLogger, SpanAttributes, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
+import { DiagLogger, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
 import { InstrumentationOption } from &#x27;@opentelemetry/instrumentation&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
@@ -503,6 +554,19 @@ export interface B3PropagatorConfig {
    */
   multiHeader?: string;
 }
+
+/**
+ * Configuration for IgnoreUrlsConfig
+ */
+ export interface IgnoreUrlsConfig {
+  /**
+   * URLs that partially match any regex in ignoreUrls will not be traced.
+   * In addition, URLs that are _exact matches_ of strings in ignoreUrls will
+   * also not be traced.
+   */
+  urls?: Array&lt;string | RegExp&gt;;
+}
+
 /**
  * OpenTelemetryConfig
  */
@@ -519,6 +583,8 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   /** b3PropagatorConfig */
   b3PropagatorConfig?: B3PropagatorConfig;
+  /** ignoreUrls */
+  ignoreUrls?: IgnoreUrlsConfig;
 }
 
 /** OTEL_CONFIG : Config injection */

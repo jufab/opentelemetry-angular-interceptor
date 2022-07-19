@@ -202,6 +202,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IExporter.html" data-type="entity-link" >IExporter</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IgnoreUrlsConfig.html" data-type="entity-link" >IgnoreUrlsConfig</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IPropagator.html" data-type="entity-link" >IPropagator</a>
                             </li>
                             <li class="link">

@@ -48,7 +48,7 @@
   <li>Interfaces</li>
   <li
   >
-  B3PropagatorConfig</li>
+  IgnoreUrlsConfig</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -74,7 +74,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Configuration for B3PropagatorConfig</p>
+                <p>Configuration for IgnoreUrlsConfig</p>
 
             </p>
 
@@ -93,9 +93,9 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#multiHeader" 
+                                        <a href="#urls" 
 >
-                                            multiHeader
+                                            urls
                                         </a>
                                 </li>
                             </ul>
@@ -113,9 +113,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="multiHeader"></a>
-                                        <span class="name "><b>multiHeader</b>
-                                            <a href="#multiHeader">
+                                        <a name="urls"></a>
+                                        <span class="name "><b>urls</b>
+                                            <a href="#urls">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>multiHeader:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>urls:     <code>Array&lt;string | RegExp&gt;</code>
 </code>
                                     </td>
                                 </tr>
@@ -131,7 +131,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code>Array&lt;string | RegExp&gt;</code>
 
                                         </td>
                                     </tr>
@@ -147,8 +147,9 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Single or Multi Header for b3propagator (default: multi)
-Value : &#39;O&#39; (single), &#39;1&#39; (multi)</p>
+                                    <div class="io-description"><p>URLs that partially match any regex in ignoreUrls will not be traced.
+In addition, URLs that are <em>exact matches</em> of strings in ignoreUrls will
+also not be traced.</p>
 </div>
                                 </td>
                             </tr>
@@ -353,7 +354,7 @@ export const defineConfigProvider &#x3D; (
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'B3PropagatorConfig.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IgnoreUrlsConfig.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
