@@ -223,4 +223,15 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
   }
 };
 
-
+/**
+ * @ignore
+ */
+ export const otelTraceparentIgnoreUrlsConfig: OpenTelemetryConfig = {
+  commonConfig: {
+    serviceName: 'test',
+    logBody: true
+  },
+  ignoreUrls: {
+    urls: ['http://url.test.com']
+  }
+};

@@ -24,6 +24,7 @@ import {
   AlwaysOffSampler,
   TraceIdRatioBasedSampler,
   ParentBasedSampler,
+  isUrlIgnored
 } from '@opentelemetry/core';
 import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
@@ -109,6 +110,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if (isUrlIgnored(request.url, this.config.ignoreUrls?.urls)) {
+      return next.handle(request);
+    }
     this.contextManager.disable(); //FIX - reinit contextManager for each http call
     this.contextManager.enable();
     const span: Span = this.initSpan(request);
