@@ -3,7 +3,7 @@ import { ZipkinExporterService } from './zipkin-exporter.service';
 import { OTEL_CONFIG } from '../../../configuration/opentelemetry-config';
 import { zipkinConfig, zipkinOtherConfig } from '../../../../../__mocks__/data/config.mock';
 import { ExporterConfig, ZipkinExporter } from '@opentelemetry/exporter-zipkin';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 
 jest.mock('@opentelemetry/exporter-zipkin');
 
@@ -53,3 +53,5 @@ describe('ZipkinExporterService', () => {
   });
 
 });
+
+
