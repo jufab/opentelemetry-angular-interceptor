@@ -34,6 +34,7 @@ export {
   ZipkinCollectorConfig,
   JaegerPropagatorConfig,
   B3PropagatorConfig,
+  IgnoreUrlsConfig,
   OTEL_LOGGER,
   OTEL_CUSTOM_SPAN,
   OTEL_INSTRUMENTATION_PLUGINS
