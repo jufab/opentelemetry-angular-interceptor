@@ -67,7 +67,7 @@
     "@angular/compiler-cli": "^10.2.4",
     "@angular/language-service": "^10.2.4",
     "@compodoc/compodoc": "^1.1.19",
-    "@opentelemetry/api": "1.1.0",
+    "@opentelemetry/api": "1.2.0",
     "@opentelemetry/context-zone-peer-dep": "1.6.0",
     "@opentelemetry/exporter-trace-otlp-http": "0.32.0",
     "@opentelemetry/exporter-zipkin": "1.6.0",
