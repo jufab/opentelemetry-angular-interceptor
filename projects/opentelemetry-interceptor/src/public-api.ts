@@ -3,6 +3,7 @@
  */
 // Interceptor
 export { OpenTelemetryInterceptorModule } from './lib/opentelemetry-interceptor.module';
+export { OpenTelemetryHttpInterceptor } from './lib/interceptor/opentelemetry-http.interceptor';
 // Exporter
 export { OtelColExporterModule } from './lib/services/exporter/otelcol/otelcol-exporter.module';
 export { ConsoleSpanExporterModule } from './lib/services/exporter/console/console-span-exporter.module';
