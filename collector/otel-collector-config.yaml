@@ -8,17 +8,14 @@ receivers:
             - http://*
             - https://*
 exporters:
-  jaeger:
-    endpoint: jaeger:14250
-    tls:
-      insecure: true
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
   logging:
     loglevel: debug
-processors:
-  batch:
-    send_batch_size: 1
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
 extensions:
   zpages:
     endpoint: "0.0.0.0:55679"
@@ -27,5 +24,4 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [jaeger,zipkin,logging]
+      exporters: [otlp/jaeger,zipkin,logging]
