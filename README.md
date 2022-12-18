@@ -4,7 +4,7 @@
 
 This library uses [opentelemetry-js package](https://github.com/open-telemetry/opentelemetry-js)
 
-**Only works for Angular >= 9.0.0**
+**Use Angular >= 13.0.0**
 
 More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
@@ -44,7 +44,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
     - [Run](#run)
       - [Interceptor](#interceptor)
       - [Instrumentation](#instrumentation)
-    - [[Optional] Result in OpenTelemetry-collector](#optional-result-in-opentelemetry-collector)
+    - [\[Optional\] Result in OpenTelemetry-collector](#optional-result-in-opentelemetry-collector)
   - [Troubleshoot](#troubleshoot)
     - [Angular 10 Warning](#angular-10-warning)
     - [Other](#other)
