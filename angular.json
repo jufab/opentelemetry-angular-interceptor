@@ -18,8 +18,10 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/opentelemetry-interceptor/tsconfig.lib.prod.json"
-            }
-          }
+            },
+            "development": {}
+          },
+          "defaultConfiguration": "production"
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
@@ -94,21 +96,25 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "development": {}
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "interceptor-example:build",
             "proxyConfig": "projects/interceptor-example/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "interceptor-example:build:production"
+            },
+            "development": {
+              "browserTarget": "interceptor-example:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -189,21 +195,25 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "development": {}
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "instrumentation-example:build",
             "proxyConfig": "projects/instrumentation-example/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "instrumentation-example:build:production"
+            },
+            "development": {
+              "browserTarget": "instrumentation-example:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
