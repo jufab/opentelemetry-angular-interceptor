@@ -34,7 +34,7 @@ import {
   OpenTelemetryConfig,
   OTEL_CONFIG,
 } from '../configuration/opentelemetry-config';
-import { version, name } from '../../version.json';
+import infoLibrary from '../../version.json';
 import { OTEL_EXPORTER, IExporter } from '../services/exporter/exporter.interface';
 import { OTEL_PROPAGATOR, IPropagator } from '../services/propagator/propagator.interface';
 import { OTEL_LOGGER, OTEL_CUSTOM_SPAN } from '../configuration/opentelemetry-config';
@@ -173,7 +173,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private initSpan(request: HttpRequest<unknown>): Span {
     const urlRequest = (request.urlWithParams.startsWith('http')) ? new URL(request.urlWithParams) : new URL(this.getURL());
     const span = this.tracer
-      .getTracer(name, version)
+      .getTracer(infoLibrary.name, infoLibrary.version)
       .startSpan(
         `${urlRequest.protocol.replace(':', '').toUpperCase()} ${request.method.toUpperCase()}`,
         {

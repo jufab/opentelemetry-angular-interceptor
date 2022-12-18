@@ -20,10 +20,12 @@ export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaege
 export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.module';
 //Component
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
+export { OtelWebTracerComponent } from './lib/component/otel-webtracer/otel-webtracer.component';
+
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';
-export { OTEL_EXPORTER, IExporter} from './lib/services/exporter/exporter.interface';
-export { OTEL_PROPAGATOR, IPropagator} from './lib/services/propagator/propagator.interface';
+export { OTEL_EXPORTER, IExporter } from './lib/services/exporter/exporter.interface';
+export { OTEL_PROPAGATOR, IPropagator } from './lib/services/propagator/propagator.interface';
 
 // Configuration
 export {
