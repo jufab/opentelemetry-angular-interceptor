@@ -5,24 +5,6 @@
     "ngcc.config.js"
   ],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@opentelemetry/api": "@opentelemetry/api",
-      "@opentelemetry/core": "@opentelemetry/core",
-      "@opentelemetry/sdk-trace-web": "@opentelemetry/sdk-trace-web",
-      "@opentelemetry/sdk-trace-base": "@opentelemetry/sdk-trace-base",
-      "@opentelemetry/exporter-trace-otlp-http": "@opentelemetry/exporter-trace-otlp-http",
-      "@opentelemetry/otlp-exporter-base": "@opentelemetry/otlp-exporter-base",
-      "@opentelemetry/exporter-zipkin": "@opentelemetry/exporter-zipkin",
-      "@opentelemetry/propagator-jaeger": "@opentelemetry/propagator-jaeger",
-      "@opentelemetry/propagator-b3": "@opentelemetry/propagator-b3",
-      "@opentelemetry/propagator-aws-xray": "@opentelemetry/propagator-aws-xray",
-      "@opentelemetry/semantic-conventions": "@opentelemetry/semantic-conventions",
-      "@opentelemetry/resources": "@opentelemetry/resources",
-      "@opentelemetry/api/build/src/propagation/NoopTextMapPropagator": "NoopTextMapPropagator",
-      "@opentelemetry/exporter-trace-otlp-http/build/src/platform/browser/OTLPTraceExporter" : "@opentelemetry/exporter-trace-otlp-http/build/src/platform/browser/OTLPTraceExporter",
-      "@opentelemetry/context-zone-peer-dep": "@opentelemetry/context-zone-peer-dep",
-      "@opentelemetry/instrumentation": "@opentelemetry/instrumentation"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }
