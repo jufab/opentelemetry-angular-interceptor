@@ -6,9 +6,13 @@ export { OpenTelemetryInterceptorModule } from './lib/opentelemetry-interceptor.
 export { OpenTelemetryHttpInterceptor } from './lib/interceptor/opentelemetry-http.interceptor';
 // Exporter
 export { OtelColExporterModule } from './lib/services/exporter/otelcol/otelcol-exporter.module';
+export { OtelcolExporterService } from './lib/services/exporter/otelcol/otelcol-exporter.service';
 export { ConsoleSpanExporterModule } from './lib/services/exporter/console/console-span-exporter.module';
+export { ConsoleSpanExporterService } from './lib/services/exporter/console/console-span-exporter.service';
 export { ZipkinExporterModule } from './lib/services/exporter/zipkin/zipkin-exporter.module';
+export { ZipkinExporterService } from './lib/services/exporter/zipkin/zipkin-exporter.service';
 export { NoopSpanExporterModule } from './lib/services/exporter/noop-exporter/noop-span-exporter.module';
+export { NoopSpanExporterService } from './lib/services/exporter/noop-exporter/noop-span-exporter.service';
 // Propagator
 export { B3PropagatorModule } from './lib/services/propagator/b3-propagator/b3-propagator.module';
 export { CompositePropagatorModule } from './lib/services/propagator/composite-propagator/composite-propagator.module';
