@@ -44,10 +44,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "@opentelemetry/exporter-trace-otlp-http",
-              "os"
-            ],
             "outputPath": "dist/interceptor-example",
             "index": "projects/interceptor-example/src/index.html",
             "main": "projects/interceptor-example/src/main.ts",
