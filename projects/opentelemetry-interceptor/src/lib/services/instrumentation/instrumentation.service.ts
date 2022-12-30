@@ -1,16 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { ZoneContextManager } from '@opentelemetry/context-zone-peer-dep';
-import { Sampler } from '@opentelemetry/api';
-import {
-  AlwaysOnSampler,
-  AlwaysOffSampler,
-  TraceIdRatioBasedSampler,
-  ParentBasedSampler,
-} from '@opentelemetry/core';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
-import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
+import {
+  AlwaysOffSampler,
+  AlwaysOnSampler,
+  ParentBasedSampler,
+  Sampler,
+  TraceIdRatioBasedSampler,
+  WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS } from '../../configuration/opentelemetry-config';
 import { OTEL_EXPORTER, IExporter } from '../exporter/exporter.interface';
@@ -50,21 +49,21 @@ export class InstrumentationService {
     private propagatorService: IPropagator,
     @Inject(OTEL_INSTRUMENTATION_PLUGINS)
     private instrumentationOptions: InstrumentationOption[]) {
-      this.tracerProvider = new WebTracerProvider({
-        sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
-        resource: Resource.default().merge(
-          new Resource({
-            [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
-          })
-        ),
-      });
-    }
+    this.tracerProvider = new WebTracerProvider({
+      sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
+      resource: Resource.default().merge(
+        new Resource({
+          [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
+        })
+      ),
+    });
+  }
 
   /**
    * Init instrumentation on init
    */
   public initInstrumentation() {
-    this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService,this.config.commonConfig.console);
+    this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService, this.config.commonConfig.console);
 
     this.tracerProvider.register({
       contextManager: this.contextManager,
@@ -80,8 +79,8 @@ export class InstrumentationService {
   /**
    * Verify to insert or not a Span Exporter
    */
-   private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean) {
-    if(this.exporterService.getExporter()!==undefined) {
+  private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean) {
+    if (this.exporterService.getExporter() !== undefined) {
       this.insertSpanProcessorProductionMode(production, exporter);
       this.insertConsoleSpanExporter(console);
     } else {
