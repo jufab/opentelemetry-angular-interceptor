@@ -9,7 +9,7 @@ import { TextMapPropagator } from '@opentelemetry/api';
 })
 export class NoopTextMapPropagatorService implements IPropagator {
   /**
-   * Return an NoopTextMapPropagator
+   * Return null
    *
    * @return TextMapPropagator as null
    */
