@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.3.0...v1.3.0-1) (2022-12-31)
+
+
+### Bug Fixes
+
+* bad url in readme ([640d901](https://github.com/jufab/opentelemetry-angular-interceptor/commit/640d90191eb8c57349ae585e202f656d14894ff2))
+* deprecated package ([8442349](https://github.com/jufab/opentelemetry-angular-interceptor/commit/8442349da2f2dc7dff4b215751fba0cd780db54d))
+* readme ([24f4d6f](https://github.com/jufab/opentelemetry-angular-interceptor/commit/24f4d6f7d2a14c40d84b862adccb1095ea81034b))
+* remove NoopTextMapPropagator ([7f3aba9](https://github.com/jufab/opentelemetry-angular-interceptor/commit/7f3aba9f1dcb5d663d883ae074fe1411d645c21e))
+
 ## [1.3.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.2.0-1...v1.3.0) (2022-12-18)
 
 ## [1.2.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.2.0...v1.2.0-1) (2022-09-25)
