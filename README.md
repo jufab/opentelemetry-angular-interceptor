@@ -56,9 +56,9 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 This library offers two possibilities to use it in Angular App : 
 - **Interceptor** : catch every external call with the HttpClient from angular
 - **Instrumentation** : use instrumentation from opentelemetry-js with web plugins _(You need to install and configure it)_ like : 
-  - [@opentelemetry/instrumentation-document-load](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
-  - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch)
-  - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request)
+  - [@opentelemetry/instrumentation-document-load](hhttps://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
+  - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-fetch)
+  - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-xml-http-request)
   - ...
   
 
@@ -161,7 +161,7 @@ _This configuration applies if production is true in commonConfig._
 
 #### Jaeger Propagator Configuration
 
-* customHeader: (string) custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger)
+* customHeader: (string) custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
 
 #### Zipkin Exporter Configuration
 
