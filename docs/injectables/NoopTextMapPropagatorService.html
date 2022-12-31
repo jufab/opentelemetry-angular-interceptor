@@ -127,15 +127,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.service.ts:16</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return an NoopTextMapPropagator</p>
+                    <div class="io-description"><p>Return null</p>
 </div>
 
                     <div>
@@ -145,7 +145,7 @@
 
                     </div>
                     <div class="io-description">
-                        <p>TextMapPropagator as NoopTextMapPropagator</p>
+                        <p>TextMapPropagator as null</p>
 
                     </div>
                 </td>
@@ -161,7 +161,6 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { IPropagator } from &#x27;../propagator.interface&#x27;;
 import { TextMapPropagator } from &#x27;@opentelemetry/api&#x27;;
-import { NoopTextMapPropagator } from &#x27;@opentelemetry/api/build/src/propagation/NoopTextMapPropagator&#x27;;
 /**
  * NoopHttpTextPropagatorService
  */
@@ -170,12 +169,12 @@ import { NoopTextMapPropagator } from &#x27;@opentelemetry/api/build/src/propaga
 })
 export class NoopTextMapPropagatorService implements IPropagator {
   /**
-   * Return an NoopTextMapPropagator
+   * Return null
    *
-   * @return TextMapPropagator as NoopTextMapPropagator
+   * @return TextMapPropagator as null
    */
   getPropagator(): TextMapPropagator {
-    return new NoopTextMapPropagator();
+    return null;
   }
 }
 

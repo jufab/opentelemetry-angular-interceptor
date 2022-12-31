@@ -101,16 +101,16 @@
 <ul>
 <li><strong>Interceptor</strong> : catch every external call with the HttpClient from angular</li>
 <li><strong>Instrumentation</strong> : use instrumentation from opentelemetry-js with web plugins <em>(You need to install and configure it)</em> like : <ul>
-<li><a href="https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load">@opentelemetry/instrumentation-document-load</a></li>
-<li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-fetch">@opentelemetry/instrumentation-fetch</a></li>
-<li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-instrumentation-xml-http-request">@opentelemetry/instrumentation-xml-http-request</a></li>
+<li><a href="hhttps://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load">@opentelemetry/instrumentation-document-load</a></li>
+<li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-fetch">@opentelemetry/instrumentation-fetch</a></li>
+<li><a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-xml-http-request">@opentelemetry/instrumentation-xml-http-request</a></li>
 <li>...</li>
 </ul>
 </li>
 </ul>
 <h3 id="installation">Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor &amp;&amp; npm i &#64;opentelemetry/api &#64;opentelemetry/sdk-trace-web &#64;opentelemetry/sdk-trace-base &#64;opentelemetry/core &#64;opentelemetry/semantic-conventions &#64;opentelemetry/resources &#64;opentelemetry/exporter-trace-otlp-http &#64;opentelemetry/exporter-zipkin &#64;opentelemetry/propagator-b3 &#64;opentelemetry/propagator-jaeger &#64;opentelemetry/context-zone-peer-dep &#64;opentelemetry/instrumentation &#64;opentelemetry/propagator-aws-xray --save-dev</code></pre></div><h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor</code></pre></div><h3 id="configuration">Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
 <div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
@@ -183,7 +183,7 @@
 </ul>
 <h4 id="jaeger-propagator-configuration">Jaeger Propagator Configuration</h4>
 <ul>
-<li>customHeader: (string) custom header (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger</a>)</li>
+<li>customHeader: (string) custom header (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger</a>)</li>
 </ul>
 <h4 id="zipkin-exporter-configuration">Zipkin Exporter Configuration</h4>
 <ul>
