@@ -85,7 +85,7 @@
     "codecov": "^3.8.3",
     "codelyzer": "^6.0.2",
     "concurrently": "^7.6.0",
-    "cypress": "^12.1.0",
+    "cypress": "^12.5.1",
     "eslint": "^8.30.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsdoc": "^39.6.4",
