@@ -26,6 +26,7 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Jaeger Propagator Configuration](#jaeger-propagator-configuration)
       - [Zipkin Exporter Configuration](#zipkin-exporter-configuration)
       - [B3 Propagator Configuration](#b3-propagator-configuration)
+      - [Ignore URL Configuration](#ignore-url-configuration)
       - [External Configuration](#external-configuration)
     - [Angular module](#angular-module)
       - [Commons Module](#commons-module)
@@ -82,6 +83,7 @@ export interface OpenTelemetryConfig {
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
   b3PropagatorConfig?: B3PropagatorConfig;
+  ignoreUrls?: IgnoreUrlsConfig;
 }
 ```
 
@@ -172,6 +174,9 @@ _This configuration applies if production is true in commonConfig._
 
 * multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3)
 
+#### Ignore URL Configuration
+
+* urls : (Array<string | RegExp>) URLs that partially match any regex in ignoreUrls will not be traced. In addition, URLs that are _exact matches_ of strings in ignoreUrls will also not be traced
 
 #### External Configuration
 
