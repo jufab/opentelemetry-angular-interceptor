@@ -55,7 +55,7 @@ export class InstrumentationService {
         new Resource({
           [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
         })
-      ),
+      ).merge(new Resource(this.config.commonConfig.resourceAttributes)),
     });
   }
 
