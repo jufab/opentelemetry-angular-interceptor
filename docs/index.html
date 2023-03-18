@@ -54,6 +54,7 @@
 <li><a href="#jaeger-propagator-configuration">Jaeger Propagator Configuration</a></li>
 <li><a href="#zipkin-exporter-configuration">Zipkin Exporter Configuration</a></li>
 <li><a href="#b3-propagator-configuration">B3 Propagator Configuration</a></li>
+<li><a href="#ignore-url-configuration">Ignore URL Configuration</a></li>
 <li><a href="#external-configuration">External Configuration</a></li>
 </ul>
 </li>
@@ -119,6 +120,7 @@
   jaegerPropagatorConfig?: JaegerPropagatorConfig;
   zipkinConfig?: ZipkinCollectorConfig;
   b3PropagatorConfig?: B3PropagatorConfig;
+  ignoreUrls?: IgnoreUrlsConfig;
 }</code></pre></div><h4 id="example-global-configuration">Example global Configuration</h4>
 <p><em>From the interceptor-example</em></p>
 <div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
@@ -127,6 +129,9 @@
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: &#39;interceptor-example&#39;, //Service name send in trace
+      resourceAttributes: { // extra resource attributes like service.namespace
+        [SemanticResourceAttributes.SERVICE_NAMESPACE]: &#39;namespace&#39;
+      },
       probabilitySampler: &#39;0.7&#39;, //Samples a configurable percentage of traces, string value between &#39;0&#39; to &#39;1&#39;
       logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from &#64;opentelemetry/api
     },
@@ -149,6 +154,9 @@
       console: true, // Display trace on console
       production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: &#39;instrumentation-example&#39;, // Service name send in trace
+      resourceAttributes: { // extra resource attributes like service.namespace
+        &#39;service.namespace&#39;: &#39;namespace&#39;
+      },
       probabilitySampler: &#39;0.75&#39;, // 75% sampling
       logLevel: 99 //ALL Log, DiagLogLevel is an Enum from &#64;opentelemetry/api
     },
@@ -162,6 +170,7 @@
 <li>console: (boolean) Display trace on console if true</li>
 <li>production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It&#39;s recommend to use BatchSpanProcessor on Production.</li>
 <li>serviceName: (string) Service name in your trace</li>
+<li>resourceAttributes: list of extra resource attributes</li>
 <li>probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1</li>
 <li>logBody: (boolean) true add body in a log, nothing otherwise</li>
 <li>logLevel: (DiagLogLevel) log level</li>
@@ -188,11 +197,15 @@
 <h4 id="zipkin-exporter-configuration">Zipkin Exporter Configuration</h4>
 <ul>
 <li>url: (string) url of zipkin collector (default : <a href="http://localhost:9411/api/v2/spans">http://localhost:9411/api/v2/spans</a>)</li>
-<li>headers: list of custom header (more info : h<a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin</a>)</li>
+<li>headers: list of custom header (more info : <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin</a>)</li>
 </ul>
 <h4 id="b3-propagator-configuration">B3 Propagator Configuration</h4>
 <ul>
 <li>multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : &#39;O&#39; (single), &#39;1&#39; (multi) (more info: <a href="https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3">https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3</a>)</li>
+</ul>
+<h4 id="ignore-url-configuration">Ignore URL Configuration</h4>
+<ul>
+<li>urls : (Array&lt;string | RegExp&gt;) URLs that partially match any regex in ignoreUrls will not be traced. In addition, URLs that are <em>exact matches</em> of strings in ignoreUrls will also not be traced</li>
 </ul>
 <h4 id="external-configuration">External Configuration</h4>
 <p>Instrumentation example project have an external configuration to show how you can do it.</p>
