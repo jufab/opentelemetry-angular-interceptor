@@ -98,6 +98,9 @@ opentelemetryConfig: {
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: 'interceptor-example', //Service name send in trace
+      resourceAttributes: { // extra resource attributes like service.namespace
+        [SemanticResourceAttributes.SERVICE_NAMESPACE]: 'namespace'
+      },
       probabilitySampler: '0.7', //Samples a configurable percentage of traces, string value between '0' to '1'
       logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from @opentelemetry/api
     },
@@ -125,6 +128,9 @@ backendApp.get('/api/config', (req,res) => {
       console: true, // Display trace on console
       production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'instrumentation-example', // Service name send in trace
+      resourceAttributes: { // extra resource attributes like service.namespace
+        'service.namespace': 'namespace'
+      },
       probabilitySampler: '0.75', // 75% sampling
       logLevel: 99 //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
@@ -141,6 +147,7 @@ backendApp.get('/api/config', (req,res) => {
  * console: (boolean) Display trace on console if true
  * production: (boolean)Send trace via BatchSpanProcessor (Async) or SimpleSpanProcessor (Sync) : It's recommend to use BatchSpanProcessor on Production.
  * serviceName: (string) Service name in your trace
+ * resourceAttributes: list of extra resource attributes
  * probabilitySampler: (string) Samples a configurable percentage of traces, value between 0 to 1
  * logBody: (boolean) true add body in a log, nothing otherwise
  * logLevel: (DiagLogLevel) log level
@@ -168,7 +175,7 @@ _This configuration applies if production is true in commonConfig._
 #### Zipkin Exporter Configuration
 
 * url: (string) url of zipkin collector (default : http://localhost:9411/api/v2/spans)
-* headers: list of custom header (more info : hhttps://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
+* headers: list of custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
 
 #### B3 Propagator Configuration
 
