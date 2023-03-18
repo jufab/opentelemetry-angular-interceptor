@@ -28,7 +28,7 @@ import {
   isUrlIgnored
 } from '@opentelemetry/core';
 import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/semantic-conventions';
-import { IResource, Resource } from '@opentelemetry/resources';
+import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   CommonCollectorConfig,
@@ -165,8 +165,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Generate Resource Attributes
    */
-    private loadResourceAttributes(commonConfig: CommonCollectorConfig): IResource {
-      let resourceAttributes: IResource = Resource.default();
+    private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+      let resourceAttributes = Resource.default();
       resourceAttributes.merge(
         new Resource({
           [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,

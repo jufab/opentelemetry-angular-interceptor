@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ZoneContextManager } from '@opentelemetry/context-zone-peer-dep';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
-import { IResource, Resource } from '@opentelemetry/resources';
+import { Resource } from '@opentelemetry/resources';
 import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
 import {
   AlwaysOffSampler,
@@ -11,6 +11,7 @@ import {
   TraceIdRatioBasedSampler,
   WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
+// eslint-disable-next-line max-len
 import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS, CommonCollectorConfig } from '../../configuration/opentelemetry-config';
 import { OTEL_EXPORTER, IExporter } from '../exporter/exporter.interface';
 import { OTEL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
@@ -75,8 +76,8 @@ export class InstrumentationService {
   /**
    * Generate Resource Attributes
    */
-  private loadResourceAttributes(commonConfig: CommonCollectorConfig): IResource {
-    let resourceAttributes: IResource = Resource.default();
+  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+    let resourceAttributes = Resource.default();
     resourceAttributes.merge(
       new Resource({
         [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
