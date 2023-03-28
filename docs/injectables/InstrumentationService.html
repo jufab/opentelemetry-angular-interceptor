@@ -130,6 +130,10 @@ Service for component to add instrumentation.</p>
                                     <span class="modifier">Private</span>
                                 <a href="#insertSpanProcessorProductionMode" >insertSpanProcessorProductionMode</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadResourceAttributes" >loadResourceAttributes</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -153,7 +157,7 @@ Service for component to add instrumentation.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -256,8 +260,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:140</a></div>
                 </td>
             </tr>
 
@@ -330,8 +334,8 @@ Service for component to add instrumentation.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:150</a></div>
                 </td>
             </tr>
 
@@ -409,8 +413,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -450,8 +454,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:108</a></div>
                 </td>
             </tr>
 
@@ -528,8 +532,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -625,8 +629,8 @@ By Default, it&#39;s always (or 1)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -689,6 +693,79 @@ SimpleSpanProcessor otherwise</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadResourceAttributes"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>loadResourceAttributes</b></span>
+                        <a href="#loadResourceAttributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadResourceAttributes(commonConfig: <a href="../interfaces/CommonCollectorConfig.html" target="_self">CommonCollectorConfig</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Generate Resource Attributes</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>commonConfig</td>
+                                    <td>
+                                                <code><a href="../interfaces/CommonCollectorConfig.html" target="_self" >CommonCollectorConfig</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Resource</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section>
     
@@ -714,7 +791,7 @@ SimpleSpanProcessor otherwise</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -747,7 +824,7 @@ SimpleSpanProcessor otherwise</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/instrumentation/instrumentation.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -779,7 +856,8 @@ import {
   TraceIdRatioBasedSampler,
   WebTracerProvider } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from &#x27;@opentelemetry/sdk-trace-base&#x27;;
-import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS } from &#x27;../../configuration/opentelemetry-config&#x27;;
+// eslint-disable-next-line max-len
+import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS, CommonCollectorConfig } from &#x27;../../configuration/opentelemetry-config&#x27;;
 import { OTEL_EXPORTER, IExporter } from &#x27;../exporter/exporter.interface&#x27;;
 import { OTEL_PROPAGATOR, IPropagator } from &#x27;../propagator/propagator.interface&#x27;;
 
@@ -819,11 +897,7 @@ export class InstrumentationService {
     private instrumentationOptions: InstrumentationOption[]) {
     this.tracerProvider &#x3D; new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
-      resource: Resource.default().merge(
-        new Resource({
-          [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
-        })
-      ),
+      resource: this.loadResourceAttributes(this.config.commonConfig),
     });
   }
 
@@ -842,6 +916,21 @@ export class InstrumentationService {
       instrumentations: this.instrumentationOptions,
       tracerProvider: this.tracerProvider,
     });
+  }
+
+  /**
+   * Generate Resource Attributes
+   */
+  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+    let resourceAttributes &#x3D; Resource.default();
+    resourceAttributes.merge(
+      new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
+      }));
+    if(commonConfig.resourceAttributes!&#x3D;&#x3D; undefined) {
+      resourceAttributes &#x3D; resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
+    }
+    return resourceAttributes;
   }
 
   /**

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.0...v1.4.0-1) (2023-03-18)
+
+
+### Features
+
+* **#156:** add resource attributes configuration ([#157](https://github.com/jufab/opentelemetry-angular-interceptor/issues/157)) ([64ab01a](https://github.com/jufab/opentelemetry-angular-interceptor/commit/64ab01a892a10a5b3d10b8a07229044bdda491fe)), closes [#156](https://github.com/jufab/opentelemetry-angular-interceptor/issues/156)
+
+
+### Bug Fixes
+
+* **#151:** add ignoreUrls configuration ([26a2e27](https://github.com/jufab/opentelemetry-angular-interceptor/commit/26a2e27b9df03c6a392fb7c462e27ceea7687a31)), closes [#151](https://github.com/jufab/opentelemetry-angular-interceptor/issues/151)
+
 ## [1.4.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.3.0-1...v1.4.0) (2023-02-10)
 
 ## [1.3.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.3.0...v1.3.0-1) (2022-12-31)

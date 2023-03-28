@@ -107,12 +107,12 @@
                         <i>Default value : </i><code>(
   config: OpenTelemetryConfig | null | undefined,
   configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
-  ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
-  if(config) {
+): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
+  if (config) {
     configProvider &#x3D; { provide: OTEL_CONFIG, useValue: config };
   } else {
-    if(configProvider) {
-      if(configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
+    if (configProvider) {
+      if (configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
         throw new Error(&#x60;Configuration error. token must be : ${OTEL_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
       }
     } else {

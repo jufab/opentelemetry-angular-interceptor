@@ -31,6 +31,7 @@ import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/s
 import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
+  CommonCollectorConfig,
   OpenTelemetryConfig,
   OTEL_CONFIG,
 } from '../configuration/opentelemetry-config';
@@ -84,11 +85,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   ) {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(config.commonConfig.probabilitySampler)),
-      resource: Resource.default().merge(
-        new Resource({
-          [SemanticResourceAttributes.SERVICE_NAME]: this.config.commonConfig.serviceName,
-        })
-      ),
+      resource: this.loadResourceAttributes(this.config.commonConfig),
     });
     this.insertOrNotSpanExporter();
     this.contextManager = new StackContextManager();
@@ -164,6 +161,21 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private getURL() {
     return this.platformLocation.href;
   }
+
+  /**
+   * Generate Resource Attributes
+   */
+    private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+      let resourceAttributes = Resource.default();
+      resourceAttributes.merge(
+        new Resource({
+          [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
+        }));
+      if(commonConfig.resourceAttributes!== undefined) {
+        resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
+      }
+      return resourceAttributes;
+    }
 
   /**
    * Initialise a span for a request intercepted
