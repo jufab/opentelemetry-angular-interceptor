@@ -1159,7 +1159,7 @@ import {
 import { PlatformLocation } from &#x27;@angular/common&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import * as api from &#x27;@opentelemetry/api&#x27;;
-import { Span, SpanStatusCode, DiagLogger } from &#x27;@opentelemetry/api&#x27;;
+import { Span, SpanStatusCode, DiagLogger, SpanKind } from &#x27;@opentelemetry/api&#x27;;
 import { WebTracerProvider, StackContextManager } from &#x27;@opentelemetry/sdk-trace-web&#x27;;
 import {
   SimpleSpanProcessor,
@@ -1314,17 +1314,17 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Generate Resource Attributes
    */
-    private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
-      let resourceAttributes &#x3D; Resource.default();
-      resourceAttributes.merge(
-        new Resource({
-          [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
-        }));
-      if(commonConfig.resourceAttributes!&#x3D;&#x3D; undefined) {
-        resourceAttributes &#x3D; resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
-      }
-      return resourceAttributes;
+  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+    let resourceAttributes &#x3D; Resource.default().merge(
+      new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName
+      })
+    );
+    if (commonConfig.resourceAttributes !&#x3D;&#x3D; undefined) {
+      resourceAttributes &#x3D; resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
     }
+    return resourceAttributes;
+  }
 
   /**
    * Initialise a span for a request intercepted
@@ -1346,7 +1346,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             [SemanticAttributes.HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
             [SemanticAttributes.HTTP_USER_AGENT]: window.navigator.userAgent
           },
-          kind: api.SpanKind.CLIENT,
+          kind: SpanKind.CLIENT,
         },
         this.contextManager.active()
       );
@@ -1384,7 +1384,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * Verify to insert or not a Span Exporter
    */
   private insertOrNotSpanExporter() {
-    if(this.exporterService.getExporter()!&#x3D;&#x3D;undefined) {
+    if (this.exporterService.getExporter() !&#x3D;&#x3D; undefined) {
       this.insertSpanProcessorProductionMode();
       this.insertConsoleSpanExporter();
     } else {
