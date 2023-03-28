@@ -10,7 +10,7 @@ import {
 import { PlatformLocation } from '@angular/common';
 import { Observable } from 'rxjs';
 import * as api from '@opentelemetry/api';
-import { Span, SpanStatusCode, DiagLogger } from '@opentelemetry/api';
+import { Span, SpanStatusCode, DiagLogger, SpanKind } from '@opentelemetry/api';
 import { WebTracerProvider, StackContextManager } from '@opentelemetry/sdk-trace-web';
 import {
   SimpleSpanProcessor,
@@ -165,17 +165,17 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Generate Resource Attributes
    */
-    private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
-      let resourceAttributes = Resource.default();
-      resourceAttributes.merge(
-        new Resource({
-          [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
-        }));
-      if(commonConfig.resourceAttributes!== undefined) {
-        resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
-      }
-      return resourceAttributes;
+  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
+    let resourceAttributes = Resource.default().merge(
+      new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName
+      })
+    );
+    if (commonConfig.resourceAttributes !== undefined) {
+      resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
     }
+    return resourceAttributes;
+  }
 
   /**
    * Initialise a span for a request intercepted
@@ -197,7 +197,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
             [SemanticAttributes.HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
             [SemanticAttributes.HTTP_USER_AGENT]: window.navigator.userAgent
           },
-          kind: api.SpanKind.CLIENT,
+          kind: SpanKind.CLIENT,
         },
         this.contextManager.active()
       );
@@ -235,7 +235,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * Verify to insert or not a Span Exporter
    */
   private insertOrNotSpanExporter() {
-    if(this.exporterService.getExporter()!==undefined) {
+    if (this.exporterService.getExporter() !== undefined) {
       this.insertSpanProcessorProductionMode();
       this.insertConsoleSpanExporter();
     } else {
