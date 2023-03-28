@@ -35,6 +35,9 @@ backendApp.get('/api/config', (req,res) => {
       console: true, // Display trace on console
       production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'instrumentation-example', // Service name send in trace
+      resourceAttributes: { // extra resource attributes like service.namespace
+        'service.namespace': 'namespace'
+      },
       probabilitySampler: '0.75', // 75% sampling
       logLevel: 99 //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },

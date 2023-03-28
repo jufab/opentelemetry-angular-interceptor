@@ -210,7 +210,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
-import { DiagLogger, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
+import { AttributeValue, DiagLogger, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
 import { InstrumentationOption } from &#x27;@opentelemetry/instrumentation&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
@@ -220,6 +220,8 @@ import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 export interface CommonCollectorConfig {
   /** serviceName : Name of service in trace */
   serviceName: string;
+  /** resourceAttributes: Extra resource attribute like service.namespace ...*/
+  resourceAttributes?: Partial&lt;Record&lt;string, AttributeValue&gt;&gt;;
   /** console : boolean to trace in console */
   console?: boolean;
   /** production : boolean to use a BatchSpanExporter(async) or SimpleSpanExporter(sync) */
@@ -266,7 +268,7 @@ export interface OtelCollectorConfig {
    * Maximum time the OTLP exporter will wait for each batch export.
    * The default value is 10000ms.
    * */
-   timeoutMillis?: string;
+  timeoutMillis?: string;
 }
 
 /**
@@ -309,7 +311,7 @@ export interface B3PropagatorConfig {
 /**
  * Configuration for IgnoreUrlsConfig
  */
- export interface IgnoreUrlsConfig {
+export interface IgnoreUrlsConfig {
   /**
    * URLs that partially match any regex in ignoreUrls will not be traced.
    * In addition, URLs that are _exact matches_ of strings in ignoreUrls will
@@ -352,12 +354,12 @@ export const OTEL_INSTRUMENTATION_PLUGINS &#x3D; new InjectionToken&lt;Instrumen
 export const defineConfigProvider &#x3D; (
   config: OpenTelemetryConfig | null | undefined,
   configProvider: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
-  ): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
-  if(config) {
+): ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider &#x3D;&gt; {
+  if (config) {
     configProvider &#x3D; { provide: OTEL_CONFIG, useValue: config };
   } else {
-    if(configProvider) {
-      if(configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
+    if (configProvider) {
+      if (configProvider.provide !&#x3D;&#x3D; OTEL_CONFIG) {
         throw new Error(&#x60;Configuration error. token must be : ${OTEL_CONFIG} ,  your token value is : ${configProvider.provide}&#x60;);
       }
     } else {
