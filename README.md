@@ -6,7 +6,7 @@ This library uses [opentelemetry-js package](https://github.com/open-telemetry/o
 
 **Use Angular >= 13.0.0**
 
-More info : https://jufab.github.io/opentelemetry-angular-interceptor/
+More info: https://jufab.github.io/opentelemetry-angular-interceptor/
 
 [![npm version](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor.svg)](https://badge.fury.io/js/%40jufab%2Fopentelemetry-angular-interceptor)
 [![codecov](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor/branch/master/graph/badge.svg)](https://codecov.io/gh/jufab/opentelemetry-angular-interceptor)
@@ -54,9 +54,9 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
 
 ### Content
 
-This library offers two possibilities to use it in Angular App : 
-- **Interceptor** : catch every external call with the HttpClient from angular
-- **Instrumentation** : use instrumentation from opentelemetry-js with web plugins _(You need to install and configure it)_ like : 
+This library offers two possibilities to use it in an Angular App: 
+- **Interceptor**: catch every external call with the HttpClient from angular
+- **Instrumentation**: use instrumentation from opentelemetry-js with web plugins _(You need to install and configure it)_ like : 
   - [@opentelemetry/instrumentation-document-load](hhttps://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/web/opentelemetry-instrumentation-document-load)
   - [@opentelemetry/instrumentation-fetch](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-fetch)
   - [@opentelemetry/instrumentation-xml-http-request](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-xml-http-request)
@@ -65,10 +65,16 @@ This library offers two possibilities to use it in Angular App :
 
 ### Installation
 
-With npm :
+With npm:
 
 ```
 npm i @jufab/opentelemetry-angular-interceptor
+```
+
+with yarn:
+
+```
+yarn add @jufab/opentelemetry-angular-interceptor
 ```
 
 ### Configuration
@@ -163,27 +169,27 @@ _This configuration applies if production is true in commonConfig._
 
 #### OpenTelemetry-collector Configuration
 
-* url: (string) url of opentelemetry collector (default : http://localhost:4318/v1/traces)
+* url: (string) url of opentelemetry collector (default: http://localhost:4318/v1/traces)
 * headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
-* concurrencyLimit (string) : An optional limit on pending requests (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
-* timeoutMillis (string): Maximum time the OTLP exporter will wait for each batch export. The default value is 10000ms (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
+* concurrencyLimit (string): An optional limit on pending requests (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
+* timeoutMillis (string): Maximum time the OTLP exporter will wait for each batch export. The default value is 10000ms (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/exporter-trace-otlp-http)
 
 #### Jaeger Propagator Configuration
 
-* customHeader: (string) custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
+* customHeader: (string) custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
 
 #### Zipkin Exporter Configuration
 
-* url: (string) url of zipkin collector (default : http://localhost:9411/api/v2/spans)
-* headers: list of custom header (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
+* url: (string) url of zipkin collector (default: http://localhost:9411/api/v2/spans)
+* headers: list of custom header (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
 
 #### B3 Propagator Configuration
 
-* multiHeader : (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3)
+* multiHeader: (string) Single or Multi Header for b3propagator (default: multi). Value : 'O' (single), '1' (multi) (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-b3)
 
 #### Ignore URL Configuration
 
-* urls : (Array<string | RegExp>) URLs that partially match any regex in ignoreUrls will not be traced. In addition, URLs that are _exact matches_ of strings in ignoreUrls will also not be traced
+* urls: (Array<string | RegExp>) URLs that partially match any regex in ignoreUrls will not be traced. In addition, URLs that are _exact matches_ of strings in ignoreUrls will also not be traced
 
 #### External Configuration
 
@@ -194,11 +200,11 @@ Instrumentation example project have an external configuration to show how you c
 
 You need 3 modules to add to your application.
 
-- [Exporter Module](#exporter-module) : to define type and export of traces.
-- [Propagator Module](#propagator-module) : to define propagation in your HTTP header.
-- Last Module, 2 choices :  
-  - [OpenTelemetryInterceptorModule](#interceptor-module) : to activate interceptor in all your http call.
-  - [OtelWebTracerModule](#instrumentation-module) : to activate instrumentation (you need a component to activate it, see [Component otel-instrumentation](#component-otel-instrumentation)).
+- [Exporter Module](#exporter-module): to define type and export of traces.
+- [Propagator Module](#propagator-module): to define propagation in your HTTP header.
+- Last Module, 2 choices:  
+  - [OpenTelemetryInterceptorModule](#interceptor-module): to activate interceptor in all your http call.
+  - [OtelWebTracerModule](#instrumentation-module): to activate instrumentation (you need a component to activate it, see [Component otel-instrumentation](#component-otel-instrumentation)).
 
 #### Commons Module
 
@@ -206,22 +212,22 @@ You add this modules in your application module (generally app.module.ts)
 
 ##### Exporter module
 
-There is 4 exporters:
+There are 4 exporters:
 
-* NoopSpanExporterModule : This a fake exporter
-* OtelColExporterModule : OpenTelemetry exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
-* ConsoleSpanExporterModule : Console Exporter
-* ZipkinExporterModule : Zipkin Exporter (more info : https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
+* NoopSpanExporterModule: This a fake exporter
+* OtelColExporterModule: OpenTelemetry exporter (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-exporter-trace-otlp-http)
+* ConsoleSpanExporterModule: Console Exporter
+* ZipkinExporterModule: Zipkin Exporter (more info: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-zipkin)
 
 ##### Propagator module
 
-there is 6 propagators (more info about propagator: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core)
-* NoopHttpTextPropagatorModule : This is a fake propagator
-* B3PropagatorModule : Use B3 propagator
-* W3CTraceContextPropagatorModule : Use W3CTraceContext propagator
-* JaegerHttpTracePropagatorModule : Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
-* AwsXrayPropagatorModule : Use AWS X-Ray propagator
-* CompositePropagatorModule : use all of the propagator
+There are 6 propagators (more info about propagators: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core)
+* NoopHttpTextPropagatorModule: This is a fake propagator
+* B3PropagatorModule: Use B3 propagator
+* W3CTraceContextPropagatorModule: Use W3CTraceContext propagator
+* JaegerHttpTracePropagatorModule: Use JaegerHttpPropagator (more info about this one: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-propagator-jaeger)
+* AwsXrayPropagatorModule: Use AWS X-Ray propagator
+* CompositePropagatorModule: use all of the propagators
 
 
 #### Interceptor Module
@@ -292,23 +298,23 @@ export class AppModule { }
 
 #### Interceptor Module And Instrumentation Module
 
-`Don't use them at the same time : you're going to have the same trace twice.`
+`Don't use them at the same time: you're going to have the same trace twice.`
 
 #### Injection token
 
 This library exposes injection token.
 You can use them to override or customize. 
 
-* OTEL_EXPORTER : token to inject an implementation of `IExporter`
-* OTEL_PROPAGATOR : token to inject an implementation of `IPropagator`
-* OTEL_CONFIG : token to inject an `OpenTelemetryConfig`
-* OTEL_INSTRUMENTATION_PLUGINS : token to inject an `InstrumentationOption` array
-* OTEL_LOGGER : more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
-* OTEL_CUSTOM_SPAN : more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
+* OTEL_EXPORTER: token to inject an implementation of `IExporter`
+* OTEL_PROPAGATOR: token to inject an implementation of `IPropagator`
+* OTEL_CONFIG: token to inject an `OpenTelemetryConfig`
+* OTEL_INSTRUMENTATION_PLUGINS: token to inject an `InstrumentationOption` array
+* OTEL_LOGGER: more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
+* OTEL_CUSTOM_SPAN: more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
 
 ### Component otel-instrumentation
 
-A component named `otel-instrumentation` must be add in your application.
+A component named `otel-instrumentation` must be added in your application.
 
 _In instrumentation-example, this component is in app.component.html like this :_
 
@@ -318,7 +324,7 @@ _In instrumentation-example, this component is in app.component.html like this :
 ...
 ```
 
-_there is no configuration/directive need : all is in OtelWebTracerModule_
+_there is no configuration/directive need: all is in OtelWebTracerModule_
 
 ### (Optional) Logging in OtelColExporterModule
 
@@ -363,12 +369,12 @@ _This option is only available for Interceptor Module_
 
 Implement a [`CustomSpan`](projects/opentelemetry-interceptor/src/lib/interceptor/custom-span.interface.ts) and the method `add(span: Span, request: HttpRequest<unknown>, response: HttpResponse<unknown> | HttpErrorResponse): Span`
 
-- span : Current span, you can set or get attributes
-- request : Current request in interceptor
-- response : Current response in interceptor 
+- span: Current span, you can set or get attributes
+- request: Current request in interceptor
+- response: Current response in interceptor 
 
 
-Implement CustomSpan class like : 
+Implement CustomSpan class like: 
 
 ```typescript
 class CustomSpanImpl implements CustomSpan {
@@ -379,7 +385,7 @@ class CustomSpanImpl implements CustomSpan {
 }
 ```
 
-Inject it in you App module with `OTEL_CUSTOM_SPAN` :
+Inject it in you App module with `OTEL_CUSTOM_SPAN`:
 
 ```typescript
 @NgModule({
@@ -419,7 +425,7 @@ You can althought test __opentelemetry-angular-interceptor__ with this two appli
 
 #### Interceptor
 
-To start this Interceptor example application, run command :
+To start this Interceptor example application, run command:
 
 ```
 npm run start:complete-interceptor-example
@@ -429,7 +435,7 @@ and open the application at http://localhost:4200
 
 #### Instrumentation
 
-To start this Instrumentation example application, run command :
+To start this Instrumentation example application, run command:
 
 ```
 npm run start:complete-instrumentation-example
@@ -441,7 +447,7 @@ and open the application at http://localhost:4200
 
 If you want to see the result in a collector *, there's a docker-compose available in this project.
 
-You can start it with this command :
+You can start it with this command:
 
 ```
 docker-compose -f collector/docker-compose.yaml up -d
@@ -449,7 +455,7 @@ docker-compose -f collector/docker-compose.yaml up -d
 
 Go to the jaeger application (http://localhost:16686) to see result.
 
-More info about the collector here : https://github.com/open-telemetry/opentelemetry-collector
+More info about the collector here: https://github.com/open-telemetry/opentelemetry-collector
 
 > _* without an Agent or a Collector you can see an error in your browser about sending a "trace"._
 
