@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.1...v1.4.1-1) (2023-05-05)
+
+
+### Bug Fixes
+
+* http span name semantic ([#154](https://github.com/jufab/opentelemetry-angular-interceptor/issues/154)) ([de50104](https://github.com/jufab/opentelemetry-angular-interceptor/commit/de501042ecddef4ec9607f56fa9d4c8d09391dc3))
+
 ### [1.4.1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.0-1...v1.4.1) (2023-03-28)
 
 ## [1.4.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.0...v1.4.0-1) (2023-03-18)
