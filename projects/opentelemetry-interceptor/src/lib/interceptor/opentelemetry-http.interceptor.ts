@@ -187,7 +187,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     const span = this.tracer
       .getTracer(infoLibrary.name, infoLibrary.version)
       .startSpan(
-        `${urlRequest.protocol.replace(':', '').toUpperCase()} ${request.method.toUpperCase()}`,
+        `${request.method.toUpperCase()}`,
         {
           attributes: {
             [SemanticAttributes.HTTP_METHOD]: request.method,
