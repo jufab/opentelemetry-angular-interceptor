@@ -9,7 +9,8 @@ import {
   ParentBasedSampler,
   Sampler,
   TraceIdRatioBasedSampler,
-  WebTracerProvider } from '@opentelemetry/sdk-trace-web';
+  WebTracerProvider
+} from '@opentelemetry/sdk-trace-web';
 import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
 // eslint-disable-next-line max-len
 import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS, CommonCollectorConfig } from '../../configuration/opentelemetry-config';
@@ -77,12 +78,12 @@ export class InstrumentationService {
    * Generate Resource Attributes
    */
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
-    let resourceAttributes = Resource.default();
-    resourceAttributes.merge(
+    let resourceAttributes = Resource.default().merge(
       new Resource({
         [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
-      }));
-    if(commonConfig.resourceAttributes!== undefined) {
+      })
+    );
+    if (commonConfig.resourceAttributes !== undefined) {
       resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
     }
     return resourceAttributes;
