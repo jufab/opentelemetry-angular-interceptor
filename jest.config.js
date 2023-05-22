@@ -4,6 +4,7 @@ module.exports = {
   setupFilesAfterEnv: [
     '<rootDir>/projects/opentelemetry-interceptor/setupJest.ts'
   ],
+  globalSetup: 'jest-preset-angular/global-setup',
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/opentelemetry-interceptor/',
@@ -11,9 +12,9 @@ module.exports = {
     '<rootDir>/projects/interceptor-example/',
     '<rootDir>/cypress/'
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json'
-    }
+  transform: {
+    '^.+\\.tsx?$': ['jest-preset-angular', {
+      tsconfig: '<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json',
+    }]
   }
 };

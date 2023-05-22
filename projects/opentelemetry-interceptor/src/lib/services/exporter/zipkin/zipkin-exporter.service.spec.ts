@@ -9,7 +9,7 @@ jest.mock('@opentelemetry/exporter-zipkin');
 
 describe('ZipkinExporterService', () => {
   let zipkinExporterService: ZipkinExporterService;
-  const mockedZipkinExporter = mocked(ZipkinExporter, true);
+  const mockedZipkinExporter = mocked(ZipkinExporter);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
