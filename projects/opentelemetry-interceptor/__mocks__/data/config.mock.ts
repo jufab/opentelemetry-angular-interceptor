@@ -68,6 +68,9 @@ export const otelcolExporterWithProbabilitySamplerAndCompositeConfig: OpenTeleme
     serviceName: 'test',
     console: true,
     probabilitySampler: '0.7',
+    resourceAttributes: {
+      test: 'test'
+    }
   },
   otelcolConfig: {
     url: 'http://localhost',
