@@ -1,3 +1,9 @@
+globalThis.ngJest = {
+  skipNgcc: true,
+  tsconfig: '<rootDir>/projects/opentelemetry-interceptor/tsconfig.spec.json', // this is the project root tsconfig
+};
+
+
 module.exports = {
   verbose: true,
   preset: 'jest-preset-angular',
