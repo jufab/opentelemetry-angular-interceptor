@@ -49,6 +49,9 @@
             "main": "projects/interceptor-example/src/main.ts",
             "polyfills": "projects/interceptor-example/src/polyfills.ts",
             "tsConfig": "projects/interceptor-example/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "shimmer"
+            ],
             "assets": [
               "projects/interceptor-example/src/favicon.ico",
               "projects/interceptor-example/src/assets"
@@ -140,8 +143,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "@opentelemetry/exporter-trace-otlp-http",
-              "os"
+              "shimmer"
             ],
             "outputPath": "dist/instrumentation-example",
             "index": "projects/instrumentation-example/src/index.html",
