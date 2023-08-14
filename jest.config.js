@@ -7,6 +7,7 @@ globalThis.ngJest = {
 module.exports = {
   verbose: true,
   preset: 'jest-preset-angular',
+  roots: ['<rootDir>/projects/opentelemetry-interceptor/src'],
   setupFilesAfterEnv: [
     '<rootDir>/projects/opentelemetry-interceptor/setupJest.ts'
   ],
