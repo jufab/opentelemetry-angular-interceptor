@@ -40,15 +40,11 @@ jobs:
           wait-on-timeout: 180
           install: false
       - uses: actions/upload-artifact@v3
+        if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
+          if-no-files-found: warn
   cypress-instrumentation:
     runs-on: ubuntu-latest
     steps:
@@ -66,12 +62,8 @@ jobs:
           wait-on-timeout: 180
           install: false
       - uses: actions/upload-artifact@v3
+        if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
+          if-no-files-found: warn
