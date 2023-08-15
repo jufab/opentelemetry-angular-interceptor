@@ -18,9 +18,7 @@ module.exports = {
     }],
     ['jest-junit', {
       outputDirectory: '<rootDir>/jest-report',
-      outputName: "jest-junit.xml",
-      suiteNameTemplate: "opentelemetry-angular-interceptor",
-
+      outputName: "jest-junit.xml"
     }]
   ],
   setupFilesAfterEnv: [
