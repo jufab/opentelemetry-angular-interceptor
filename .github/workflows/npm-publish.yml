@@ -12,13 +12,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: npm
+          registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm test
       - run: npm run build:prod
-      - run: cd dist/opentelemetry-interceptor
-      - uses: mmarchini-oss/npm-otp-publish@v0
-        with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_actor: ${{ github.actor }}
+      - run: cd dist/opentelemetry-interceptor && npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
