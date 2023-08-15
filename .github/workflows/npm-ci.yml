@@ -19,9 +19,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: npm
       - run: npm ci
       - run: npm test
-      - run:  ./node_modules/.bin/codecov --token="${{secrets.codecov_token}}"
+      - uses: dorny/test-reporter@v1
+        with:
+          reporter: 'jest-junit'
+          name: 'Jest tests results'
+          path: 'jest-report/jest-junit.xml'
+      - uses: actions/upload-artifact@v3
+        with:
+          name: jest-report
+          path: jest-report
+          if-no-files-found: ignore
+      - uses: codecov/codecov-action@v3
   cypress-interceptor:
     runs-on: ubuntu-latest
     steps:
@@ -29,14 +40,21 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: npm
       - run: npm ci
       - name: Cypress interceptor run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           start: npm run start:complete-interceptor-example
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 180
           install: false
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: warn
   cypress-instrumentation:
     runs-on: ubuntu-latest
     steps:
@@ -44,11 +62,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: npm
       - run: npm ci
       - name: Cypress instrumentation run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           start: npm run start:complete-instrumentation-example
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 180
           install: false
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: warn

@@ -203,7 +203,7 @@ export const instrumentationConsoleOtelConfig: OpenTelemetryConfig = {
     serviceName: 'test',
     console: true,
     production: false,
-    probabilitySampler: '0',
+    probabilitySampler: undefined,
   },
   otelcolConfig: {
     url: 'http://localhost',
@@ -219,6 +219,10 @@ export const instrumentationProductionOtelConfig: OpenTelemetryConfig = {
     console: false,
     production: true,
     probabilitySampler: '0.7',
+    resourceAttributes: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      'service.namespace' : 'test'
+    }
   },
   otelcolConfig: {
     url: 'http://localhost',
