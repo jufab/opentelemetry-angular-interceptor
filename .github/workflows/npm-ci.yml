@@ -21,10 +21,12 @@ jobs:
           node-version: 16
           cache: npm
       - run: npm ci
-      - run: npm test -- --json --outputFile=result.json --testLocationInResults
-      - uses: tanmen/jest-reporter@v1
+      - run: npm test -- --reporters=jest-junit
+      - uses: dorny/test-reporter@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: 'jest-junit'
+          name: 'Jest Tests'
+          path: 'junit.xml'
       - uses: actions/upload-artifact@v3
         with:
           name: jest-report
