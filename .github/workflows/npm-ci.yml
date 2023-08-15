@@ -22,9 +22,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - uses: codecov/codecov-action@v3
+      - uses: actions/upload-artifact@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          name: jest-report
+          path: jest-report
+          if-no-files-found: ignore
+      - uses: codecov/codecov-action@v3
   cypress-interceptor:
     runs-on: ubuntu-latest
     steps:

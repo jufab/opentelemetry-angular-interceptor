@@ -5,9 +5,20 @@ globalThis.ngJest = {
 
 
 module.exports = {
-  verbose: true,
+  verbose: false,
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/projects/opentelemetry-interceptor/src'],
+  coverageReporters: ['clover', 'json', 'lcov', ['text', {skipFull: true}]],
+  reporters: [
+    ['github-actions', {silent: false}],
+    ["jest-angular-test-verifier", {
+      directory: "projects/opentelemetry-interceptor/src",
+    }],
+    ["jest-html-reporters", {
+      "publicPath": "./jest-report",
+      "filename": "report.html",
+    }]
+  ],
   setupFilesAfterEnv: [
     '<rootDir>/projects/opentelemetry-interceptor/setupJest.ts'
   ],
