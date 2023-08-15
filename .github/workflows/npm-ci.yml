@@ -21,12 +21,12 @@ jobs:
           node-version: 16
           cache: npm
       - run: npm ci
-      - run: npm test -- --reporters=jest-junit
+      - run: npm test
       - uses: dorny/test-reporter@v1
         with:
           reporter: 'jest-junit'
-          name: 'Jest Tests'
-          path: 'junit.xml'
+          name: 'Jest tests results'
+          path: 'jest-report/jest-junit.xml'
       - uses: actions/upload-artifact@v3
         with:
           name: jest-report

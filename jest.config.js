@@ -13,8 +13,14 @@ module.exports = {
     ['github-actions', { silent: false }],
     'summary',
     ["jest-html-reporters", {
-      "publicPath": "./jest-report",
-      "filename": "report.html",
+      publicPath: "./jest-report",
+      filename: "report.html",
+    }],
+    ['jest-junit', {
+      outputDirectory: '<rootDir>/jest-report',
+      outputName: "jest-junit.xml",
+      suiteNameTemplate: "opentelemetry-angular-interceptor",
+
     }]
   ],
   setupFilesAfterEnv: [
