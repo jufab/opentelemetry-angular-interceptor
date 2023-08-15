@@ -10,6 +10,14 @@ All notable changes to this project will be documented in this file. See [standa
 * ci publish action ([ac3d9ab](https://github.com/jufab/opentelemetry-angular-interceptor/commit/ac3d9abc6ba5d6cd2d434d8f376bfa2a8ccc0bdd))
 * ci publish action ([510be78](https://github.com/jufab/opentelemetry-angular-interceptor/commit/510be78f8cbcbcdaddb544a836634c395b1ff144))
 
+### [1.4.1-5](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.1-4...v1.4.1-5) (2023-08-15)
+
+
+### Bug Fixes
+
+* ci publish action ([ac3d9ab](https://github.com/jufab/opentelemetry-angular-interceptor/commit/ac3d9abc6ba5d6cd2d434d8f376bfa2a8ccc0bdd))
+* ci publish action ([510be78](https://github.com/jufab/opentelemetry-angular-interceptor/commit/510be78f8cbcbcdaddb544a836634c395b1ff144))
+
 ### [1.4.1-4](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.1-3...v1.4.1-4) (2023-07-20)
 
 ### [1.4.1-3](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.4.1-2...v1.4.1-3) (2023-06-12)
