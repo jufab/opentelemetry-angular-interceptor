@@ -14,7 +14,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -41,21 +41,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Interceptors</li>
-  <li >OpenTelemetryHttpInterceptor</li>
+  <li class="breadcrumb-item">Interceptors</li>
+  <li class="breadcrumb-item" >OpenTelemetryHttpInterceptor</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -73,7 +79,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -161,13 +167,13 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>, logger: DiagLogger, customSpan: <a href="../interfaces/CustomSpan.html" target="_self">CustomSpan</a>, platformLocation: <a href="https://angular.io/api/common/PlatformLocation" target="_blank">PlatformLocation</a>)</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>, logger: DiagLogger, customSpan: <a href="../interfaces/CustomSpan.html" target="_self">CustomSpan</a>, platformLocation: PlatformLocation)</code>
                     </td>
                 </tr>
                         <tr>
@@ -276,7 +282,7 @@
                                                         <td>platformLocation</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/common/PlatformLocation" target="_blank" >PlatformLocation</a></code>
+                                                                    <code>PlatformLocation</code>
                                                         </td>
                                                   
                                                     <td>
@@ -297,7 +303,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -789,7 +795,7 @@ SimpleSpanProcessor otherwise</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>intercept(request: HttpRequest<>, next: <a href="https://angular.io/api/common/http/HttpHandler" target="_blank">HttpHandler</a>)</code>
+<code>intercept(request: HttpRequest<>, next: HttpHandler)</code>
                 </td>
             </tr>
 
@@ -840,7 +846,7 @@ Interceptor from HttpInterceptor Angular</p>
                                 <tr>
                                     <td>next</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpHandler" target="_blank" >HttpHandler</a></code>
+                                            <code>HttpHandler</code>
                                     </td>
 
                                     <td>
@@ -1041,7 +1047,7 @@ Interceptor from HttpInterceptor Angular</p>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1146,7 +1152,7 @@ Interceptor from HttpInterceptor Angular</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Optional } from &#x27;@angular/core&#x27;;
 import {
   HttpRequest,
