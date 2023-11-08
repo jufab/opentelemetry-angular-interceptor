@@ -24,7 +24,6 @@ export { JaegerHttpTracePropagatorModule } from './lib/services/propagator/jaege
 export { NoopTextMapPropagatorModule } from './lib/services/propagator/noop-http-text-propagator/noop-text-map-propagator.module';
 //Component
 export { OtelWebTracerModule } from './lib/otel-webtracer.module';
-export { OtelWebTracerComponent } from './lib/component/otel-webtracer/otel-webtracer.component';
 
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';

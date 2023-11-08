@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   ClassProvider,
   ConstructorProvider,
   ExistingProvider,
@@ -13,14 +14,17 @@ import {
   defineConfigProvider,
   OpenTelemetryConfig,
 } from './configuration/opentelemetry-config';
-import { OtelWebTracerComponent } from './component/otel-webtracer/otel-webtracer.component';
 import { InstrumentationService } from './services/instrumentation/instrumentation.service';
 
-@NgModule({
-  declarations: [OtelWebTracerComponent],
-  exports: [OtelWebTracerComponent]
-})
+export const instruServiceLoader = (instrumentationService: InstrumentationService) => {
+  const myPromise = () => instrumentationService.initInstrumentation();
+  return myPromise;
+};
+
+
+@NgModule()
 export class OtelWebTracerModule {
+
   constructor(
     @Optional() @SkipSelf() parentModule?: OtelWebTracerModule
   ) {
@@ -36,13 +40,19 @@ export class OtelWebTracerModule {
     configProvider?: ValueProvider | ClassProvider | ConstructorProvider | ExistingProvider | FactoryProvider
   ): ModuleWithProviders<OtelWebTracerModule> {
 
-    configProvider = defineConfigProvider(config,configProvider);
+    configProvider = defineConfigProvider(config, configProvider);
 
     return {
       ngModule: OtelWebTracerModule,
       providers: [
         configProvider,
-        InstrumentationService
+        InstrumentationService,
+        {
+          provide: APP_INITIALIZER,
+          useFactory: instruServiceLoader,
+          deps: [InstrumentationService],
+          multi: true
+        }
       ],
     };
   }

@@ -36,7 +36,6 @@ More info : https://jufab.github.io/opentelemetry-angular-interceptor/
       - [Instrumentation Module](#instrumentation-module)
       - [Interceptor Module And Instrumentation Module](#interceptor-module-and-instrumentation-module)
       - [Injection token](#injection-token)
-    - [Component otel-instrumentation](#component-otel-instrumentation)
     - [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
       - [NGXLogger](#ngxlogger)
     - [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
@@ -290,6 +289,9 @@ export class AppModule { }
 
 ```
 
+*This module uses APP_INITIALIZER token to load instrumentation (multi:true). No component needs now*
+
+
 #### Interceptor Module And Instrumentation Module
 
 `Don't use them at the same time : you're going to have the same trace twice.`
@@ -306,19 +308,6 @@ You can use them to override or customize.
 * OTEL_LOGGER : more info in [(Optional) Logging in OtelColExporterModule](#optional-logging-in-otelcolexportermodule)
 * OTEL_CUSTOM_SPAN : more infor in [(Optional) Add span attributes during interception](#optional-add-span-attributes-during-interception)
 
-### Component otel-instrumentation
-
-A component named `otel-instrumentation` must be add in your application.
-
-_In instrumentation-example, this component is in app.component.html like this :_
-
-```xml
-...
-<otel-instrumentation></otel-instrumentation>
-...
-```
-
-_there is no configuration/directive need : all is in OtelWebTracerModule_
 
 ### (Optional) Logging in OtelColExporterModule
 
