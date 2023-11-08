@@ -2,8 +2,6 @@ version: "3"
 services:
   jaeger:
     image: jaegertracing/all-in-one:latest
-    environment:
-      - COLLECTOR_OTLP_ENABLED=TRUE
     networks:
       - otelcol
     ports:
@@ -16,7 +14,7 @@ services:
     ports:
       - "9411:9411"
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.87.0
+    image: otel/opentelemetry-collector-contrib:0.88.0
     networks:
       - otelcol
     command: ["--config=/etc/otel-collector-config.yaml"]
