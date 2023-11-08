@@ -17,8 +17,8 @@ import {
 import { InstrumentationService } from './services/instrumentation/instrumentation.service';
 
 export const instruServiceLoader = (instrumentationService: InstrumentationService) => {
-  const myPromise = () => instrumentationService.initInstrumentation();
-  return myPromise;
+  const loader = () => instrumentationService.initInstrumentation();
+  return loader;
 };
 
 
