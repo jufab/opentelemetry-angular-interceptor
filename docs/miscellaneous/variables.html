@@ -65,6 +65,9 @@
                             <a href="#defineConfigProvider" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>defineConfigProvider</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
+                            <a href="#instruServiceLoader" title="projects/opentelemetry-interceptor/src/lib/otel-webtracer.module.ts" ><b>instruServiceLoader</b>&nbsp;&nbsp;&nbsp;(projects/.../otel-webtracer.module.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OTEL_CONFIG" title="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts" ><b>OTEL_CONFIG</b>&nbsp;&nbsp;&nbsp;(projects/.../opentelemetry-config.ts)</a>
                         </li>
                         <li>
@@ -222,6 +225,32 @@
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>projects/opentelemetry-interceptor/src/lib/otel-webtracer.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="instruServiceLoader"></a>
+                    <span class="name">
+                        <span ><b>instruServiceLoader</b></span>
+                        <a href="#instruServiceLoader"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(instrumentationService: InstrumentationService) &#x3D;&gt; {
+  const loader &#x3D; () &#x3D;&gt; instrumentationService.initInstrumentation();
+  return loader;
+}</code>
+                    </td>
+                </tr>
+
 
         </tbody>
     </table>

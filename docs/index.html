@@ -70,7 +70,6 @@
 <li><a href="#injection-token">Injection token</a></li>
 </ul>
 </li>
-<li><a href="#component-otel-instrumentation">Component otel-instrumentation</a></li>
 <li><a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a><ul>
 <li><a href="#ngxlogger">NGXLogger</a></li>
 </ul>
@@ -292,7 +291,8 @@ import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule }
   bootstrap: [AppComponent],
 })
 export class AppModule { }
-</code></pre></div><h4>Interceptor Module And Instrumentation Module</h4>
+</code></pre></div><p><em>This module uses APP_INITIALIZER token to load instrumentation (multi:true). No component needs now</em></p>
+<h4>Interceptor Module And Instrumentation Module</h4>
 <p><code>Don&#39;t use them at the same time : you&#39;re going to have the same trace twice.</code></p>
 <h4>Injection token</h4>
 <p>This library exposes injection token.
@@ -305,12 +305,6 @@ You can use them to override or customize. </p>
 <li>OTEL_LOGGER : more info in <a href="#optional-logging-in-otelcolexportermodule">(Optional) Logging in OtelColExporterModule</a></li>
 <li>OTEL_CUSTOM_SPAN : more infor in <a href="#optional-add-span-attributes-during-interception">(Optional) Add span attributes during interception</a></li>
 </ul>
-<h3>Component otel-instrumentation</h3>
-<p>A component named <code>otel-instrumentation</code> must be add in your application.</p>
-<p><em>In instrumentation-example, this component is in app.component.html like this :</em></p>
-<div><pre class="line-numbers"><code class="language-xml">...
-&lt;otel-instrumentation&gt;&lt;/otel-instrumentation&gt;
-...</code></pre></div><p><em>there is no configuration/directive need : all is in OtelWebTracerModule</em></p>
 <h3>(Optional) Logging in OtelColExporterModule</h3>
 <p>You can add a logger to the <a href="projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.module.ts">OtelColExporterModule</a> with the <a href="projects/opentelemetry-interceptor/src/lib/configuration/opentelemetry-config.ts">OTEL_LOGGER</a> token.</p>
 <p>You can use a custom logger which implements the <a href="https://open-telemetry.github.io/opentelemetry-js-api/enums/diagloglevel.html">DiagLogger</a> in @opentelemetry/api.</p>
