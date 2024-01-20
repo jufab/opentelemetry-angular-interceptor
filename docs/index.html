@@ -13,6 +13,64 @@
         <link rel="stylesheet" href="./styles/material.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
@@ -110,9 +168,9 @@
 </ul>
 <h3>Installation</h3>
 <p>With npm :</p>
-<div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor</code></pre></div><h3>Configuration</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm i &#64;jufab/opentelemetry-angular-interceptor</code></pre></div><h3>Configuration</h3>
 <p>Use the &quot;OpentelemetryConfig&quot; interface to configure the Tracer</p>
-<div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">export interface OpenTelemetryConfig {
   commonConfig: CommonCollectorConfig;
   batchSpanProcessorConfig?: BatchSpanProcessorConfig;
   otelcolConfig?: OtelCollectorConfig;
@@ -122,7 +180,7 @@
   ignoreUrls?: IgnoreUrlsConfig;
 }</code></pre></div><h4>Example global Configuration</h4>
 <p><em>From the interceptor-example</em></p>
-<div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">opentelemetryConfig: {
     commonConfig: {
       console: true, //(boolean) Display trace on console
       production: false, //(boolean) Send trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
@@ -147,7 +205,7 @@
       customHeader: &#39;custom-header&#39;,
     }
   }</code></pre></div><p><em>From the instrumentation-example</em></p>
-<div><pre class="line-numbers"><code class="language-typescript">backendApp.get(&#39;/api/config&#39;, (req,res) =&gt; {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">backendApp.get(&#39;/api/config&#39;, (req,res) =&gt; {
   return res.status(200).send({
     commonConfig: {
       console: true, // Display trace on console
@@ -241,7 +299,7 @@
 </ul>
 <h4>Interceptor Module</h4>
 <p>Just add OpenTelemetryInterceptorModule to insert Interceptor</p>
-<div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
 ...
 import { AppComponent } from &#39;./app.component&#39;;
 import { HttpClientModule } from &#39;&#64;angular/common/http&#39;;
@@ -269,7 +327,7 @@ export class AppModule {}</code></pre></div><h4>Instrumentation Module</h4>
 <p>Declare this OtelWebTracerModule to configure instrumentation.</p>
 <p>You need to provide Web instrumentation on the <code>OTEL_INSTRUMENTATION_PLUGINS</code> token in providers section of NgModule</p>
 <p><em>Example in instrumentation-example project</em></p>
-<div><pre class="line-numbers"><code class="language-typescript">...
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">...
 import { OtelColExporterModule, CompositePropagatorModule, OtelWebTracerModule } from &#39;projects/opentelemetry-interceptor/src/public-api&#39;;
 ...
 
@@ -312,13 +370,13 @@ You can use them to override or customize. </p>
 <h4>NGXLogger</h4>
 <p>You can use <a href="https://www.npmjs.com/package/ngx-logger">ngx-logger</a>.</p>
 <p>In your <a href="projects/example-app/src/app/app.module.ts">appModule</a>, insert LoggerModule and configure it</p>
-<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   imports: [
     LoggerModule.forRoot(environment.loggerConfig),
   ]
   ...</code></pre></div><p>And use OTEL_LOGGER token to inject NGXLogger</p>
-<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   providers: [
     ...
@@ -337,13 +395,13 @@ You can use them to override or customize. </p>
 <li>response : Current response in interceptor</li>
 </ul>
 <p>Implement CustomSpan class like : </p>
-<div><pre class="line-numbers"><code class="language-typescript">class CustomSpanImpl implements CustomSpan {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">class CustomSpanImpl implements CustomSpan {
   add(span: Span, request: HttpRequest&lt;unknown&gt;, response: HttpResponse&lt;unknown&gt; | HttpErrorResponse): Span {
     span.setAttribute(&#39;mycustom.key&#39;, request.params + &quot;;&quot; + response.status);
     return span;
   }
 }</code></pre></div><p>Inject it in you App module with <code>OTEL_CUSTOM_SPAN</code> :</p>
-<div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">&#64;NgModule({
   ...
   providers: [
     ...
@@ -370,21 +428,21 @@ You can use them to override or customize. </p>
 <h3>Run</h3>
 <h4>Interceptor</h4>
 <p>To start this Interceptor example application, run command :</p>
-<div><pre class="line-numbers"><code class="language-none">npm run start:complete-interceptor-example</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm run start:complete-interceptor-example</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
 <h4>Instrumentation</h4>
 <p>To start this Instrumentation example application, run command :</p>
-<div><pre class="line-numbers"><code class="language-none">npm run start:complete-instrumentation-example</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm run start:complete-instrumentation-example</code></pre></div><p>and open the application at <a href="http://localhost:4200">http://localhost:4200</a></p>
 <h3>[Optional] Result in OpenTelemetry-collector</h3>
 <p>If you want to see the result in a collector *, there&#39;s a docker-compose available in this project.</p>
 <p>You can start it with this command :</p>
-<div><pre class="line-numbers"><code class="language-none">docker-compose -f collector/docker-compose.yaml up -d</code></pre></div><p>Go to the jaeger application (<a href="http://localhost:16686">http://localhost:16686</a>) to see result.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">docker-compose -f collector/docker-compose.yaml up -d</code></pre></div><p>Go to the jaeger application (<a href="http://localhost:16686">http://localhost:16686</a>) to see result.</p>
 <p>More info about the collector here : <a href="https://github.com/open-telemetry/opentelemetry-collector">https://github.com/open-telemetry/opentelemetry-collector</a></p>
 <blockquote>
 <p><em>* without an Agent or a Collector you can see an error in your browser about sending a &quot;trace&quot;.</em></p>
 </blockquote>
 <h2>Troubleshoot</h2>
 <h3>Angular 10 Warning</h3>
-<div><pre class="line-numbers"><code class="language-shell">WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/web&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/web&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
 For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
 
 WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/core&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
@@ -398,7 +456,7 @@ For more info see: https://angular.io/guide/build#configuring-commonjs-dependenc
 
 WARNING in xxx/fesm2015/jufab-opentelemetry-angular-interceptor.js depends on &#39;&#64;opentelemetry/exporter-collector/build/src/platform/browser&#39;. CommonJS or AMD dependencies can cause optimization bailouts.
 For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies</code></pre></div><p>Add to your angular.json</p>
-<div><pre class="line-numbers"><code class="language-json">&quot;options&quot;: {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">&quot;options&quot;: {
   &quot;allowedCommonJsDependencies&quot;: [
     &quot;&#64;opentelemetry/api&quot;,
     &quot;&#64;opentelemetry/exporter-collector&quot;,
