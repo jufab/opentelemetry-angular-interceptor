@@ -27,7 +27,17 @@ import {
 import {
   isUrlIgnored
 } from '@opentelemetry/core';
-import { SemanticResourceAttributes, SemanticAttributes } from '@opentelemetry/semantic-conventions';
+import {
+  SEMATTRS_HTTP_USER_AGENT,
+  SEMATTRS_HTTP_TARGET,
+  SEMATTRS_HTTP_SCHEME,
+  SEMATTRS_HTTP_HOST,
+  SEMATTRS_HTTP_URL,
+  SEMATTRS_HTTP_METHOD,
+  SEMRESATTRS_SERVICE_NAME,
+  SEMATTRS_HTTP_STATUS_CODE,
+  //SEMATTRS_ERROR_TYPE
+} from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
@@ -120,7 +130,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpResponse<any>) => {
           span.setAttributes(
             {
-              [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
+              [SEMATTRS_HTTP_STATUS_CODE]: event.status,
             }
           );
           if (this.logBody && event.body != null) {
@@ -134,7 +144,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpErrorResponse) => {
           span.setAttributes(
             {
-              [SemanticAttributes.HTTP_STATUS_CODE]: event.status,
+              [SEMATTRS_HTTP_STATUS_CODE]: event.status,
+              //[SEMATTRS_ERROR_TYPE] : event.name,
             }
           );
           span.recordException({
@@ -168,7 +179,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes = Resource.default().merge(
       new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName
+        [SEMRESATTRS_SERVICE_NAME]: commonConfig.serviceName
       })
     );
     if (commonConfig.resourceAttributes !== undefined) {
@@ -190,12 +201,12 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         `${request.method.toUpperCase()}`,
         {
           attributes: {
-            [SemanticAttributes.HTTP_METHOD]: request.method,
-            [SemanticAttributes.HTTP_URL]: request.urlWithParams,
-            [SemanticAttributes.HTTP_HOST]: urlRequest.host,
-            [SemanticAttributes.HTTP_SCHEME]: urlRequest.protocol.replace(':', ''),
-            [SemanticAttributes.HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
-            [SemanticAttributes.HTTP_USER_AGENT]: window.navigator.userAgent
+            [SEMATTRS_HTTP_METHOD]: request.method,
+            [SEMATTRS_HTTP_URL]: request.urlWithParams,
+            [SEMATTRS_HTTP_HOST]: urlRequest.host,
+            [SEMATTRS_HTTP_SCHEME]: urlRequest.protocol.replace(':', ''),
+            [SEMATTRS_HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
+            [SEMATTRS_HTTP_USER_AGENT]: window.navigator.userAgent
           },
           kind: SpanKind.CLIENT,
         },
