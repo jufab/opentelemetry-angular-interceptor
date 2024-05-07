@@ -10,8 +10,8 @@ receivers:
 exporters:
   zipkin:
     endpoint: "http://zipkin:9411/api/v2/spans"
-  logging:
-    loglevel: debug
+  debug:
+    verbosity: detailed
   otlp/jaeger:
     endpoint: jaeger:4317
     tls:
@@ -20,8 +20,11 @@ extensions:
   zpages:
     endpoint: "0.0.0.0:55679"
 service:
+  telemetry:
+    logs:
+      level: "debug"
   extensions : [zpages]
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [otlp/jaeger,zipkin,logging]
+      exporters: [otlp/jaeger,zipkin,debug]
