@@ -14,7 +14,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -61,20 +61,13 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -83,7 +76,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -216,7 +209,7 @@ Service for component to add instrumentation.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>, instrumentationOptions: InstrumentationOption[])</code>
+<code>constructor(config: <a href="../interfaces/OpenTelemetryConfig.html" target="_self">OpenTelemetryConfig</a>, exporterService: <a href="../interfaces/IExporter.html" target="_self">IExporter</a>, propagatorService: <a href="../interfaces/IPropagator.html" target="_self">IPropagator</a>, instrumentation: Instrumentation[])</code>
                     </td>
                 </tr>
                         <tr>
@@ -277,10 +270,10 @@ Service for component to add instrumentation.</p>
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>instrumentationOptions</td>
+                                                        <td>instrumentation</td>
                                                   
                                                         <td>
-                                                                    <code>InstrumentationOption[]</code>
+                                                                    <code>Instrumentation[]</code>
                                                         </td>
                                                   
                                                     <td>
@@ -897,9 +890,9 @@ SimpleSpanProcessor otherwise</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
 import { ZoneContextManager } from &#x27;@opentelemetry/context-zone-peer-dep&#x27;;
-import { SemanticResourceAttributes } from &#x27;@opentelemetry/semantic-conventions&#x27;;
+import { ATTR_SERVICE_NAME } from &#x27;@opentelemetry/semantic-conventions&#x27;;
 import { Resource } from &#x27;@opentelemetry/resources&#x27;;
-import { InstrumentationOption, registerInstrumentations } from &#x27;@opentelemetry/instrumentation&#x27;;
+import { Instrumentation, registerInstrumentations } from &#x27;@opentelemetry/instrumentation&#x27;;
 import {
   AlwaysOffSampler,
   AlwaysOnSampler,
@@ -947,7 +940,7 @@ export class InstrumentationService {
     @Inject(OTEL_PROPAGATOR)
     private propagatorService: IPropagator,
     @Inject(OTEL_INSTRUMENTATION_PLUGINS)
-    private instrumentationOptions: InstrumentationOption[]) {
+    private instrumentation: Instrumentation[]) {
     this.tracerProvider &#x3D; new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
       resource: this.loadResourceAttributes(this.config.commonConfig),
@@ -966,7 +959,7 @@ export class InstrumentationService {
     });
 
     registerInstrumentations({
-      instrumentations: this.instrumentationOptions,
+      instrumentations: this.instrumentation,
       tracerProvider: this.tracerProvider,
     });
   }
@@ -977,7 +970,7 @@ export class InstrumentationService {
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes &#x3D; Resource.default().merge(
       new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
+        [ATTR_SERVICE_NAME]: commonConfig.serviceName,
       })
     );
     if (commonConfig.resourceAttributes !&#x3D;&#x3D; undefined) {
@@ -1104,6 +1097,19 @@ export class InstrumentationService {
             var COMPODOC_CURRENT_PAGE_URL = 'InstrumentationService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

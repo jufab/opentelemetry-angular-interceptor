@@ -14,7 +14,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -61,20 +61,13 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">OpenTelemetry Angular Interceptor</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -83,7 +76,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -378,7 +371,7 @@ The default value is 10000ms.</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from &#x27;@angular/core&#x27;;
 import { AttributeValue, DiagLogger, DiagLogLevel } from &#x27;@opentelemetry/api&#x27;;
-import { InstrumentationOption } from &#x27;@opentelemetry/instrumentation&#x27;;
+import { Instrumentation } from &#x27;@opentelemetry/instrumentation&#x27;;
 import { CustomSpan } from &#x27;../interceptor/custom-span.interface&#x27;;
 
 /**
@@ -516,7 +509,7 @@ export const OTEL_LOGGER &#x3D; new InjectionToken&lt;DiagLogger&gt;(&#x27;otelc
 /** custom span */
 export const OTEL_CUSTOM_SPAN &#x3D; new InjectionToken&lt;CustomSpan&gt;(&#x27;otelcol.custom-span&#x27;);
 
-export const OTEL_INSTRUMENTATION_PLUGINS &#x3D; new InjectionToken&lt;InstrumentationOption[]&gt;(&#x27;otelcol.instrumentation.plugins&#x27;);
+export const OTEL_INSTRUMENTATION_PLUGINS &#x3D; new InjectionToken&lt;Instrumentation[]&gt;(&#x27;otelcol.instrumentation.plugins&#x27;);
 
 export const defineConfigProvider &#x3D; (
   config: OpenTelemetryConfig | null | undefined,
@@ -575,6 +568,19 @@ export const defineConfigProvider &#x3D; (
             var COMPODOC_CURRENT_PAGE_URL = 'OtelCollectorConfig.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
