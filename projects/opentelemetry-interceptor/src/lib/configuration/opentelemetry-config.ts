@@ -1,6 +1,6 @@
 import { ClassProvider, ConstructorProvider, ExistingProvider, FactoryProvider, InjectionToken, ValueProvider } from '@angular/core';
 import { AttributeValue, DiagLogger, DiagLogLevel } from '@opentelemetry/api';
-import { InstrumentationOption } from '@opentelemetry/instrumentation';
+import { Instrumentation } from '@opentelemetry/instrumentation';
 import { CustomSpan } from '../interceptor/custom-span.interface';
 
 /**
@@ -138,7 +138,7 @@ export const OTEL_LOGGER = new InjectionToken<DiagLogger>('otelcol.logger');
 /** custom span */
 export const OTEL_CUSTOM_SPAN = new InjectionToken<CustomSpan>('otelcol.custom-span');
 
-export const OTEL_INSTRUMENTATION_PLUGINS = new InjectionToken<InstrumentationOption[]>('otelcol.instrumentation.plugins');
+export const OTEL_INSTRUMENTATION_PLUGINS = new InjectionToken<Instrumentation[]>('otelcol.instrumentation.plugins');
 
 export const defineConfigProvider = (
   config: OpenTelemetryConfig | null | undefined,
