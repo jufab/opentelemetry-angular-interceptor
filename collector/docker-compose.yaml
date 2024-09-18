@@ -13,7 +13,7 @@ services:
     ports:
       - "9411:9411"
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.100.0
+    image: otel/opentelemetry-collector-contrib:0.109.0
     networks:
       - otelcol
     command: ["--config=/etc/otel-collector-config.yaml"]

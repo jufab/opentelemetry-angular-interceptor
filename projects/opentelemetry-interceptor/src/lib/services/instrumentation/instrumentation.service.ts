@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { ZoneContextManager } from '@opentelemetry/context-zone-peer-dep';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
-import { InstrumentationOption, registerInstrumentations } from '@opentelemetry/instrumentation';
+import { Instrumentation, registerInstrumentations } from '@opentelemetry/instrumentation';
 import {
   AlwaysOffSampler,
   AlwaysOnSampler,
@@ -50,7 +50,7 @@ export class InstrumentationService {
     @Inject(OTEL_PROPAGATOR)
     private propagatorService: IPropagator,
     @Inject(OTEL_INSTRUMENTATION_PLUGINS)
-    private instrumentationOptions: InstrumentationOption[]) {
+    private instrumentation: Instrumentation[]) {
     this.tracerProvider = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
       resource: this.loadResourceAttributes(this.config.commonConfig),
@@ -69,7 +69,7 @@ export class InstrumentationService {
     });
 
     registerInstrumentations({
-      instrumentations: this.instrumentationOptions,
+      instrumentations: this.instrumentation,
       tracerProvider: this.tracerProvider,
     });
   }
@@ -80,7 +80,7 @@ export class InstrumentationService {
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes = Resource.default().merge(
       new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]: commonConfig.serviceName,
+        [ATTR_SERVICE_NAME]: commonConfig.serviceName,
       })
     );
     if (commonConfig.resourceAttributes !== undefined) {
