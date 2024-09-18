@@ -1,6 +1,6 @@
 import { INGXLoggerConfig, NgxLoggerLevel } from 'ngx-logger';
 import { DiagLogLevel } from '@opentelemetry/api';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { ATTR_SERVICE_NAMESPACE } from '@opentelemetry/semantic-conventions/incubating';
 import {
   OpenTelemetryConfig
 } from '../../../opentelemetry-interceptor/src/public-api';
@@ -22,7 +22,7 @@ export const environment: IEnvironment = {
       production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'interceptor-example', // Service name send in trace
       resourceAttributes: { // extra resource attributes like service.namespace
-        [SemanticResourceAttributes.SERVICE_NAMESPACE]: 'namespace'
+        [ATTR_SERVICE_NAMESPACE]: 'namespace'
       },
       logBody: true, // true add body in a log, nothing otherwise
       probabilitySampler: '1', // 75% sampling
