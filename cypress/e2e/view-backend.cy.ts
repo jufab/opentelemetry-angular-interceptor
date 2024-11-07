@@ -10,7 +10,7 @@ describe('View Page', () => {
     cy.get('i').should(() => {
       const value = JSON.parse(localStorage.getItem('consoleDir'));
       expect(value.traceId).to.be.not.undefined;
-      expect(value.name).to.eq('GET');
+      expect(value.name).to.eq('GET /api/');
     });
   });
 });
