@@ -11,7 +11,13 @@ import {
   TraceIdRatioBasedSampler,
   WebTracerProvider
 } from '@opentelemetry/sdk-trace-web';
-import { ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor, NoopSpanProcessor } from '@opentelemetry/sdk-trace-base';
+import {
+  ConsoleSpanExporter,
+  SimpleSpanProcessor,
+  BatchSpanProcessor,
+   NoopSpanProcessor,
+   SpanProcessor
+} from '@opentelemetry/sdk-trace-base';
 // eslint-disable-next-line max-len
 import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS, CommonCollectorConfig } from '../../configuration/opentelemetry-config';
 import { OTEL_EXPORTER, IExporter } from '../exporter/exporter.interface';
@@ -54,6 +60,8 @@ export class InstrumentationService {
     this.tracerProvider = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(this.config.commonConfig.probabilitySampler)),
       resource: this.loadResourceAttributes(this.config.commonConfig),
+      spanProcessors: this.insertOrNotSpanExporter(this.config.commonConfig.production,
+        this.exporterService, this.config.commonConfig.console),
     });
   }
 
@@ -61,11 +69,9 @@ export class InstrumentationService {
    * Init instrumentation on init
    */
   public initInstrumentation() {
-    this.insertOrNotSpanExporter(this.config.commonConfig.production, this.exporterService, this.config.commonConfig.console);
-
     this.tracerProvider.register({
       contextManager: this.contextManager,
-      propagator: this.propagatorService.getPropagator()
+      propagator: this.propagatorService.getPropagator(),
     });
 
     registerInstrumentations({
@@ -76,6 +82,8 @@ export class InstrumentationService {
 
   /**
    * Generate Resource Attributes
+   * @param commonConfig common configuration
+   * @returns Resource
    */
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes = Resource.default().merge(
@@ -91,13 +99,17 @@ export class InstrumentationService {
 
   /**
    * Verify to insert or not a Span Exporter
+   * @param console config to insert console span
+   * @param production production mode
+   * @param exporter exporter
+   * @returns Array of SpanProcessor
    */
-  private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean) {
+  private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean): Array<SpanProcessor> {
     if (this.exporterService.getExporter() !== undefined) {
-      this.insertSpanProcessorProductionMode(production, exporter);
-      this.insertConsoleSpanExporter(console);
+      Array.of(this.insertSpanProcessorProductionMode(production, exporter),
+        this.insertConsoleSpanExporter(console));
     } else {
-      this.tracerProvider.addSpanProcessor(new NoopSpanProcessor());
+      return Array.of(new NoopSpanProcessor());
     }
   }
 
@@ -105,12 +117,11 @@ export class InstrumentationService {
    * Insert in tracer the console span if config is true
    *
    * @param console config to insert console span
+   * @returns SpanProcessor
    */
-  private insertConsoleSpanExporter(console: boolean) {
+  private insertConsoleSpanExporter(console: boolean): SpanProcessor {
     if (console) {
-      this.tracerProvider.addSpanProcessor(
-        new SimpleSpanProcessor(new ConsoleSpanExporter())
-      );
+      return new SimpleSpanProcessor(new ConsoleSpanExporter());
     }
   }
 
@@ -120,16 +131,15 @@ export class InstrumentationService {
    *
    * @param boolean production
    * @param IExporter exporter
+   * @returns SpanProcessor
    */
   private insertSpanProcessorProductionMode(
     production: boolean,
     exporter: IExporter
-  ) {
-    this.tracerProvider.addSpanProcessor(
-      production
-        ? new BatchSpanProcessor(exporter.getExporter())
-        : new SimpleSpanProcessor(exporter.getExporter())
-    );
+  ): SpanProcessor {
+    return production
+      ? new BatchSpanProcessor(exporter.getExporter())
+      : new SimpleSpanProcessor(exporter.getExporter());
   }
 
   /**
@@ -147,6 +157,7 @@ export class InstrumentationService {
    * By Default, it's always (or 1)
    *
    * @param sampleConfig the sample configuration
+   * @returns Sampler
    */
   private defineProbabilitySampler(sampleConfig: number): Sampler {
     if (sampleConfig >= 1) {

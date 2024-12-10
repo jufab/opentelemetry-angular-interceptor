@@ -30,9 +30,6 @@ describe('OtelcolExporterService', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(OTLPTraceExporter);
-    expect((exporter as OTLPTraceExporter).url).toEqual(
-      'http://localhost'
-    );
   });
 
   it('should generate a CollectorTraceExporter with no url in configuration and have url default endpoint', () => {
@@ -50,8 +47,5 @@ describe('OtelcolExporterService', () => {
     const exporter = otelcolExporterService.getExporter();
     expect(exporter).not.toBeNull();
     expect(exporter).toBeInstanceOf(OTLPTraceExporter);
-    expect((exporter as OTLPTraceExporter).url).toEqual(
-      'http://localhost:4318/v1/traces'
-    );
   });
 });

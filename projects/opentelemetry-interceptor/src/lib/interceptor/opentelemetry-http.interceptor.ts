@@ -28,15 +28,16 @@ import {
   isUrlIgnored
 } from '@opentelemetry/core';
 import {
-  SEMATTRS_HTTP_USER_AGENT,
-  SEMATTRS_HTTP_TARGET,
-  SEMATTRS_HTTP_SCHEME,
-  SEMATTRS_HTTP_HOST,
-  SEMATTRS_HTTP_URL,
-  SEMATTRS_HTTP_METHOD,
-  SEMRESATTRS_SERVICE_NAME,
-  SEMATTRS_HTTP_STATUS_CODE,
-  //SEMATTRS_ERROR_TYPE
+  ATTR_USER_AGENT_ORIGINAL,
+  ATTR_URL_PATH,
+  ATTR_URL_QUERY,
+  ATTR_HTTP_RESPONSE_STATUS_CODE,
+  ATTR_ERROR_TYPE,
+  ATTR_SERVICE_NAME,
+  ATTR_HTTP_REQUEST_METHOD,
+  ATTR_URL_FULL,
+  ATTR_URL_SCHEME,
+  ATTR_SERVER_ADDRESS,
 } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
@@ -96,8 +97,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     this.tracer = new WebTracerProvider({
       sampler: this.defineProbabilitySampler(this.convertStringToNumber(config.commonConfig.probabilitySampler)),
       resource: this.loadResourceAttributes(this.config.commonConfig),
+      spanProcessors: this.insertOrNotSpanExporter()
     });
-    this.insertOrNotSpanExporter();
     this.contextManager = new StackContextManager();
     this.tracer.register({
       propagator: this.propagatorService.getPropagator(),
@@ -130,7 +131,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpResponse<any>) => {
           span.setAttributes(
             {
-              [SEMATTRS_HTTP_STATUS_CODE]: event.status,
+              [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
             }
           );
           if (this.logBody && event.body != null) {
@@ -144,8 +145,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         (event: HttpErrorResponse) => {
           span.setAttributes(
             {
-              [SEMATTRS_HTTP_STATUS_CODE]: event.status,
-              //[SEMATTRS_ERROR_TYPE] : event.name,
+              [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
+              [ATTR_ERROR_TYPE] : event.name,
             }
           );
           span.recordException({
@@ -179,7 +180,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes = Resource.default().merge(
       new Resource({
-        [SEMRESATTRS_SERVICE_NAME]: commonConfig.serviceName
+        [ATTR_SERVICE_NAME]: commonConfig.serviceName
       })
     );
     if (commonConfig.resourceAttributes !== undefined) {
@@ -201,12 +202,13 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         `${request.method.toUpperCase()}`,
         {
           attributes: {
-            [SEMATTRS_HTTP_METHOD]: request.method,
-            [SEMATTRS_HTTP_URL]: request.urlWithParams,
-            [SEMATTRS_HTTP_HOST]: urlRequest.host,
-            [SEMATTRS_HTTP_SCHEME]: urlRequest.protocol.replace(':', ''),
-            [SEMATTRS_HTTP_TARGET]: urlRequest.pathname + urlRequest.search,
-            [SEMATTRS_HTTP_USER_AGENT]: window.navigator.userAgent
+            [ATTR_HTTP_REQUEST_METHOD]: request.method,
+            [ATTR_URL_FULL]: request.urlWithParams,
+            [ATTR_SERVER_ADDRESS]: urlRequest.host,
+            [ATTR_URL_SCHEME]: urlRequest.protocol.replace(':', ''),
+            [ATTR_URL_PATH]: urlRequest.pathname,
+            [ATTR_URL_QUERY]: urlRequest.search,
+            [ATTR_USER_AGENT_ORIGINAL]: window.navigator.userAgent
           },
           kind: SpanKind.CLIENT,
         },
@@ -246,11 +248,11 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * Verify to insert or not a Span Exporter
    */
   private insertOrNotSpanExporter() {
+
     if (this.exporterService.getExporter() !== undefined) {
-      this.insertSpanProcessorProductionMode();
-      this.insertConsoleSpanExporter();
+      return Array.of(this.insertSpanProcessorProductionMode(), this.insertConsoleSpanExporter());
     } else {
-      this.tracer.addSpanProcessor(new NoopSpanProcessor());
+      return Array.of(new NoopSpanProcessor());
     }
   }
 
@@ -259,9 +261,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   private insertConsoleSpanExporter() {
     if (this.config.commonConfig.console) {
-      this.tracer.addSpanProcessor(
-        new SimpleSpanProcessor(new ConsoleSpanExporter())
-      );
+      return new SimpleSpanProcessor(new ConsoleSpanExporter());
     }
   }
 
@@ -276,11 +276,9 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
       exportTimeoutMillis: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.exportTimeoutMillis),
       maxQueueSize: this.convertStringToNumber(this.config.batchSpanProcessorConfig?.maxQueueSize)
     };
-    this.tracer.addSpanProcessor(
-      this.config.commonConfig.production
+    return this.config.commonConfig.production
         ? new BatchSpanProcessor(this.exporterService.getExporter(), bufferConfig)
-        : new SimpleSpanProcessor(this.exporterService.getExporter())
-    );
+        : new SimpleSpanProcessor(this.exporterService.getExporter());
   }
 
   /**
