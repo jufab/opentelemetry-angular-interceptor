@@ -38,6 +38,8 @@ import {
   ATTR_URL_FULL,
   ATTR_URL_SCHEME,
   ATTR_SERVER_ADDRESS,
+  ATTR_SERVER_PORT,
+  ATTR_HTTP_REQUEST_HEADER,
 } from '@opentelemetry/semantic-conventions';
 import { Resource } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
@@ -203,10 +205,10 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
         {
           attributes: {
             [ATTR_HTTP_REQUEST_METHOD]: request.method,
-            [ATTR_URL_FULL]: request.urlWithParams,
             [ATTR_SERVER_ADDRESS]: urlRequest.host,
+            [ATTR_SERVER_PORT] : urlRequest.port,
+            [ATTR_URL_FULL]: request.urlWithParams,
             [ATTR_URL_SCHEME]: urlRequest.protocol.replace(':', ''),
-            [ATTR_URL_PATH]: urlRequest.pathname,
             [ATTR_URL_QUERY]: urlRequest.search,
             [ATTR_USER_AGENT_ORIGINAL]: window.navigator.userAgent
           },

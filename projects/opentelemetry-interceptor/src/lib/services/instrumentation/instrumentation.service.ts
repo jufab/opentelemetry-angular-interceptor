@@ -106,7 +106,7 @@ export class InstrumentationService {
    */
   private insertOrNotSpanExporter(production: boolean, exporter: IExporter, console: boolean): Array<SpanProcessor> {
     if (this.exporterService.getExporter() !== undefined) {
-      Array.of(this.insertSpanProcessorProductionMode(production, exporter),
+      return Array.of(this.insertSpanProcessorProductionMode(production, exporter),
         this.insertConsoleSpanExporter(console));
     } else {
       return Array.of(new NoopSpanProcessor());
