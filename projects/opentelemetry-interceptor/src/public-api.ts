@@ -7,6 +7,8 @@ export { OpenTelemetryHttpInterceptor } from './lib/interceptor/opentelemetry-ht
 // Exporter
 export { OtelColExporterModule } from './lib/services/exporter/otelcol/otelcol-exporter.module';
 export { OtelcolExporterService } from './lib/services/exporter/otelcol/otelcol-exporter.service';
+export { OtelColProtoExporterModule } from './lib/services/exporter/otelcolproto/otelcolproto-exporter.module';
+export { OtelcolProtoExporterService } from './lib/services/exporter/otelcolproto/otelcolproto-exporter.service';
 export { ConsoleSpanExporterModule } from './lib/services/exporter/console/console-span-exporter.module';
 export { ConsoleSpanExporterService } from './lib/services/exporter/console/console-span-exporter.service';
 export { ZipkinExporterModule } from './lib/services/exporter/zipkin/zipkin-exporter.module';
@@ -27,8 +29,14 @@ export { OtelWebTracerModule } from './lib/otel-webtracer.module';
 
 //Interface
 export { CustomSpan } from './lib/interceptor/custom-span.interface';
-export { OTEL_EXPORTER, IExporter } from './lib/services/exporter/exporter.interface';
-export { OTEL_PROPAGATOR, IPropagator } from './lib/services/propagator/propagator.interface';
+export {
+  OTEL_EXPORTER,
+  IExporter,
+} from './lib/services/exporter/exporter.interface';
+export {
+  OTEL_PROPAGATOR,
+  IPropagator,
+} from './lib/services/propagator/propagator.interface';
 
 // Configuration
 export {
@@ -43,5 +51,5 @@ export {
   IgnoreUrlsConfig,
   OTEL_LOGGER,
   OTEL_CUSTOM_SPAN,
-  OTEL_INSTRUMENTATION_PLUGINS
+  OTEL_INSTRUMENTATION_PLUGINS,
 } from './lib/configuration/opentelemetry-config';
