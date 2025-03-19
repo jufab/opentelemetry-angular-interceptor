@@ -31,8 +31,9 @@ export class OtelcolExporterService implements IExporter {
     this.otelcolConfig = {
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
-      concurrencyLimit: Number(config.otelcolConfig?.concurrencyLimit),
-      timeoutMillis: Number(config.otelcolConfig?.timeoutMillis)
+      // eslint-disable-next-line max-len
+      concurrencyLimit: Number(config.otelcolConfig?.concurrencyLimit ?? 0) <= 0 ? undefined : Number(config.otelcolConfig?.concurrencyLimit),
+      timeoutMillis: Number(config.otelcolConfig?.timeoutMillis ?? 0) <= 0 ? undefined :  Number(config.otelcolConfig?.timeoutMillis)
     };
   }
 

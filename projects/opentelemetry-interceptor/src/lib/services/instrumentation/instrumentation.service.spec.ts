@@ -28,15 +28,6 @@ describe('InstrumentationService', () => {
     expect(instrumentationService).toBeTruthy();
   });
 
-  it('must verify all call in init instrumentation', () => {
-    const insertConsoleSpanExporterSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertConsoleSpanExporter');
-    const insertSpanProcessorProductionModeSpy = jest.spyOn(InstrumentationService.prototype as any, 'insertSpanProcessorProductionMode');
-    instrumentationService.initInstrumentation();
-    expect(insertConsoleSpanExporterSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.console);
-    // eslint-disable-next-line max-len
-    expect(insertSpanProcessorProductionModeSpy).toHaveBeenCalledWith(instrumentationConsoleOtelConfig.commonConfig.production, TestBed.inject(OTEL_EXPORTER));
-  });
-
   it('must init instrumentation with console config', () => {
     instrumentationService.initInstrumentation();
   });

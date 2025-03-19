@@ -48,7 +48,7 @@ export interface OtelCollectorConfig {
   /**
    * custom headers
    */
-  headers?: Partial<Record<string, unknown>>;
+  headers?: Record<string, string>;
   /**
    * An optional limit on pending requests
    */
