@@ -39,9 +39,10 @@ import {
   ATTR_URL_SCHEME,
   ATTR_SERVER_ADDRESS,
   ATTR_SERVER_PORT,
-  ATTR_HTTP_REQUEST_HEADER,
+  // ATTR_HTTP_REQUEST_HEADER,
+  //SEMATTRS_ERROR_TYPE
 } from '@opentelemetry/semantic-conventions';
-import { Resource } from '@opentelemetry/resources';
+import { Resource, resourceFromAttributes } from '@opentelemetry/resources';
 import { tap, finalize } from 'rxjs/operators';
 import {
   CommonCollectorConfig,
@@ -74,7 +75,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    */
   logBody = false;
 
-  /**
+   /**
    * constructor
    *
    * @param config configuration
@@ -84,7 +85,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
    * @param customSpan a customSpan interface to add attributes
    * @param platformLocation encapsulates all calls to DOM APIs
    */
-  constructor(
+   constructor(
     @Inject(OTEL_CONFIG) private config: OpenTelemetryConfig,
     @Inject(OTEL_EXPORTER)
     private exporterService: IExporter,
@@ -110,64 +111,64 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
     api.diag.setLogger(logger, config.commonConfig.logLevel);
   }
 
-  /**
+    /**
    * Overide method
    * Interceptor from HttpInterceptor Angular
    *
    * @param request the current request
    * @param next next
    */
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    if (isUrlIgnored(request.url, this.config.ignoreUrls?.urls)) {
-      return next.handle(request);
-    }
-    this.contextManager.disable(); //FIX - reinit contextManager for each http call
-    this.contextManager.enable();
-    const span: Span = this.initSpan(request);
-    const tracedReq = this.injectContextAndHeader(request);
-    return next.handle(tracedReq).pipe(
-      tap(
-        (event: HttpResponse<any>) => {
-          span.setAttributes(
-            {
-              [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
+    intercept(
+      request: HttpRequest<unknown>,
+      next: HttpHandler
+    ): Observable<HttpEvent<unknown>> {
+      if (isUrlIgnored(request.url, this.config.ignoreUrls?.urls)) {
+        return next.handle(request);
+      }
+      this.contextManager.disable(); //FIX - reinit contextManager for each http call
+      this.contextManager.enable();
+      const span: Span = this.initSpan(request);
+      const tracedReq = this.injectContextAndHeader(request);
+      return next.handle(tracedReq).pipe(
+        tap(
+          (event: HttpResponse<any>) => {
+            span.setAttributes(
+              {
+                [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
+              }
+            );
+            if (this.logBody && event.body != null) {
+              span.addEvent('response', { body: JSON.stringify(event.body) });
             }
-          );
-          if (this.logBody && event.body != null) {
-            span.addEvent('response', { body: JSON.stringify(event.body) });
+            span.setStatus({
+              code: SpanStatusCode.UNSET
+            });
+            this.setCustomSpan(span, request, event);
+          },
+          (event: HttpErrorResponse) => {
+            span.setAttributes(
+              {
+                [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
+                [ATTR_ERROR_TYPE] : event.name,
+              }
+            );
+            span.recordException({
+              name: event.name,
+              message: event.message,
+              stack: event.error
+            });
+            span.setStatus({
+              code: SpanStatusCode.ERROR
+            });
+            this.setCustomSpan(span, request, event);
           }
-          span.setStatus({
-            code: SpanStatusCode.UNSET
-          });
-          this.setCustomSpan(span, request, event);
-        },
-        (event: HttpErrorResponse) => {
-          span.setAttributes(
-            {
-              [ATTR_HTTP_RESPONSE_STATUS_CODE]: event.status,
-              [ATTR_ERROR_TYPE] : event.name,
-            }
-          );
-          span.recordException({
-            name: event.name,
-            message: event.message,
-            stack: event.error
-          });
-          span.setStatus({
-            code: SpanStatusCode.ERROR
-          });
-          this.setCustomSpan(span, request, event);
-        }
-      ),
-      finalize(() => {
-        span.end();
-        this.contextManager.disable();
-      })
-    );
-  }
+        ),
+        finalize(() => {
+          span.end();
+          this.contextManager.disable();
+        })
+      );
+    }
 
   /**
    * Get current scheme, hostname and port
@@ -179,18 +180,14 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   /**
    * Generate Resource Attributes
    */
-  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
-    let resourceAttributes = Resource.default().merge(
-      new Resource({
-        [ATTR_SERVICE_NAME]: commonConfig.serviceName
-      })
-    );
-    if (commonConfig.resourceAttributes !== undefined) {
-      resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
-    }
-    return resourceAttributes;
+  private loadResourceAttributes(
+    commonConfig: CommonCollectorConfig
+  ): Resource {
+    return resourceFromAttributes({
+      [ATTR_SERVICE_NAME]: commonConfig?.serviceName,
+      ...commonConfig?.resourceAttributes,
+    });
   }
-
   /**
    * Initialise a span for a request intercepted
    *
@@ -206,7 +203,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
           attributes: {
             [ATTR_HTTP_REQUEST_METHOD]: request.method,
             [ATTR_SERVER_ADDRESS]: urlRequest.host,
-            [ATTR_SERVER_PORT] : urlRequest.port,
+            [ATTR_SERVER_PORT]: urlRequest.port,
             [ATTR_URL_FULL]: request.urlWithParams,
             [ATTR_URL_SCHEME]: urlRequest.protocol.replace(':', ''),
             [ATTR_URL_QUERY]: urlRequest.search,
