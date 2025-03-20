@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ZoneContextManager } from '@opentelemetry/context-zone-peer-dep';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
-import { Resource } from '@opentelemetry/resources';
 import { Instrumentation, registerInstrumentations } from '@opentelemetry/instrumentation';
 import {
   AlwaysOffSampler,
@@ -15,14 +14,14 @@ import {
   ConsoleSpanExporter,
   SimpleSpanProcessor,
   BatchSpanProcessor,
-   NoopSpanProcessor,
-   SpanProcessor
+  NoopSpanProcessor,
+  SpanProcessor
 } from '@opentelemetry/sdk-trace-base';
 // eslint-disable-next-line max-len
 import { OTEL_CONFIG, OpenTelemetryConfig, OTEL_INSTRUMENTATION_PLUGINS, CommonCollectorConfig } from '../../configuration/opentelemetry-config';
 import { OTEL_EXPORTER, IExporter } from '../exporter/exporter.interface';
 import { OTEL_PROPAGATOR, IPropagator } from '../propagator/propagator.interface';
-
+import { Resource, resourceFromAttributes } from '@opentelemetry/resources';
 
 /**
  * InstrumentationService.
@@ -85,16 +84,13 @@ export class InstrumentationService {
    * @param commonConfig common configuration
    * @returns Resource
    */
-  private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
-    let resourceAttributes = Resource.default().merge(
-      new Resource({
-        [ATTR_SERVICE_NAME]: commonConfig.serviceName,
-      })
-    );
-    if (commonConfig.resourceAttributes !== undefined) {
-      resourceAttributes = resourceAttributes.merge(new Resource(commonConfig.resourceAttributes));
-    }
-    return resourceAttributes;
+  private loadResourceAttributes(
+    commonConfig: CommonCollectorConfig
+  ): Resource {
+    return resourceFromAttributes({
+      [ATTR_SERVICE_NAME]: commonConfig?.serviceName,
+      ...commonConfig?.resourceAttributes,
+    });
   }
 
   /**
@@ -170,5 +166,3 @@ export class InstrumentationService {
     }
   }
 }
-
-
