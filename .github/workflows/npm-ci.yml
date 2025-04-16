@@ -15,29 +15,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
           cache: npm
       - run: npm ci
       - run: npm test
-      - uses: dorny/test-reporter@v1
+      - uses: dorny/test-reporter@v2
         with:
           reporter: 'jest-junit'
           name: 'Jest tests results'
           path: 'jest-report/jest-junit.xml'
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: jest-report
           path: jest-report
           if-no-files-found: ignore
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v5
   cypress-interceptor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
           cache: npm
@@ -49,7 +49,7 @@ jobs:
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 180
           install: false
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
@@ -58,8 +58,8 @@ jobs:
   cypress-instrumentation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
           cache: npm
@@ -71,7 +71,7 @@ jobs:
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 180
           install: false
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
