@@ -33,6 +33,8 @@ jobs:
           path: jest-report
           if-no-files-found: ignore
       - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   cypress-interceptor:
     runs-on: ubuntu-latest
     steps:
