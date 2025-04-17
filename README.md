@@ -98,7 +98,7 @@ opentelemetryConfig: {
       logBody: true, //(boolean) true add body in a log, nothing otherwise
       serviceName: 'interceptor-example', //Service name send in trace
       resourceAttributes: { // extra resource attributes like service.namespace
-        [ATTR_SERVICE_NAMESPACE]: 'namespace'
+        [ATTR_SERVICE_VERSION]: 'version 1.0.0', // Service version
       },
       probabilitySampler: '0.7', //Samples a configurable percentage of traces, string value between '0' to '1'
       logLevel:DiagLogLevel.ALL //(Enum) DiagLogLevel is an Enum from @opentelemetry/api
