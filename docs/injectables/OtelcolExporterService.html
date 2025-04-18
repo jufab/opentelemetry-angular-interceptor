@@ -254,8 +254,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">projects/opentelemetry-interceptor/src/lib/services/exporter/otelcol/otelcol-exporter.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -355,8 +355,9 @@ export class OtelcolExporterService implements IExporter {
     this.otelcolConfig &#x3D; {
       url: config.otelcolConfig?.url,
       headers: config.otelcolConfig?.headers,
-      concurrencyLimit: Number(config.otelcolConfig?.concurrencyLimit),
-      timeoutMillis: Number(config.otelcolConfig?.timeoutMillis)
+      // eslint-disable-next-line max-len
+      concurrencyLimit: Number(config.otelcolConfig?.concurrencyLimit ?? 0) &lt;&#x3D; 0 ? undefined : Number(config.otelcolConfig?.concurrencyLimit),
+      timeoutMillis: Number(config.otelcolConfig?.timeoutMillis ?? 0) &lt;&#x3D; 0 ? undefined :  Number(config.otelcolConfig?.timeoutMillis)
     };
   }
 
