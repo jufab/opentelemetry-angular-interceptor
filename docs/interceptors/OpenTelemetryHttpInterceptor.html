@@ -1226,7 +1226,7 @@ import {
   SEMATTRS_HTTP_HOST,
   SEMATTRS_HTTP_URL,
   SEMATTRS_HTTP_METHOD,
-  SEMRESATTRS_SERVICE_NAME,
+  ATTR_SERVICE_NAME,
   SEMATTRS_HTTP_STATUS_CODE,
   //SEMATTRS_ERROR_TYPE
 } from &#x27;@opentelemetry/semantic-conventions&#x27;;
@@ -1371,7 +1371,7 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private loadResourceAttributes(commonConfig: CommonCollectorConfig): Resource {
     let resourceAttributes &#x3D; Resource.default().merge(
       new Resource({
-        [SEMRESATTRS_SERVICE_NAME]: commonConfig.serviceName
+        [ATTR_SERVICE_NAME]: commonConfig.serviceName
       })
     );
     if (commonConfig.resourceAttributes !&#x3D;&#x3D; undefined) {

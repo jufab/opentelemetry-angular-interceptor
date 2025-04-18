@@ -1,9 +1,7 @@
 import { INGXLoggerConfig, NgxLoggerLevel } from 'ngx-logger';
 import { DiagLogLevel } from '@opentelemetry/api';
-import { ATTR_SERVICE_NAMESPACE } from '@opentelemetry/semantic-conventions/incubating';
-import {
-  OpenTelemetryConfig
-} from '../../../opentelemetry-interceptor/src/public-api';
+import { ATTR_SERVICE_VERSION } from '@opentelemetry/semantic-conventions';
+import { OpenTelemetryConfig } from '../../../opentelemetry-interceptor/src/public-api';
 
 interface IEnvironment {
   production: boolean;
@@ -21,22 +19,23 @@ export const environment: IEnvironment = {
       console: true, // Display trace on console
       production: true, // Send Trace with BatchSpanProcessor (true) or SimpleSpanProcessor (false)
       serviceName: 'interceptor-example', // Service name send in trace
-      resourceAttributes: { // extra resource attributes like service.namespace
-        [ATTR_SERVICE_NAMESPACE]: 'namespace'
+      resourceAttributes: {
+        // extra resource attributes like service.namespace
+        [ATTR_SERVICE_VERSION]: 'version 1.0.0', // Service version
       },
       logBody: true, // true add body in a log, nothing otherwise
       probabilitySampler: '1', // 75% sampling
-      logLevel: DiagLogLevel.ALL //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
+      logLevel: DiagLogLevel.ALL, //ALL Log, DiagLogLevel is an Enum from @opentelemetry/api
     },
     otelcolConfig: {
       url: 'http://127.0.0.1:4318/v1/traces', // URL of opentelemetry collector
-      timeoutMillis: '10000'
-    }
+      timeoutMillis: '10000',
+    },
   },
   loggerConfig: {
     level: NgxLoggerLevel.DEBUG,
     disableConsoleLogging: false,
-  }
+  },
 };
 
 /*
@@ -47,4 +46,3 @@ export const environment: IEnvironment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
