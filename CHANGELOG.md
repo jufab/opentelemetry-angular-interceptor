@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0-1](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.9.0...v1.9.0-1) (2025-04-18)
+
+
+### Features
+
+* update to otel 2.0 ([#219](https://github.com/jufab/opentelemetry-angular-interceptor/issues/219)) ([3b4c792](https://github.com/jufab/opentelemetry-angular-interceptor/commit/3b4c792a28577cb74a279d0f8b2935378539560d))
+
 ## [1.9.0](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.8.0-3...v1.9.0) (2024-09-18)
 
 ## [1.8.0-3](https://github.com/jufab/opentelemetry-angular-interceptor/compare/v1.8.0-2...v1.8.0-3) (2024-05-07)
