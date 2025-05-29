@@ -261,6 +261,8 @@ export class OpenTelemetryHttpInterceptor implements HttpInterceptor {
   private insertConsoleSpanExporter() {
     if (this.config.commonConfig.console) {
       return new SimpleSpanProcessor(new ConsoleSpanExporter());
+    } else {
+      return new NoopSpanProcessor();
     }
   }
 
